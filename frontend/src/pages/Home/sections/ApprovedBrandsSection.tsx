@@ -46,7 +46,7 @@ export const ApprovedBrandsSection: React.FC = () => {
       <div className="pointer-events-none absolute inset-y-0 right-0 w-8 sm:w-24 md:w-32 bg-linear-to-l from-white via-white/80 to-transparent z-10" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-6 sm:mb-10 text-center">
-   
+
 
         {/* Main Heading */}
         <h2 className="text-xl sm:text-3xl lg:text-[40px] font-serif font-extrabold text-slate-950 tracking-tight leading-[1.2]">
@@ -71,7 +71,7 @@ export const ApprovedBrandsSection: React.FC = () => {
                 <img
                   src={brand.logo}
                   alt={`${brand.name} Logo`}
-                  className="h-8 sm:h-11 md:h-14 w-auto max-w-[110px] sm:max-w-45 object-contain drop-shadow-2xs select-none"
+                  className="h-8 sm:h-11 md:h-14 w-auto max-w-27.5 sm:max-w-45 object-contain drop-shadow-2xs select-none"
                   loading="lazy"
                 />
               </div>
@@ -89,7 +89,7 @@ export const ApprovedBrandsSection: React.FC = () => {
                 <img
                   src={brand.logo}
                   alt={`${brand.name} Logo`}
-                  className="h-8 sm:h-11 md:h-14 w-auto max-w-[110px] sm:max-w-45 object-contain drop-shadow-2xs select-none"
+                  className="h-8 sm:h-11 md:h-14 w-auto max-w-27.5 sm:max-w-45 object-contain drop-shadow-2xs select-none"
                   loading="lazy"
                 />
               </div>

@@ -1,5 +1,13 @@
-import React from 'react';
-import { CheckCircle2, Sun, ShieldAlert, Cpu, AlertCircle } from 'lucide-react';
+import React, { useState, useRef, useEffect, useCallback } from 'react';
+import {
+  CheckCircle2,
+  Sun,
+  ShieldAlert,
+  Cpu,
+  AlertCircle,
+  ChevronLeft,
+  ChevronRight,
+} from 'lucide-react';
 
 export interface AuditPillar {
   pillar: string;
@@ -73,21 +81,204 @@ export const HealthCheckAuditGridSection: React.FC = () => {
     },
   ];
 
+  const [activeSlide, setActiveSlide] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
+  const touchStartX = useRef<number | null>(null);
+  const touchEndX = useRef<number | null>(null);
+  const resumeTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const pauseTemporarily = () => {
+    setIsPaused(true);
+    if (resumeTimerRef.current) clearTimeout(resumeTimerRef.current);
+    resumeTimerRef.current = setTimeout(() => {
+      setIsPaused(false);
+    }, 6000);
+  };
+
+  const nextSlide = useCallback(() => {
+    setActiveSlide((prev) => (prev === pillars.length - 1 ? 0 : prev + 1));
+  }, [pillars.length]);
+
+  const prevSlide = useCallback(() => {
+    setActiveSlide((prev) => (prev === 0 ? pillars.length - 1 : prev - 1));
+  }, [pillars.length]);
+
+  const goToSlide = (index: number) => {
+    setActiveSlide(index);
+    pauseTemporarily();
+  };
+
+  // Auto-slide every 5 seconds unless paused
+  useEffect(() => {
+    if (isPaused) return;
+    const timer = setInterval(() => {
+      nextSlide();
+    }, 5000);
+    return () => clearInterval(timer);
+  }, [isPaused, nextSlide]);
+
+  // Clean up timer on unmount
+  useEffect(() => {
+    return () => {
+      if (resumeTimerRef.current) clearTimeout(resumeTimerRef.current);
+    };
+  }, []);
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    pauseTemporarily();
+    touchStartX.current = e.targetTouches[0].clientX;
+    touchEndX.current = null;
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    touchEndX.current = e.targetTouches[0].clientX;
+  };
+
+  const handleTouchEnd = () => {
+    if (touchStartX.current === null || touchEndX.current === null) return;
+    const diff = touchStartX.current - touchEndX.current;
+    if (diff > 40) {
+      nextSlide();
+    } else if (diff < -40) {
+      prevSlide();
+    }
+    touchStartX.current = null;
+    touchEndX.current = null;
+  };
+
   return (
-    <section id="audit-checklist" className="max-w-7xl mx-auto px-2 md:px-4 lg:px-6">
+    <section id="audit-checklist" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       {/* Section Header */}
-      <div className="text-center max-w-3xl mx-auto mb-10">
-    
-        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-serif font-bold text-slate-950 tracking-tight">
+      <div className="text-center max-w-3xl mx-auto mb-6 sm:mb-10">
+        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-serif font-bold text-slate-950 tracking-tight leading-tight">
           The 24-Point Solar Health & Safety Audit
         </h2>
-        <p className="mt-2 text-xs sm:text-sm text-slate-600 leading-relaxed">
+        <p className="mt-2 sm:mt-2.5 text-xs sm:text-sm text-slate-600 leading-relaxed px-1 sm:px-0">
           Every check is physically tested and certified by a CEC-accredited Master Electrician on your roof and switchboard — in full compliance with AS/NZS 5033 and AS/NZS 4777.
         </p>
       </div>
 
-      {/* Structured Horizontal Pillar Rows (Clean, Full-Width, Non-Boxy) */}
-      <div className="space-y-6">
+      {/* Mobile Sliding Carousel (< md: Cards Slide One-by-One with Autoplay & Touch Swipe) */}
+      <div className="block md:hidden">
+        <div
+          className="relative overflow-hidden rounded-2xl"
+          onTouchStart={handleTouchStart}
+          onTouchMove={handleTouchMove}
+          onTouchEnd={handleTouchEnd}
+          onMouseEnter={() => setIsPaused(true)}
+          onMouseLeave={() => setIsPaused(false)}
+        >
+          <div
+            className="flex transition-transform duration-500 ease-out"
+            style={{
+              transform: `translateX(-${activeSlide * 100}%)`,
+            }}
+          >
+            {pillars.map((pillar, idx) => (
+              <div key={idx} className="w-full shrink-0 px-0.5 flex flex-col">
+                <div className="bg-white rounded-2xl border border-slate-200/90 shadow-sm flex flex-col justify-between h-full overflow-hidden">
+                  {/* Top Column: Pillar Identity & Critical Risk */}
+                  <div className="p-4 sm:p-5 bg-slate-50/80 border-b border-slate-200/80">
+                    <div className="flex items-center justify-between gap-2 mb-2.5">
+                      <span className={`text-[11px] font-bold px-2.5 py-0.5 rounded-md border ${pillar.badgeBg} font-mono`}>
+                        {pillar.pillar}
+                      </span>
+                      <span className="text-[11px] text-slate-500 font-medium">8 Certified Checks</span>
+                    </div>
+
+                    <div className="flex items-center gap-2.5 mb-1.5">
+                      <div className={`w-8 h-8 rounded-lg ${pillar.iconBg} flex items-center justify-center shrink-0`}>
+                        {pillar.icon}
+                      </div>
+                      <h3 className="text-base font-serif font-bold text-slate-950 leading-snug">
+                        {pillar.title}
+                      </h3>
+                    </div>
+
+                    <p className="text-xs text-slate-500 font-medium mb-3">
+                      {pillar.subtitle}
+                    </p>
+
+                    <div className="bg-white rounded-lg p-3 border border-slate-200 text-xs leading-relaxed text-slate-700">
+                      <div className="flex items-center gap-1.5 font-bold text-slate-900 mb-1">
+                        <AlertCircle className="w-3.5 h-3.5 text-amber-600 shrink-0" />
+                        <span>Why This Matters:</span>
+                      </div>
+                      <p className="text-[11px] text-slate-600">
+                        {pillar.silentRisk}
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Diagnostic Checks in Slide */}
+                  <div className="p-4 sm:p-5 flex flex-col justify-center">
+                    <div className="space-y-2">
+                      {pillar.checks.map((check, cIdx) => (
+                        <div key={cIdx} className="flex items-start gap-2 text-xs text-slate-700 py-0.5">
+                          <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5 stroke-[2.2]" />
+                          <span className="leading-snug">{check}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Mobile Slider Controls (Dots + Counter + Prev/Next Buttons) */}
+        <div className="flex items-center justify-between mt-4 px-1">
+          <div className="flex items-center gap-1.5">
+            {pillars.map((_, dotIdx) => (
+              <button
+                key={dotIdx}
+                type="button"
+                onClick={() => goToSlide(dotIdx)}
+                aria-label={`Go to slide ${dotIdx + 1}`}
+                className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
+                  activeSlide === dotIdx
+                    ? 'w-6 bg-[#2B3CB8]'
+                    : 'w-2 bg-slate-300 hover:bg-slate-400'
+                }`}
+              />
+            ))}
+          </div>
+
+          <div className="flex items-center gap-2">
+            <span className="text-[11px] font-mono font-medium text-slate-500">
+              {activeSlide + 1} / {pillars.length}
+            </span>
+            <div className="flex items-center gap-1">
+              <button
+                type="button"
+                onClick={() => {
+                  prevSlide();
+                  pauseTemporarily();
+                }}
+                aria-label="Previous slide"
+                className="w-8 h-8 rounded-full border border-slate-200 bg-white hover:bg-slate-100 flex items-center justify-center text-slate-700 shadow-2xs cursor-pointer transition-colors active:scale-95"
+              >
+                <ChevronLeft className="w-4 h-4" />
+              </button>
+              <button
+                type="button"
+                onClick={() => {
+                  nextSlide();
+                  pauseTemporarily();
+                }}
+                aria-label="Next slide"
+                className="w-8 h-8 rounded-full border border-slate-200 bg-white hover:bg-slate-100 flex items-center justify-center text-slate-700 shadow-2xs cursor-pointer transition-colors active:scale-95"
+              >
+                <ChevronRight className="w-4 h-4" />
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Desktop Full-Width Pillar Rows */}
+      <div className="hidden md:block space-y-6">
         {pillars.map((pillar, idx) => (
           <div
             key={idx}
@@ -97,7 +288,7 @@ export const HealthCheckAuditGridSection: React.FC = () => {
               {/* Left Column: Pillar Identity & Critical Risk Insight (4 cols) */}
               <div className="p-6 sm:p-7 lg:col-span-4 bg-slate-50/70 border-b lg:border-b-0 lg:border-r border-slate-200/80 flex flex-col justify-between">
                 <div>
-                  <div className="flex items-center gap-2 mb-3">
+                  <div className="flex items-center justify-between sm:justify-start gap-2 mb-3">
                     <span className={`text-[11px] font-bold px-2.5 py-0.5 rounded-md border ${pillar.badgeBg} font-mono`}>
                       {pillar.pillar}
                     </span>

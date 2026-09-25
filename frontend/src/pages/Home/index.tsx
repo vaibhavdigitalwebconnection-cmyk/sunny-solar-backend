@@ -5,11 +5,13 @@ import { TrustMarqueeSection } from './sections/TrustMarqueeSection';
 import { ServicesOverviewSection } from './sections/ServicesOverviewSection';
 import { FeaturedProjectsSection } from './sections/FeaturedProjectsSection';
 import { ApprovedBrandsSection } from './sections/ApprovedBrandsSection';
+import { BrandShowcaseSection } from './sections/BrandShowcaseSection';
 import { TrustBarSection } from './sections/TrustBarSection';
 import { PreferSunnySolarSection } from './sections/PreferSunnySolarSection';
 import { CalculatorsTeaserSection } from './sections/CalculatorsTeaserSection';
 import { ParallaxBannerSection } from './sections/ParallaxBannerSection';
 import { ServiceAreasTeaserSection } from './sections/ServiceAreasTeaserSection';
+import { SolarScatterSection } from './sections/SolarScatterSection';
 import { TestimonialsSliderSection } from './sections/TestimonialsSliderSection';
 import { FAQSection } from './sections/FAQSection';
 
@@ -35,12 +37,15 @@ export const HomePage: React.FC = () => {
       <FeaturedProjectsSection />
       {/* 6 */}
       <ApprovedBrandsSection />
-      {/* 7 */}
-      <ParallaxBannerSection />
+     
       {/* 8 */}
+      <ParallaxBannerSection />
+      {/* 9 */}
       <TrustBarSection />
       {/* Authority Awards Badges (After Section 8) */}
       <PreferSunnySolarSection />
+      {/* 4th from last: Solar Scatter Animation Section */}
+      <SolarScatterSection />
       {/* 9 */}
       <ServiceAreasTeaserSection />
       {/* 10 */}

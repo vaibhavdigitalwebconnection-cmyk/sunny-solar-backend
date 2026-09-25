@@ -180,7 +180,7 @@ export const Navbar: React.FC = () => {
               </Button>
             </div>
 
-          
+
 
             {/* Mobile Hamburger Button */}
             <button

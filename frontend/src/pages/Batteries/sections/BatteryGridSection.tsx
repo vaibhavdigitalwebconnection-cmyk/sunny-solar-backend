@@ -162,7 +162,7 @@ export const BatteryGridSection: React.FC = () => {
                 return (
                   <div key={idx} className="w-full shrink-0 px-0.5">
                     <div
-                      className={`rounded-2xl p-5 xs:p-6 transition-all duration-300 flex flex-col justify-between relative min-h-[480px] ${
+                      className={`rounded-2xl p-5 xs:p-6 transition-all duration-300 flex flex-col justify-between relative min-h-120 ${
                         sub.isFeatured
                           ? 'bg-slate-950 text-white shadow-xl border-2 border-amber-500'
                           : 'bg-white text-slate-900 border border-slate-200/90 shadow-2xs'

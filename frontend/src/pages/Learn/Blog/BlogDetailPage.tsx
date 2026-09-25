@@ -18,6 +18,7 @@ import {
 } from 'lucide-react';
 import { api } from '../../../services/api';
 import type { Article } from '../../../types/blog';
+import LatticeLoadingBlock from '../../../components/ui/LatticeLoadingBlock';
 
 export const BlogDetailPage: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -142,7 +143,7 @@ export const BlogDetailPage: React.FC = () => {
   if (!article) {
     return (
       <div className="min-h-screen bg-slate-50 flex items-center justify-center py-24">
-        <div className="w-10 h-10 border-3 border-amber-500/20 border-t-amber-500 rounded-full animate-spin" />
+        <LatticeLoadingBlock label="Loading article" />
       </div>
     );
   }

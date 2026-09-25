@@ -40,11 +40,11 @@ export const SolarSavingsCalcSection: React.FC = () => {
   const billPresets = [400, 750, 1200, 1800];
 
   return (
-    <section className="max-w-7xl mx-auto px-4 sm:px-6 py-8">
-      <div className=" p-6 sm:p-8">
+    <section className="max-w-7xl mx-auto px-4 sm:px-6 py-6 sm:py-8">
+      <div className="p-4 sm:p-6 lg:p-8 rounded-2xl bg-white border border-slate-200/80 shadow-xs">
         
-        {/* Simple Header */}
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-6 border-b border-slate-200">
+        {/* Header */}
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-5 sm:pb-6 border-b border-slate-200">
           <div>
             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-serif font-bold text-slate-950 tracking-tight">
               Calculate Your Solar Savings
@@ -64,20 +64,20 @@ export const SolarSavingsCalcSection: React.FC = () => {
         </div>
 
         {/* 2-Column Normal Layout */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 pt-6 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 pt-6 items-start">
           
-          {/* Left: Simple Inputs (7 cols) */}
-          <div className="lg:col-span-7 space-y-6">
+          {/* Left: Inputs (7 cols) */}
+          <div className="lg:col-span-7 space-y-5 sm:space-y-6">
             
             {/* 1. Quarterly Bill Input & Slider */}
             <div>
-              <div className="flex items-center justify-between mb-2">
-                <label className="text-sm font-semibold text-slate-900 flex items-center gap-1.5">
-                  <DollarSign className="w-4 h-4 text-amber-500" />
-                  Quarterly Electricity Bill
+              <div className="flex items-center justify-between gap-2 mb-2">
+                <label className="text-xs sm:text-sm font-semibold text-slate-900 flex items-center gap-1.5">
+                  <DollarSign className="w-4 h-4 text-amber-500 shrink-0" />
+                  <span>Quarterly Electricity Bill</span>
                 </label>
-                <div className="relative flex items-center">
-                  <span className="absolute left-3 text-amber-700 font-bold text-sm pointer-events-none">$</span>
+                <div className="relative flex items-center shrink-0">
+                  <span className="absolute left-2.5 sm:left-3 text-amber-700 font-bold text-xs sm:text-sm pointer-events-none">$</span>
                   <input
                     type="number"
                     min="50"
@@ -89,7 +89,7 @@ export const SolarSavingsCalcSection: React.FC = () => {
                       setQuarterlyBill(val);
                     }}
                     placeholder="750"
-                    className="w-32 pl-7 pr-3 py-1 text-base font-bold text-amber-700 bg-amber-50 border border-amber-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500 text-right shadow-2xs"
+                    className="w-24 sm:w-32 pl-6 sm:pl-7 pr-2.5 sm:pr-3 py-1 text-sm sm:text-base font-bold text-amber-700 bg-amber-50 border border-amber-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500 text-right shadow-2xs"
                   />
                 </div>
               </div>
@@ -105,14 +105,14 @@ export const SolarSavingsCalcSection: React.FC = () => {
               />
 
               {/* Quick Presets */}
-              <div className="flex items-center gap-2 mt-2.5">
-                <span className="text-[11px] text-slate-400 font-medium">Quick select:</span>
+              <div className="flex flex-wrap items-center gap-1.5 sm:gap-2 mt-2.5">
+                <span className="text-[11px] text-slate-400 font-medium mr-1">Quick select:</span>
                 {billPresets.map((preset) => (
                   <button
                     key={preset}
                     type="button"
                     onClick={() => setQuarterlyBill(preset)}
-                    className={`text-xs px-2.5 py-1 rounded-md border font-medium transition-colors cursor-pointer ${
+                    className={`text-xs px-2 sm:px-2.5 py-1 rounded-md border font-medium transition-colors cursor-pointer ${
                       quarterlyBill === preset
                         ? 'bg-amber-500 text-white border-amber-500'
                         : 'bg-slate-50 text-slate-600 border-slate-200 hover:bg-slate-100'
@@ -126,10 +126,10 @@ export const SolarSavingsCalcSection: React.FC = () => {
 
             {/* 2. Daytime Occupancy */}
             <div>
-              <label className="text-sm font-semibold text-slate-900 block mb-2">
+              <label className="text-xs sm:text-sm font-semibold text-slate-900 block mb-2">
                 Daytime Home Occupancy (9am – 4pm)
               </label>
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 sm:gap-2.5">
+              <div className="grid grid-cols-1 xs:grid-cols-3 gap-2 sm:gap-2.5">
                 {[
                   { id: 'high', label: 'All Day', sub: 'WFH / Retired' },
                   { id: 'medium', label: 'Part of Day', sub: 'Flexible hours' },
@@ -139,7 +139,7 @@ export const SolarSavingsCalcSection: React.FC = () => {
                     key={item.id}
                     type="button"
                     onClick={() => setDaytimeHabit(item.id as any)}
-                    className={`p-3 rounded-xl border text-center transition-all cursor-pointer ${
+                    className={`p-2.5 sm:p-3 rounded-xl border text-center transition-all cursor-pointer ${
                       daytimeHabit === item.id
                         ? 'bg-amber-500 text-white border-amber-500 shadow-xs'
                         : 'bg-slate-50 text-slate-700 border-slate-200 hover:bg-slate-100'
@@ -158,33 +158,33 @@ export const SolarSavingsCalcSection: React.FC = () => {
 
             {/* 3. Extra Appliances Checkboxes */}
             <div>
-              <label className="text-sm font-semibold text-slate-900 block mb-2">
+              <label className="text-xs sm:text-sm font-semibold text-slate-900 block mb-2">
                 Additional Power Loads
               </label>
-              <div className="space-y-2.5">
-                <label className="flex items-center gap-3 p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer transition-colors">
+              <div className="space-y-2 sm:space-y-2.5">
+                <label className="flex items-start sm:items-center gap-2.5 sm:gap-3 p-2.5 sm:p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer transition-colors">
                   <input
                     type="checkbox"
                     checked={hasPool}
                     onChange={(e) => setHasPool(e.target.checked)}
-                    className="w-4 h-4 accent-amber-500 rounded cursor-pointer"
+                    className="w-4 h-4 accent-amber-500 rounded cursor-pointer mt-0.5 sm:mt-0 shrink-0"
                   />
                   <div className="text-xs">
                     <span className="font-semibold text-slate-900 block">Swimming Pool / Filtration Pump</span>
-                    <span className="text-slate-500">Timer can be scheduled to run during solar peak hours</span>
+                    <span className="text-slate-500 text-[11px] sm:text-xs">Timer scheduled to run during solar peak hours</span>
                   </div>
                 </label>
 
-                <label className="flex items-center gap-3 p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer transition-colors">
+                <label className="flex items-start sm:items-center gap-2.5 sm:gap-3 p-2.5 sm:p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer transition-colors">
                   <input
                     type="checkbox"
                     checked={hasEv}
                     onChange={(e) => setHasEv(e.target.checked)}
-                    className="w-4 h-4 accent-amber-500 rounded cursor-pointer"
+                    className="w-4 h-4 accent-amber-500 rounded cursor-pointer mt-0.5 sm:mt-0 shrink-0"
                   />
                   <div className="text-xs">
                     <span className="font-semibold text-slate-900 block">Electric Vehicle (or planning one)</span>
-                    <span className="text-slate-500">Charge during the day with free generated solar</span>
+                    <span className="text-slate-500 text-[11px] sm:text-xs">Charge during the day with free generated solar</span>
                   </div>
                 </label>
               </div>
@@ -192,8 +192,8 @@ export const SolarSavingsCalcSection: React.FC = () => {
 
           </div>
 
-          {/* Right: Simple, Normal Results (5 cols) */}
-          <div className="lg:col-span-5 bg-slate-50  p-5 sm:p-6 space-y-4">
+          {/* Right: Results (5 cols) */}
+          <div className="lg:col-span-5 bg-slate-50 rounded-xl border border-slate-200/80 p-4 sm:p-5 lg:p-6 space-y-3 sm:space-y-4">
             
             <div className="flex items-center justify-between">
               <span className="text-xs font-bold text-slate-700 uppercase tracking-wider">
@@ -205,61 +205,61 @@ export const SolarSavingsCalcSection: React.FC = () => {
             </div>
 
             {/* Primary Hero Stat Card */}
-            <div className="p-4 rounded-xl bg-amber-50 border border-amber-200 text-center">
-              <span className="text-xs font-medium text-amber-800 uppercase tracking-wider block">
+            <div className="p-3.5 sm:p-4 rounded-xl bg-amber-50 border border-amber-200 text-center">
+              <span className="text-[11px] sm:text-xs font-medium text-amber-800 uppercase tracking-wider block">
                 Estimated Annual Savings
               </span>
-              <div className="text-3xl sm:text-4xl font-extrabold text-amber-700 mt-1">
+              <div className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-amber-700 mt-1">
                 ${annualSavings.toLocaleString()}
-                <span className="text-base font-semibold text-amber-600"> / yr</span>
+                <span className="text-sm sm:text-base font-semibold text-amber-600"> / yr</span>
               </div>
-              <p className="text-xs text-amber-700/80 mt-1">
+              <p className="text-[11px] sm:text-xs text-amber-700/80 mt-1">
                 Save approximately ${quarterlySavings.toLocaleString()} on each quarterly bill
               </p>
             </div>
 
             {/* Secondary Stat Grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+            <div className="grid grid-cols-2 gap-2 sm:gap-2.5">
               
-              <div className="p-3 bg-white rounded-lg border border-slate-200">
-                <span className="text-[11px] font-medium text-slate-500 block">New Quarterly Bill</span>
-                <span className="text-lg font-bold text-slate-900 mt-0.5 block">
+              <div className="p-2.5 sm:p-3 bg-white rounded-lg border border-slate-200">
+                <span className="text-[10px] sm:text-[11px] font-medium text-slate-500 block">New Quarterly Bill</span>
+                <span className="text-base sm:text-lg font-bold text-slate-900 mt-0.5 block">
                   ${newQuarterlyBill.toLocaleString()}
                 </span>
                 <span className="text-[10px] text-slate-400">Down from ${quarterlyBill}</span>
               </div>
 
-              <div className="p-3 bg-white rounded-lg border border-slate-200">
-                <span className="text-[11px] font-medium text-slate-500 block">10-Year Savings</span>
-                <span className="text-lg font-bold text-emerald-600 mt-0.5 block">
+              <div className="p-2.5 sm:p-3 bg-white rounded-lg border border-slate-200">
+                <span className="text-[10px] sm:text-[11px] font-medium text-slate-500 block">10-Year Savings</span>
+                <span className="text-base sm:text-lg font-bold text-emerald-600 mt-0.5 block">
                   ${tenYearSavings.toLocaleString()}
                 </span>
                 <span className="text-[10px] text-slate-400">Inc. 3% inflation</span>
               </div>
 
-              <div className="col-span-full p-3 bg-white rounded-lg border border-slate-200 flex items-center justify-between">
+              <div className="col-span-full p-2.5 sm:p-3 bg-white rounded-lg border border-slate-200 flex items-center justify-between">
                 <div>
-                  <span className="text-[11px] font-medium text-slate-500 block">Recommended System Size</span>
-                  <span className="text-base font-bold text-slate-900">{recSize} Solar Array</span>
+                  <span className="text-[10px] sm:text-[11px] font-medium text-slate-500 block">Recommended System Size</span>
+                  <span className="text-sm sm:text-base font-bold text-slate-900">{recSize} Solar Array</span>
                 </div>
-                <Sun className="w-5 h-5 text-amber-500" />
+                <Sun className="w-5 h-5 text-amber-500 shrink-0" />
               </div>
 
             </div>
 
             {/* Action Buttons & Next Step */}
-            <div className="pt-2 space-y-2.5">
+            <div className="pt-2 space-y-2">
               <Button
                 to="/get-started/free-assessment"
                 variant="primary"
                 size="md"
                 fullWidth
                 icon={<ArrowRight className="w-4 h-4" />}
-                className="shadow-md"
+                className="shadow-md justify-center text-center text-xs sm:text-sm"
               >
                 Claim This System Quote
               </Button>
-              <div className="flex items-center justify-between text-[11px] text-slate-500 px-1 pt-1">
+              <div className="flex flex-col xs:flex-row items-center justify-between text-[11px] text-slate-500 px-1 pt-1 gap-1">
                 <span>Want to see battery impact?</span>
                 <Link
                   to="/calculators/battery-savings"

@@ -6,6 +6,7 @@ import { SmoothScroll } from './components/common/SmoothScroll';
 import { Navbar } from './components/layout/Navbar/Navbar';
 import { Footer } from './components/layout/Footer/Footer';
 import { MobileStickyActionBar } from './components/layout/MobileStickyActionBar';
+import { WebsiteStartupLoader } from './components/layout/WebsiteStartupLoader';
 import { AppRoutes } from './routes/AppRoutes';
 
 function AppLayout() {
@@ -28,6 +29,7 @@ function AppLayout() {
   return (
     <SmoothScroll>
       <ScrollToTop />
+      <WebsiteStartupLoader />
       <div className="flex flex-col min-h-screen selection:bg-[#2B3CB8] selection:text-white relative">
         <Navbar />
         <main className="grow">

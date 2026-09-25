@@ -165,7 +165,7 @@ export const TrustBarSection: React.FC = () => {
 
           {/* ── Sliding Stat Showcase (order-1 on mobile so number is ON TOP) ── */}
           <div className="order-1 lg:order-1">
-            <div className="flex flex-col justify-center min-h-[260px] sm:min-h-65 relative overflow-hidden">
+            <div className="flex flex-col justify-center min-h-65 sm:min-h-65 relative overflow-hidden">
               <AnimatePresence mode="wait" custom={direction}>
                 <motion.div
                   key={activeIndex}
@@ -249,9 +249,8 @@ export const TrustBarSection: React.FC = () => {
                         goTo(i, i > activeIndex ? 'down' : 'up');
                         resetTimer();
                       }}
-                      className={`h-2 rounded-full transition-all duration-300 ${
-                        i === activeIndex ? 'w-6 bg-[#2B3CB8]' : 'w-2 bg-slate-200'
-                      }`}
+                      className={`h-2 rounded-full transition-all duration-300 ${i === activeIndex ? 'w-6 bg-[#2B3CB8]' : 'w-2 bg-slate-200'
+                        }`}
                       aria-label={`Go to stat ${i + 1}`}
                     />
                   ))}

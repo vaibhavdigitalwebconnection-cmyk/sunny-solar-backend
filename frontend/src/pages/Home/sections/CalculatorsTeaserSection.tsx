@@ -229,7 +229,7 @@ export const CalculatorsTeaserSection: React.FC = () => {
                         type="button"
                         onClick={() => handleSelect(idx)}
                         whileTap={{ scale: 0.97 }}
-                        className={`relative flex items-center gap-2 sm:gap-2.5 p-2 sm:p-3 rounded-xl font-semibold text-xs sm:text-sm transition-all duration-300 cursor-pointer overflow-hidden border text-left min-h-[44px] ${
+                        className={`relative flex items-center gap-2 sm:gap-2.5 p-2 sm:p-3 rounded-xl font-semibold text-xs sm:text-sm transition-all duration-300 cursor-pointer overflow-hidden border text-left min-h-11 ${
                           isActive
                             ? 'bg-[#F5F7FD] border-[#2B3CB8] shadow-xs'
                             : 'bg-slate-50/80 hover:bg-[#F5F7FD] border-slate-200/80 hover:border-[#D1DCF8]'
@@ -361,7 +361,7 @@ export const CalculatorsTeaserSection: React.FC = () => {
                       >
                         <Link
                           to={`/calculators/${active.slug}`}
-                          className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-6 sm:px-7 py-3.5 rounded-xl text-white font-bold text-sm sm:text-base bg-[#2B3CB8] hover:bg-[#1D2984] shadow-md shadow-[#2B3CB8]/25 hover:shadow-xl hover:shadow-[#2B3CB8]/35 transition-all duration-300 group relative overflow-hidden min-h-[48px]"
+                          className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-6 sm:px-7 py-3.5 rounded-xl text-white font-bold text-sm sm:text-base bg-[#2B3CB8] hover:bg-[#1D2984] shadow-md shadow-[#2B3CB8]/25 hover:shadow-xl hover:shadow-[#2B3CB8]/35 transition-all duration-300 group relative overflow-hidden min-h-12"
                         >
                           {/* Animated Shimmer sweep on hover */}
                           <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 bg-linear-to-r from-transparent via-white/25 to-transparent skew-x-12 pointer-events-none" />

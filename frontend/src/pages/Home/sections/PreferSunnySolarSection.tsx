@@ -9,7 +9,7 @@ import React from 'react';
  */
 export const PreferSunnySolarSection: React.FC = () => {
   return (
-    <section 
+    <section
       className="relative py-8 sm:py-10 lg:py-14 bg-linear-to-b from-white via-[#F5F7FD] to-white border-y border-[#D1DCF8] overflow-hidden"
       aria-label="Why Most Australians Prefer Sunny Solar"
     >
@@ -19,13 +19,13 @@ export const PreferSunnySolarSection: React.FC = () => {
       <div className="absolute top-10 right-10 w-72 h-72 bg-[#2B3CB8]/5 blur-3xl rounded-full pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8 relative z-10">
-        
+
         {/* Section Header */}
         <div className="text-center max-w-6xl mx-auto mb-6 sm:mb-10">
           <h2 className="text-2xl sm:text-4xl lg:text-5xl font-serif font-extrabold text-slate-900 tracking-tight leading-tight">
             Why Most Australians Prefer{' '} <br className="hidden sm:inline" />
             <span className="text-[#2B3CB8] inline-block">
-             Sunny Solar
+              Sunny Solar
             </span>
             ?
           </h2>
@@ -37,7 +37,7 @@ export const PreferSunnySolarSection: React.FC = () => {
 
         {/* 4 Authority Cards: 4 in one line on mobile */}
         <div className="grid grid-cols-4 gap-1.5 xs:gap-2.5 sm:gap-6 lg:gap-7">
-          
+
           {/* ══════════════════════════════════════════════════════════════
               CARD 1: #1 RATED SOLAR RETAILER (SOVEREIGN CREST)
              ══════════════════════════════════════════════════════════════ */}
@@ -153,7 +153,7 @@ export const PreferSunnySolarSection: React.FC = () => {
                   <path d="M 12 115 L 26 104 L 26 126 L 12 122 Z" fill="#0C123E" />
                   {/* Ribbon Right Fold */}
                   <path d="M 148 115 L 134 104 L 134 126 L 148 122 Z" fill="#0C123E" />
-                  
+
                   {/* Main Ribbon Plaque */}
                   <path
                     d="M 22 107 Q 80 114 138 107 L 134 128 Q 80 135 26 128 Z"
@@ -161,7 +161,7 @@ export const PreferSunnySolarSection: React.FC = () => {
                     stroke="#D1DCF8"
                     strokeWidth="1.2"
                   />
-                  
+
                   <text
                     x="80"
                     y="122"
@@ -292,7 +292,7 @@ export const PreferSunnySolarSection: React.FC = () => {
                   <path d="M 16 118 L 28 108 L 28 130 L 16 126 Z" fill="#0C123E" />
                   {/* Right ribbon tail */}
                   <path d="M 144 118 L 132 108 L 132 130 L 144 126 Z" fill="#0C123E" />
-                  
+
                   {/* Banner body */}
                   <path
                     d="M 24 111 Q 80 118 136 111 L 132 133 Q 80 140 28 133 Z"
@@ -432,7 +432,7 @@ export const PreferSunnySolarSection: React.FC = () => {
                 <g>
                   <path d="M 18 116 L 30 106 L 30 128 L 18 124 Z" fill="#0C123E" />
                   <path d="M 142 116 L 130 106 L 130 128 L 142 124 Z" fill="#0C123E" />
-                  
+
                   <path
                     d="M 26 109 Q 80 116 134 109 L 130 131 Q 80 138 30 131 Z"
                     fill="url(#crestRibbonGrad)"
@@ -568,7 +568,7 @@ export const PreferSunnySolarSection: React.FC = () => {
                 <g>
                   <path d="M 18 116 L 30 106 L 30 128 L 18 124 Z" fill="#0C123E" />
                   <path d="M 142 116 L 130 106 L 130 128 L 142 124 Z" fill="#0C123E" />
-                  
+
                   <path
                     d="M 26 109 Q 80 116 134 109 L 130 131 Q 80 138 30 131 Z"
                     fill="url(#crestRibbonGrad)"
@@ -607,7 +607,7 @@ export const PreferSunnySolarSection: React.FC = () => {
 
         </div>
 
-      
+
 
       </div>
     </section>

@@ -4,6 +4,7 @@ import { Newspaper } from 'lucide-react';
 import { api } from '../../../../services/api';
 import type { Article } from '../../../../types/blog';
 import { articlesData } from '../../../../data/blogData';
+import LatticeLoadingBlock from '../../../../components/ui/LatticeLoadingBlock';
 
 const categories = [
   'All Articles',
@@ -81,10 +82,7 @@ export const BlogGridSection: React.FC = () => {
       </div>
 
       {loading ? (
-        <div className="py-20 flex flex-col items-center justify-center">
-          <div className="w-10 h-10 border-3 border-amber-500/20 border-t-amber-500 rounded-full animate-spin mb-3" />
-          <p className="text-xs text-slate-500 font-medium">Loading articles from database...</p>
-        </div>
+        <LatticeLoadingBlock label="Loading articles" />
       ) : articles.length === 0 ? (
         <div className="bg-white rounded-2xl border border-slate-200 p-12 text-center max-w-md mx-auto">
           <Newspaper className="w-12 h-12 text-slate-400 mx-auto mb-3" />

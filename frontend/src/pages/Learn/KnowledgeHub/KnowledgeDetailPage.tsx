@@ -5,6 +5,7 @@ import { Breadcrumbs } from '../../../components/layout/Breadcrumbs';
 import { Badge } from '../../../components/ui/Badge';
 import { Button } from '../../../components/ui/Button';
 import { api } from '../../../services/api';
+import LatticeLoadingBlock from '../../../components/ui/LatticeLoadingBlock';
 import {
   Clock,
   Calendar,
@@ -204,7 +205,7 @@ export const KnowledgeDetailPage: React.FC = () => {
   if (!article) {
     return (
       <div className="min-h-screen bg-slate-50 flex items-center justify-center py-24">
-        <div className="w-10 h-10 border-3 border-amber-500/20 border-t-amber-500 rounded-full animate-spin" />
+        <LatticeLoadingBlock label="Loading guide" />
       </div>
     );
   }

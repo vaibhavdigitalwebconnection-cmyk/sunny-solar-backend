@@ -64,11 +64,12 @@ const TermsOfTradePage = lazy(() => import('../pages/Legal/TermsOfTradePage'));
 const AdminPage = lazy(() => import('../pages/Admin/AdminPage'));
 const NotFoundPage = lazy(() => import('../pages/NotFound/NotFoundPage'));
 
-// Sleek fallback loader while dynamic chunk is loading
+import LatticeLoadingBlock from '../components/ui/LatticeLoadingBlock';
+
+// Sleek Lattice fallback loader while dynamic chunk is loading
 const RouteFallback: React.FC = () => (
   <div className="min-h-[50vh] flex flex-col items-center justify-center py-24">
-    <div className="w-10 h-10 border-3 border-amber-500/20 border-t-amber-500 rounded-full animate-spin" />
-    <span className="text-xs font-semibold text-slate-500 mt-3 tracking-wide">Loading page...</span>
+    <LatticeLoadingBlock label="Loading page" containerClassName="flex flex-col items-center justify-center" />
   </div>
 );
 

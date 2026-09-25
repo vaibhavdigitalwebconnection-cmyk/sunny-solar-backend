@@ -5,11 +5,11 @@ import { Button } from '../../../components/ui/Button';
 export const ResourcesCTASection: React.FC = () => {
   return (
     <section className="max-w-7xl mx-auto px-4 sm:px-6 my-6">
-      <div className="relative  p-8 sm:p-10  overflow-hidden">
+      <div className="relative rounded-2xl sm:rounded-3xl bg-white border border-slate-200/80 p-6 sm:p-8 md:p-10 overflow-hidden shadow-xs">
         
         {/* Subtle decorative background gradient */}
-        <div className="absolute top-0 right-0 w-80 h-80 bg-gradient-to-bl from-amber-500/10 to-transparent rounded-full blur-2xl pointer-events-none" />
-        <div className="absolute bottom-0 left-0 w-80 h-80 bg-gradient-to-tr from-emerald-500/10 to-transparent rounded-full blur-2xl pointer-events-none" />
+        <div className="absolute top-0 right-0 w-80 h-80 bg-linear-to-bl from-amber-500/10 to-transparent rounded-full blur-2xl pointer-events-none" />
+        <div className="absolute bottom-0 left-0 w-80 h-80 bg-linear-to-tr from-emerald-500/10 to-transparent rounded-full blur-2xl pointer-events-none" />
 
         <div className="relative z-10 text-center max-w-6xl mx-auto space-y-4">
           

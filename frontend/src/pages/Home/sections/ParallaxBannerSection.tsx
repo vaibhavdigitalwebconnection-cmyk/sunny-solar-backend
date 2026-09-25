@@ -1,6 +1,7 @@
 import React from 'react';
 import { ArrowRight } from 'lucide-react';
 import { Button } from '../../../components/ui/Button';
+import MorphText from '@/components/ui/MorphText';
 
 export const ParallaxBannerSection: React.FC = () => {
   return (
@@ -29,9 +30,16 @@ export const ParallaxBannerSection: React.FC = () => {
           </div>
 
           {/* Headline */}
-          <h2 className="text-2xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight font-serif leading-[1.18]">
-            Not Sure What You Need?
-          </h2>
+          <div className="w-full py-2">
+          <MorphText
+            words={['SUNNY SOLAR', 'CLEAN ENERGY', 'SMART BATTERY', 'LOWER BILLS']}
+            interval={2800}
+            fontSize="clamp(2.4rem, 7.5vw, 6.2rem)"
+            textClassName="text-white drop-shadow-[0_4px_35px_rgba(43,60,184,0.5)] font-bold tracking-tight"
+            subtext="Quality Residential Solar & Battery Systems Across South East Queensland"
+            subtextClassName="text-slate-300 font-medium tracking-[0.18em] text-xs sm:text-sm max-w-2xl px-4 mt-6 sm:mt-8"
+          />
+        </div>
 
           {/* Supporting Copy */}
           <p className="mt-2 text-sm sm:text-lg lg:text-xl text-slate-200 leading-relaxed max-w-2xl mx-auto font-normal">

@@ -10,25 +10,22 @@ import { Button } from '../../../components/ui/Button';
 
 export const CalculatorsHeroSection: React.FC = () => {
   return (
-    <section className="relative pt-24 sm:pt-36 pb-12 sm:pb-16 bg-linear-to-b from-[#2B3CB8]/10 via-[#2B3CB8]/5 to-white border-b border-slate-200/60 overflow-hidden">
+    <section className="relative pt-24 sm:pt-32 lg:pt-36 pb-10 sm:pb-16 bg-linear-to-b from-[#2B3CB8]/10 via-[#2B3CB8]/5 to-white border-b border-slate-200/60 overflow-hidden">
       {/* Subtle ambient solar lighting glow */}
-      <div className="absolute top-10 right-1/4 w-96 h-96 bg-[#2B3CB8]/10 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute top-36 left-10 w-80 h-80 bg-[#2B3CB8]/5 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute top-10 right-1/4 w-72 sm:w-96 h-72 sm:h-96 bg-[#2B3CB8]/10 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute top-36 left-10 w-64 sm:w-80 h-64 sm:h-80 bg-[#2B3CB8]/5 rounded-full blur-3xl pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        
-
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 lg:gap-12 items-center">
           
-          {/* Content Column (Bottom on mobile, Left on desktop) */}
-          <div className="order-2 lg:order-1 lg:col-span-7 space-y-4 sm:space-y-5 text-center lg:text-left flex flex-col items-center lg:items-start">
+          {/* Content Column (Top on mobile, Left on desktop) */}
+          <div className="order-1 lg:order-1 lg:col-span-7 space-y-4 sm:space-y-5 text-center lg:text-left flex flex-col items-center lg:items-start">
             
             {/* Top Micro Eyebrow Badge */}
-            <div className="inline-flex items-center gap-2 px-3 sm:px-3.5 py-1 sm:py-1.5 rounded-full text-[11px] sm:text-xs font-bold uppercase tracking-wider text-[#2B3CB8] bg-[#F5F7FD] border border-[#D1DCF8] shadow-2xs max-w-full">
-              <Calculator className="w-3.5 h-3.5 text-[#2B3CB8] shrink-0" />
+            <div className="inline-flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-3.5 py-1 sm:py-1.5 rounded-full text-[10px] sm:text-xs font-bold uppercase tracking-wider text-[#2B3CB8] bg-[#F5F7FD] border border-[#D1DCF8] shadow-2xs max-w-full">
+              <Calculator className="w-3 sm:w-3.5 h-3 sm:h-3.5 text-[#2B3CB8] shrink-0" />
               <span className="truncate xs:whitespace-normal">Independent Energy Sizing Engine</span>
             </div>
-       
 
             {/* Headline */}
             <motion.h1
@@ -74,7 +71,6 @@ export const CalculatorsHeroSection: React.FC = () => {
                 </div>
                 <span>100% Free • No Personal Info Needed</span>
               </div>
-
             </motion.div>
 
             {/* Action Buttons */}
@@ -82,13 +78,13 @@ export const CalculatorsHeroSection: React.FC = () => {
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4, delay: 0.26 }}
-              className="flex flex-col xs:flex-row items-stretch xs:items-center justify-center lg:justify-start gap-3 w-full xs:w-auto pt-2"
+              className="flex flex-col xs:flex-row items-stretch xs:items-center justify-center lg:justify-start gap-2.5 sm:gap-3 w-full xs:w-auto pt-1 sm:pt-2"
             >
               <Button
                 to="/calculators/solar-savings"
                 variant="primary"
                 size="md"
-                className="w-full xs:w-auto font-bold shadow-md justify-center text-center"
+                className="w-full xs:w-auto font-bold shadow-md justify-center text-center text-xs sm:text-sm"
                 icon={<ArrowRight className="w-4 h-4" />}
               >
                 Start with Solar Savings
@@ -98,7 +94,7 @@ export const CalculatorsHeroSection: React.FC = () => {
                 to="/calculators/battery-savings"
                 variant="outline"
                 size="md"
-                className="w-full xs:w-auto justify-center text-center font-semibold"
+                className="w-full xs:w-auto justify-center text-center font-semibold text-xs sm:text-sm"
                 icon={<Calculator className="w-4 h-4 text-[#2B3CB8]" />}
               >
                 Calculate Battery ROI
@@ -107,14 +103,14 @@ export const CalculatorsHeroSection: React.FC = () => {
 
           </div>
 
-          {/* Image Column (Top on mobile, Right on desktop) */}
+          {/* Image Column (Bottom on mobile, Right on desktop) */}
           <motion.div
             initial={{ opacity: 0, scale: 0.98 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5, delay: 0.15 }}
-            className="order-1 lg:order-2 lg:col-span-5 relative w-full"
+            className="order-2 lg:order-2 lg:col-span-5 relative w-full"
           >
-            <div className="relative rounded-2xl overflow-hidden shadow-xl sm:shadow-2xl border-2 sm:border-4 border-white bg-slate-950 group aspect-16/10 xs:aspect-4/3 max-w-lg mx-auto lg:max-w-none">
+            <div className="relative rounded-xl overflow-hidden shadow-xl sm:shadow-2xl border-2 sm:border-4 border-white bg-slate-950 group aspect-16/10 xs:aspect-4/3 max-w-lg mx-auto lg:max-w-none">
               <img
                 src="/images/solutions/net-metering.jpg"
                 alt="Solar and battery smart energy generation telemetry"
@@ -122,14 +118,13 @@ export const CalculatorsHeroSection: React.FC = () => {
               />
               <div className="absolute inset-0 bg-linear-to-t from-slate-950/80 via-slate-950/20 to-transparent pointer-events-none" />
 
-
               {/* Bottom Status Strip */}
-              <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between text-white text-xs bg-slate-950/80 backdrop-blur-md px-3.5 py-2 rounded-xl border border-white/10">
-                <div className="flex items-center gap-2">
-                  <span className="w-2 h-2 rounded-full bg-[#2B3CB8] animate-pulse" />
-                  <span className="font-semibold text-white">Clean Energy Council Math</span>
+              <div className="absolute bottom-2.5 sm:bottom-3 left-2.5 sm:left-3 right-2.5 sm:right-3 flex items-center justify-between text-white text-[11px] sm:text-xs bg-slate-950/85 backdrop-blur-md px-2.5 sm:px-3.5 py-1.5 sm:py-2 rounded-xl border border-white/10">
+                <div className="flex items-center gap-1.5 sm:gap-2">
+                  <span className="w-2 h-2 rounded-full bg-[#2B3CB8] animate-pulse shrink-0" />
+                  <span className="font-semibold text-white truncate">CEC Certified Math</span>
                 </div>
-                <span className="text-[11px] font-mono text-[#D1DCF8] font-semibold">SEQ Irradiance</span>
+                <span className="text-[10px] sm:text-[11px] font-mono text-[#D1DCF8] font-semibold shrink-0 ml-2">SEQ Irradiance</span>
               </div>
             </div>
 
@@ -137,7 +132,7 @@ export const CalculatorsHeroSection: React.FC = () => {
 
         </div>
       </div>
-    </section>
+    </section> 
   );
 };
 

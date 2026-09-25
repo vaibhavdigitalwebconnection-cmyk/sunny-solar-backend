@@ -4,24 +4,24 @@ import { Button } from '../../../../../components/ui/Button';
 
 export const BuyerGuideBatterySection: React.FC = () => {
   return (
-    <section className="my-10">
-      <div className="relative bg-gradient-to-tr from-slate-900 via-slate-800 to-slate-900 text-white p-6 sm:p-8 md:p-10 overflow-hidden shadow-xl border border-slate-700/80">
+    <section className="max-w-7xl mx-auto px-4 sm:px-6 mt-4 sm:mt-6 mb-8 sm:mb-12">
+      <div className="relative rounded-2xl sm:rounded-3xl bg-linear-to-tr from-slate-900 via-slate-800 to-slate-900 text-white p-4 sm:p-6 md:p-8 overflow-hidden shadow-xl border border-slate-700/80">
         
         {/* Subtle background glow */}
         <div className="absolute top-0 right-0 w-72 h-72 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none" />
         <div className="absolute bottom-0 left-0 w-72 h-72 bg-amber-500/10 rounded-full blur-3xl pointer-events-none" />
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center relative z-10 max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 items-center relative z-10">
           
           {/* Left: Real Photography */}
           <div className="lg:col-span-5">
-            <div className="relative overflow-hidden shadow-2xl border border-slate-700 group rounded-lg">
+            <div className="relative overflow-hidden shadow-2xl border border-slate-700 group rounded-xl">
               <img
                 src="/images/solutions/net-metering.jpg"
                 alt="Solar and battery smart energy management"
-                className="w-full h-64 sm:h-84 object-cover object-center group-hover:scale-105 transition-transform duration-700"
+                className="w-full h-52 xs:h-60 sm:h-72 lg:h-80 object-cover object-center group-hover:scale-105 transition-transform duration-700"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/20 to-transparent" />
+              <div className="absolute inset-0 bg-linear-to-t from-slate-950/90 via-slate-950/20 to-transparent" />
 
               {/* Bottom Tag */}
               <div className="absolute bottom-3.5 left-3.5 right-3.5 text-white">
@@ -30,7 +30,7 @@ export const BuyerGuideBatterySection: React.FC = () => {
                   <span>90%+ Solar Independence</span>
                 </div>
                 <div className="w-full bg-slate-800 h-1.5 rounded-full overflow-hidden">
-                  <div className="bg-gradient-to-r from-amber-400 to-emerald-400 h-full w-[92%]" />
+                  <div className="bg-linear-to-r from-amber-400 to-emerald-400 h-full w-[92%]" />
                 </div>
               </div>
             </div>
@@ -76,15 +76,16 @@ export const BuyerGuideBatterySection: React.FC = () => {
             </div>
 
             {/* Bottom Action */}
-            <div className="pt-3 flex flex-wrap items-center justify-between gap-3 border-t border-slate-700/80">
+            <div className="pt-3 flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-t border-slate-700/80">
               <div className="flex items-center gap-1.5 text-xs text-slate-300">
-                <ShieldCheck className="w-4 h-4 text-emerald-400" />
+                <ShieldCheck className="w-4 h-4 text-emerald-400 shrink-0" />
                 <span>Tier-1 CEC Approved Lithium Storage</span>
               </div>
               <Button
                 to="/resources/battery-decision-guide"
                 variant="primary"
                 size="sm"
+                className="w-full sm:w-auto justify-center text-center"
                 icon={<ArrowRight className="w-3.5 h-3.5" />}
               >
                 Read Battery Decision Guide

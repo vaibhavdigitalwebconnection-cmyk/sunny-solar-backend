@@ -2,6 +2,7 @@ import React from 'react';
 import { Article } from '../../../../types/blog';
 import { ArticleCard } from '../../../../components/cards/ArticleCard';
 import { BookOpen } from 'lucide-react';
+import LatticeLoadingBlock from '../../../../components/ui/LatticeLoadingBlock';
 
 interface KnowledgeHubGridSectionProps {
   articles: Article[];
@@ -16,9 +17,8 @@ export const KnowledgeHubGridSection: React.FC<KnowledgeHubGridSectionProps> = (
 }) => {
   if (loading) {
     return (
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 flex flex-col items-center justify-center">
-        <div className="w-10 h-10 border-3 border-amber-500/20 border-t-amber-500 rounded-full animate-spin mb-3" />
-        <p className="text-xs text-slate-500 font-medium">Loading guides from database...</p>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <LatticeLoadingBlock label="Loading guides" />
       </div>
     );
   }

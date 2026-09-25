@@ -1,19 +1,41 @@
 import React from 'react';
-import { ArrowRight, DollarSign, Zap, TrendingUp, ShieldCheck, CheckCircle2, Sparkles, ArrowUpRight } from 'lucide-react';
-import { PageHeader } from '../../../../../components/layout/PageHeader';
-import { Button } from '../../../../../components/ui/Button';
+import { Sparkles } from 'lucide-react';
 
 export const SavingsHeroSection: React.FC = () => {
   return (
     <section className="relative">
+      <div className="pt-24 sm:pt-28 lg:pt-29">
+        {/* ========================================================= */}
+        {/* 1. Mobile View (< lg): Full-Width Image Background with Only Title & Short Description */}
+        {/* ========================================================= */}
+        <div className="block lg:hidden w-full relative overflow-hidden bg-slate-950 py-30 sm:py-14 px-4 sm:px-6">
+          {/* Full-Width Background Image */}
+          <img
+            src="/images/about/solar-installation-aerial.jpg"
+            alt="Residential rooftop solar installation savings overview"
+            className="absolute inset-0 w-full h-full object-cover object-center opacity-60"
+          />
+          {/* Gradient Overlay for high-contrast text and crisp legibility */}
+          <div className="absolute inset-0 bg-linear-to-t from-slate-950/70 via-slate-950/50 to-slate-400/10" />
 
+          {/* Overlaid Content Layer: Only Title and Small Line of Description */}
+          <div className="relative z-10">
+            <h2 className="text-2xl sm:text-3xl font-serif font-extrabold text-white tracking-tight leading-snug">
+              Why Solar Outperforms Traditional Home Investments
+            </h2>
 
-      {/* 2. Main Visual & Insight Split Container (Normal Containers) */}
-      <div className="  pt-29">
-        <div className="grid grid-cols-1 lg:grid-cols-12  items-stretch">
+            <p className="mt-2.5 text-xs sm:text-sm text-white leading-relaxed">
+              Unlike static investments, solar produces immediate cost offsets every daylight hour at $0 variable cost.
+            </p>
+          </div>
+        </div>
 
+        {/* ========================================================= */}
+        {/* 2. Desktop Split View (>= lg) - Exactly 100% Unchanged */}
+        {/* ========================================================= */}
+        <div className="hidden lg:grid lg:grid-cols-12 items-stretch">
           {/* Normal Container Left: Image Showcase with Overlaid Small Badges */}
-          <div className="lg:col-span-7 relative group  overflow-hidden shadow-md border border-slate-200/80 bg-slate-900 min-h-[360px] sm:min-h-[450px] flex flex-col justify-end">
+          <div className="lg:col-span-7 relative group overflow-hidden shadow-md border border-slate-200/80 bg-slate-900 min-h-90 sm:min-h-112.5 flex flex-col justify-end">
             <img
               src="/images/about/solar-installation-aerial.jpg"
               alt="Residential rooftop solar installation savings overview"
@@ -27,15 +49,11 @@ export const SavingsHeroSection: React.FC = () => {
               <Sparkles className="w-4 h-4 text-amber-400" />
               <span className="text-xs font-semibold">100% Daytime Grid Hedge</span>
             </div>
-
-          
           </div>
 
           {/* Normal Container Right: Financial Mechanics Breakdown */}
           <div className="lg:col-span-5 p-6 sm:p-8 shadow-xs flex flex-col justify-between">
             <div>
-
-
               <h2 className="text-4xl font-serif font-extrabold text-slate-900 tracking-tight leading-snug">
                 Why Solar Outperforms Traditional Home Investments
               </h2>
@@ -59,16 +77,12 @@ export const SavingsHeroSection: React.FC = () => {
                 </div>
               </div>
             </div>
-
           </div>
-
         </div>
-
-
-
       </div>
     </section>
   );
 };
 
 export default SavingsHeroSection;
+

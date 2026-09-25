@@ -39,11 +39,11 @@ export const BatterySavingsCalcSection: React.FC = () => {
   ];
 
   return (
-    <section className="max-w-7xl mx-auto px-4 sm:px-6 py-8">
-      <div className="p-6 sm:p-8">
+    <section className="max-w-7xl mx-auto px-4 sm:px-6 py-6 sm:py-8">
+      <div className="p-4 sm:p-6 lg:p-8 rounded-2xl bg-white border border-slate-200/80 shadow-xs">
         
         {/* Simple & Premium Header */}
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-6 border-b border-slate-200">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-5 sm:pb-6 border-b border-slate-200">
           <div>
             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-serif font-bold text-slate-950 tracking-tight">
               Calculate Your Home Battery Savings
@@ -63,19 +63,19 @@ export const BatterySavingsCalcSection: React.FC = () => {
         </div>
 
         {/* 2-Column Normal & Premium Layout */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 pt-6 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 pt-6 items-start">
           
           {/* Left: Interactive Simple Inputs (7 cols) */}
-          <div className="lg:col-span-7 space-y-6">
+          <div className="lg:col-span-7 space-y-5 sm:space-y-6">
             
             {/* 1. Evening Power Usage */}
             <div>
-              <div className="flex items-center justify-between mb-2">
-                <label className="text-sm font-semibold text-slate-900 flex items-center gap-1.5">
-                  <Moon className="w-4 h-4 text-amber-500" />
-                  Evening Power Usage (5 PM – 10 PM)
+              <div className="flex items-center justify-between gap-2 mb-2">
+                <label className="text-xs sm:text-sm font-semibold text-slate-900 flex items-center gap-1.5">
+                  <Moon className="w-4 h-4 text-amber-500 shrink-0" />
+                  <span>Evening Power Usage (5 PM – 10 PM)</span>
                 </label>
-                <div className="relative flex items-center">
+                <div className="relative flex items-center shrink-0">
                   <input
                     type="number"
                     min="4"
@@ -87,9 +87,9 @@ export const BatterySavingsCalcSection: React.FC = () => {
                       setEveningKwh(val);
                     }}
                     placeholder="14"
-                    className="w-24 px-3 py-1 text-base font-bold text-amber-700 bg-amber-50 border border-amber-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500 text-center shadow-2xs"
+                    className="w-20 sm:w-24 px-2 sm:px-3 py-1 text-sm sm:text-base font-bold text-amber-700 bg-amber-50 border border-amber-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500 text-center shadow-2xs"
                   />
-                  <span className="ml-2 text-xs font-semibold text-slate-500">kWh</span>
+                  <span className="ml-1.5 sm:ml-2 text-xs font-semibold text-slate-500">kWh</span>
                 </div>
               </div>
               
@@ -104,14 +104,14 @@ export const BatterySavingsCalcSection: React.FC = () => {
               />
 
               {/* Quick Presets */}
-              <div className="flex flex-wrap items-center gap-2 mt-2.5">
-                <span className="text-[11px] text-slate-400 font-medium">Quick select:</span>
+              <div className="flex flex-wrap items-center gap-1.5 sm:gap-2 mt-2.5">
+                <span className="text-[11px] text-slate-400 font-medium mr-1">Quick select:</span>
                 {eveningPresets.map((preset) => (
                   <button
                     key={preset.value}
                     type="button"
                     onClick={() => setEveningKwh(preset.value)}
-                    className={`text-xs px-2.5 py-1 rounded-md border font-medium transition-colors cursor-pointer ${
+                    className={`text-xs px-2 sm:px-2.5 py-1 rounded-md border font-medium transition-colors cursor-pointer ${
                       eveningKwh === preset.value
                         ? 'bg-amber-500 text-white border-amber-500'
                         : 'bg-slate-50 text-slate-600 border-slate-200 hover:bg-slate-100'
@@ -125,12 +125,12 @@ export const BatterySavingsCalcSection: React.FC = () => {
 
             {/* 2. Retail Peak Tariff */}
             <div>
-              <div className="flex items-center justify-between mb-2">
-                <label className="text-sm font-semibold text-slate-900 flex items-center gap-1.5">
-                  <DollarSign className="w-4 h-4 text-emerald-600" />
-                  Your Retailer's Peak Electricity Tariff
+              <div className="flex items-center justify-between gap-2 mb-2">
+                <label className="text-xs sm:text-sm font-semibold text-slate-900 flex items-center gap-1.5">
+                  <DollarSign className="w-4 h-4 text-emerald-600 shrink-0" />
+                  <span>Retailer's Peak Tariff</span>
                 </label>
-                <div className="relative flex items-center">
+                <div className="relative flex items-center shrink-0">
                   <input
                     type="number"
                     min="20"
@@ -142,9 +142,9 @@ export const BatterySavingsCalcSection: React.FC = () => {
                       setPeakTariff(val);
                     }}
                     placeholder="38"
-                    className="w-24 px-3 py-1 text-base font-bold text-slate-900 bg-white border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500 text-center shadow-2xs"
+                    className="w-20 sm:w-24 px-2 sm:px-3 py-1 text-sm sm:text-base font-bold text-slate-900 bg-white border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500 text-center shadow-2xs"
                   />
-                  <span className="ml-2 text-xs font-semibold text-slate-500">¢ / kWh</span>
+                  <span className="ml-1.5 sm:ml-2 text-xs font-semibold text-slate-500">¢/kWh</span>
                 </div>
               </div>
               
@@ -159,14 +159,14 @@ export const BatterySavingsCalcSection: React.FC = () => {
               />
 
               {/* Quick Presets */}
-              <div className="flex flex-wrap items-center gap-2 mt-2.5">
-                <span className="text-[11px] text-slate-400 font-medium">Quick select:</span>
+              <div className="flex flex-wrap items-center gap-1.5 sm:gap-2 mt-2.5">
+                <span className="text-[11px] text-slate-400 font-medium mr-1">Quick select:</span>
                 {tariffPresets.map((preset) => (
                   <button
                     key={preset.value}
                     type="button"
                     onClick={() => setPeakTariff(preset.value)}
-                    className={`text-xs px-2.5 py-1 rounded-md border font-medium transition-colors cursor-pointer ${
+                    className={`text-xs px-2 sm:px-2.5 py-1 rounded-md border font-medium transition-colors cursor-pointer ${
                       peakTariff === preset.value
                         ? 'bg-emerald-600 text-white border-emerald-600'
                         : 'bg-slate-50 text-slate-600 border-slate-200 hover:bg-slate-100'
@@ -180,29 +180,29 @@ export const BatterySavingsCalcSection: React.FC = () => {
 
             {/* 3. Battery Storage Capacity Model */}
             <div>
-              <label className="text-sm font-semibold text-slate-900 flex items-center gap-1.5 mb-2">
-                <BatteryCharging className="w-4 h-4 text-emerald-600" />
-                Select Battery Capacity Model
+              <label className="text-xs sm:text-sm font-semibold text-slate-900 flex items-center gap-1.5 mb-2">
+                <BatteryCharging className="w-4 h-4 text-emerald-600 shrink-0" />
+                <span>Select Battery Capacity Model</span>
               </label>
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 sm:gap-3">
                 {batteryModels.map((item) => (
                   <button
                     key={item.size}
                     type="button"
                     onClick={() => setBatterySize(item.size)}
-                    className={`p-3.5 rounded-xl border text-left transition-all cursor-pointer ${
+                    className={`p-3 sm:p-3.5 rounded-xl border text-left transition-all cursor-pointer ${
                       batterySize === item.size
                         ? 'bg-emerald-600 text-white border-emerald-600 shadow-sm'
                         : 'bg-slate-50 text-slate-700 border-slate-200 hover:bg-slate-100 hover:border-slate-300'
                     }`}
                   >
-                    <span className="text-sm font-extrabold block">{item.name}</span>
-                    <span className={`text-xs font-semibold block mt-0.5 ${
+                    <span className="text-xs sm:text-sm font-extrabold block">{item.name}</span>
+                    <span className={`text-[11px] sm:text-xs font-semibold block mt-0.5 ${
                       batterySize === item.size ? 'text-emerald-100' : 'text-slate-900'
                     }`}>
                       {item.model}
                     </span>
-                    <span className={`text-[11px] block mt-1 ${
+                    <span className={`text-[10px] block mt-1 ${
                       batterySize === item.size ? 'text-emerald-200' : 'text-slate-400'
                     }`}>
                       {item.sub}
@@ -215,7 +215,7 @@ export const BatterySavingsCalcSection: React.FC = () => {
           </div>
 
           {/* Right: Clean, Premium Results Panel (5 cols) */}
-          <div className="lg:col-span-5  space-y-2">
+          <div className="lg:col-span-5 bg-slate-50 rounded-xl border border-slate-200/80 p-4 sm:p-5 lg:p-6 space-y-3 sm:space-y-4">
             
             <div className="flex items-center justify-between">
               <span className="text-xs font-bold text-slate-700 uppercase tracking-wider">
@@ -227,44 +227,44 @@ export const BatterySavingsCalcSection: React.FC = () => {
             </div>
 
             {/* Primary Highlight Card */}
-            <div className="p-4 rounded-xl bg-amber-50 border border-amber-200 text-center">
-              <span className="text-xs font-medium text-amber-800 uppercase tracking-wider block">
+            <div className="p-3.5 sm:p-4 rounded-xl bg-amber-50 border border-amber-200 text-center">
+              <span className="text-[11px] sm:text-xs font-medium text-amber-800 uppercase tracking-wider block">
                 Estimated Annual Battery Savings
               </span>
-              <div className="text-3xl sm:text-4xl font-serif font-bold text-amber-700 mt-1">
+              <div className="text-2xl sm:text-3xl lg:text-4xl font-serif font-bold text-amber-700 mt-1">
                 ${annualSavings.toLocaleString()}
-                <span className="text-base font-sans font-semibold text-amber-600"> / yr</span>
+                <span className="text-sm sm:text-base font-sans font-semibold text-amber-600"> / yr</span>
               </div>
-              <p className="text-xs text-amber-700/80 mt-1">
+              <p className="text-[11px] sm:text-xs text-amber-700/80 mt-1">
                 Avoids approximately ${quarterlySavings.toLocaleString()} on each quarterly power bill
               </p>
             </div>
 
             {/* Secondary Metric Grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+            <div className="grid grid-cols-2 gap-2 sm:gap-2.5">
               
-              <div className="p-3 bg-white rounded-lg border border-slate-200">
-                <span className="text-[11px] font-medium text-slate-500 block">Daily Peak Avoided</span>
-                <span className="text-lg font-bold text-slate-900 mt-0.5 block">
-                  {dailyOffsetKwh.toFixed(1)} kWh / day
+              <div className="p-2.5 sm:p-3 bg-white rounded-lg border border-slate-200">
+                <span className="text-[10px] sm:text-[11px] font-medium text-slate-500 block">Daily Peak Avoided</span>
+                <span className="text-base sm:text-lg font-bold text-slate-900 mt-0.5 block">
+                  {dailyOffsetKwh.toFixed(1)} kWh
                 </span>
-                <span className="text-[10px] text-slate-400">Stored from daytime solar</span>
+                <span className="text-[10px] text-slate-400">Daytime stored</span>
               </div>
 
-              <div className="p-3 bg-white rounded-lg border border-slate-200">
-                <span className="text-[11px] font-medium text-slate-500 block">10-Year Cumulative</span>
-                <span className="text-lg font-bold text-emerald-600 mt-0.5 block">
+              <div className="p-2.5 sm:p-3 bg-white rounded-lg border border-slate-200">
+                <span className="text-[10px] sm:text-[11px] font-medium text-slate-500 block">10-Year Cumulative</span>
+                <span className="text-base sm:text-lg font-bold text-emerald-600 mt-0.5 block">
                   ${tenYearSavings.toLocaleString()}
                 </span>
-                <span className="text-[10px] text-slate-400">Warrantied lifespan</span>
+                <span className="text-[10px] text-slate-400">10-yr lifespan</span>
               </div>
 
-              <div className="col-span-full p-3 bg-white rounded-lg border border-slate-200 flex items-center justify-between">
+              <div className="col-span-full p-2.5 sm:p-3 bg-white rounded-lg border border-slate-200 flex items-center justify-between">
                 <div>
-                  <span className="text-[11px] font-medium text-slate-500 block">Self-Consumption Rate</span>
-                  <span className="text-base font-bold text-slate-900">Near-Total Evening Grid Elimination</span>
+                  <span className="text-[10px] sm:text-[11px] font-medium text-slate-500 block">Self-Consumption Rate</span>
+                  <span className="text-sm sm:text-base font-bold text-slate-900">Near-Total Evening Peak Offset</span>
                 </div>
-                <Zap className="w-5 h-5 text-amber-500" />
+                <Zap className="w-5 h-5 text-amber-500 shrink-0" />
               </div>
 
             </div>
@@ -277,12 +277,11 @@ export const BatterySavingsCalcSection: React.FC = () => {
                 size="md"
                 fullWidth
                 icon={<ArrowRight className="w-4 h-4" />}
+                className="justify-center text-center text-xs sm:text-sm"
               >
                 Get Battery Proposal & Claim Rebate
               </Button>
             </div>
-
-    
 
           </div>
 

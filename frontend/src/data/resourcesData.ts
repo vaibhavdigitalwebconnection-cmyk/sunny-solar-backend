@@ -1,4 +1,5 @@
 export interface ResourceGuide {
+  customLink?: string;
   slug: string;
   title: string;
   subtitle: string;
