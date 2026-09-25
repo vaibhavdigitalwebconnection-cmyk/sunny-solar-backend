@@ -5,9 +5,9 @@ import { Button } from '../../../components/ui/Button';
 
 export const BrandShowcaseSection: React.FC = () => {
   return (
-    <section className="relative py-16 sm:py-20 lg:py-24 bg-gradient-to-b from-slate-950 via-[#060c23] to-slate-950 text-white overflow-hidden border-y border-white/5">
+    <section className="relative py-16 sm:py-20 lg:py-24 bg-linear-to-b from-slate-950 via-[#060c23] to-slate-950 text-white overflow-hidden border-y border-white/5">
       {/* Ambient Lighting Accents */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] sm:w-[800px] h-[350px] bg-[#2B3CB8]/15 rounded-full blur-[140px] pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-150 sm:w-200 h-87.5 bg-[#2B3CB8]/15 rounded-full blur-[140px] pointer-events-none" />
       <div className="absolute -top-24 right-10 w-72 h-72 bg-blue-500/10 rounded-full blur-[100px] pointer-events-none" />
       <div className="absolute -bottom-24 left-10 w-72 h-72 bg-indigo-500/10 rounded-full blur-[100px] pointer-events-none" />
 
@@ -54,7 +54,7 @@ export const BrandShowcaseSection: React.FC = () => {
             to="/get-started/free-assessment"
             variant="primary"
             size="lg"
-            className="rounded-xl shadow-xl shadow-[#2B3CB8]/30 bg-[#2B3CB8] hover:bg-[#1D2984] text-white border-0 font-bold px-7 py-3.5 transition-all duration-300 hover:shadow-[#2B3CB8]/50 hover:-translate-y-0.5 text-sm sm:text-base justify-center min-h-[48px]"
+            className="rounded-xl shadow-xl shadow-[#2B3CB8]/30 bg-[#2B3CB8] hover:bg-[#1D2984] text-white border-0 font-bold px-7 py-3.5 transition-all duration-300 hover:shadow-[#2B3CB8]/50 hover:-translate-y-0.5 text-sm sm:text-base justify-center min-h-12"
             icon={<ArrowRight className="w-4 h-4 sm:w-5 sm:h-5" />}
           >
             Get Your Free Solar Assessment

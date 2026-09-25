@@ -15,7 +15,7 @@ export const ParallaxBannerSection: React.FC = () => {
       }}
     >
       {/* Dark overlay with contrast for high readability on all screens */}
-      <div className="w-full h-full min-h-[340px] sm:min-h-90 bg-black/65 flex items-center justify-center text-center py-10 sm:py-14 lg:py-16 px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="w-full h-full min-h-85 sm:min-h-90 bg-black/65 flex items-center justify-center text-center py-10 sm:py-14 lg:py-16 px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Subtle radial lighting accent */}
         <div className="absolute inset-0 bg-radial from-black/30 via-transparent to-transparent pointer-events-none" />
@@ -52,7 +52,7 @@ export const ParallaxBannerSection: React.FC = () => {
               to="/get-started/free-assessment"
               variant="primary"
               size="lg"
-              className="w-full sm:w-auto rounded-xl shadow-xl shadow-[#2B3CB8]/30 bg-[#2B3CB8] hover:bg-[#1D2984] text-white border-0 font-bold px-7 py-3.5 transition-all duration-300 hover:shadow-[#2B3CB8]/45 hover:-translate-y-0.5 text-sm sm:text-base justify-center min-h-[48px]"
+              className="w-full sm:w-auto rounded-xl shadow-xl shadow-[#2B3CB8]/30 bg-[#2B3CB8] hover:bg-[#1D2984] text-white border-0 font-bold px-7 py-3.5 transition-all duration-300 hover:shadow-[#2B3CB8]/45 hover:-translate-y-0.5 text-sm sm:text-base justify-center min-h-12"
               icon={<ArrowRight className="w-4 h-4 sm:w-5 sm:h-5" />}
             >
               Explore Your Solar Options
@@ -62,7 +62,7 @@ export const ParallaxBannerSection: React.FC = () => {
               to="/contact"
               variant="outline"
               size="lg"
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl border-2 border-white/40 hover:border-white bg-white/10 hover:bg-white/20 text-white hover:text-white font-bold text-sm sm:text-base backdrop-blur-md transition-all duration-300 hover:-translate-y-0.5 shadow-md min-h-[48px]"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl border-2 border-white/40 hover:border-white bg-white/10 hover:bg-white/20 text-white hover:text-white font-bold text-sm sm:text-base backdrop-blur-md transition-all duration-300 hover:-translate-y-0.5 shadow-md min-h-12"
               icon={<ArrowRight className="w-4 h-4 sm:w-5 sm:h-5" />}
             >
               Talk to Sunny Solar

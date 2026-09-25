@@ -51,7 +51,7 @@ export function KineticTextLoader({
       <div className="relative scale-75 md:scale-90 lg:scale-100">
         {/* The moving dot */}
         <div 
-          className="absolute z-10 top-[40px] left-[85px] w-[6px] h-[6px] bg-neutral-900 rounded-full"
+          className="absolute z-10 top-10 left-21.25 w-1.5 h-1.5 bg-neutral-900 rounded-full"
           style={{ 
             animation: "ktl-dotMove 1800ms cubic-bezier(0.25,0.25,0.75,0.75) infinite",
             backgroundColor: dotColor,

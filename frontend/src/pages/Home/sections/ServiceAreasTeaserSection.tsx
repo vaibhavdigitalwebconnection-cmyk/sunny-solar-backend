@@ -186,7 +186,7 @@ export const ServiceAreasTeaserSection: React.FC = () => {
   return (
     <section
       ref={sectionRef}
-      className="relative bg-gradient-to-b from-white via-slate-50/70 to-white border-t border-slate-200/70 h-[260vh] sm:h-[280vh] lg:h-[300vh]"
+      className="relative bg-linear-to-b from-white via-slate-50/70 to-white border-t border-slate-200/70 h-[260vh] sm:h-[280vh] lg:h-[300vh]"
     >
       {/* Background Subtle Dot-Grid Pattern */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -203,7 +203,7 @@ export const ServiceAreasTeaserSection: React.FC = () => {
       </div>
 
       {/* Sticky Viewport Container: Pinned in view while user scrolls through the 300vh section */}
-      <div className="sticky top-16 sm:top-20 lg:top-24 h-[calc(100vh-4rem)] sm:h-[calc(100vh-5rem)] lg:h-[calc(100vh-6rem)] max-h-[920px] min-h-[580px] flex items-center z-10">
+      <div className="sticky top-16 sm:top-20 lg:top-24 h-[calc(100vh-4rem)] sm:h-[calc(100vh-5rem)] lg:h-[calc(100vh-6rem)] max-h-230 min-h-145 flex items-center z-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
             
@@ -251,7 +251,7 @@ export const ServiceAreasTeaserSection: React.FC = () => {
                   to="/solar"
                   variant="primary"
                   size="md"
-                  className="w-full xs:w-auto group relative overflow-hidden rounded-xl shadow-lg shadow-[#2B3CB8]/25 bg-[#2B3CB8] hover:bg-[#1D2984] text-white border-0 font-bold px-6 sm:px-7 py-3 sm:py-3.5 transition-all duration-300 hover:shadow-[#2B3CB8]/40 hover:-translate-y-0.5 justify-center min-h-[46px] sm:min-h-[48px]"
+                  className="w-full xs:w-auto group relative overflow-hidden rounded-xl shadow-lg shadow-[#2B3CB8]/25 bg-[#2B3CB8] hover:bg-[#1D2984] text-white border-0 font-bold px-6 sm:px-7 py-3 sm:py-3.5 transition-all duration-300 hover:shadow-[#2B3CB8]/40 hover:-translate-y-0.5 justify-center min-h-11.5 sm:min-h-12"
                   icon={
                     <ArrowRight className="w-4 h-4 group-hover:translate-x-1.5 transition-transform duration-300" />
                   }
@@ -265,7 +265,7 @@ export const ServiceAreasTeaserSection: React.FC = () => {
             <div className="lg:col-span-7 relative w-full flex flex-col items-center">
               
               {/* Card Deck Overlay Stage */}
-              <div className="relative w-full max-w-md sm:max-w-lg lg:max-w-xl h-[400px] sm:h-[450px] lg:h-[480px]">
+              <div className="relative w-full max-w-md sm:max-w-lg lg:max-w-xl h-100 sm:h-112.5 lg:h-120">
                 {solutionCards.map((card, index) => {
                   const IconComponent = card.icon;
                   const isStacked = index < activeCardIndex;
@@ -301,7 +301,7 @@ export const ServiceAreasTeaserSection: React.FC = () => {
                     >
                       <Link
                         to={card.link}
-                        className={`group block relative rounded-3xl sm:rounded-[32px] p-6 sm:p-7 lg:p-8 h-[340px] sm:h-[370px] lg:h-[390px] shadow-2xl transition-all duration-300 border cursor-pointer select-none ${card.colors.bg} ${card.colors.border} ${card.rotation}`}
+                        className={`group block relative rounded-3xl sm:rounded-4xl p-6 sm:p-7 lg:p-8 h-85 sm:h-92.5 lg:h-97.5 shadow-2xl transition-all duration-300 border cursor-pointer select-none ${card.colors.bg} ${card.colors.border} ${card.rotation}`}
                         style={{
                           boxShadow:
                             '0 20px 45px -12px rgba(0, 0, 0, 0.28), 0 0 1px 1px rgba(255, 255, 255, 0.1)',

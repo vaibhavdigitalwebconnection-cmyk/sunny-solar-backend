@@ -100,7 +100,7 @@ export const ServicesOverviewSection: React.FC = () => {
           <div className="order-1 lg:order-2 lg:col-span-6 relative flex items-center justify-center py-4 sm:py-6">
             
             {/* Luminous Backdrop Halo Behind Phone */}
-            <div className="absolute w-72 sm:w-96 h-72 sm:h-96 bg-gradient-to-tr from-[#2B3CB8]/25 via-blue-400/15 to-amber-300/20 rounded-full blur-3xl -z-10 pointer-events-none" />
+            <div className="absolute w-72 sm:w-96 h-72 sm:h-96 bg-linear-to-tr from-[#2B3CB8]/25 via-blue-400/15 to-amber-300/20 rounded-full blur-3xl -z-10 pointer-events-none" />
 
             {/* Floating Smartphone Container with gentle levitation animation */}
             <motion.div
@@ -116,38 +116,38 @@ export const ServicesOverviewSection: React.FC = () => {
               className="relative z-20"
             >
               {/* iPhone 17 Pro Hardware Chassis (Grade 5 Brushed Titanium) */}
-              <div className="w-[290px] xs:w-[315px] sm:w-[340px] h-[590px] xs:h-[635px] sm:h-[650px] bg-gradient-to-b from-[#383b42] via-[#202227] to-[#141518] rounded-[54px] p-[8px] sm:p-[9px] shadow-[0_35px_80px_-15px_rgba(0,0,0,0.65),0_15px_35px_-10px_rgba(43,60,184,0.3)] ring-1 ring-white/20 border border-slate-700/60 relative">
+              <div className="w-72.5 xs:w-[315px] sm:w-85 h-147.5 xs:h-[635px] sm:h-162.5 bg-linear-to-b from-[#383b42] via-[#202227] to-[#141518] rounded-[54px] p-2 sm:p-2.25 shadow-[0_35px_80px_-15px_rgba(0,0,0,0.65),0_15px_35px_-10px_rgba(43,60,184,0.3)] ring-1 ring-white/20 border border-slate-700/60 relative">
                 
                 {/* Titanium Rim Metallic Sheen */}
-                <div className="absolute inset-0 rounded-[53px] bg-gradient-to-tr from-white/10 via-transparent to-white/10 pointer-events-none" />
+                <div className="absolute inset-0 rounded-[53px] bg-linear-to-tr from-white/10 via-transparent to-white/10 pointer-events-none" />
 
                 {/* Antenna Breaks (Signature iPhone Pro Design) */}
-                <div className="absolute -left-[1px] top-20 w-[2px] h-[4px] bg-slate-500/60" />
-                <div className="absolute -left-[1px] bottom-20 w-[2px] h-[4px] bg-slate-500/60" />
-                <div className="absolute -right-[1px] top-20 w-[2px] h-[4px] bg-slate-500/60" />
-                <div className="absolute -right-[1px] bottom-20 w-[2px] h-[4px] bg-slate-500/60" />
+                <div className="absolute -left-px top-20 w-0.5 h-1 bg-slate-500/60" />
+                <div className="absolute -left-px bottom-20 w-0.5 h-1 bg-slate-500/60" />
+                <div className="absolute -right-px top-20 w-0.5 h-1 bg-slate-500/60" />
+                <div className="absolute -right-px bottom-20 w-0.5 h-1 bg-slate-500/60" />
 
                 {/* ─── Hardware Physical Buttons (iPhone Pro Specification) ─── */}
                 {/* 1. Action Button (Left - Anodized Titanium Pill) */}
-                <div className="absolute -left-[4.5px] top-[92px] w-[4.5px] h-[22px] bg-gradient-to-r from-slate-400 to-slate-700 rounded-l-[3px] shadow-sm border-r border-slate-900" title="Action Button" />
+                <div className="absolute left-[-4.5px] top-23 w-[4.5px] h-5.5 bg-linear-to-r from-slate-400 to-slate-700 rounded-l-[3px] shadow-sm border-r border-slate-900" title="Action Button" />
                 
                 {/* 2. Volume Up (Left) */}
-                <div className="absolute -left-[4.5px] top-[128px] w-[4.5px] h-[42px] bg-gradient-to-r from-slate-400 to-slate-700 rounded-l-[3px] shadow-sm border-r border-slate-900" />
+                <div className="absolute left-[-4.5px] top-32 w-[4.5px] h-10.5 bg-linear-to-r from-slate-400 to-slate-700 rounded-l-[3px] shadow-sm border-r border-slate-900" />
                 
                 {/* 3. Volume Down (Left) */}
-                <div className="absolute -left-[4.5px] top-[182px] w-[4.5px] h-[42px] bg-gradient-to-r from-slate-400 to-slate-700 rounded-l-[3px] shadow-sm border-r border-slate-900" />
+                <div className="absolute left-[-4.5px] top-45.5 w-[4.5px] h-10.5 bg-linear-to-r from-slate-400 to-slate-700 rounded-l-[3px] shadow-sm border-r border-slate-900" />
 
                 {/* 4. Side / Siri Power Button (Right) */}
-                <div className="absolute -right-[4.5px] top-[124px] w-[4.5px] h-[58px] bg-gradient-to-l from-slate-400 to-slate-700 rounded-r-[3px] shadow-sm border-l border-slate-900" />
+                <div className="absolute right-[-4.5px] top-31 w-[4.5px] h-14.5 bg-linear-to-l from-slate-400 to-slate-700 rounded-r-[3px] shadow-sm border-l border-slate-900" />
 
                 {/* 5. Camera Control Button (iPhone 16/17 Pro Capacitive Sapphire Touch) */}
-                <div className="absolute -right-[3.5px] top-[375px] w-[3.5px] h-[46px] bg-gradient-to-l from-slate-500 to-slate-800 rounded-r-[2px] shadow-inner opacity-90" title="Camera Control Button" />
+                <div className="absolute right-[-3.5px] top-93.75 w-[3.5px] h-11.5 bg-linear-to-l from-slate-500 to-slate-800 rounded-r-xs shadow-inner opacity-90" title="Camera Control Button" />
 
                 {/* Inner Screen Display (Super Retina XDR OLED with ultra-thin 1.2mm Pro bezel) */}
                 <div className="w-full h-full bg-black rounded-[46px] overflow-hidden flex flex-col relative select-none ring-1 ring-black">
                   
                   {/* Subtle Diagonal Glass Sheen Reflection */}
-                  <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/[0.05] to-transparent pointer-events-none z-30" />
+                  <div className="absolute inset-0 bg-linear-to-tr from-transparent via-white/5 to-transparent pointer-events-none z-30" />
 
                   {/* Top Micro Ear-Speaker Slit */}
                   <div className="w-12 h-1 bg-[#121316] rounded-full mx-auto mt-1 z-40" />
@@ -179,10 +179,10 @@ export const ServicesOverviewSection: React.FC = () => {
                       
                       {/* Pro Battery Capsule */}
                       <div className="flex items-center gap-0.5">
-                        <div className="w-5 h-2.5 border border-white/80 rounded-xs p-[1px] flex items-center bg-black/40">
+                        <div className="w-5 h-2.5 border border-white/80 rounded-xs p-px flex items-center bg-black/40">
                           <div className="w-full h-full bg-emerald-400 rounded-2xs" />
                         </div>
-                        <div className="w-[1px] h-1 bg-white/70 rounded-r-xs" />
+                        <div className="w-px h-1 bg-white/70 rounded-r-xs" />
                       </div>
                     </div>
                   </div>
@@ -220,7 +220,7 @@ export const ServicesOverviewSection: React.FC = () => {
                     </div>
 
                     {/* Mini Hero Banner */}
-                    <div className="relative p-3.5 bg-gradient-to-br from-[#121B59] via-[#2B3CB8] to-[#1E2B8F] text-white overflow-hidden shrink-0">
+                    <div className="relative p-3.5 bg-linear-to-br from-[#121B59] via-[#2B3CB8] to-[#1E2B8F] text-white overflow-hidden shrink-0">
                       {/* Background Glow */}
                       <div className="absolute -top-10 -right-10 w-28 h-28 bg-amber-400/20 rounded-full blur-xl pointer-events-none" />
 
@@ -293,7 +293,7 @@ export const ServicesOverviewSection: React.FC = () => {
                       </div>
 
                       {/* Estimated Savings Badge */}
-                      <div className="p-2.5 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-600 text-white flex items-center justify-between shadow-xs">
+                      <div className="p-2.5 rounded-xl bg-linear-to-r from-emerald-500 to-teal-600 text-white flex items-center justify-between shadow-xs">
                         <div>
                           <div className="text-[9px] font-semibold text-emerald-100 uppercase">
                             Estimated Annual Savings
@@ -354,7 +354,7 @@ export const ServicesOverviewSection: React.FC = () => {
                 repeat: Infinity,
                 ease: 'easeInOut',
               }}
-              className="absolute -top-3 -right-2 sm:-right-6 bg-white/95 backdrop-blur-md border border-slate-200/90 rounded-2xl p-3 shadow-xl z-30 hidden xs:flex items-center gap-3 max-w-[210px]"
+              className="absolute -top-3 -right-2 sm:-right-6 bg-white/95 backdrop-blur-md border border-slate-200/90 rounded-2xl p-3 shadow-xl z-30 hidden xs:flex items-center gap-3 max-w-52.5"
             >
               <div className="w-9 h-9 rounded-xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-amber-600 shrink-0">
                 <Sun className="w-5 h-5 animate-spin-slow" />
@@ -380,7 +380,7 @@ export const ServicesOverviewSection: React.FC = () => {
                 repeat: Infinity,
                 ease: 'easeInOut',
               }}
-              className="absolute -bottom-4 -left-2 sm:-left-6 bg-white/95 backdrop-blur-md border border-slate-200/90 rounded-2xl p-3 shadow-xl z-30 hidden xs:flex items-center gap-3 max-w-[210px]"
+              className="absolute -bottom-4 -left-2 sm:-left-6 bg-white/95 backdrop-blur-md border border-slate-200/90 rounded-2xl p-3 shadow-xl z-30 hidden xs:flex items-center gap-3 max-w-52.5"
             >
               <div className="w-9 h-9 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-600 shrink-0">
                 <BatteryCharging className="w-5 h-5" />

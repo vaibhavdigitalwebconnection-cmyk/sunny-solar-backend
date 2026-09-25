@@ -135,7 +135,7 @@ export const SolarScatterSection: React.FC = () => {
             animationOverlap={0.4}
             headingFadeDuration={0.4}
             intervalDuration={4000}
-            className="h-[560px] sm:h-[640px] lg:h-180"
+            className="h-140 sm:h-160 lg:h-180"
           />
         </div>
 

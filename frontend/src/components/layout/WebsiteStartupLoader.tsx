@@ -21,7 +21,7 @@ export const WebsiteStartupLoader: React.FC = () => {
           key="website-startup-loader"
           initial={{ opacity: 1 }}
           exit={{ opacity: 0, transition: { duration: 0.4, ease: 'easeOut' } }}
-          className="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-white text-neutral-900 selection:bg-transparent"
+          className="fixed inset-0 z-9999 flex flex-col items-center justify-center bg-white text-neutral-900 selection:bg-transparent"
         >
           {/* Subtle clean ambient lighting */}
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(43,60,184,0.03)_0%,transparent_70%)] pointer-events-none" />

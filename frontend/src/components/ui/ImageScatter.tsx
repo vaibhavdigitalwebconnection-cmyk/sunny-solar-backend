@@ -451,7 +451,7 @@ export function ImageScatter({
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
       className={cn(
-        "relative w-full h-[520px] sm:h-[600px] lg:h-[660px] flex justify-center items-center overflow-hidden bg-transparent select-none",
+        "relative w-full h-130 sm:h-150 lg:h-165 flex justify-center items-center overflow-hidden bg-transparent select-none",
         className
       )}
       {...props}
