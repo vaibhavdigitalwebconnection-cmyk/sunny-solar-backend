@@ -5,7 +5,7 @@ import blogRoutes from './blog.routes.js';
 import knowledgeRoutes from './knowledge.routes.js';
 import uploadRoutes from './upload.routes.js';
 import leadRoutes from './lead.routes.js';
-import sitemapRoutes from './sitemap.route.js';
+import sitemapRoutes from './sitemap.routes.js';
 
 const apiRouter = Router();
 

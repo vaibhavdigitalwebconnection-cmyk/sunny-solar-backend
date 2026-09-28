@@ -445,8 +445,8 @@ export const FreeAssessmentFormSection: React.FC = () => {
                       type="button"
                       onClick={() => setConsultType('satellite')}
                       className={`py-2 px-3 text-xs font-bold rounded-lg border text-center transition-all cursor-pointer ${consultType === 'satellite'
-                          ? 'bg-amber-50 border-amber-500 text-amber-900 shadow-xs ring-1 ring-amber-400/40'
-                          : 'border-slate-200 bg-white text-slate-600 hover:bg-slate-50'
+                        ? 'bg-amber-50 border-amber-500 text-amber-900 shadow-xs ring-1 ring-amber-400/40'
+                        : 'border-slate-200 bg-white text-slate-600 hover:bg-slate-50'
                         }`}
                     >
                       📡 3D Satellite Audit
@@ -455,8 +455,8 @@ export const FreeAssessmentFormSection: React.FC = () => {
                       type="button"
                       onClick={() => setConsultType('onsite')}
                       className={`py-2 px-3 text-xs font-bold rounded-lg border text-center transition-all cursor-pointer ${consultType === 'onsite'
-                          ? 'bg-amber-50 border-amber-500 text-amber-900 shadow-xs ring-1 ring-amber-400/40'
-                          : 'border-slate-200 bg-white text-slate-600 hover:bg-slate-50'
+                        ? 'bg-amber-50 border-amber-500 text-amber-900 shadow-xs ring-1 ring-amber-400/40'
+                        : 'border-slate-200 bg-white text-slate-600 hover:bg-slate-50'
                         }`}
                     >
                       🏠 In-Home Site Visit
@@ -465,8 +465,8 @@ export const FreeAssessmentFormSection: React.FC = () => {
                       type="button"
                       onClick={() => setConsultType('phone')}
                       className={`py-2 px-3 text-xs font-bold rounded-lg border text-center transition-all cursor-pointer ${consultType === 'phone'
-                          ? 'bg-amber-50 border-amber-500 text-amber-900 shadow-xs ring-1 ring-amber-400/40'
-                          : 'border-slate-200 bg-white text-slate-600 hover:bg-slate-50'
+                        ? 'bg-amber-50 border-amber-500 text-amber-900 shadow-xs ring-1 ring-amber-400/40'
+                        : 'border-slate-200 bg-white text-slate-600 hover:bg-slate-50'
                         }`}
                     >
                       📞 Phone Consultation
@@ -487,10 +487,10 @@ export const FreeAssessmentFormSection: React.FC = () => {
                       onChange={(e) => handleFieldChange('name', e.target.value)}
                       onBlur={() => handleBlur('name')}
                       className={`w-full px-4 py-2.5 rounded-xl border text-sm focus:outline-none transition-colors pr-10 ${touched.name && errors.name
-                          ? 'border-red-400 bg-red-50/20 focus:ring-2 focus:ring-red-400 focus:border-red-400'
-                          : touched.name && !errors.name && formData.name
-                            ? 'border-emerald-400 focus:ring-2 focus:ring-emerald-400 bg-white'
-                            : 'border-slate-300 focus:ring-2 focus:ring-amber-500 focus:border-amber-500 bg-white'
+                        ? 'border-red-400 bg-red-50/20 focus:ring-2 focus:ring-red-400 focus:border-red-400'
+                        : touched.name && !errors.name && formData.name
+                          ? 'border-emerald-400 focus:ring-2 focus:ring-emerald-400 bg-white'
+                          : 'border-slate-300 focus:ring-2 focus:ring-amber-500 focus:border-amber-500 bg-white'
                         }`}
                     />
                     {touched.name && !errors.name && formData.name && (
@@ -519,10 +519,10 @@ export const FreeAssessmentFormSection: React.FC = () => {
                         onChange={(e) => handleFieldChange('email', e.target.value)}
                         onBlur={() => handleBlur('email')}
                         className={`w-full px-4 py-2.5 rounded-xl border text-sm focus:outline-none transition-colors pr-10 ${touched.email && errors.email
-                            ? 'border-red-400 bg-red-50/20 focus:ring-2 focus:ring-red-400 focus:border-red-400'
-                            : touched.email && !errors.email && formData.email
-                              ? 'border-emerald-400 focus:ring-2 focus:ring-emerald-400 bg-white'
-                              : 'border-slate-300 focus:ring-2 focus:ring-amber-500 focus:border-amber-500 bg-white'
+                          ? 'border-red-400 bg-red-50/20 focus:ring-2 focus:ring-red-400 focus:border-red-400'
+                          : touched.email && !errors.email && formData.email
+                            ? 'border-emerald-400 focus:ring-2 focus:ring-emerald-400 bg-white'
+                            : 'border-slate-300 focus:ring-2 focus:ring-amber-500 focus:border-amber-500 bg-white'
                           }`}
                       />
                       {touched.email && !errors.email && formData.email && (
@@ -549,10 +549,10 @@ export const FreeAssessmentFormSection: React.FC = () => {
                         onChange={(e) => handleFieldChange('phone', e.target.value)}
                         onBlur={() => handleBlur('phone')}
                         className={`w-full px-4 py-2.5 rounded-xl border text-sm focus:outline-none transition-colors pr-10 ${touched.phone && errors.phone
-                            ? 'border-red-400 bg-red-50/20 focus:ring-2 focus:ring-red-400 focus:border-red-400'
-                            : touched.phone && !errors.phone && formData.phone
-                              ? 'border-emerald-400 focus:ring-2 focus:ring-emerald-400 bg-white'
-                              : 'border-slate-300 focus:ring-2 focus:ring-amber-500 focus:border-amber-500 bg-white'
+                          ? 'border-red-400 bg-red-50/20 focus:ring-2 focus:ring-red-400 focus:border-red-400'
+                          : touched.phone && !errors.phone && formData.phone
+                            ? 'border-emerald-400 focus:ring-2 focus:ring-emerald-400 bg-white'
+                            : 'border-slate-300 focus:ring-2 focus:ring-amber-500 focus:border-amber-500 bg-white'
                           }`}
                       />
                       {touched.phone && !errors.phone && formData.phone && (
@@ -582,10 +582,10 @@ export const FreeAssessmentFormSection: React.FC = () => {
                         onChange={(e) => handleFieldChange('suburb', e.target.value)}
                         onBlur={() => handleBlur('suburb')}
                         className={`w-full px-4 py-2.5 rounded-xl border text-sm focus:outline-none transition-colors pr-10 ${touched.suburb && errors.suburb
-                            ? 'border-red-400 bg-red-50/20 focus:ring-2 focus:ring-red-400 focus:border-red-400'
-                            : touched.suburb && !errors.suburb && formData.suburb
-                              ? 'border-emerald-400 focus:ring-2 focus:ring-emerald-400 bg-white'
-                              : 'border-slate-300 focus:ring-2 focus:ring-amber-500 focus:border-amber-500 bg-white'
+                          ? 'border-red-400 bg-red-50/20 focus:ring-2 focus:ring-red-400 focus:border-red-400'
+                          : touched.suburb && !errors.suburb && formData.suburb
+                            ? 'border-emerald-400 focus:ring-2 focus:ring-emerald-400 bg-white'
+                            : 'border-slate-300 focus:ring-2 focus:ring-amber-500 focus:border-amber-500 bg-white'
                           }`}
                       />
                       {touched.suburb && !errors.suburb && formData.suburb && (
@@ -653,8 +653,8 @@ export const FreeAssessmentFormSection: React.FC = () => {
                       onDrop={handleDrop}
                       onClick={() => fileInputRef.current?.click()}
                       className={`border-2 border-dashed rounded-xl p-4 text-center cursor-pointer transition-all ${isDraggingFile
-                          ? 'border-[#2B3CB8] bg-[#F5F7FD]'
-                          : 'border-slate-300 hover:border-[#2B3CB8] hover:bg-slate-50/70 bg-white'
+                        ? 'border-[#2B3CB8] bg-[#F5F7FD]'
+                        : 'border-slate-300 hover:border-[#2B3CB8] hover:bg-slate-50/70 bg-white'
                         }`}
                     >
                       <input
@@ -706,10 +706,10 @@ export const FreeAssessmentFormSection: React.FC = () => {
                 {/* Anti-Bot / Human Verification Authentication Check */}
                 <div
                   className={`p-3 rounded-xl border transition-all ${isHumanVerified
-                      ? 'bg-emerald-50/60 border-emerald-300 text-emerald-950'
-                      : touched.captcha && errors.captcha
-                        ? 'bg-red-50/50 border-red-300'
-                        : 'bg-slate-50/80 border-slate-200 hover:border-slate-300'
+                    ? 'bg-emerald-50/60 border-emerald-300 text-emerald-950'
+                    : touched.captcha && errors.captcha
+                      ? 'bg-red-50/50 border-red-300'
+                      : 'bg-slate-50/80 border-slate-200 hover:border-slate-300'
                     }`}
                 >
                   <div className="flex items-center justify-between">
@@ -720,10 +720,10 @@ export const FreeAssessmentFormSection: React.FC = () => {
                     >
                       <div
                         className={`w-6 h-6 rounded-md border flex items-center justify-center transition-all ${isVerifyingHuman
-                            ? 'border-amber-500 bg-amber-50'
-                            : isHumanVerified
-                              ? 'border-emerald-600 bg-emerald-600 text-white'
-                              : 'border-slate-300 bg-white hover:border-slate-400'
+                          ? 'border-amber-500 bg-amber-50'
+                          : isHumanVerified
+                            ? 'border-emerald-600 bg-emerald-600 text-white'
+                            : 'border-slate-300 bg-white hover:border-slate-400'
                           }`}
                       >
                         {isVerifyingHuman && <Loader2 className="w-3.5 h-3.5 animate-spin text-amber-600" />}
@@ -752,7 +752,7 @@ export const FreeAssessmentFormSection: React.FC = () => {
 
                 {/* Property Owner Authorization Checkbox */}
                 <div>
-                  <label className="flex items-start gap-2.5 cursor-pointer select-none">
+                  <label className="flex items-start gap-2.5 cursor-pointer  ">
                     <input
                       type="checkbox"
                       checked={authorizedConsent}

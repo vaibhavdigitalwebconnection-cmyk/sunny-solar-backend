@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter, useLocation } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 import { ScrollToTop } from './components/layout/ScrollToTop';
-import { SmoothScroll } from './components/common/SmoothScroll';
+import { SmoothScroll } from './components/common/SmoothScroll.tsx';
 import { Navbar } from './components/layout/Navbar/Navbar';
 import { Footer } from './components/layout/Footer/Footer';
 import { MobileStickyActionBar } from './components/layout/MobileStickyActionBar';
@@ -27,7 +27,7 @@ function AppLayout() {
 
   // Standard public website layout
   return (
-    <SmoothScroll>
+    <>
       <ScrollToTop />
       <WebsiteStartupLoader />
       <div className="flex flex-col min-h-screen selection:bg-[#2B3CB8] selection:text-white relative">
@@ -38,7 +38,7 @@ function AppLayout() {
         <Footer />
         <MobileStickyActionBar />
       </div>
-    </SmoothScroll>
+    </>
   );
 }
 
@@ -46,7 +46,9 @@ export function App() {
   return (
     <HelmetProvider>
       <BrowserRouter>
-        <AppLayout />
+        <SmoothScroll>
+          <AppLayout />
+        </SmoothScroll>
       </BrowserRouter>
     </HelmetProvider>
   );

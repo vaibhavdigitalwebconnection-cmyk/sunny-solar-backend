@@ -54,19 +54,17 @@ export const SolarSystemsFAQSection: React.FC = () => {
                 <button
                   type="button"
                   onClick={() => setOpenIndex(isOpen ? null : idx)}
-                  className="w-full text-left p-4 sm:p-5 md:p-6 flex items-center justify-between gap-3 sm:gap-4 font-serif font-bold text-sm sm:text-base md:text-lg text-slate-900 hover:text-[#2B3CB8] transition-colors cursor-pointer select-none active:bg-slate-50/50"
+                  className="w-full text-left p-4 sm:p-5 md:p-6 flex items-center justify-between gap-3 sm:gap-4 font-serif font-bold text-sm sm:text-base md:text-lg text-slate-900 hover:text-[#2B3CB8] transition-colors cursor-pointer   active:bg-slate-50/50"
                   aria-expanded={isOpen}
                 >
                   <span className="leading-snug pr-1">{faq.q}</span>
                   <div
-                    className={`w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center shrink-0 transition-colors ${
-                      isOpen ? 'bg-[#2B3CB8]/10 text-[#2B3CB8]' : 'bg-slate-100 text-slate-400'
-                    }`}
+                    className={`w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center shrink-0 transition-colors ${isOpen ? 'bg-[#2B3CB8]/10 text-[#2B3CB8]' : 'bg-slate-100 text-slate-400'
+                      }`}
                   >
                     <ChevronDown
-                      className={`w-4 h-4 sm:w-5 sm:h-5 transition-transform duration-200 ${
-                        isOpen ? 'rotate-180 text-[#2B3CB8]' : ''
-                      }`}
+                      className={`w-4 h-4 sm:w-5 sm:h-5 transition-transform duration-200 ${isOpen ? 'rotate-180 text-[#2B3CB8]' : ''
+                        }`}
                     />
                   </div>
                 </button>

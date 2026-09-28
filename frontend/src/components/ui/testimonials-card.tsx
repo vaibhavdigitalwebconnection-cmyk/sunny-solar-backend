@@ -118,7 +118,7 @@ export function TestimonialsCard({
     const activeItem = items[activeIndex] || items[0];
 
     return (
-        <div 
+        <div
             className={cn("flex items-center justify-center w-full overflow-hidden md:overflow-visible py-2", className)}
             onTouchStart={handleTouchStart}
             onTouchEnd={handleTouchEnd}
@@ -128,8 +128,8 @@ export function TestimonialsCard({
                 style={{ perspective: "1400px", maxWidth: `${width * 2.5}px` }}
             >
                 {/* 1. Image Card Stack (On mobile: top row-start-1, centered) */}
-                <div 
-                    className="row-start-1 md:row-start-1 col-start-1 md:row-span-3 relative w-full aspect-square mx-auto max-w-[280px] xs:max-w-[320px] sm:max-w-[360px] md:max-w-none" 
+                <div
+                    className="row-start-1 md:row-start-1 col-start-1 md:row-span-3 relative w-full aspect-square mx-auto max-w-70 xs:max-w-[320px] sm:max-w-90 md:max-w-none"
                     style={{ maxWidth: `${width}px` }}
                 >
                     <AnimatePresence custom={direction}>
@@ -140,7 +140,7 @@ export function TestimonialsCard({
                             return (
                                 <motion.div
                                     key={item.id}
-                                    className="absolute inset-0 w-full h-full overflow-hidden bg-neutral-200 border border-slate-200 shadow-xl rounded-2xl select-none"
+                                    className="absolute inset-0 w-full h-full overflow-hidden bg-neutral-200 border border-slate-200 shadow-xl rounded-2xl  "
                                     initial={{
                                         x: offset * 12,
                                         y: Math.abs(offset) * 4,
@@ -239,20 +239,20 @@ export function TestimonialsCard({
                 </div>
 
                 {/* 3. Navigation Controls: ← 01 / 05 → (On mobile: row-start-3, centered) */}
-                <div className="row-start-3 col-start-1 md:col-start-2 md:row-start-3 flex justify-center md:justify-start items-center gap-3 w-full md:w-auto mt-2 md:mt-6 px-1 md:pl-4">
+                <div className="row-start-3 col-start-1 md:col-start-2 md:row-start-3 flex justify-center md:justify-start items-center gap-3 w-full md:w-auto  px-1 md:pl-4">
                     {showNavigation && items.length > 1 && (
-                        <div className="inline-flex items-center gap-3 bg-white border border-[#D1DCF8] rounded-full px-2 py-1.5 shadow-sm">
+                        <div className="inline-flex items-center gap-3 bg-white border border-[#ED4F11] rounded-full px-2 py-1 shadow-sm">
                             <button
                                 type="button"
                                 onClick={handlePrev}
-                                className="flex items-center justify-center w-9 h-9 rounded-full bg-[#F5F7FD] hover:bg-[#2B3CB8] text-[#1D2984] hover:text-white transition-all cursor-pointer active:scale-95"
+                                className="flex items-center justify-center w-9 h-9 rounded-full bg-[#F5F7FD] hover:bg-[#ED4F11] text-[#ED4F11] hover:text-white transition-all cursor-pointer active:scale-95"
                                 aria-label="Previous slide"
                             >
                                 <ArrowLeft className="w-4 h-4" />
                             </button>
 
                             {showCounter && (
-                                <span className="font-mono text-xs sm:text-sm font-bold text-[#1D2984] select-none tracking-wider px-2">
+                                <span className="font-mono text-xs sm:text-sm font-bold text-[#ED4F11]   tracking-wider px-2">
                                     {String(activeIndex + 1).padStart(2, '0')} / {String(items.length).padStart(2, '0')}
                                 </span>
                             )}
@@ -260,7 +260,7 @@ export function TestimonialsCard({
                             <button
                                 type="button"
                                 onClick={handleNext}
-                                className="flex items-center justify-center w-9 h-9 rounded-full bg-[#F5F7FD] hover:bg-[#2B3CB8] text-[#1D2984] hover:text-white transition-all cursor-pointer active:scale-95"
+                                className="flex items-center justify-center w-9 h-9 rounded-full bg-[#F5F7FD] hover:bg-[#ED4F11] text-[#ED4F11] hover:text-white transition-all cursor-pointer active:scale-95"
                                 aria-label="Next slide"
                             >
                                 <ArrowRight className="w-4 h-4" />

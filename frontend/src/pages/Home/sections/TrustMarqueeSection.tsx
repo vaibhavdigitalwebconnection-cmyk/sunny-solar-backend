@@ -1,11 +1,11 @@
 import React from 'react';
-import { 
-  Sun, 
-  BatteryCharging, 
-  Calculator, 
-  Scale, 
-  Home, 
-  HeartHandshake 
+import {
+  Sun,
+  BatteryCharging,
+  Calculator,
+  Scale,
+  Home,
+  HeartHandshake
 } from 'lucide-react';
 
 const trustBeltItems = [
@@ -45,8 +45,8 @@ const trustBeltRepeated = [
 
 export const TrustMarqueeSection: React.FC = () => {
   return (
-    <section 
-      className="w-full bg-[#2B3CB8] py-3.5 sm:py-4 relative overflow-hidden z-20 shadow-lg select-none group border-t border-b border-[#1D2984]"
+    <section
+      className="w-full bg-[#2B3CB8] py-3.5 sm:py-4 relative overflow-hidden z-20 shadow-lg   group border-t border-b border-[#1D2984]"
       aria-label="Sunny Solar Guarantees and Key Benefits"
     >
       {/* Edge gradient masks for seamless fade */}

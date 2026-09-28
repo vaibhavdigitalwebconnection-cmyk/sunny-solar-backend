@@ -16,14 +16,14 @@ const faqs: FAQ[] = [
     question: 'How long does a residential solar installation take?',
     answer:
       'Most standard residential installations (6.6kW to 13.2kW) are completed in a single day. Our team arrives around 7:00 AM, secures the roof, mounts the panels, completes the electrical wiring and inverter setup, and performs thorough safety testing by mid-afternoon.',
-    image: '/images/projects/project-rooftop-array.jpg',
+    image: '/images/projects/project-rooftop-array.webp',
     description: 'Precision single-day rooftop installation by Master Electricians.',
   },
   {
     question: 'What warranties come with a Sunny Solar system?',
     answer:
       'You receive a 25-year panel product and performance warranty, a 10-to-15 year inverter warranty, and our comprehensive 10-year workmanship guarantee. If any part of your system underperforms, we manage the replacement directly.',
-    image: '/images/projects/panel-engineering.jpg',
+    image: '/images/projects/panel-engineering.webp',
     description: '25-year panel performance & 10-year comprehensive workmanship warranty.',
   },
   {
@@ -37,7 +37,7 @@ const faqs: FAQ[] = [
     question: 'How do Australian Federal STC solar rebates work?',
     answer:
       'Small-scale Technology Certificates (STCs) provide an immediate point-of-sale discount based on your system’s expected clean energy output. On a typical 10kW system, STCs reduce upfront costs by $2,800 to $3,600. We claim these directly on your behalf so you only pay the net price.',
-    image: '/images/projects/tesla-solar-roof.jpg',
+    image: '/images/projects/tesla-solar-roof.webp',
     description: 'Immediate point-of-sale government STC discounts applied to your quote.',
   },
 ];

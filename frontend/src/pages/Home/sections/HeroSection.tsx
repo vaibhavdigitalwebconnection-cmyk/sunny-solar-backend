@@ -142,7 +142,7 @@ export const HeroSection: React.FC = () => {
               transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
               className="relative overflow-hidden inline-flex items-center gap-1.5 sm:gap-2 px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-full text-[11px] sm:text-xs font-semibold text-white bg-slate-900/80 border border-white/20 backdrop-blur-md shadow-lg"
             >
-              <span className="w-2 h-2 rounded-full bg-[#6F8EE7] animate-pulse shrink-0" />
+              <span className="w-2 h-2 rounded-full bg-[#ED4F11] animate-pulse shrink-0" />
               <span className="text-[#D1DCF8] font-bold">SOLAR • BATTERY • </span>
               <span className="text-white font-bold">SOLUTIONS</span>
               <motion.span
@@ -162,7 +162,7 @@ export const HeroSection: React.FC = () => {
               >
                 Make Your Solar Decision With Confidence.
               </motion.h1>
-              
+
               <div className="pt-0.5 sm:pt-1 flex items-center">
                 <div className="inline-flex max-w-full overflow-x-auto scrollbar-none py-1">
                   <SplitFlapText
@@ -211,7 +211,7 @@ export const HeroSection: React.FC = () => {
                 whileHover={{ scale: 1.025, boxShadow: "0 12px 25px -4px rgba(43, 60, 184, 0.45)" }}
                 whileTap={{ scale: 0.98 }}
                 href="#hero-quote-form"
-                className="relative overflow-hidden group inline-flex items-center justify-center gap-2 font-bold px-5 sm:px-6 py-2.5 rounded-lg bg-[#2B3CB8] hover:bg-[#1D2984] text-white shadow-md transition-all text-xs sm:text-sm cursor-pointer w-full sm:w-auto"
+                className="relative overflow-hidden group inline-flex items-center justify-center gap-2 font-bold px-5 sm:px-6 py-2.5 rounded-lg bg-[#ED4F11] hover:bg-[#1D2984] text-white shadow-md transition-all text-xs sm:text-sm cursor-pointer w-full sm:w-auto"
               >
                 {/* Shimmer light sweep */}
                 <span className="absolute inset-0 w-1/2 h-full bg-linear-to-r from-transparent via-white/20 to-transparent -skew-x-12 -translate-x-full group-hover:translate-x-[300%] transition-transform duration-1000 ease-out pointer-events-none" />
@@ -235,7 +235,7 @@ export const HeroSection: React.FC = () => {
                 initial={{ opacity: 0, y: 18, scale: 0.95 }}
                 animate={{ opacity: 1, y: 0, scale: 1 }}
                 transition={{ duration: 0.7, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
-                className="absolute -top-10 sm:-top-8 right-2 sm:right-6 pointer-events-none z-20 flex flex-col items-end select-none"
+                className="absolute -top-10 sm:-top-8 right-2 sm:right-6 pointer-events-none z-20 flex flex-col items-end  "
               >
                 {/* Cutout with subtle ambient glow and 3D shadow */}
                 <div className="relative">
@@ -293,14 +293,13 @@ export const HeroSection: React.FC = () => {
                       key={type}
                       type="button"
                       onClick={() => setSystemType(type)}
-                      className={`relative py-1.5 px-1 sm:px-2 rounded-md transition-colors flex items-center justify-center gap-1 cursor-pointer text-[10px] sm:text-xs font-bold z-10 ${
-                        isActive ? 'text-white' : 'text-slate-600 hover:text-slate-900'
-                      }`}
+                      className={`relative py-1.5 px-1 sm:px-2 rounded-md transition-colors flex items-center justify-center gap-1 cursor-pointer text-[10px] sm:text-xs font-bold z-10 ${isActive ? 'text-white' : 'text-slate-600 hover:text-slate-900'
+                        }`}
                     >
                       {isActive && (
                         <motion.div
                           layoutId="activeSystemType"
-                          className="absolute inset-0 bg-[#2B3CB8] rounded-md shadow-xs -z-10"
+                          className="absolute inset-0 bg-[#ED4F11] rounded-md shadow-xs -z-10"
                           transition={{ type: 'spring', stiffness: 500, damping: 35 }}
                         />
                       )}
@@ -406,7 +405,7 @@ export const HeroSection: React.FC = () => {
                     whileTap={{ scale: 0.985 }}
                     type="submit"
                     disabled={isSubmitting}
-                    className="relative overflow-hidden group w-full py-2.5 sm:py-3 px-4 rounded-lg font-bold text-xs sm:text-sm text-white bg-[#2B3CB8] hover:bg-[#1D2984] shadow-md hover:shadow-lg hover:shadow-[#2B3CB8]/30 transition-all flex items-center justify-center gap-1.5 cursor-pointer disabled:opacity-75"
+                    className="relative overflow-hidden group w-full py-2.5 sm:py-3 px-4 rounded-lg font-bold text-xs sm:text-sm text-white bg-[#ED4F11] hover:bg-[#1D2984] shadow-md hover:shadow-lg hover:shadow-[#2B3CB8]/30 transition-all flex items-center justify-center gap-1.5 cursor-pointer disabled:opacity-75"
                   >
                     {/* Interactive sheen sweep */}
                     <span className="absolute inset-0 w-1/2 h-full bg-linear-to-r from-transparent via-white/20 to-transparent -skew-x-12 -translate-x-full group-hover:translate-x-[300%] transition-transform duration-1000 ease-out pointer-events-none" />

@@ -12,7 +12,7 @@ export const UpgradeHeroSection: React.FC = () => {
         <div className="block lg:hidden w-full relative overflow-hidden bg-slate-950 py-30 sm:py-14 px-4 sm:px-6">
           {/* Full-Width Background Image */}
           <img
-            src="/images/about/gallery/rooftop-solar-drill.jpg"
+            src="/images/about/gallery/rooftop-solar-drill.webp"
             alt="Electrician upgrading residential rooftop solar panel array"
             className="absolute inset-0 w-full h-full object-cover object-center opacity-60"
           />
@@ -38,7 +38,7 @@ export const UpgradeHeroSection: React.FC = () => {
           {/* Normal Container Left: Image Showcase with Overlaid Small Badges */}
           <div className="lg:col-span-7 relative group overflow-hidden shadow-md border border-slate-200/80 bg-slate-900 min-h-90 sm:min-h-115 flex flex-col justify-end">
             <img
-              src="/images/about/gallery/rooftop-solar-drill.jpg"
+              src="/images/about/gallery/rooftop-solar-drill.webp"
               alt="Electrician upgrading residential rooftop solar panel array"
               className="absolute inset-0 w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500 ease-out opacity-90"
             />

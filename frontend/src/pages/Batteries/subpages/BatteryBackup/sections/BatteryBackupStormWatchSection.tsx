@@ -11,7 +11,7 @@ export const BatteryBackupStormWatchSection: React.FC = () => {
           {/* Mobile Image (< lg: Shown first with live radar pulse badge) */}
           <div className="block lg:hidden relative h-56 xs:h-64 sm:h-72 overflow-hidden">
             <img
-              src="/images/solutions/battery-storm.jpg"
+              src="/images/solutions/battery-storm.webp"
               alt="Home illuminated during severe thunderstorm blackout"
               className="w-full h-full object-cover"
             />
@@ -85,7 +85,7 @@ export const BatteryBackupStormWatchSection: React.FC = () => {
           {/* Desktop Image Column (>= lg) */}
           <div className="hidden lg:block lg:col-span-5 relative min-h-85 h-full">
             <img
-              src="/images/solutions/battery-storm.jpg"
+              src="/images/solutions/battery-storm.webp"
               alt="Home illuminated during severe thunderstorm blackout"
               className="w-full h-full object-cover"
             />

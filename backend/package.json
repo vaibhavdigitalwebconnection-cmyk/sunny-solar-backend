@@ -7,7 +7,8 @@
   "scripts": {
     "start": "node src/server.js",
     "dev": "nodemon src/server.js",
-    "seed": "node src/scripts/seed.js"
+    "seed": "node src/scripts/seed.js",
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js --runInBand --forceExit"
   },
   "keywords": [
     "node",
@@ -25,9 +26,12 @@
     "express": "^4.21.2",
     "jsonwebtoken": "^9.0.3",
     "mongoose": "^9.10.1",
-    "morgan": "^1.10.0"
+    "morgan": "^1.10.0",
+    "zod": "^4.6.5"
   },
   "devDependencies": {
-    "nodemon": "^3.1.9"
+    "jest": "^30.5.2",
+    "nodemon": "^3.1.9",
+    "supertest": "^7.3.0"
   }
 }

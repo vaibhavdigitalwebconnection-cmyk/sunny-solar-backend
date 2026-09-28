@@ -70,7 +70,7 @@ export const SolarUpgradesHeroSection: React.FC = () => {
           <div className="order-1 lg:order-2 lg:col-span-5 relative w-full">
             <div className="relative rounded-xl sm:rounded-2xl overflow-hidden border border-slate-200/90 shadow-xl sm:shadow-2xl bg-slate-100 aspect-16/10 xs:aspect-4/3 max-w-lg mx-auto lg:max-w-none group">
               <img
-                src="/images/about/gallery/electrician-mounting-inverter.jpg"
+                src="/images/about/gallery/electrician-mounting-inverter.webp"
                 alt="Sunny Solar Master Electrician upgrading a solar inverter"
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
               />

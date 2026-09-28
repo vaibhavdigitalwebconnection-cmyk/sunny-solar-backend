@@ -24,7 +24,7 @@ export const UpgradePathwaysSection: React.FC = () => {
       categoryTheme: 'text-amber-700 bg-amber-50 border-amber-200',
       title: 'Inverter Modernization & Hybrid Battery Integration',
       desc: 'If your panels are still generating well but your inverter has thermal clipping, red fault lights, or lacks phone telemetry, an inverter swap restores maximum conversion efficiency and prepares you for immediate battery storage.',
-      image: '/images/about/gallery/electrician-mounting-inverter.jpg',
+      image: '/images/about/gallery/electrician-mounting-inverter.webp',
       imageAlt: 'Master electrician mounting a modern smart hybrid inverter',
       imageBadgeTop: 'Fast Turnaround',
       imageBadgeTopColor: 'text-amber-300',
@@ -354,7 +354,7 @@ export const UpgradePathwaysSection: React.FC = () => {
             {/* Image Side */}
             <div className="lg:col-span-5 relative min-h-65 sm:min-h-75 overflow-hidden bg-slate-900">
               <img
-                src="/images/about/gallery/electrician-mounting-inverter.jpg"
+                src="/images/about/gallery/electrician-mounting-inverter.webp"
                 alt="Master electrician mounting a modern smart hybrid inverter"
                 className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
               />

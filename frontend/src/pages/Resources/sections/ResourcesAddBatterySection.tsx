@@ -16,7 +16,7 @@ export const ResourcesAddBatterySection: React.FC = () => {
           <div className="lg:col-span-5">
             <div className="relative rounded-xl overflow-hidden shadow-2xl border border-slate-700 group">
               <img
-                src="/images/solutions/battery-bundle.jpg"
+                src="/images/solutions/battery-bundle.webp"
                 alt="Adding a battery storage system to rooftop solar"
                 className="w-full h-52 xs:h-60 sm:h-72 lg:h-80 object-cover object-center group-hover:scale-105 transition-transform duration-700"
               />

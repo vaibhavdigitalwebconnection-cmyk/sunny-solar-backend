@@ -83,7 +83,7 @@ export function MorphText({
 
       {/* ── Morphing word container ────────────────────────────────── */}
       <div
-        className={cn("morph-text-container relative select-none", textClassName)}
+        className={cn("morph-text-container relative  ", textClassName)}
         style={{
           fontSize,
           fontWeight: 700,

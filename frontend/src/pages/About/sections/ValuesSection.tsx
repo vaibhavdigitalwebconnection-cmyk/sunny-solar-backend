@@ -31,7 +31,7 @@ const ACCORDION_ITEMS: AccordionItem[] = [
   {
     id: 'master-electrician',
     number: '01',
-    image: '/images/about/gallery/smiling-solar-electrician.jpg',
+    image: '/images/about/gallery/smiling-solar-electrician.webp',
     title: 'Licensed Master Electricians On Every Roof',
     shortTitle: 'Master Electricians',
     category: '100% In-House Crew',
@@ -43,7 +43,7 @@ const ACCORDION_ITEMS: AccordionItem[] = [
   {
     id: 'inverter-mounting',
     number: '02',
-    image: '/images/about/gallery/electrician-mounting-inverter.jpg',
+    image: '/images/about/gallery/electrician-mounting-inverter.webp',
     title: 'Laser-Leveled Inverter Architecture',
     shortTitle: 'Inverter Mounting',
     category: 'Clean Architecture',
@@ -55,7 +55,7 @@ const ACCORDION_ITEMS: AccordionItem[] = [
   {
     id: 'switchboard-wiring',
     number: '03',
-    image: '/images/about/gallery/electrician-wiring-switchboard.jpg',
+    image: '/images/about/gallery/electrician-wiring-switchboard.webp',
     title: 'Switchboard Isolation & Surge Protection',
     shortTitle: 'Switchboard Wiring',
     category: 'Electrical Safety',
@@ -67,7 +67,7 @@ const ACCORDION_ITEMS: AccordionItem[] = [
   {
     id: 'rooftop-drill',
     number: '04',
-    image: '/images/about/gallery/rooftop-solar-drill.jpg',
+    image: '/images/about/gallery/rooftop-solar-drill.webp',
     title: 'Cyclone-Rated Clamping & Torquing',
     shortTitle: 'Cyclone Fastening',
     category: 'Rooftop Engineering',
@@ -79,7 +79,7 @@ const ACCORDION_ITEMS: AccordionItem[] = [
   {
     id: 'carrying-panel',
     number: '05',
-    image: '/images/about/gallery/electrician-carrying-panel.jpg',
+    image: '/images/about/gallery/electrician-carrying-panel.webp',
     title: 'Zero Micro-Cracking Handling Protocol',
     shortTitle: 'Zero Micro-Cracks',
     category: 'Care & Integrity',
@@ -88,7 +88,7 @@ const ACCORDION_ITEMS: AccordionItem[] = [
       'Rigorous panel transport guidelines ensure high-efficiency silicon solar cells stay completely free of invisible micro-cracks during lifting and placement.',
     icon: CheckCircle2,
   },
- 
+
 ];
 
 export const ValuesSection: React.FC = () => {
@@ -209,7 +209,7 @@ export const ValuesSection: React.FC = () => {
         {/* ============================================================ */}
         {/* EXPANDING ACCORDION (Desktop & Tablet: md+)                  */}
         {/* ============================================================ */}
-        <div className="hidden md:flex h-[520px] lg:h-[560px] gap-3 lg:gap-4 w-full select-none">
+        <div className="hidden md:flex h-[520px] lg:h-[560px] gap-3 lg:gap-4 w-full  ">
           {ACCORDION_ITEMS.map((item, index) => {
             const isActive = activeIndex === index;
             const Icon = item.icon;
@@ -219,40 +219,36 @@ export const ValuesSection: React.FC = () => {
                 key={item.id}
                 onClick={() => setActiveIndex(index)}
                 onMouseEnter={() => setActiveIndex(index)}
-                className={`relative rounded-lg overflow-hidden cursor-pointer border transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] ${
-                  isActive
+                className={`relative rounded-lg overflow-hidden cursor-pointer border transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] ${isActive
                     ? 'flex-[5] shadow-2xl border-amber-400/80 ring-2 ring-amber-400/20'
                     : 'flex-[1] hover:flex-[1.2] shadow-md border-slate-200/90 bg-slate-900 opacity-95 hover:opacity-100'
-                }`}
+                  }`}
               >
                 {/* Background Image */}
                 <img
                   src={item.image}
                   alt={item.title}
-                  className={`w-full h-full object-cover transition-transform duration-1000 ease-out ${
-                    isActive ? 'scale-105' : 'scale-100 grayscale-25'
-                  }`}
+                  className={`w-full h-full object-cover transition-transform duration-1000 ease-out ${isActive ? 'scale-105' : 'scale-100 grayscale-25'
+                    }`}
                 />
 
                 {/* Overlays */}
                 <div
-                  className={`absolute inset-0 transition-opacity duration-500 ${
-                    isActive
+                  className={`absolute inset-0 transition-opacity duration-500 ${isActive
                       ? 'bg-gradient-to-t from-slate-950/95 via-slate-950/40 to-slate-950/15'
                       : 'bg-slate-950/70 hover:bg-slate-950/50'
-                  }`}
+                    }`}
                 />
 
                 {/* ACTIVE CARD EXPANDED CONTENT */}
                 <div
-                  className={`absolute inset-0 p-6 sm:p-8 flex flex-col justify-between transition-all duration-500 ${
-                    isActive
+                  className={`absolute inset-0 p-6 sm:p-8 flex flex-col justify-between transition-all duration-500 ${isActive
                       ? 'opacity-100 pointer-events-auto delay-100'
                       : 'opacity-0 pointer-events-none'
-                  }`}
+                    }`}
                 >
                   {/* Top Bar inside Active Card */}
-                 
+
 
                   {/* Bottom Text inside Active Card */}
                   <div className="max-w-2xl">
@@ -283,11 +279,10 @@ export const ValuesSection: React.FC = () => {
 
                 {/* INACTIVE CARD COMPRESSED CONTENT (Vertical Spine) */}
                 <div
-                  className={`absolute inset-0 p-4 flex flex-col justify-between items-center transition-all duration-300 ${
-                    !isActive
+                  className={`absolute inset-0 p-4 flex flex-col justify-between items-center transition-all duration-300 ${!isActive
                       ? 'opacity-100 pointer-events-auto'
                       : 'opacity-0 pointer-events-none'
-                  }`}
+                    }`}
                 >
                   {/* Top number */}
                   <span className="text-xs font-mono font-bold text-amber-400/90 pt-1">
@@ -321,7 +316,7 @@ export const ValuesSection: React.FC = () => {
         {/* MOBILE SHOWCASE & AUTO-HOVER (< md)                          */}
         {/* ============================================================ */}
         <div className="flex md:hidden flex-col gap-3.5">
-          
+
 
           {/* Active Standard Card with Auto-Hover & Swipe (Fixed Height) */}
           <div
@@ -433,17 +428,16 @@ export const ValuesSection: React.FC = () => {
                   setTimeout(() => setIsPaused(false), 5000);
                 }}
                 aria-label={`Go to slide ${idx + 1}`}
-                className={`h-1.5 rounded-full transition-all duration-300 cursor-pointer ${
-                  activeIndex === idx
+                className={`h-1.5 rounded-full transition-all duration-300 cursor-pointer ${activeIndex === idx
                     ? 'w-6 bg-amber-500'
                     : 'w-2 bg-slate-300 hover:bg-slate-400'
-                }`}
+                  }`}
               />
             ))}
           </div>
         </div>
 
-      
+
       </div>
 
       {/* Fullscreen Interactive Lightbox Modal */}

@@ -24,7 +24,7 @@ const claritySlides: ClaritySlide[] = [
     description:
       'Your energy use, roof, lifestyle and future plans all matter. Sunny Solar helps you find a solar setup that makes sense for the way you use energy.',
     highlight: 'Solar • Battery • Energy Use',
-    image: '/images/projects/project-rooftop-array.jpg',
+    image: '/images/projects/project-rooftop-array.webp',
   },
   {
     id: '02',
@@ -35,7 +35,7 @@ const claritySlides: ClaritySlide[] = [
     description:
       'Panels, inverters, batteries, warranties and system size all affect the value of a solar quote. Know what’s included before you compare the price.',
     highlight: 'Compare • Understand • Decide',
-    image: '/images/projects/sunny-boy-inverter.jpg',
+    image: '/images/projects/sunny-boy-inverter.webp',
   },
   {
     id: '03',
@@ -57,7 +57,7 @@ const claritySlides: ClaritySlide[] = [
     description:
       'How much solar do you need? Is a battery worth it? Why is your bill still high? Sunny Solar tackles the questions homeowners ask before and after installation.',
     highlight: 'Real Questions • Practical Answers',
-    image: '/images/projects/panel-engineering.jpg',
+    image: '/images/projects/panel-engineering.webp',
   },
   {
     id: '05',
@@ -68,7 +68,7 @@ const claritySlides: ClaritySlide[] = [
     description:
       'A new EV, higher electricity use or changing household needs can change what your system should do. Sunny Solar can help you explore what comes next.',
     highlight: 'Battery • Upgrade • Optimise',
-    image: '/images/projects/tesla-solar-roof.jpg',
+    image: '/images/projects/tesla-solar-roof.webp',
   },
 ];
 
@@ -93,12 +93,12 @@ export const FeaturedProjectsSection: React.FC = () => {
       <div className="absolute top-1/2 left-1/4 w-125 h-125 bg-[#2B3CB8]/5 rounded-full blur-[140px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        
+
         {/* Section Header */}
         <div className="text-center max-w-4xl mx-auto mb-8 sm:mb-10">
           {/* Eyebrow Pill Badge */}
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider text-[#2B3CB8] bg-[#F5F7FD] border border-[#D1DCF8] shadow-2xs mb-4">
-            <span className="w-2 h-2 rounded-full bg-[#2B3CB8] animate-pulse" />
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider text-[#ED4F11] bg-[#F5F7FD] border border-[#D1DCF8] shadow-2xs mb-4">
+            <span className="w-2 h-2 rounded-full bg-[#ED4F11] animate-pulse" />
             <span>WHY SUNNY SOLAR</span>
           </div>
 
@@ -123,11 +123,10 @@ export const FeaturedProjectsSection: React.FC = () => {
                 <button
                   key={slide.id}
                   onClick={() => setCurrentSlide(idx)}
-                  className={`px-3 sm:px-4 py-1.5 rounded-full text-xs sm:text-sm font-semibold transition-all whitespace-nowrap cursor-pointer ${
-                    isActive
-                      ? 'bg-[#2B3CB8] text-white shadow-sm'
+                  className={`px-3 sm:px-4 py-1.5 rounded-full text-xs sm:text-sm font-semibold transition-all whitespace-nowrap cursor-pointer ${isActive
+                      ? 'bg-[#ED4F11] text-white shadow-sm'
                       : 'text-slate-600 hover:text-slate-900 hover:bg-white/80'
-                  }`}
+                    }`}
                 >
                   {slide.progressionStep}
                 </button>
@@ -138,9 +137,9 @@ export const FeaturedProjectsSection: React.FC = () => {
 
         {/* Stacked Animation Carousel with Navigation: ← 01 / 05 → */}
         <div className="flex justify-center w-full px-1 sm:px-0">
-          <TestimonialsCard 
-            items={items} 
-            width={400} 
+          <TestimonialsCard
+            items={items}
+            width={400}
             autoPlay={true}
             autoPlayInterval={5000}
             showNavigation={true}
@@ -158,16 +157,16 @@ export const FeaturedProjectsSection: React.FC = () => {
             variant="outline"
             size="lg"
             icon={<ArrowRight className="w-4 h-4" />}
-            className="w-full sm:w-auto bg-white border-slate-300 hover:border-[#2B3CB8] hover:text-[#2B3CB8] shadow-xs font-semibold"
+            className="w-full sm:w-auto bg-white border-[#ED4F11] hover:border-[#2B3CB8] hover:text-[#2B3CB8] text-[#ED4F11] shadow-xs font-semibold"
           >
-            Explore Our Projects 
+            Explore Our Projects
           </Button>
           <Button
             to="/get-started/free-assessment"
             variant="primary"
             size="lg"
             icon={<ArrowRight className="w-4 h-4" />}
-            className="w-full sm:w-auto shadow-md font-semibold"
+            className="w-full sm:w-auto shadow-md bg-[#ED4F11] hover:bg-[#ED4F11] text-white font-semibold border border-[#ED4F11]"
           >
             Get Your Solar Options
           </Button>

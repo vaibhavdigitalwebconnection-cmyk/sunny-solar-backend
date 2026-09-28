@@ -20,7 +20,7 @@ export const UpgradeEligibilitySection: React.FC = () => {
         {/* Visual Showcase Left */}
         <div className="lg:col-span-5 relative rounded-xl sm:rounded-2xl overflow-hidden shadow-lg border border-slate-200/80 bg-slate-900 min-h-55 sm:min-h-85 flex flex-col justify-end">
           <img
-            src="/images/about/gallery/smiling-solar-electrician.jpg"
+            src="/images/about/gallery/smiling-solar-electrician.webp"
             alt="Licensed Sunny Solar Master Electrician evaluating solar upgrade eligibility"
             className="absolute inset-0 w-full h-full object-cover object-center"
           />

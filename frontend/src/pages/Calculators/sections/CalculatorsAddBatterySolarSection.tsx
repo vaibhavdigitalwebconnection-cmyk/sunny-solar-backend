@@ -34,7 +34,7 @@ export const CalculatorsAddBatterySolarSection: React.FC = () => {
               {/* Image Frame with curved corners & subtle tilt */}
               <div className="relative rounded-xl overflow-hidden shadow-md group">
                 <img 
-                  src="/images/solutions/battery-bundle.jpg" 
+                  src="/images/solutions/battery-bundle.webp" 
                   alt="Modern home battery storage paired with rooftop solar system" 
                   className="w-full h-56 xs:h-64 sm:h-80 object-cover object-center group-hover:scale-105 transition-transform duration-700"
                 />

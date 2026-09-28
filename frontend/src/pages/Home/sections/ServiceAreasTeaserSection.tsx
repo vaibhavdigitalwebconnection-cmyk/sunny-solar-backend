@@ -72,7 +72,7 @@ const solutionCards: StackedCard[] = [
     link: '/batteries',
     icon: BatteryCharging,
     colors: {
-      bg: 'bg-[#70BB4E]',
+      bg: 'bg-[#346820]',
       text: 'text-white',
       numberText: 'text-white',
       badgeBg: 'bg-white/20',
@@ -95,7 +95,7 @@ const solutionCards: StackedCard[] = [
     link: '/existing-solar/health-check',
     icon: Activity,
     colors: {
-      bg: 'bg-[#FF6854]',
+      bg: 'bg-[#ED4F11]',
       text: 'text-white',
       numberText: 'text-white',
       badgeBg: 'bg-white/20',
@@ -141,7 +141,7 @@ const solutionCards: StackedCard[] = [
     link: '/calculators',
     icon: Calculator,
     colors: {
-      bg: 'bg-[#222426]',
+      bg: 'bg-[#0E1648]',
       text: 'text-white',
       numberText: 'text-white',
       badgeBg: 'bg-white/15',
@@ -206,9 +206,9 @@ export const ServiceAreasTeaserSection: React.FC = () => {
       <div className="sticky top-16 sm:top-20 lg:top-24 h-[calc(100vh-4rem)] sm:h-[calc(100vh-5rem)] lg:h-[calc(100vh-6rem)] max-h-230 min-h-145 flex items-center z-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-            
+
             {/* Left Column: Completely STATIC Section Heading, Copy & Action */}
-            <div className="lg:col-span-5 space-y-4 sm:space-y-5 flex flex-col items-center lg:items-start text-center lg:text-left select-none">
+            <div className="lg:col-span-5 space-y-4 sm:space-y-5 flex flex-col items-center lg:items-start text-center lg:text-left  ">
               {/* Eyebrow */}
               <div className="inline-flex items-center gap-2 px-3 sm:px-3.5 py-1 sm:py-1.5 rounded-full text-[11px] sm:text-xs font-bold uppercase tracking-wider text-[#2B3CB8] bg-[#F5F7FD] border border-[#D1DCF8] shadow-2xs">
                 <span className="w-2 h-2 rounded-full bg-[#2B3CB8] animate-pulse" />
@@ -263,9 +263,9 @@ export const ServiceAreasTeaserSection: React.FC = () => {
 
             {/* Right Column: Stacked Cards One Upon One Overlay */}
             <div className="lg:col-span-7 relative w-full flex flex-col items-center">
-              
+
               {/* Card Deck Overlay Stage */}
-              <div className="relative w-full max-w-md sm:max-w-lg lg:max-w-xl h-100 sm:h-112.5 lg:h-120">
+              <div className="relative w-full max-w-md sm:max-w-lg lg:max-w-xl h-100 sm:h-112.5 lg:h-132">
                 {solutionCards.map((card, index) => {
                   const IconComponent = card.icon;
                   const isStacked = index < activeCardIndex;
@@ -301,7 +301,7 @@ export const ServiceAreasTeaserSection: React.FC = () => {
                     >
                       <Link
                         to={card.link}
-                        className={`group block relative rounded-3xl sm:rounded-4xl p-6 sm:p-7 lg:p-8 h-85 sm:h-92.5 lg:h-97.5 shadow-2xl transition-all duration-300 border cursor-pointer select-none ${card.colors.bg} ${card.colors.border} ${card.rotation}`}
+                        className={`group block relative rounded-3xl sm:rounded-4xl p-6 sm:p-7 lg:p-8 h-85 sm:h-92.5 lg:h-97.5 shadow-2xl shadow-black transition-all duration-300 border cursor-pointer   ${card.colors.bg} ${card.colors.border} ${card.rotation}`}
                         style={{
                           boxShadow:
                             '0 20px 45px -12px rgba(0, 0, 0, 0.28), 0 0 1px 1px rgba(255, 255, 255, 0.1)',
@@ -310,7 +310,7 @@ export const ServiceAreasTeaserSection: React.FC = () => {
                         {/* Top Header Row: Big Bold Number (01+) on left, Circular Icon Badge on right */}
                         <div className="flex items-start justify-between gap-4">
                           <span
-                            className={`text-5xl sm:text-6xl lg:text-7xl font-black font-sans tracking-tighter leading-none select-none ${card.colors.numberText}`}
+                            className={`text-5xl sm:text-6xl lg:text-7xl font-black font-sans tracking-tighter leading-none   ${card.colors.numberText}`}
                           >
                             {card.displayNumber}
                           </span>
@@ -323,9 +323,8 @@ export const ServiceAreasTeaserSection: React.FC = () => {
 
                         {/* Bottom Content Area: Visible on the currently active card */}
                         <div
-                          className={`mt-auto pt-6 sm:pt-10 space-y-2.5 transition-opacity duration-300 ${
-                            isActive ? 'opacity-100' : 'opacity-0 pointer-events-none'
-                          }`}
+                          className={`mt-auto pt-6 sm:pt-10 space-y-2.5 transition-opacity duration-300 ${isActive ? 'opacity-100' : 'opacity-0 pointer-events-none'
+                            }`}
                         >
                           {/* Category Badge Tag */}
                           <div className="inline-block">
@@ -358,11 +357,7 @@ export const ServiceAreasTeaserSection: React.FC = () => {
                               <span>{card.cta}</span>
                               <ArrowRight className="w-3.5 h-3.5 transition-transform duration-200 group-hover:translate-x-1" />
                             </span>
-                            <span
-                              className={`text-xs font-mono font-bold opacity-60 ${card.colors.text}`}
-                            >
-                              {card.id} / 05
-                            </span>
+
                           </div>
                         </div>
                       </Link>
@@ -371,49 +366,7 @@ export const ServiceAreasTeaserSection: React.FC = () => {
                 })}
               </div>
 
-              {/* Interactive Navigation Bar: Card Number Pills & Next/Prev Controls */}
-              <div className="mt-4 sm:mt-6 flex items-center justify-between w-full max-w-md sm:max-w-lg lg:max-w-xl px-2">
-                {/* Prev Button */}
-                <button
-                  type="button"
-                  onClick={handlePrev}
-                  disabled={activeCardIndex === 0}
-                  aria-label="Previous card"
-                  className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-white border border-slate-200 shadow-xs flex items-center justify-center text-slate-700 disabled:opacity-40 disabled:cursor-not-allowed hover:bg-slate-50 transition-all cursor-pointer"
-                >
-                  <ChevronLeft className="w-4 h-4" />
-                </button>
-
-                {/* Number Pills */}
-                <div className="flex items-center gap-1.5 sm:gap-2">
-                  {solutionCards.map((card, idx) => (
-                    <button
-                      key={card.id}
-                      type="button"
-                      onClick={() => setActiveCardIndex(idx)}
-                      className={`px-2.5 sm:px-3 py-1 rounded-full text-xs font-bold font-mono transition-all duration-200 cursor-pointer ${
-                        activeCardIndex === idx
-                          ? 'bg-[#2B3CB8] text-white shadow-xs scale-105'
-                          : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
-                      }`}
-                    >
-                      {card.displayNumber}
-                    </button>
-                  ))}
-                </div>
-
-                {/* Next Button */}
-                <button
-                  type="button"
-                  onClick={handleNext}
-                  disabled={activeCardIndex === solutionCards.length - 1}
-                  aria-label="Next card"
-                  className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-white border border-slate-200 shadow-xs flex items-center justify-center text-slate-700 disabled:opacity-40 disabled:cursor-not-allowed hover:bg-slate-50 transition-all cursor-pointer"
-                >
-                  <ChevronRight className="w-4 h-4" />
-                </button>
-              </div>
-
+             
             </div>
 
           </div>

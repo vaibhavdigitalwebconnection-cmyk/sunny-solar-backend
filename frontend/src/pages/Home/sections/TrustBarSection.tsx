@@ -182,7 +182,7 @@ export const TrustBarSection: React.FC = () => {
                     className="w-13 h-13 sm:w-16 sm:h-16 rounded-lg sm:rounded-xl flex items-center justify-center transition-colors duration-500"
                     style={{ backgroundColor: `${active.accentColor}12` }}
                   >
-                    <Icon className="w-6 h-6 sm:w-8 sm:h-8" style={{ color: active.accentColor }} />
+                    <Icon className="w-6 h-6 sm:w-8 sm:h-8 text-[#ED4F11]"  />
                   </div>
 
                   {/* Big number */}

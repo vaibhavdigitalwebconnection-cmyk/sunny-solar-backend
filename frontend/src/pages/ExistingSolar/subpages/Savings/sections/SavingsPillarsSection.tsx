@@ -294,7 +294,7 @@ export const SavingsPillarsSection: React.FC = () => {
           {/* Visual Image Container Left */}
           <div className="lg:col-span-6 relative h-52 sm:h-64 lg:h-full lg:min-h-90">
             <img
-              src="/images/savings/10kw-solar-panel-system.png"
+              src="/images/savings/10kw-solar-panel-system.webp"
               alt="Solar net metering and bi-directional energy flow"
               className="absolute inset-0 w-full h-full object-cover object-center"
             />

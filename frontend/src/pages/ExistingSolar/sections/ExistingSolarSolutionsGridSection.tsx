@@ -50,7 +50,7 @@ export const ExistingSolarSolutionsGridSection: React.FC = () => {
     {
       title: 'Solar Array Expansion',
       slug: '/existing-solar/upgrade',
-      image: '/images/about/solar-installation-aerial.jpg',
+      image: '/images/about/solar-installation-aerial.webp',
       badge: 'Capacity Boost',
       badgeVariant: 'navy',
       metric: 'Up to 4x More Daily Output',
@@ -65,7 +65,7 @@ export const ExistingSolarSolutionsGridSection: React.FC = () => {
     {
       title: 'Add a Battery Retrofit',
       slug: '/existing-solar/add-battery',
-      image: '/images/solutions/battery-bundle.jpg',
+      image: '/images/solutions/battery-bundle.webp',
       badge: 'High Rebate',
       badgeVariant: 'emerald',
       metric: 'Zero Roof Disruption',

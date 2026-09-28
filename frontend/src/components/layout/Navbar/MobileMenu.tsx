@@ -72,13 +72,13 @@ export const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose }) => {
             animate={{ x: 0 }}
             exit={{ x: '100%' }}
             transition={{ type: 'spring', damping: 30, stiffness: 320, mass: 0.8 }}
-            className="fixed inset-y-0 right-0 w-[85vw] sm:w-[360px] max-w-full bg-white shadow-2xl z-50 flex flex-col lg:hidden"
+            className="fixed inset-y-0 right-0 w-[85vw] sm:w-90 max-w-full bg-white shadow-2xl z-50 flex flex-col lg:hidden"
             role="dialog"
             aria-modal="true"
             aria-label="Navigation Menu"
           >
             {/* Header: Logo and Close Button */}
-            <div className="flex items-center justify-between px-5 py-3.5 border-b border-slate-100 bg-white shrink-0">
+            <div className="flex items-center justify-between px-5 py-3.5 border-b-2 border-[#ED4F11] bg-white shrink-0">
               <Link to="/" onClick={onClose} className="flex items-center">
                 <img src={logo} alt="Sunny Solar" className="h-9 w-auto object-contain" />
               </Link>
@@ -86,7 +86,7 @@ export const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose }) => {
               <button
                 type="button"
                 onClick={onClose}
-                className="w-10 h-10 flex items-center justify-center rounded-full bg-slate-100 hover:bg-slate-200 text-slate-600 hover:text-slate-900 transition-colors active:scale-95 cursor-pointer"
+                className="w-10 h-10 flex items-center justify-center rounded-full bg-slate-100 hover:bg-orange-50 text-slate-600 hover:text-[#ED4F11] border border-transparent hover:border-[#ED4F11]/30 transition-colors active:scale-95 cursor-pointer"
                 aria-label="Close navigation menu"
               >
                 <X className="w-5 h-5" />
@@ -94,7 +94,7 @@ export const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose }) => {
             </div>
 
             {/* Clean Navigation Links */}
-            <div className="flex-1 overflow-y-auto px-4 py-3 divide-y divide-slate-100 overscroll-contain">
+            <div data-lenis-prevent className="flex-1 overflow-y-auto px-4 py-3 divide-y divide-slate-100 overscroll-contain">
               {navigationData.map((section: NavSection) => {
                 const hasChildren = Boolean(section.children?.items?.length);
                 const isExpanded = expandedSection === section.title;
@@ -107,13 +107,13 @@ export const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose }) => {
                         <button
                           type="button"
                           onClick={() => toggleSection(section.title)}
-                          className="w-full flex items-center justify-between py-3 px-2 rounded-lg text-left font-bold text-slate-800 hover:text-[#2B3CB8] hover:bg-[#F5F7FD] transition-colors text-base cursor-pointer"
+                          className="w-full flex items-center justify-between py-3 px-2 rounded-lg text-left font-bold text-slate-800 hover:text-[#ED4F11] hover:bg-orange-50/50 transition-colors text-base cursor-pointer"
                           aria-expanded={isExpanded}
                         >
                           <span className="flex items-center gap-2">
                             {section.title}
                             {section.badge && (
-                              <span className="text-[10px] font-extrabold uppercase px-1.5 py-0.5 rounded bg-[#2B3CB8]/10 text-[#2B3CB8]">
+                              <span className="text-[10px] font-extrabold uppercase px-1.5 py-0.5 rounded bg-[#ED4F11]/10 text-[#ED4F11]">
                                 {section.badge}
                               </span>
                             )}
@@ -135,12 +135,12 @@ export const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose }) => {
                               animate={{ height: 'auto', opacity: 1 }}
                               exit={{ height: 0, opacity: 0 }}
                               transition={{ duration: 0.22, ease: [0.04, 0.62, 0.23, 0.98] }}
-                              className="overflow-hidden pl-3 pr-1 pb-2 space-y-0.5 border-l-2 border-[#2B3CB8] ml-2"
+                              className="overflow-hidden pl-3 pr-1 pb-2 space-y-0.5 border-l-2 border-[#ED4F11] ml-2"
                             >
                               <Link
                                 to={section.href}
                                 onClick={onClose}
-                                className="block py-2 px-2 text-xs font-bold text-[#2B3CB8] hover:underline"
+                                className="block py-2 px-2 text-xs font-bold text-[#ED4F11] hover:underline"
                               >
                                 View all {section.title} →
                               </Link>
@@ -149,7 +149,7 @@ export const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose }) => {
                                   key={subItem.href}
                                   to={subItem.href}
                                   onClick={onClose}
-                                  className="flex items-center justify-between py-2 px-2 text-sm text-slate-600 hover:text-[#2B3CB8] hover:bg-slate-50 rounded-md font-medium transition-colors"
+                                  className="flex items-center justify-between py-2 px-2 text-sm text-slate-600 hover:text-[#ED4F11] hover:bg-orange-50/50 rounded-md font-medium transition-colors"
                                 >
                                   <span>{subItem.title}</span>
                                   {subItem.badge && (
@@ -168,7 +168,7 @@ export const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose }) => {
                       <Link
                         to={section.href}
                         onClick={onClose}
-                        className="flex items-center justify-between py-3 px-2 rounded-lg font-bold text-slate-800 hover:text-[#2B3CB8] hover:bg-[#F5F7FD] transition-colors text-base"
+                        className="flex items-center justify-between py-3 px-2 rounded-lg font-bold text-slate-800 hover:text-[#ED4F11] hover:bg-orange-50/50 transition-colors text-base"
                       >
                         <span>{section.title}</span>
                         <ArrowRight className="w-4 h-4 text-slate-300" />
@@ -181,20 +181,22 @@ export const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose }) => {
 
             {/* Simple Footer: CTA & Direct Contact */}
             <div className="p-4 bg-slate-50 border-t border-slate-200 space-y-3 shrink-0">
-              <Link
-                to="/get-started/free-assessment"
-                onClick={onClose}
-                className="w-full flex items-center justify-center gap-2 py-3 px-4 rounded-xl bg-[#2B3CB8] hover:bg-[#1D2984] text-white font-bold text-sm shadow-md shadow-[#2B3CB8]/20 transition-all active:scale-[0.98]"
-              >
-                <span>Free Assessment</span>
-                <ArrowRight className="w-4 h-4" />
-              </Link>
+              <div className="relative group/mcta">
+                <Link
+                  to="/get-started/free-assessment"
+                  onClick={onClose}
+                  className="relative w-full flex items-center justify-center gap-2 py-3 px-4 rounded-xl text-white font-black text-sm uppercase tracking-wider bg-linear-to-b from-[#FF5C1C] via-[#ED4F11] to-[#D84107] border-t border-white/40 border-b shadow-[inset_0_1px_0_rgba(255,255,255,0.5),0_3px_0_#B83404,0_6px_14px_-2px_rgba(237,79,17,0.32),0_2px_4px_rgba(0,0,0,0.08)] active:translate-y-0.5 active:shadow-[inset_0_1px_0_rgba(255,255,255,0.3),0_1px_0_#A02B02,0_2px_4px_rgba(0,0,0,0.12)] transition-all overflow-hidden"
+                >
+                  <span className="relative z-10 drop-shadow-[0_1px_1px_rgba(0,0,0,0.4)]">Free Assessment</span>
+                  <ArrowRight className="w-4 h-4 relative z-10" />
+                </Link>
+              </div>
 
               <a
                 href="tel:1300030479"
-                className="flex items-center justify-center gap-2 py-2 text-xs font-bold text-slate-700 hover:text-[#2B3CB8] transition-colors"
+                className="flex items-center justify-center gap-2 py-2 text-xs font-bold text-slate-700 hover:text-[#ED4F11] transition-colors"
               >
-                <Phone className="w-3.5 h-3.5 text-[#2B3CB8]" />
+                <Phone className="w-3.5 h-3.5 text-[#ED4F11]" />
                 <span>1300 030 479</span>
               </a>
             </div>

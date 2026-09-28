@@ -493,6 +493,7 @@ export const ProjectDetailPage: React.FC = () => {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.25 }}
             onClick={() => setLightboxOpen(false)}
+            data-lenis-prevent
           >
             {/* Top Close Button & Index Counter */}
             <div className="absolute top-5 inset-x-5 flex items-center justify-between z-10 pointer-events-none">

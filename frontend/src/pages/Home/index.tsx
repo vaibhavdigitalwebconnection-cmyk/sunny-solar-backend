@@ -5,7 +5,6 @@ import { TrustMarqueeSection } from './sections/TrustMarqueeSection';
 import { ServicesOverviewSection } from './sections/ServicesOverviewSection';
 import { FeaturedProjectsSection } from './sections/FeaturedProjectsSection';
 import { ApprovedBrandsSection } from './sections/ApprovedBrandsSection';
-import { BrandShowcaseSection } from './sections/BrandShowcaseSection';
 import { TrustBarSection } from './sections/TrustBarSection';
 import { PreferSunnySolarSection } from './sections/PreferSunnySolarSection';
 import { CalculatorsTeaserSection } from './sections/CalculatorsTeaserSection';
@@ -37,7 +36,6 @@ export const HomePage: React.FC = () => {
       <FeaturedProjectsSection />
       {/* 6 */}
       <ApprovedBrandsSection />
-     
       {/* 8 */}
       <ParallaxBannerSection />
       {/* 9 */}

@@ -47,10 +47,10 @@ export const projectsData: Project[] = [
     co2Offset: '14.2 tonnes / yr',
     paybackPeriod: '3.6 Years',
     selfConsumption: '94%',
-    imageUrl: '/images/projects/aerial-view-solar.jpg',
+    imageUrl: '/images/projects/aerial-view-solar.webp',
     gallery: [
       {
-        url: '/images/projects/project-rooftop-array.jpg',
+        url: '/images/projects/project-rooftop-array.webp',
         caption: 'All-black 30-panel rooftop array installed on custom dark COLORBOND® roof in Mermaid Beach',
         tag: 'Rooftop Array',
       },
@@ -120,15 +120,15 @@ export const projectsData: Project[] = [
     co2Offset: '17.4 tonnes / yr',
     paybackPeriod: '4.1 Years',
     selfConsumption: '98%',
-    imageUrl: '/images/projects/tesla-solar-roof.jpg',
+    imageUrl: '/images/projects/tesla-solar-roof.webp',
     gallery: [
       {
-        url: '/images/projects/tesla-solar-roof.jpg',
+        url: '/images/projects/tesla-solar-roof.webp',
         caption: 'Luxury canal estate installation engineered for maximum solar harvesting across 3 roof aspects',
         tag: 'Waterfront Villa',
       },
       {
-        url: '/images/projects/dji-aerial-solar.jpg',
+        url: '/images/projects/dji-aerial-solar.webp',
         caption: 'All-black premium solar panels flush-mounted to preserve contemporary architectural street appeal',
         tag: 'All-Black Roof',
       },
@@ -138,7 +138,7 @@ export const projectsData: Project[] = [
         tag: 'Dual Batteries',
       },
       {
-        url: '/images/projects/3phase-gateway.jpg',
+        url: '/images/projects/3phase-gateway.webp',
         caption: '3-phase automatic backup gateway wiring with dedicated circuit shedding controls',
         tag: '3-Phase Gateway',
       },
@@ -192,20 +192,20 @@ export const projectsData: Project[] = [
     co2Offset: '9.8 tonnes / yr',
     paybackPeriod: '3.8 Years',
     selfConsumption: '89%',
-    imageUrl: '/images/projects/pv-solar-thermal.jpg',
+    imageUrl: '/images/projects/pv-solar-thermal.webp',
     gallery: [
       {
-        url: '/images/projects/pv-solar-thermal.jpg',
+        url: '/images/projects/pv-solar-thermal.webp',
         caption: 'Master Electrician installing high-efficiency panels on heritage tin roof in Paddington',
         tag: 'Heritage Installation',
       },
       {
-        url: '/images/projects/panel-engineering.jpg',
+        url: '/images/projects/panel-engineering.webp',
         caption: 'Close-up of AIKO N-Type partial-shading resilient solar panels with black anodized clamps',
         tag: 'Panel Engineering',
       },
       {
-        url: '/images/projects/sunny-boy-inverter.jpg',
+        url: '/images/projects/sunny-boy-inverter.webp',
         caption: 'Compact Sungrow hybrid inverter & modular high-voltage battery tucked under Queenslander sub-floor',
         tag: 'Hybrid Battery',
       },
@@ -262,17 +262,17 @@ export const projectsData: Project[] = [
     imageUrl: '/images/projects/homestead-overview.jpg',
     gallery: [
       {
-        url: '/images/projects/ground-mount-array.jpg',
+        url: '/images/projects/ground-mount-array.webp',
         caption: 'Engineered ground-mount array positioned on hinterland slope for optimum winter sun harvest',
         tag: 'Ground Mount Array',
       },
       {
-        url: '/images/projects/ground-framework.jpg',
+        url: '/images/projects/ground-framework.webp',
         caption: 'Heavy-duty steel footing and ground mount framework built to withstand high mountain wind speeds',
         tag: 'Ground Framework',
       },
       {
-        url: '/images/projects/bifacial-rows.jpg',
+        url: '/images/projects/bifacial-rows.webp',
         caption: 'Bifacial dual-glass ground rows designed for maximum morning and late afternoon harvesting',
         tag: 'Bifacial Rows',
       },
@@ -324,25 +324,25 @@ export const projectsData: Project[] = [
     co2Offset: '71.8 tonnes / yr',
     paybackPeriod: '2.4 Years',
     selfConsumption: '92%',
-    imageUrl: '/images/projects/aerial-view-solar.jpg',
+    imageUrl: '/images/projects/aerial-view-solar.webp',
     gallery: [
       {
-        url: '/images/projects/aerial-view-solar.jpg',
+        url: '/images/projects/aerial-view-solar.webp',
         caption: 'Expansive commercial warehouse rooftop array engineered for direct daytime refrigeration offsetting',
         tag: 'Commercial Rooftop',
       },
       {
-        url: '/images/projects/photovoltaik-nk.jpg',
+        url: '/images/projects/photovoltaik-nk.webp',
         caption: 'Commercial string arrays with non-penetrative Klip-Lok clamps preserving roof warranty',
         tag: 'Klip-Lok Clamps',
       },
       {
-        url: '/images/projects/pavagada-solar-park.jpg',
+        url: '/images/projects/pavagada-solar-park.webp',
         caption: 'Heavy-duty Fronius Tauro 50kW commercial string inverter with double-fan active cooling system',
         tag: '50kW Inverter',
       },
       {
-        url: '/images/projects/broken-hill-solar.jpg',
+        url: '/images/projects/broken-hill-solar.webp',
         caption: 'Certified network protection unit (NPU) with secondary injection relay testing for Energex compliance',
         tag: 'Relay Testing',
       },
@@ -388,20 +388,20 @@ export const projectsData: Project[] = [
     co2Offset: '43.2 tonnes / yr',
     paybackPeriod: '2.8 Years',
     selfConsumption: '90%',
-    imageUrl: '/images/projects/photovoltaik-nk.jpg',
+    imageUrl: '/images/projects/photovoltaik-nk.webp',
     gallery: [
       {
-        url: '/images/projects/photovoltaik-nk.jpg',
+        url: '/images/projects/photovoltaik-nk.webp',
         caption: 'Commercial rooftop system powering daylight medical clinic and diagnostic machinery',
         tag: 'Clinic Rooftop',
       },
       {
-        url: '/images/projects/dji-aerial-solar.jpg',
+        url: '/images/projects/dji-aerial-solar.webp',
         caption: 'Full roof perspective showing 90 dual-glass panels angled for maximum all-day solar exposure',
         tag: 'Dual-Glass Panels',
       },
       {
-        url: '/images/projects/sunny-boy-inverter.jpg',
+        url: '/images/projects/sunny-boy-inverter.webp',
         caption: 'Dual European Fronius inverters mounted in secure switchroom with vibration dampers',
         tag: 'Dual Inverters',
       },

@@ -73,9 +73,8 @@ export const BlogModal: React.FC<BlogModalProps> = ({
           <button
             type="button"
             onClick={() => setModalTab('info')}
-            className={`pb-2.5 text-xs font-semibold transition-all relative cursor-pointer ${
-              modalTab === 'info' ? 'text-neutral-900' : 'text-neutral-500 hover:text-neutral-800'
-            }`}
+            className={`pb-2.5 text-xs font-semibold transition-all relative cursor-pointer ${modalTab === 'info' ? 'text-neutral-900' : 'text-neutral-500 hover:text-neutral-800'
+              }`}
           >
             Project Info
             {modalTab === 'info' && (
@@ -86,9 +85,8 @@ export const BlogModal: React.FC<BlogModalProps> = ({
           <button
             type="button"
             onClick={() => setModalTab('content')}
-            className={`pb-2.5 text-xs font-semibold transition-all relative cursor-pointer ${
-              modalTab === 'content' ? 'text-neutral-900' : 'text-neutral-500 hover:text-neutral-800'
-            }`}
+            className={`pb-2.5 text-xs font-semibold transition-all relative cursor-pointer ${modalTab === 'content' ? 'text-neutral-900' : 'text-neutral-500 hover:text-neutral-800'
+              }`}
           >
             Article Content
             {modalTab === 'content' && (
@@ -99,9 +97,8 @@ export const BlogModal: React.FC<BlogModalProps> = ({
           <button
             type="button"
             onClick={() => setModalTab('meta')}
-            className={`pb-2.5 text-xs font-semibold transition-all relative cursor-pointer ${
-              modalTab === 'meta' ? 'text-neutral-900' : 'text-neutral-500 hover:text-neutral-800'
-            }`}
+            className={`pb-2.5 text-xs font-semibold transition-all relative cursor-pointer ${modalTab === 'meta' ? 'text-neutral-900' : 'text-neutral-500 hover:text-neutral-800'
+              }`}
           >
             SEO & Meta Tags
             {modalTab === 'meta' && (
@@ -130,9 +127,9 @@ export const BlogModal: React.FC<BlogModalProps> = ({
                       slug:
                         !editingBlog || !prev.slug
                           ? val
-                              .toLowerCase()
-                              .replace(/[^a-z0-9]+/g, '-')
-                              .replace(/(^-|-$)+/g, '')
+                            .toLowerCase()
+                            .replace(/[^a-z0-9]+/g, '-')
+                            .replace(/(^-|-$)+/g, '')
                           : prev.slug
                     }));
                   }}
@@ -147,7 +144,7 @@ export const BlogModal: React.FC<BlogModalProps> = ({
                   URL Slug <span className="text-slate-400 font-normal">(auto-generated from title)</span>
                 </label>
                 <div className="flex items-center rounded-xl border border-slate-300 bg-slate-50 overflow-hidden focus-within:border-amber-500 focus-within:bg-white">
-                  <span className="pl-4 pr-1 text-slate-400 font-medium text-xs sm:text-sm select-none">
+                  <span className="pl-4 pr-1 text-slate-400 font-medium text-xs sm:text-sm  ">
                     /learn/blog/
                   </span>
                   <input
@@ -366,7 +363,7 @@ export const BlogModal: React.FC<BlogModalProps> = ({
               </div>
 
               <div className="rounded-2xl overflow-hidden border border-slate-300 bg-[#0C123E]">
-                <div className="flex flex-wrap items-center gap-1 sm:gap-2 px-3.5 py-2 bg-[#070A24] border-b border-slate-700/80 text-xs text-slate-300 select-none">
+                <div className="flex flex-wrap items-center gap-1 sm:gap-2 px-3.5 py-2 bg-[#070A24] border-b border-slate-700/80 text-xs text-slate-300  ">
                   <button
                     type="button"
                     onClick={() => applyFormatting('content', '<strong>', '</strong>')}

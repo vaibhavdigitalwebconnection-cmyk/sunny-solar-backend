@@ -244,14 +244,13 @@ export const CTASection: React.FC = () => {
                 return (
                   <div
                     key={t.id}
-                    className="shrink-0 px-2 xs:px-3 w-full md:w-1/2 lg:w-1/3 select-none"
+                    className="shrink-0 px-2 xs:px-3 w-full md:w-1/2 lg:w-1/3  "
                   >
                     <div
-                      className={`group relative rounded-xl sm:rounded-2xl p-4.5 xs:p-6 sm:p-7 bg-white border transition-all duration-500 flex flex-col justify-between h-full ${
-                        isFirstVisible
+                      className={`group relative rounded-xl sm:rounded-2xl p-4.5 xs:p-6 sm:p-7 bg-white border transition-all duration-500 flex flex-col justify-between h-full ${isFirstVisible
                           ? 'border-amber-300/90 shadow-md sm:shadow-xl shadow-amber-400/30 ring-1 ring-amber-300/40'
                           : 'border-slate-200/90 shadow-xs hover:shadow-md hover:border-slate-300'
-                      }`}
+                        }`}
                     >
                       {/* Card Top Row: Rating & Highlight Tag */}
                       <div>
@@ -316,11 +315,10 @@ export const CTASection: React.FC = () => {
               <button
                 key={dotIdx}
                 onClick={() => setCurrentIndex(dotIdx)}
-                className={`h-1.5 sm:h-2 rounded-full transition-all duration-300 cursor-pointer ${
-                  currentIndex === dotIdx
+                className={`h-1.5 sm:h-2 rounded-full transition-all duration-300 cursor-pointer ${currentIndex === dotIdx
                     ? 'w-6 sm:w-8 bg-amber-500'
                     : 'w-2 bg-slate-200 hover:bg-slate-300'
-                }`}
+                  }`}
                 aria-label={`Go to slide ${dotIdx + 1}`}
               />
             ))}
@@ -332,7 +330,7 @@ export const CTASection: React.FC = () => {
       <div className="relative overflow-hidden">
         <div className="absolute inset-0">
           <img
-            src="/images/about/happy-family-solar.jpg"
+            src="/images/about/happy-family-solar.webp"
             alt="Happy family with solar-powered home"
             className="w-full h-full object-cover"
           />

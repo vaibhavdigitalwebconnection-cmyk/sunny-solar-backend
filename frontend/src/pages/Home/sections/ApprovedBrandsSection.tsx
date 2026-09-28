@@ -40,7 +40,7 @@ const repeatedBrands = [...brands, ...brands];
 
 export const ApprovedBrandsSection: React.FC = () => {
   return (
-    <section className="py-10 sm:py-16 bg-white relative overflow-hidden border-t border-slate-200/70 select-none group">
+    <section className="py-10 sm:py-16 bg-white relative overflow-hidden border-t border-slate-200/70   group">
       {/* Edge gradient fade masks for smooth entrance/exit (narrower on mobile so logos stay visible) */}
       <div className="pointer-events-none absolute inset-y-0 left-0 w-8 sm:w-24 md:w-32 bg-linear-to-r from-white via-white/80 to-transparent z-10" />
       <div className="pointer-events-none absolute inset-y-0 right-0 w-8 sm:w-24 md:w-32 bg-linear-to-l from-white via-white/80 to-transparent z-10" />
@@ -71,7 +71,7 @@ export const ApprovedBrandsSection: React.FC = () => {
                 <img
                   src={brand.logo}
                   alt={`${brand.name} Logo`}
-                  className="h-8 sm:h-11 md:h-14 w-auto max-w-27.5 sm:max-w-45 object-contain drop-shadow-2xs select-none"
+                  className="h-8 sm:h-11 md:h-14 w-auto max-w-27.5 sm:max-w-45 object-contain drop-shadow-2xs  "
                   loading="lazy"
                 />
               </div>
@@ -89,7 +89,7 @@ export const ApprovedBrandsSection: React.FC = () => {
                 <img
                   src={brand.logo}
                   alt={`${brand.name} Logo`}
-                  className="h-8 sm:h-11 md:h-14 w-auto max-w-27.5 sm:max-w-45 object-contain drop-shadow-2xs select-none"
+                  className="h-8 sm:h-11 md:h-14 w-auto max-w-27.5 sm:max-w-45 object-contain drop-shadow-2xs  "
                   loading="lazy"
                 />
               </div>

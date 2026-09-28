@@ -1,9 +1,9 @@
 import React, { useState, useRef } from 'react';
-import { 
-  RefreshCw, 
-  Layers, 
-  ArrowUpCircle, 
-  Check, 
+import {
+  RefreshCw,
+  Layers,
+  ArrowUpCircle,
+  Check,
   ArrowRight,
   ChevronLeft,
   ChevronRight,
@@ -134,11 +134,10 @@ export const SolarUpgradesOptionsSection: React.FC = () => {
                 key={idx}
                 type="button"
                 onClick={() => setActiveSlide(idx)}
-                className={`flex-1 py-2 px-2 text-center text-xs font-semibold rounded-lg transition-all cursor-pointer flex items-center justify-center gap-1.5 ${
-                  activeSlide === idx
+                className={`flex-1 py-2 px-2 text-center text-xs font-semibold rounded-lg transition-all cursor-pointer flex items-center justify-center gap-1.5 ${activeSlide === idx
                     ? 'bg-white text-slate-900 shadow-xs font-bold'
                     : 'text-slate-600 hover:text-slate-900'
-                }`}
+                  }`}
               >
                 {idx === 1 && (
                   <Sparkles className="w-3 h-3 text-amber-500 shrink-0" />
@@ -150,7 +149,7 @@ export const SolarUpgradesOptionsSection: React.FC = () => {
 
           {/* Swipeable Carousel Window */}
           <div
-            className="overflow-hidden select-none cursor-grab active:cursor-grabbing"
+            className="overflow-hidden   cursor-grab active:cursor-grabbing"
             onTouchStart={handleTouchStart}
             onTouchMove={handleTouchMove}
             onTouchEnd={handleTouchEnd}
@@ -165,20 +164,18 @@ export const SolarUpgradesOptionsSection: React.FC = () => {
                 return (
                   <div key={idx} className="w-full shrink-0 px-0.5">
                     <div
-                      className={`relative bg-slate-50/80 rounded-2xl p-5 xs:p-6 border transition-all flex flex-col justify-between min-h-[460px] ${
-                        isRecommended
+                      className={`relative bg-slate-50/80 rounded-2xl p-5 xs:p-6 border transition-all flex flex-col justify-between min-h-[460px] ${isRecommended
                           ? 'border-amber-400 bg-amber-50/20 shadow-sm'
                           : 'border-slate-200/90 shadow-2xs'
-                      }`}
+                        }`}
                     >
                       <div>
                         {/* Top Badge & Icon */}
                         <div className="flex items-center justify-between mb-4">
-                          <div className={`w-11 h-11 rounded-xl flex items-center justify-center ${
-                            isRecommended
+                          <div className={`w-11 h-11 rounded-xl flex items-center justify-center ${isRecommended
                               ? 'bg-amber-500/15 border border-amber-300/80 text-amber-700'
                               : 'bg-white border border-slate-200 text-slate-700 shadow-2xs'
-                          }`}>
+                            }`}>
                             <Icon className="w-5 h-5" />
                           </div>
                           <Badge variant={item.badgeVariant} size="sm">
@@ -195,11 +192,10 @@ export const SolarUpgradesOptionsSection: React.FC = () => {
                         </div>
 
                         {/* Impact Metric Strip */}
-                        <div className={`inline-block text-[11px] font-mono font-bold px-2.5 py-1 rounded-md mb-3.5 ${
-                          isRecommended
+                        <div className={`inline-block text-[11px] font-mono font-bold px-2.5 py-1 rounded-md mb-3.5 ${isRecommended
                             ? 'bg-amber-500/15 text-amber-900 border border-amber-500/30'
                             : 'bg-slate-200/70 text-slate-800'
-                        }`}>
+                          }`}>
                           {item.metric}
                         </div>
 
@@ -247,11 +243,10 @@ export const SolarUpgradesOptionsSection: React.FC = () => {
                   type="button"
                   onClick={() => setActiveSlide(dotIdx)}
                   aria-label={`Go to slide ${dotIdx + 1}`}
-                  className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
-                    activeSlide === dotIdx
+                  className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${activeSlide === dotIdx
                       ? 'w-6 bg-[#2B3CB8]'
                       : 'w-2 bg-slate-300 hover:bg-slate-400'
-                  }`}
+                    }`}
                 />
               ))}
             </div>

@@ -16,7 +16,7 @@ export const SavingsProfilesSection: React.FC = () => {
     {
       id: 1,
       tabLabel: '01. Family (6.6kW)',
-      image: '/images/about/happy-family-solar.jpg',
+      image: '/images/about/happy-family-solar.webp',
       imageAlt: 'Brisbane suburban family enjoying solar savings',
       locationBadge: 'Brisbane • 4-Bed Home',
       badgeTheme: 'bg-amber-500/90 text-slate-950',
@@ -66,7 +66,7 @@ export const SavingsProfilesSection: React.FC = () => {
     {
       id: 3,
       tabLabel: '03. Hybrid (8.8kW+)',
-      image: '/images/solutions/battery-bundle.jpg',
+      image: '/images/solutions/battery-bundle.webp',
       imageAlt: 'Sunshine coast solar and battery retrofit savings',
       locationBadge: 'Sunshine Coast • Retrofit',
       badgeTheme: 'bg-blue-500/90 text-slate-950',

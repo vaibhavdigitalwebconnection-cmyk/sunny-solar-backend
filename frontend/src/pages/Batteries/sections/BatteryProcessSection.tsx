@@ -256,7 +256,7 @@ export const BatteryProcessSection: React.FC = () => {
   return (
     <section className="relative py-12 sm:py-16 lg:py-20 bg-linear-to-b from-slate-50 via-white to-slate-50/70 border-t border-slate-200/80 overflow-hidden">
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-10">
-        
+
         {/* Section Header */}
         <div className="text-center max-w-4xl mx-auto mb-8 sm:mb-12">
           <Badge variant="emerald" className="mb-2.5 sm:mb-3">
@@ -268,7 +268,7 @@ export const BatteryProcessSection: React.FC = () => {
               Home Battery System
             </span>
           </h2>
-          
+
           <p className="mt-2.5 sm:mt-4 text-slate-600 text-xs xs:text-sm sm:text-base lg:text-lg leading-relaxed max-w-2xl mx-auto px-1 sm:px-0">
             From pre-install switchboard safety audits to a live blackout simulation in front of your eyes, our in-house licensed tradesmen handle every step without third-party contractors.
           </p>
@@ -304,13 +304,12 @@ export const BatteryProcessSection: React.FC = () => {
                   >
                     {/* Node circle */}
                     <div
-                      className={`w-10 h-10 sm:w-14 sm:h-14 rounded-xl flex items-center justify-center transition-all duration-300 font-mono font-bold text-xs sm:text-base shadow-sm ${
-                        isActive
+                      className={`w-10 h-10 sm:w-14 sm:h-14 rounded-xl flex items-center justify-center transition-all duration-300 font-mono font-bold text-xs sm:text-base shadow-sm ${isActive
                           ? 'bg-emerald-600 text-white shadow-emerald-500/30 shadow-lg scale-105 sm:scale-110 ring-2 sm:ring-4 ring-emerald-500/20'
                           : isPassed
-                          ? 'bg-emerald-100 text-emerald-800 border-2 border-emerald-500/40'
-                          : 'bg-white text-slate-500 border-2 border-slate-300 group-hover:border-slate-400 group-hover:text-slate-800'
-                      }`}
+                            ? 'bg-emerald-100 text-emerald-800 border-2 border-emerald-500/40'
+                            : 'bg-white text-slate-500 border-2 border-slate-300 group-hover:border-slate-400 group-hover:text-slate-800'
+                        }`}
                     >
                       {isPassed ? (
                         <Check className="w-4 h-4 sm:w-6 sm:h-6 stroke-[2.5]" />
@@ -323,19 +322,17 @@ export const BatteryProcessSection: React.FC = () => {
                     <div className="mt-2 sm:mt-3.5 space-y-0.5 sm:space-y-1">
                       <div className="flex items-center justify-center gap-1">
                         <span
-                          className={`text-[10px] sm:text-xs font-mono uppercase tracking-wider font-semibold ${
-                            isActive ? 'text-emerald-700' : 'text-slate-500'
-                          }`}
+                          className={`text-[10px] sm:text-xs font-mono uppercase tracking-wider font-semibold ${isActive ? 'text-emerald-700' : 'text-slate-500'
+                            }`}
                         >
                           Stage {step.num}
                         </span>
                       </div>
                       <p
-                        className={`text-xs sm:text-sm font-bold transition-colors ${
-                          isActive
+                        className={`text-xs sm:text-sm font-bold transition-colors ${isActive
                             ? 'text-slate-950 font-extrabold'
                             : 'text-slate-700 group-hover:text-slate-950'
-                        }`}
+                          }`}
                       >
                         {step.shortTitle}
                       </p>
@@ -354,16 +351,14 @@ export const BatteryProcessSection: React.FC = () => {
                 <button
                   key={step.id}
                   onClick={() => setActiveStep(idx)}
-                  className={`flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs font-semibold whitespace-nowrap transition-all shrink-0 cursor-pointer ${
-                    isActive
+                  className={`flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs font-semibold whitespace-nowrap transition-all shrink-0 cursor-pointer ${isActive
                       ? 'bg-emerald-600 text-white shadow-md shadow-emerald-600/25 ring-2 ring-emerald-600/30'
                       : 'bg-white text-slate-700 border border-slate-200 hover:bg-slate-50'
-                  }`}
+                    }`}
                 >
                   <span
-                    className={`font-mono text-xs px-1.5 py-0.5 rounded-md ${
-                      isActive ? 'bg-emerald-700 text-white' : 'bg-slate-100 text-slate-600'
-                    }`}
+                    className={`font-mono text-xs px-1.5 py-0.5 rounded-md ${isActive ? 'bg-emerald-700 text-white' : 'bg-slate-100 text-slate-600'
+                      }`}
                   >
                     {step.num}
                   </span>
@@ -381,7 +376,7 @@ export const BatteryProcessSection: React.FC = () => {
           onTouchStart={handleTouchStart}
           onTouchMove={handleTouchMove}
           onTouchEnd={handleTouchEnd}
-          className="bg-white rounded-xl border border-slate-200/90 shadow-xl shadow-slate-900/5 overflow-hidden mb-8 sm:mb-12 relative group/card select-none"
+          className="bg-white rounded-xl border border-slate-200/90 shadow-xl shadow-slate-900/5 overflow-hidden mb-8 sm:mb-12 relative group/card  "
         >
           {/* 8-Second Auto-Rotation Progress Bar */}
           <div className="w-full bg-slate-100 h-1.5 relative overflow-hidden">
@@ -414,7 +409,7 @@ export const BatteryProcessSection: React.FC = () => {
                   <h3 className="text-xl xs:text-2xl sm:text-3xl font-serif font-bold text-slate-950 tracking-tight leading-snug">
                     {current.title}
                   </h3>
-                  
+
                   <p className="mt-2 text-xs xs:text-sm font-medium text-emerald-700 flex items-center gap-1.5">
                     <Sparkles className="w-4 h-4 text-emerald-600 shrink-0" />
                     <span>{current.tagline}</span>

@@ -1,10 +1,10 @@
 import React, { useState, useRef } from 'react';
-import { 
-  ArrowRight, 
-  Check, 
-  BatteryCharging, 
-  Zap, 
-  ShieldCheck, 
+import {
+  ArrowRight,
+  Check,
+  BatteryCharging,
+  Zap,
+  ShieldCheck,
   Sparkles,
   ChevronLeft,
   ChevronRight
@@ -35,7 +35,7 @@ export const BatteryGridSection: React.FC = () => {
         'Compatible with existing single-phase and 3-phase switchboards',
       ],
       cta: 'Explore Solar Batteries',
-      image: '/images/solutions/battery-hero.jpg',
+      image: '/images/solutions/battery-hero.webp',
     },
     {
       title: 'Solar + Battery Bundles',
@@ -55,7 +55,7 @@ export const BatteryGridSection: React.FC = () => {
       ],
       cta: 'View Solar + Battery Packages',
       isFeatured: true,
-      image: '/images/solutions/battery-bundle.jpg',
+      image: '/images/solutions/battery-bundle.webp',
     },
     {
       title: 'Battery Backup & EPS',
@@ -74,7 +74,7 @@ export const BatteryGridSection: React.FC = () => {
         'Full compliance with Australian Standards AS/NZS 3000 & AS/NZS 5139',
       ],
       cta: 'Explore Backup Solutions',
-      image: '/images/solutions/battery-storm.jpg',
+      image: '/images/solutions/battery-storm.webp',
     },
   ];
 
@@ -109,7 +109,7 @@ export const BatteryGridSection: React.FC = () => {
   return (
     <section className="py-12 sm:py-16 lg:py-20 bg-slate-50 border-t border-slate-200/80">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
+
         {/* Section Header */}
         <div className="text-center max-w-4xl mx-auto mb-8 sm:mb-12">
           <Badge variant="emerald" className="mb-2.5 sm:mb-3">
@@ -132,11 +132,10 @@ export const BatteryGridSection: React.FC = () => {
                 key={idx}
                 type="button"
                 onClick={() => setActiveSlide(idx)}
-                className={`flex-1 py-2 px-1.5 text-center text-xs font-semibold rounded-lg transition-all cursor-pointer flex items-center justify-center gap-1 ${
-                  activeSlide === idx
+                className={`flex-1 py-2 px-1.5 text-center text-xs font-semibold rounded-lg transition-all cursor-pointer flex items-center justify-center gap-1 ${activeSlide === idx
                     ? 'bg-white text-slate-950 shadow-xs font-bold'
                     : 'text-slate-600 hover:text-slate-900'
-                }`}
+                  }`}
               >
                 {item.isFeatured && (
                   <Sparkles className="w-3 h-3 text-amber-500 shrink-0" />
@@ -148,7 +147,7 @@ export const BatteryGridSection: React.FC = () => {
 
           {/* Swipeable Slide Window */}
           <div
-            className="overflow-hidden select-none cursor-grab active:cursor-grabbing"
+            className="overflow-hidden   cursor-grab active:cursor-grabbing"
             onTouchStart={handleTouchStart}
             onTouchMove={handleTouchMove}
             onTouchEnd={handleTouchEnd}
@@ -162,11 +161,10 @@ export const BatteryGridSection: React.FC = () => {
                 return (
                   <div key={idx} className="w-full shrink-0 px-0.5">
                     <div
-                      className={`rounded-2xl p-5 xs:p-6 transition-all duration-300 flex flex-col justify-between relative min-h-120 ${
-                        sub.isFeatured
+                      className={`rounded-2xl p-5 xs:p-6 transition-all duration-300 flex flex-col justify-between relative min-h-120 ${sub.isFeatured
                           ? 'bg-slate-950 text-white shadow-xl border-2 border-amber-500'
                           : 'bg-white text-slate-900 border border-slate-200/90 shadow-2xs'
-                      }`}
+                        }`}
                     >
                       <div>
                         {sub.isFeatured && (
@@ -180,11 +178,10 @@ export const BatteryGridSection: React.FC = () => {
 
                         {/* Top Row: Icon & Badge */}
                         <div className="flex items-center justify-between gap-2 mb-4">
-                          <div className={`w-12 h-12 rounded-xl flex items-center justify-center ${
-                            sub.isFeatured
+                          <div className={`w-12 h-12 rounded-xl flex items-center justify-center ${sub.isFeatured
                               ? 'bg-amber-500/20 text-amber-400 border border-amber-400/30'
                               : 'bg-emerald-500/10 text-emerald-600 border border-emerald-300/40'
-                          }`}>
+                            }`}>
                             <Icon className="w-6 h-6" />
                           </div>
                           <Badge variant={sub.badgeVariant} size="sm">
@@ -193,32 +190,27 @@ export const BatteryGridSection: React.FC = () => {
                         </div>
 
                         {/* Title & Tagline */}
-                        <h3 className={`text-xl xs:text-2xl font-bold tracking-tight mb-1.5 ${
-                          sub.isFeatured ? 'text-white' : 'text-slate-950'
-                        }`}>
+                        <h3 className={`text-xl xs:text-2xl font-bold tracking-tight mb-1.5 ${sub.isFeatured ? 'text-white' : 'text-slate-950'
+                          }`}>
                           {sub.title}
                         </h3>
-                        <p className={`text-xs font-semibold mb-3 ${
-                          sub.isFeatured ? 'text-amber-400' : 'text-emerald-700'
-                        }`}>
+                        <p className={`text-xs font-semibold mb-3 ${sub.isFeatured ? 'text-amber-400' : 'text-emerald-700'
+                          }`}>
                           {sub.tagline}
                         </p>
 
-                        <p className={`text-xs xs:text-sm leading-relaxed mb-4 ${
-                          sub.isFeatured ? 'text-slate-300' : 'text-slate-600'
-                        }`}>
+                        <p className={`text-xs xs:text-sm leading-relaxed mb-4 ${sub.isFeatured ? 'text-slate-300' : 'text-slate-600'
+                          }`}>
                           {sub.description}
                         </p>
 
                         {/* Bullet Highlights */}
-                        <div className={`space-y-2.5 pb-4 border-b ${
-                          sub.isFeatured ? 'border-slate-800' : 'border-slate-100'
-                        }`}>
+                        <div className={`space-y-2.5 pb-4 border-b ${sub.isFeatured ? 'border-slate-800' : 'border-slate-100'
+                          }`}>
                           {sub.bullets.map((bullet, bIdx) => (
                             <div key={bIdx} className="flex items-start gap-2 text-xs sm:text-sm">
-                              <Check className={`w-4 h-4 shrink-0 mt-0.5 ${
-                                sub.isFeatured ? 'text-amber-400' : 'text-emerald-600'
-                              }`} />
+                              <Check className={`w-4 h-4 shrink-0 mt-0.5 ${sub.isFeatured ? 'text-amber-400' : 'text-emerald-600'
+                                }`} />
                               <span className={sub.isFeatured ? 'text-slate-200' : 'text-slate-700'}>
                                 {bullet}
                               </span>
@@ -256,11 +248,10 @@ export const BatteryGridSection: React.FC = () => {
                   type="button"
                   onClick={() => setActiveSlide(dotIdx)}
                   aria-label={`Go to slide ${dotIdx + 1}`}
-                  className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
-                    activeSlide === dotIdx
+                  className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${activeSlide === dotIdx
                       ? 'w-6 bg-[#2B3CB8]'
                       : 'w-2 bg-slate-300 hover:bg-slate-400'
-                  }`}
+                    }`}
                 />
               ))}
             </div>
@@ -303,11 +294,10 @@ export const BatteryGridSection: React.FC = () => {
             return (
               <div
                 key={idx}
-                className={`rounded-xl p-8 transition-all duration-300 flex flex-col justify-between relative ${
-                  sub.isFeatured
+                className={`rounded-xl p-8 transition-all duration-300 flex flex-col justify-between relative ${sub.isFeatured
                     ? 'bg-slate-950 text-white shadow-2xl border-2 border-amber-500 scale-100 lg:-translate-y-4'
                     : 'bg-white text-slate-900 border border-slate-300/80 shadow-sm shadow-black/50 hover:shadow-xl hover:border-emerald-400'
-                }`}
+                  }`}
               >
                 {sub.isFeatured && (
                   <div className="absolute w-60 -top-3.5 left-1/2 -translate-x-1/2 text-center">
@@ -321,11 +311,10 @@ export const BatteryGridSection: React.FC = () => {
                 <div>
                   {/* Top Row: Icon & Badge */}
                   <div className="flex items-center justify-between gap-2 mb-6">
-                    <div className={`w-14 h-14 rounded-2xl flex items-center justify-center ${
-                      sub.isFeatured
+                    <div className={`w-14 h-14 rounded-2xl flex items-center justify-center ${sub.isFeatured
                         ? 'bg-amber-500/20 text-amber-400 border border-amber-400/30'
                         : 'bg-emerald-500/10 text-emerald-600 border border-emerald-300/40'
-                    }`}>
+                      }`}>
                       <Icon className="w-7 h-7" />
                     </div>
                     <Badge variant={sub.badgeVariant} size="sm">
@@ -334,32 +323,27 @@ export const BatteryGridSection: React.FC = () => {
                   </div>
 
                   {/* Title & Tagline */}
-                  <h3 className={`text-2xl font-bold tracking-tight mb-2 ${
-                    sub.isFeatured ? 'text-white' : 'text-slate-950'
-                  }`}>
+                  <h3 className={`text-2xl font-bold tracking-tight mb-2 ${sub.isFeatured ? 'text-white' : 'text-slate-950'
+                    }`}>
                     {sub.title}
                   </h3>
-                  <p className={`text-xs font-semibold mb-4 ${
-                    sub.isFeatured ? 'text-amber-400' : 'text-emerald-700'
-                  }`}>
+                  <p className={`text-xs font-semibold mb-4 ${sub.isFeatured ? 'text-amber-400' : 'text-emerald-700'
+                    }`}>
                     {sub.tagline}
                   </p>
 
-                  <p className={`text-sm leading-relaxed mb-6 ${
-                    sub.isFeatured ? 'text-slate-300' : 'text-slate-600'
-                  }`}>
+                  <p className={`text-sm leading-relaxed mb-6 ${sub.isFeatured ? 'text-slate-300' : 'text-slate-600'
+                    }`}>
                     {sub.description}
                   </p>
 
                   {/* Bullet Highlights */}
-                  <div className={`space-y-3 pb-6 border-b ${
-                    sub.isFeatured ? 'border-slate-800' : 'border-slate-100'
-                  }`}>
+                  <div className={`space-y-3 pb-6 border-b ${sub.isFeatured ? 'border-slate-800' : 'border-slate-100'
+                    }`}>
                     {sub.bullets.map((bullet, bIdx) => (
                       <div key={bIdx} className="flex items-start gap-2.5 text-xs sm:text-sm">
-                        <Check className={`w-4 h-4 shrink-0 mt-0.5 ${
-                          sub.isFeatured ? 'text-amber-400' : 'text-emerald-600'
-                        }`} />
+                        <Check className={`w-4 h-4 shrink-0 mt-0.5 ${sub.isFeatured ? 'text-amber-400' : 'text-emerald-600'
+                          }`} />
                         <span className={sub.isFeatured ? 'text-slate-200' : 'text-slate-700'}>
                           {bullet}
                         </span>

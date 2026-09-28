@@ -32,8 +32,8 @@ export const AdminHeader: React.FC<AdminHeaderProps> = ({
             {activeTab === 'articles'
               ? 'Bloge'
               : activeTab === 'knowledge'
-              ? 'Knowledge Hub '
-              : 'Dashboard Analytics'}
+                ? 'Knowledge Hub '
+                : 'Dashboard Analytics'}
           </span>
         </div>
       </div>
@@ -53,7 +53,7 @@ export const AdminHeader: React.FC<AdminHeaderProps> = ({
             placeholder="Search projects..."
             className="w-44 lg:w-56 pl-8 pr-11 py-1.5 bg-neutral-50 hover:bg-neutral-100/70 focus:bg-white border border-neutral-200 rounded-lg text-xs transition-colors focus:outline-none focus:border-neutral-400"
           />
-          <kbd className="absolute right-2 px-1.5 py-0.5 text-[9px] font-mono font-medium text-neutral-400 bg-neutral-200/60 rounded border border-neutral-300/60 pointer-events-none select-none">
+          <kbd className="absolute right-2 px-1.5 py-0.5 text-[9px] font-mono font-medium text-neutral-400 bg-neutral-200/60 rounded border border-neutral-300/60 pointer-events-none  ">
             ⌘ K
           </kbd>
         </div>
@@ -67,9 +67,8 @@ export const AdminHeader: React.FC<AdminHeaderProps> = ({
           title="Refresh Data Now"
         >
           <RefreshCw
-            className={`w-4 h-4 ${
-              loadingBlogs || loadingKnowledge ? 'animate-spin text-amber-600' : ''
-            }`}
+            className={`w-4 h-4 ${loadingBlogs || loadingKnowledge ? 'animate-spin text-amber-600' : ''
+              }`}
           />
         </button>
       </div>

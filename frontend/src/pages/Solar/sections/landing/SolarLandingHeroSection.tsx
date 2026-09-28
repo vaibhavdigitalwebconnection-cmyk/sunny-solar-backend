@@ -137,7 +137,7 @@ export const SolarLandingHeroSection: React.FC = () => {
           >
             <div className="relative rounded-2xl overflow-hidden shadow-xl border border-slate-200 bg-slate-950 group aspect-16/10 xs:aspect-4/3 max-w-lg mx-auto w-full">
               <img
-                src="/images/about/solar-installation-aerial.jpg"
+                src="/images/about/solar-installation-aerial.webp"
                 alt="Solar Installation on Queensland Home"
                 className="w-full h-full object-cover group-hover:scale-103 transition-transform duration-500"
               />

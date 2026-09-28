@@ -1,7 +1,7 @@
 import React, { useState, useRef } from 'react';
-import { 
-  Check, 
-  ArrowRight, 
+import {
+  Check,
+  ArrowRight,
   Sparkles,
   ChevronLeft,
   ChevronRight,
@@ -167,7 +167,7 @@ export const BatteryTechComparisonSection: React.FC = () => {
   return (
     <section className="py-12 sm:py-16 lg:py-20 bg-white border-t border-slate-200/80">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
+
         {/* Section Header */}
         <div className="text-center max-w-4xl mx-auto mb-8 sm:mb-12">
           <Badge variant="amber" className="mb-2.5 sm:mb-3">
@@ -193,11 +193,10 @@ export const BatteryTechComparisonSection: React.FC = () => {
                   key={key}
                   type="button"
                   onClick={() => setActiveSlide(idx)}
-                  className={`py-2 px-2 text-center text-xs font-semibold rounded-lg transition-all cursor-pointer flex items-center justify-center gap-1.5 ${
-                    isSelected
+                  className={`py-2 px-2 text-center text-xs font-semibold rounded-lg transition-all cursor-pointer flex items-center justify-center gap-1.5 ${isSelected
                       ? 'bg-white text-slate-950 shadow-xs font-bold'
                       : 'text-slate-600 hover:text-slate-900'
-                  }`}
+                    }`}
                 >
                   {item.isFeatured && (
                     <Sparkles className="w-3 h-3 text-amber-500 shrink-0" />
@@ -210,7 +209,7 @@ export const BatteryTechComparisonSection: React.FC = () => {
 
           {/* Swipeable Slide Window */}
           <div
-            className="overflow-hidden select-none cursor-grab active:cursor-grabbing"
+            className="overflow-hidden   cursor-grab active:cursor-grabbing"
             onTouchStart={handleTouchStart}
             onTouchMove={handleTouchMove}
             onTouchEnd={handleTouchEnd}
@@ -303,11 +302,10 @@ export const BatteryTechComparisonSection: React.FC = () => {
                   type="button"
                   onClick={() => setActiveSlide(dotIdx)}
                   aria-label={`Go to battery ${dotIdx + 1}`}
-                  className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
-                    activeSlide === dotIdx
+                  className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${activeSlide === dotIdx
                       ? 'w-6 bg-[#2B3CB8]'
                       : 'w-2 bg-slate-300 hover:bg-slate-400'
-                  }`}
+                    }`}
                 />
               ))}
             </div>

@@ -145,7 +145,7 @@ export const AddBatteryHowItWorksSection: React.FC = () => {
     <div className="bg-white rounded-2xl border border-slate-200/90 shadow-sm overflow-hidden flex flex-col justify-between">
       <div className="relative h-52 sm:h-64 lg:h-full lg:min-h-85 bg-slate-900 group">
         <img
-          src="/images/about/gallery/electrician-wiring-switchboard.jpg"
+          src="/images/about/gallery/electrician-wiring-switchboard.webp"
           alt="Licensed electrician installing AC-coupled battery smart meter at residential switchboard"
           className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500 opacity-90"
         />

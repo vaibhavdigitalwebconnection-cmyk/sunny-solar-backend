@@ -1,22 +1,25 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { useSmoothScroll } from '../common/SmoothScroll';
+import { useSmoothScroll } from '../common/SmoothScroll.tsx';
 
 export const ScrollToTop: React.FC = () => {
-  const { pathname } = useLocation();
+  const { pathname, hash } = useLocation();
   const { lenis } = useSmoothScroll();
   const [isNavigating, setIsNavigating] = useState(false);
 
   useEffect(() => {
-    if (lenis) {
-      lenis.scrollTo(0, { immediate: true });
-    } else {
-      window.scrollTo({
-        top: 0,
-        left: 0,
-        behavior: 'instant'
-      });
+    // Only scroll to top if there is no anchor hash target
+    if (!hash) {
+      if (lenis) {
+        lenis.scrollTo(0, { immediate: true });
+      } else {
+        window.scrollTo({
+          top: 0,
+          left: 0,
+          behavior: 'instant'
+        });
+      }
     }
 
     setIsNavigating(true);
@@ -25,7 +28,7 @@ export const ScrollToTop: React.FC = () => {
     }, 450);
 
     return () => clearTimeout(timer);
-  }, [pathname, lenis]);
+  }, [pathname, hash, lenis]);
 
   return (
     <AnimatePresence>

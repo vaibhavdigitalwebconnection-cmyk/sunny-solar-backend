@@ -20,7 +20,7 @@ export const AddBatteryRetrofitChoicesSection: React.FC = () => {
       badgeColor: 'bg-emerald-100 text-emerald-800 border-emerald-300',
       capacity: '13.5 kWh',
       backupPower: '11.5 kW Continuous',
-      image: '/images/solutions/battery-bundle.jpg',
+      image: '/images/solutions/battery-bundle.webp',
       description: 'The global benchmark for residential storage. Features a massive 11.5kW inverter output capable of running multi-split air conditioners and oven loads simultaneously.',
       features: [
         'Whole-home automatic blackout backup included',

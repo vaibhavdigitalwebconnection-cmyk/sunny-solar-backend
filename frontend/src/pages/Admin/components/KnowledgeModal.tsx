@@ -114,11 +114,10 @@ export const KnowledgeModal: React.FC<KnowledgeModalProps> = ({
           <button
             type="button"
             onClick={() => setKnowledgeModalTab('info')}
-            className={`pb-2.5 text-xs font-semibold transition-all relative shrink-0 cursor-pointer ${
-              knowledgeModalTab === 'info'
+            className={`pb-2.5 text-xs font-semibold transition-all relative shrink-0 cursor-pointer ${knowledgeModalTab === 'info'
                 ? 'text-neutral-900'
                 : 'text-neutral-500 hover:text-neutral-800'
-            }`}
+              }`}
           >
             Guide Info
             {knowledgeModalTab === 'info' && (
@@ -129,11 +128,10 @@ export const KnowledgeModal: React.FC<KnowledgeModalProps> = ({
           <button
             type="button"
             onClick={() => setKnowledgeModalTab('content')}
-            className={`pb-2.5 text-xs font-semibold transition-all relative shrink-0 cursor-pointer ${
-              knowledgeModalTab === 'content'
+            className={`pb-2.5 text-xs font-semibold transition-all relative shrink-0 cursor-pointer ${knowledgeModalTab === 'content'
                 ? 'text-neutral-900'
                 : 'text-neutral-500 hover:text-neutral-800'
-            }`}
+              }`}
           >
             Content & Body
             {knowledgeModalTab === 'content' && (
@@ -144,11 +142,10 @@ export const KnowledgeModal: React.FC<KnowledgeModalProps> = ({
           <button
             type="button"
             onClick={() => setKnowledgeModalTab('blueprint')}
-            className={`pb-2.5 text-xs font-semibold transition-all relative shrink-0 cursor-pointer ${
-              knowledgeModalTab === 'blueprint'
+            className={`pb-2.5 text-xs font-semibold transition-all relative shrink-0 cursor-pointer ${knowledgeModalTab === 'blueprint'
                 ? 'text-neutral-900'
                 : 'text-neutral-500 hover:text-neutral-800'
-            }`}
+              }`}
           >
             Blueprint & Specs
             {knowledgeModalTab === 'blueprint' && (
@@ -159,11 +156,10 @@ export const KnowledgeModal: React.FC<KnowledgeModalProps> = ({
           <button
             type="button"
             onClick={() => setKnowledgeModalTab('meta')}
-            className={`pb-2.5 text-xs font-semibold transition-all relative shrink-0 cursor-pointer ${
-              knowledgeModalTab === 'meta'
+            className={`pb-2.5 text-xs font-semibold transition-all relative shrink-0 cursor-pointer ${knowledgeModalTab === 'meta'
                 ? 'text-neutral-900'
                 : 'text-neutral-500 hover:text-neutral-800'
-            }`}
+              }`}
           >
             SEO & Meta Tags
             {knowledgeModalTab === 'meta' && (
@@ -192,9 +188,9 @@ export const KnowledgeModal: React.FC<KnowledgeModalProps> = ({
                       slug:
                         !editingKnowledge || !prev.slug
                           ? val
-                              .toLowerCase()
-                              .replace(/[^a-z0-9]+/g, '-')
-                              .replace(/(^-|-$)+/g, '')
+                            .toLowerCase()
+                            .replace(/[^a-z0-9]+/g, '-')
+                            .replace(/(^-|-$)+/g, '')
                           : prev.slug
                     }));
                   }}
@@ -209,7 +205,7 @@ export const KnowledgeModal: React.FC<KnowledgeModalProps> = ({
                   URL Slug <span className="text-slate-400 font-normal">(auto-generated from title)</span>
                 </label>
                 <div className="flex items-center rounded-xl border border-slate-300 bg-slate-50 overflow-hidden focus-within:border-amber-500 focus-within:bg-white">
-                  <span className="pl-4 pr-1 text-slate-400 font-medium text-xs sm:text-sm select-none">
+                  <span className="pl-4 pr-1 text-slate-400 font-medium text-xs sm:text-sm  ">
                     /learn/knowledge-hub/
                   </span>
                   <input
@@ -329,7 +325,7 @@ export const KnowledgeModal: React.FC<KnowledgeModalProps> = ({
                       alt="Knowledge Guide preview"
                       className="w-full h-44 object-cover"
                       onError={(e: any) => {
-                        e.target.src = '/images/blog/solar-system-size.jpg';
+                        e.target.src = '/images/blog/solar-system-size.webp';
                       }}
                     />
                     {uploadingKnowledgeImage && (
@@ -396,7 +392,7 @@ export const KnowledgeModal: React.FC<KnowledgeModalProps> = ({
                     onChange={(e) =>
                       setKnowledgeFormData((prev) => ({ ...prev, imageUrl: e.target.value }))
                     }
-                    placeholder="Or enter image URL (e.g. /images/blog/solar-system-size.jpg or https://...)"
+                    placeholder="Or enter image URL (e.g. /images/blog/solar-system-size.webp or https://...)"
                     className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2 text-xs text-slate-800 placeholder:text-slate-400 focus:bg-white focus:outline-none focus:border-amber-500 font-mono"
                   />
                 </div>
@@ -467,7 +463,7 @@ export const KnowledgeModal: React.FC<KnowledgeModalProps> = ({
               ) : (
                 <div className="rounded-2xl overflow-hidden border border-slate-300 bg-[#0C123E]">
                   {/* Formatting toolbar */}
-                  <div className="flex flex-wrap items-center gap-1 sm:gap-2 px-3.5 py-2 bg-[#070A24] border-b border-slate-700/80 text-xs text-slate-300 select-none">
+                  <div className="flex flex-wrap items-center gap-1 sm:gap-2 px-3.5 py-2 bg-[#070A24] border-b border-slate-700/80 text-xs text-slate-300  ">
                     <button
                       type="button"
                       onClick={() => applyKnowledgeFormatting('<strong>', '</strong>')}

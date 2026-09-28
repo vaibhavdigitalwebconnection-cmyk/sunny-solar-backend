@@ -343,7 +343,7 @@ export const SavingsOptimizationSection: React.FC = () => {
           {/* Image Left */}
           <div className="lg:col-span-4 rounded-xl overflow-hidden shadow-inner border border-slate-200 relative h-48 sm:h-56 lg:h-full lg:min-h-55">
             <img
-              src="/images/about/gallery/electrician-testing-equipment.jpg"
+              src="/images/about/gallery/electrician-testing-equipment.webp"
               alt="Licensed electrician testing solar system efficiency"
               className="absolute inset-0 w-full h-full object-cover"
             />

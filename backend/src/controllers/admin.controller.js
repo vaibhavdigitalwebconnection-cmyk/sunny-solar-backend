@@ -32,11 +32,11 @@ export const loginAdmin = async (req, res, next) => {
 
     let admin = await Admin.findOne({ email: email.toLowerCase() });
 
-    const envEmail = process.env.ADMIN_EMAIL ;
-    const envPassword = process.env.ADMIN_PASSWORD ;
+    const envEmail = process.env.ADMIN_EMAIL || '';
+    const envPassword = process.env.ADMIN_PASSWORD || '';
 
     // If admin record does not exist yet for this email, auto-create if matching .env
-    if (!admin && email.toLowerCase() === envEmail.toLowerCase()) {
+    if (!admin && envEmail && email.toLowerCase() === envEmail.toLowerCase()) {
       admin = await Admin.create({
         name: 'Master Admin',
         email: envEmail,

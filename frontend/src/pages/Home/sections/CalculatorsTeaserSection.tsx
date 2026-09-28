@@ -173,13 +173,13 @@ export const CalculatorsTeaserSection: React.FC = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-30px' }}
           transition={{ duration: 0.6, ease: 'easeOut', delay: 0.1 }}
-          className="relative border border-slate-200/90 rounded-2xl bg-white shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden group/card"
+          className="relative border border-[#EF680C] rounded-xl bg-white shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden group/card"
         >
 
-          <div className="grid grid-cols-1 lg:grid-cols-12 min-h-110">
+          <div className="grid grid-cols-1 lg:grid-cols-12 min-h-140 lg:min-h-128 lg:h-128">
 
             {/* ── LEFT SIDE: AVATAR ── */}
-            <div className="lg:col-span-4 relative bg-linear-to-b from-[#2B3CB8] via-[#1D2984] to-[#0C123E] overflow-hidden flex flex-col justify-end h-auto lg:min-h-full group/avatar">
+            <div className="lg:col-span-4 relative bg-linear-to-b from-[#2B3CB8] via-[#1D2984] to-[#0C123E] overflow-hidden flex flex-col justify-end h-64 sm:h-80 lg:h-full min-h-64 lg:min-h-full group/avatar">
               <motion.div
                 animate={{ scale: [1, 1.25, 1], opacity: [0.15, 0.35, 0.15] }}
                 transition={{ repeat: Infinity, duration: 6, ease: 'easeInOut' }}
@@ -191,18 +191,16 @@ export const CalculatorsTeaserSection: React.FC = () => {
                 className="absolute bottom-0 left-0 w-64 h-64 bg-[#2B3CB8]/30 rounded-full blur-2xl pointer-events-none"
               />
 
-              
-
               <img
                 src={advisorAvatar}
                 alt="Trent Palmer - Sunny Solar Master Electrician Advisor"
-                className="w-full h-full object-contain object-bottom lg:object-cover lg:object-top lg:absolute lg:inset-0 transition-transform duration-700 ease-out group-hover/avatar:scale-105"
+                className="w-full h-full object-cover object-top lg:absolute lg:inset-0 transition-transform duration-700 ease-out group-hover/avatar:scale-105"
               />
             </div>
 
             {/* ── RIGHT SIDE: CALCULATOR DETAILS ── */}
             <div
-              className="lg:col-span-8 p-4 sm:p-8 lg:p-10 flex flex-col justify-between relative bg-white"
+              className="lg:col-span-8 p-4 sm:p-7 lg:p-8 flex flex-col justify-between relative bg-white h-full min-h-120 lg:min-h-full"
               onMouseEnter={() => setIsPaused(true)}
               onMouseLeave={() => setIsPaused(false)}
               onTouchStart={() => setIsPaused(true)}
@@ -218,9 +216,9 @@ export const CalculatorsTeaserSection: React.FC = () => {
                 style={{ backgroundColor: `${BRAND.green}08` }}
               />
 
-              <div>
+              <div className="flex flex-col justify-between h-full">
                 {/* ── Tab Selector: Circular Number + Short Title ── */}
-                <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-3 mb-6 sm:mb-7">
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-3 mb-5 sm:mb-6">
                   {calculators.map((calc, idx) => {
                     const isActive = idx === activeIndex;
                     return (
@@ -229,30 +227,27 @@ export const CalculatorsTeaserSection: React.FC = () => {
                         type="button"
                         onClick={() => handleSelect(idx)}
                         whileTap={{ scale: 0.97 }}
-                        className={`relative flex items-center gap-2 sm:gap-2.5 p-2 sm:p-3 rounded-xl font-semibold text-xs sm:text-sm transition-all duration-300 cursor-pointer overflow-hidden border text-left min-h-11 ${
-                          isActive
-                            ? 'bg-[#F5F7FD] border-[#2B3CB8] shadow-xs'
-                            : 'bg-slate-50/80 hover:bg-[#F5F7FD] border-slate-200/80 hover:border-[#D1DCF8]'
-                        }`}
+                        className={`group relative flex items-center gap-2 sm:gap-2.5 p-2 sm:p-3 rounded-xl font-semibold text-xs sm:text-sm transition-all duration-300 cursor-pointer overflow-hidden border text-left min-h-11 ${isActive
+                            ? 'bg-[#FFF7ED] border-[#EF680C] shadow-xs'
+                            : 'bg-slate-50/80 hover:bg-[#FFF7ED]/60 border-slate-200/80 hover:border-[#EF680C]'
+                          }`}
                       >
-                        {/* Circular Number Badge in Brand Blue with animated pop */}
+                        {/* Circular Number Badge with animated pop */}
                         <motion.span
                           animate={isActive ? { scale: [1, 1.08, 1] } : { scale: 1 }}
                           transition={{ duration: 0.3 }}
-                          className={`shrink-0 w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center text-[11px] sm:text-xs font-extrabold transition-all duration-300 ${
-                            isActive
-                              ? 'bg-[#2B3CB8] text-white shadow-xs'
-                              : 'bg-slate-200/80 text-slate-600'
-                          }`}
+                          className={`shrink-0 w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center text-[11px] sm:text-xs font-extrabold transition-all duration-300 ${isActive
+                              ? 'bg-[#EF680C] text-white shadow-xs'
+                              : 'bg-slate-200/80 text-slate-600 group-hover:bg-[#EF680C]/20 group-hover:text-[#EF680C]'
+                            }`}
                         >
                           {calc.number}
                         </motion.span>
 
                         {/* Title */}
                         <span
-                          className={`truncate text-left leading-tight text-xs sm:text-sm font-bold transition-colors duration-300 ${
-                            isActive ? 'text-[#2B3CB8]' : 'text-slate-700'
-                          }`}
+                          className={`truncate text-left leading-tight text-xs sm:text-sm font-bold transition-colors duration-300 ${isActive ? 'text-[#EF680C]' : 'text-slate-700 group-hover:text-[#EF680C]'
+                            }`}
                         >
                           {calc.shortTitle}
                         </span>
@@ -261,7 +256,7 @@ export const CalculatorsTeaserSection: React.FC = () => {
                         {isActive && (
                           <motion.div
                             layoutId="active-calc-tab-bar"
-                            className="absolute bottom-0 left-0 right-0 h-0.75 bg-[#2B3CB8]"
+                            className="absolute bottom-0 left-0 right-0 h-0.75 bg-[#EF680C]"
                             transition={{ type: 'spring', stiffness: 380, damping: 30 }}
                           />
                         )}
@@ -278,10 +273,10 @@ export const CalculatorsTeaserSection: React.FC = () => {
                     animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
                     exit={{ opacity: 0, y: -14, filter: 'blur(2px)' }}
                     transition={{ duration: 0.28, ease: 'easeOut' }}
-                    className="flex flex-col gap-4 sm:gap-5"
+                    className="flex flex-col justify-between gap-3 sm:gap-4 flex-1 min-h-75 sm:min-h-72.5"
                   >
                     {/* Number / Icon Badge in Brand Blue + Title Row */}
-                    <div className="flex items-center gap-3 sm:gap-4">
+                    <div className="flex items-center gap-3 sm:gap-4 min-h-11">
                       <motion.div
                         initial={{ scale: 0.8, rotate: -8 }}
                         animate={{ scale: 1, rotate: 0 }}
@@ -293,13 +288,13 @@ export const CalculatorsTeaserSection: React.FC = () => {
                             'w-9 h-9 sm:w-11 sm:h-11 p-2 sm:p-2.5 rounded-xl bg-gradient-to-br from-[#2B3CB8] to-[#1D2984] text-white shadow-md shadow-[#2B3CB8]/25',
                         })}
                       </motion.div>
-                      <h3 className="text-xl sm:text-3xl font-extrabold text-slate-900 font-serif tracking-tight leading-snug">
+                      <h3 className="text-xl sm:text-2xl lg:text-3xl font-extrabold text-slate-900 font-serif tracking-tight leading-snug">
                         {active.title}
                       </h3>
                     </div>
 
                     {/* Description */}
-                    <p className="text-xs sm:text-base text-slate-600 leading-relaxed text-justify sm:text-left">
+                    <p className="text-xs sm:text-sm lg:text-base text-slate-600 leading-relaxed text-justify sm:text-left min-h-10 flex items-center">
                       {active.description}
                     </p>
 
@@ -308,7 +303,7 @@ export const CalculatorsTeaserSection: React.FC = () => {
                       initial={{ scale: 0.98, opacity: 0 }}
                       animate={{ scale: 1, opacity: 1 }}
                       transition={{ duration: 0.25, delay: 0.05 }}
-                      className="rounded-2xl p-4 sm:p-5 lg:p-6 border border-[#2B3CB8]/20 bg-linear-to-br from-[#2B3CB8]/5 via-[#F5F7FD] to-white relative overflow-hidden flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 shadow-xs group/outcome"
+                      className="rounded-xl p-3.5 sm:p-4 lg:p-5 border border-[#EF680C]/60 bg-linear-to-br from-[#2B3CB8]/5 via-[#F5F7FD] to-white relative overflow-hidden flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 shadow-xs group/outcome min-h-19"
                     >
                       {/* Ambient soft glow */}
                       <div
@@ -339,13 +334,13 @@ export const CalculatorsTeaserSection: React.FC = () => {
                       <div className="relative z-10 shrink-0 self-start sm:self-auto">
                         <div
                           className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white border text-xs font-bold shadow-xs"
-                          style={{ borderColor: '#D1DCF8', color: BRAND.green }}
+                          style={{ borderColor: '#EF680C', color: BRAND.green }}
                         >
                           <motion.div
                             animate={{ rotate: [0, 18, -18, 0], scale: [1, 1.15, 1] }}
                             transition={{ repeat: Infinity, duration: 3, ease: 'easeInOut' }}
                           >
-                            <Sparkles className="w-3.5 h-3.5 text-[#2B3CB8]" />
+                            <Sparkles className="w-3.5 h-3.5 text-[#EF680C]" />
                           </motion.div>
                           <span>Instant Results</span>
                         </div>
@@ -353,7 +348,7 @@ export const CalculatorsTeaserSection: React.FC = () => {
                     </motion.div>
 
                     {/* Launch Button in Brand Blue */}
-                    <div className="pt-2 flex flex-col sm:flex-row sm:items-center gap-3">
+                    <div className="pt-1 flex flex-col sm:flex-row sm:items-center gap-3">
                       <motion.div
                         whileHover={{ scale: 1.02 }}
                         whileTap={{ scale: 0.98 }}
@@ -381,7 +376,7 @@ export const CalculatorsTeaserSection: React.FC = () => {
           <div className="h-1.5 w-full bg-slate-100 relative overflow-hidden">
             <motion.div
               key={`${activeIndex}-${isPaused}`}
-              className="h-full bg-[#2B3CB8] relative"
+              className="h-full bg-[#EF680C] relative"
               initial={{ width: '0%' }}
               animate={{ width: isPaused ? '0%' : '100%' }}
               transition={{ duration: 5, ease: 'linear' }}

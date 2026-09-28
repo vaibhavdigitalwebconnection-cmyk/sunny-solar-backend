@@ -101,7 +101,7 @@ export const BatteriesHeroSection: React.FC = () => {
             {/* Main Visual Image Card */}
             <div className="relative rounded-2xl sm:rounded-3xl overflow-hidden shadow-xl sm:shadow-2xl border-2 sm:border-4 border-white aspect-16/10 xs:aspect-4/3 max-w-lg mx-auto lg:max-w-none bg-slate-950 group">
               <img
-                src="/images/solutions/battery-hero.jpg"
+                src="/images/solutions/battery-hero.webp"
                 alt="Tesla Powerwall & Premium Home Battery Storage System"
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
               />

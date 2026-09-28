@@ -90,10 +90,10 @@ export const MegaMenu: React.FC<MegaMenuProps> = ({ section, isOpen, onClose }) 
     >
       {/* Centered Floating Modern Card Container */}
       <div className={`mx-auto px-4 sm:px-6 transition-all duration-200 ${isLargeSet ? 'max-w-5xl' : 'max-w-4xl'}`}>
-        <div className="bg-white rounded-lg shadow-[0_20px_50px_-12px_rgba(0,0,0,0.22),0_0_0_1px_rgba(0,0,0,0.06)] border border-slate-100 overflow-hidden">
+        <div className="bg-white rounded-lg shadow-[0_20px_50px_-12px_rgba(0,0,0,0.22),0_0_0_1px_rgba(0,0,0,0.06)] border border-[#ED4F11]/30 overflow-hidden">
           
           {/* Top subtle highlight rim with Brand color */}
-          <div className="h-1 w-full bg-[#2B3CB8]" />
+          <div className="h-1 w-full bg-[#ED4F11]" />
 
           <div className="grid grid-cols-1 lg:grid-cols-12 items-stretch">
             {/* Left Zone: Nav Items */}
@@ -102,7 +102,7 @@ export const MegaMenu: React.FC<MegaMenuProps> = ({ section, isOpen, onClose }) 
                 {/* Section Header */}
                 <div className="flex items-center justify-between pb-3 mb-3 border-b border-slate-100">
                   <div className="flex items-center gap-2">
-                    <span className="text-[10px] font-extrabold uppercase tracking-widest text-[#2B3CB8] bg-[#2B3CB8]/10 border border-[#2B3CB8]/25 px-2 py-0.5 rounded">
+                    <span className="text-[10px] font-extrabold uppercase tracking-widest text-[#ED4F11] bg-[#ED4F11]/10 border border-[#ED4F11]/25 px-2 py-0.5 rounded">
                       {section.title}
                     </span>
                     <span className="text-xs text-slate-400 font-medium">
@@ -112,7 +112,7 @@ export const MegaMenu: React.FC<MegaMenuProps> = ({ section, isOpen, onClose }) 
                   <Link
                     to={section.href}
                     onClick={onClose}
-                    className="text-xs font-bold text-slate-600 hover:text-[#2B3CB8] inline-flex items-center gap-1 transition-colors"
+                    className="text-xs font-bold text-slate-600 hover:text-[#ED4F11] inline-flex items-center gap-1 transition-colors"
                   >
                     <span>View all</span>
                     <ArrowRight className="w-3 h-3" />
@@ -129,24 +129,24 @@ export const MegaMenu: React.FC<MegaMenuProps> = ({ section, isOpen, onClose }) 
                         key={idx}
                         to={item.href}
                         onClick={onClose}
-                        className="group flex items-start gap-3 p-2.5 rounded-xl hover:bg-[#F5F7FD] transition-all duration-150 border border-transparent hover:border-[#D1DCF8]"
+                        className="group flex items-start gap-3 p-2.5 rounded-xl hover:bg-orange-50/50 transition-all duration-150 border border-transparent hover:border-[#ED4F11]/30"
                       >
                         {/* Icon */}
-                        <div className="w-9 h-9 rounded-lg bg-[#F5F7FD] text-[#2B3CB8] flex items-center justify-center shrink-0 group-hover:bg-[#2B3CB8] group-hover:text-white transition-all duration-200 shadow-xs">
+                        <div className="w-9 h-9 rounded-lg bg-[#F5F7FD] text-[#2B3CB8] flex items-center justify-center shrink-0 group-hover:bg-[#ED4F11] group-hover:text-white transition-all duration-200 shadow-xs">
                           {IconComp && <IconComp className="w-4 h-4" />}
                         </div>
 
                         {/* Title */}
                         <div className="flex-1 min-w-0 pr-1">
                           <div className="flex items-center gap-1.5">
-                            <span className="font-semibold text-sm text-slate-900 group-hover:text-[#2B3CB8] transition-colors truncate">
+                            <span className="font-semibold text-sm text-slate-900 group-hover:text-[#ED4F11] transition-colors truncate">
                               {item.title}
                             </span>
                           </div>
                         </div>
 
                         {/* Hover Arrow */}
-                        <div className="self-center shrink-0 text-[#2B3CB8] opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-150">
+                        <div className="self-center shrink-0 text-[#ED4F11] opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-150">
                           <ArrowRight className="w-3.5 h-3.5" />
                         </div>
                       </Link>
@@ -215,9 +215,9 @@ export const MegaMenu: React.FC<MegaMenuProps> = ({ section, isOpen, onClose }) 
 
                   <a
                     href="tel:1300030479"
-                    className="inline-flex items-center gap-1 text-[11px] text-slate-400 hover:text-white transition-colors"
+                    className="inline-flex items-center gap-1 text-[11px] text-[#ED4F11] hover:text-white transition-colors"
                   >
-                    <Phone className="w-3 h-3 text-[#D1DCF8]" />
+                    <Phone className="w-3 h-3 text-white" />
                     <span>1300 030 479</span>
                   </a>
                 </div>

@@ -128,7 +128,7 @@ export function ImageScatter({
       leftImages.forEach((src, idx) => {
         const card = document.createElement("div");
         card.className =
-          "absolute rounded-2xl border-4 sm:border-[6px] border-white shadow-[0_12px_32px_rgba(0,0,0,0.12)] overflow-hidden will-change-transform bg-white select-none transition-transform hover:scale-105 hover:z-20";
+          "absolute rounded-2xl border-4 sm:border-[6px] border-white shadow-[0_12px_32px_rgba(0,0,0,0.12)] overflow-hidden will-change-transform bg-white   transition-transform hover:scale-105 hover:z-20";
         card.style.width = `${cWidth}px`;
         card.style.height = `${cHeight}px`;
 
@@ -136,7 +136,7 @@ export function ImageScatter({
         img.src = src;
         img.alt = sectionData.heading || "Sunny Solar Project";
         img.loading = "lazy";
-        img.className = "w-full h-full object-cover rounded-lg pointer-events-none select-none";
+        img.className = "w-full h-full object-cover rounded-lg pointer-events-none  ";
         card.appendChild(img);
 
         // Glass reflection sheen
@@ -192,7 +192,7 @@ export function ImageScatter({
       rightImages.forEach((src, idx) => {
         const card = document.createElement("div");
         card.className =
-          "absolute rounded-2xl border-4 sm:border-[6px] border-white shadow-[0_12px_32px_rgba(0,0,0,0.12)] overflow-hidden will-change-transform bg-white select-none transition-transform hover:scale-105 hover:z-20";
+          "absolute rounded-2xl border-4 sm:border-[6px] border-white shadow-[0_12px_32px_rgba(0,0,0,0.12)] overflow-hidden will-change-transform bg-white   transition-transform hover:scale-105 hover:z-20";
         card.style.width = `${cWidth}px`;
         card.style.height = `${cHeight}px`;
 
@@ -200,7 +200,7 @@ export function ImageScatter({
         img.src = src;
         img.alt = sectionData.heading || "Sunny Solar Project";
         img.loading = "lazy";
-        img.className = "w-full h-full object-cover rounded-lg pointer-events-none select-none";
+        img.className = "w-full h-full object-cover rounded-lg pointer-events-none  ";
         card.appendChild(img);
 
         const sheen = document.createElement("div");
@@ -451,7 +451,7 @@ export function ImageScatter({
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
       className={cn(
-        "relative w-full h-130 sm:h-150 lg:h-165 flex justify-center items-center overflow-hidden bg-transparent select-none",
+        "relative w-full h-130 sm:h-150 lg:h-165 flex justify-center items-center overflow-hidden bg-transparent  ",
         className
       )}
       {...props}
@@ -462,12 +462,12 @@ export function ImageScatter({
       {/* Central Content (Pure Black Text, Reserved Middle Space) */}
       <div
         ref={headingContainerRef}
-        className="w-[90%] sm:w-[72%] md:w-[50%] lg:w-[42%] max-w-xl text-center z-30 flex flex-col items-center justify-center pointer-events-none select-none px-4"
+        className="w-[90%] sm:w-[72%] md:w-[50%] lg:w-[42%] max-w-xl text-center z-30 flex flex-col items-center justify-center pointer-events-none   px-4"
       >
         {/* Dynamic Animated Heading */}
         <h2
           ref={headingRef}
-          className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-serif font-extrabold leading-[1.18] tracking-tight text-black"
+          className="text-2xl sm:text-3xl md:text-4xl lg:text-4xl font-serif font-extrabold leading-[1.18] tracking-tight text-black"
         />
 
         {/* Dynamic Animated Subtitle */}

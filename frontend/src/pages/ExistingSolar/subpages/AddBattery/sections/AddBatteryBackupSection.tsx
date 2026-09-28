@@ -118,7 +118,7 @@ export const AddBatteryBackupSection: React.FC = () => {
   const renderStormVisualCard = () => (
     <div className="bg-slate-900 rounded-xl overflow-hidden border border-slate-800 shadow-md relative h-56 sm:h-72 lg:h-full lg:min-h-105 flex flex-col justify-end group">
       <img
-        src="/images/solutions/battery-storm.jpg"
+        src="/images/solutions/battery-storm.webp"
         alt="Queensland severe summer storm with resilient battery powered home"
         className="absolute inset-0 w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500 opacity-85"
       />

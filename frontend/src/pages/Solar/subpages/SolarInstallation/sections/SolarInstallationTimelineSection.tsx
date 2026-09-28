@@ -1,13 +1,13 @@
 import React, { useState, useRef } from 'react';
-import { 
-  Clock, 
-  CheckCircle2, 
-  ShieldCheck, 
-  Wrench, 
-  Cable, 
-  Gauge, 
-  Smartphone, 
-  Sparkles, 
+import {
+  Clock,
+  CheckCircle2,
+  ShieldCheck,
+  Wrench,
+  Cable,
+  Gauge,
+  Smartphone,
+  Sparkles,
   ArrowRight,
   ChevronLeft,
   ChevronRight
@@ -124,20 +124,19 @@ export const SolarInstallationTimelineSection: React.FC = () => {
                 type="button"
                 onClick={() => setActiveSlide(i)}
                 aria-label={`Jump to step ${i + 1}`}
-                className={`h-1.5 rounded-full transition-all duration-300 cursor-pointer ${
-                  i === activeSlide
+                className={`h-1.5 rounded-full transition-all duration-300 cursor-pointer ${i === activeSlide
                     ? 'bg-amber-500'
                     : i < activeSlide
-                    ? 'bg-[#2B3CB8]'
-                    : 'bg-slate-200'
-                }`}
+                      ? 'bg-[#2B3CB8]'
+                      : 'bg-slate-200'
+                  }`}
               />
             ))}
           </div>
 
           {/* Swipeable Slide Window */}
           <div
-            className="overflow-hidden select-none cursor-grab active:cursor-grabbing"
+            className="overflow-hidden   cursor-grab active:cursor-grabbing"
             onTouchStart={handleTouchStart}
             onTouchMove={handleTouchMove}
             onTouchEnd={handleTouchEnd}
@@ -199,11 +198,10 @@ export const SolarInstallationTimelineSection: React.FC = () => {
                   type="button"
                   onClick={() => setActiveSlide(dotIdx)}
                   aria-label={`Go to step ${dotIdx + 1}`}
-                  className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
-                    activeSlide === dotIdx
+                  className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${activeSlide === dotIdx
                       ? 'w-6 bg-[#2B3CB8]'
                       : 'w-2 bg-slate-300 hover:bg-slate-400'
-                  }`}
+                    }`}
                 />
               ))}
             </div>

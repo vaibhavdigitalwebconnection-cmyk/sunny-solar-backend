@@ -1,13 +1,9 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
-import { Link } from 'react-router-dom';
+import { motion, AnimatePresence } from 'framer-motion';
 import {
   Star,
   ChevronLeft,
   ChevronRight,
-  CheckCircle2,
-  MapPin,
-  ArrowRight,
-  Zap,
 } from 'lucide-react';
 
 interface TestimonialSlide {
@@ -20,22 +16,23 @@ interface TestimonialSlide {
   comment: string;
   systemSummary: string;
   keyMetric: string;
-  avatarBg: string;
+  avatar: string;
 }
 
 const testimonials: TestimonialSlide[] = [
   {
     id: 't-1',
     author: 'Brett Thomson',
-    location: 'Broadbeach Waters',
+    location: 'Broadbeach Waters, Gold Coast',
     timeAgo: '2 days ago',
     rating: 5,
     title: 'Zero sales pressure & spotless installation',
     comment:
-      'Trent personally inspected our roof cavity and designed the perfect system. Power bill dropped from $940 to $22 last month! Cleanest tradesmen we have ever had on site.',
-    systemSummary: '10.5kW REC + Tesla Powerwall 3',
+      'Trent personally inspected our roof cavity and designed the perfect system. Power bill dropped from $940 to $22 last month! Cleanest tradesmen we have ever had on site, and their post-install handover was second to none.',
+    systemSummary: '10.5kW REC Solar + Tesla Powerwall 3',
     keyMetric: '$940 → $22/mo',
-    avatarBg: 'bg-[#2B3CB8] text-white',
+    avatar:
+      'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=256&q=80',
   },
   {
     id: 't-2',
@@ -45,49 +42,53 @@ const testimonials: TestimonialSlide[] = [
     rating: 5,
     title: 'Cut our power bill by 82% immediately',
     comment:
-      'With 3 teenagers and ducted A/C in summer heatwaves, our solar system slashed our electricity bills by 82% from day one. Communication with the team was exceptional.',
+      'With 3 teenagers and ducted A/C in summer heatwaves, our solar system slashed our electricity bills by 82% from day one. Communication with the team was exceptional from quote through to Energex grid approval.',
     systemSummary: '13.2kW AIKO All-Black + Fronius',
     keyMetric: '82% Bill Cut',
-    avatarBg: 'bg-[#1D2984] text-white',
+    avatar:
+      'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=256&q=80',
   },
   {
     id: 't-3',
     author: 'Mark Henderson',
-    location: 'Currumbin Valley',
+    location: 'Currumbin Valley, QLD',
     timeAgo: '1 week ago',
     rating: 5,
     title: 'Flawless battery retrofit to existing solar',
     comment:
-      'Added a Sungrow battery to our 6-year-old system. Entire rebate paperwork was handled seamlessly by their office team. Now completely blackout-proof.',
+      'Added a Sungrow battery to our 6-year-old system. Entire rebate paperwork was handled seamlessly by their office team. Now completely blackout-proof when severe storms pass through our hinterland property.',
     systemSummary: '9.6kWh Sungrow SBR Battery',
     keyMetric: '0% Evening Grid Draw',
-    avatarBg: 'bg-[#151E64] text-white',
+    avatar:
+      'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=256&q=80',
   },
   {
     id: 't-4',
     author: 'Sophie Martin',
-    location: 'North Lakes',
+    location: 'North Lakes, Brisbane',
     timeAgo: '1 week ago',
     rating: 5,
     title: 'Found a burnt isolator missed by others',
     comment:
-      'Their technician found a hazardous degraded DC isolator with thermal imaging. Safely replaced and restored to 100% capacity! Truly honest electricians.',
+      'Their technician found a hazardous degraded DC isolator with thermal imaging that two previous electricians overlooked. Safely replaced and restored to 100% capacity! Truly honest, master-level tradesmen.',
     systemSummary: '24-Point Health Check & Repair',
     keyMetric: '100% Restored',
-    avatarBg: 'bg-[#2433A1] text-white',
+    avatar:
+      'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=256&q=80',
   },
   {
     id: 't-5',
     author: 'Graham Ross',
-    location: 'Helensvale',
+    location: 'Helensvale, Gold Coast',
     timeAgo: '2 weeks ago',
     rating: 5,
     title: 'Doubled our output with modern panels',
     comment:
-      'Replaced an old 2013 inverter with modern high-efficiency equipment. Double the power output for a fraction of the roof space. Highly recommend Sunny Solar.',
+      'Replaced an old 2013 inverter with modern high-efficiency equipment. Double the power output for a fraction of the roof space. Highly recommend Sunny Solar for anyone looking for honest advice.',
     systemSummary: '8.8kW Trina Vertex + Sungrow Hybrid',
     keyMetric: '2x Daily Output',
-    avatarBg: 'bg-[#2B3CB8] text-white',
+    avatar:
+      'https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?auto=format&fit=crop&w=256&q=80',
   },
   {
     id: 't-6',
@@ -97,91 +98,68 @@ const testimonials: TestimonialSlide[] = [
     rating: 5,
     title: 'True whole-home blackout backup',
     comment:
-      'During recent storm blackouts while our whole street was dark, our lights, refrigeration and Wi-Fi stayed on seamlessly. Best investment for our Queensland home.',
+      'During recent storm blackouts while our whole street was pitch black, our lights, refrigeration and Wi-Fi stayed on seamlessly without a flicker. Best investment we have made for our Queensland home.',
     systemSummary: '11.4kW Solar + Tesla Powerwall 3',
     keyMetric: 'Zero Blackout Downtime',
-    avatarBg: 'bg-[#1D2984] text-white',
+    avatar:
+      'https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=256&q=80',
   },
   {
     id: 't-7',
     author: 'Darren S.',
-    location: 'Coomera',
+    location: 'Coomera Commercial District',
     timeAgo: '1 month ago',
     rating: 5,
     title: 'Commercial connection with zero downtime',
     comment:
-      'Warehouse installation executed over a planned weekend. Immediate demand charge reduction and effortless Energex approval. Prompt and professional.',
+      'Warehouse installation executed over a planned weekend. Immediate demand charge reduction and effortless Energex approval. Prompt, professional, and zero disruption to our daily logistics operations.',
     systemSummary: '66kW Commercial Warehouse Solar',
     keyMetric: '$1,500+ Saved Monthly',
-    avatarBg: 'bg-[#151E64] text-white',
+    avatar:
+      'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=256&q=80',
   },
   {
     id: 't-8',
     author: 'David & Gillian M.',
-    location: 'Tamborine Mountain',
+    location: 'Tamborine Mountain Acreage',
     timeAgo: '1 month ago',
     rating: 5,
     title: '100% self-sufficient mountain acreage',
     comment:
-      'Our neighbors lose power for days during mountain storms. We do not even notice the lights flicker. Outstanding craftsmanship and aftercare.',
+      'Our neighbors lose power for days during mountain storms. We do not even notice the lights flicker. Outstanding craftsmanship, genuine long-term aftercare, and our bills are practically zero.',
     systemSummary: '19.8kW Ground Array + BYD Battery',
     keyMetric: '96% Self-Sufficiency',
-    avatarBg: 'bg-[#2433A1] text-white',
+    avatar:
+      'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=256&q=80',
   },
 ];
 
 export const TestimonialsSliderSection: React.FC = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [visibleCount, setVisibleCount] = useState(4);
   const [isPaused, setIsPaused] = useState(false);
   const touchStartX = useRef<number | null>(null);
   const touchEndX = useRef<number | null>(null);
 
-  // Responsive visible count (4 cards on desktop, 3 on tablet, 2 on small tablet, 1 on mobile)
-  useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth < 640) {
-        setVisibleCount(1);
-      } else if (window.innerWidth < 768) {
-        setVisibleCount(2);
-      } else if (window.innerWidth < 1024) {
-        setVisibleCount(3);
-      } else {
-        setVisibleCount(4);
-      }
-    };
-
-    handleResize();
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
+  // Next Slide
+  const nextSlide = useCallback(() => {
+    setCurrentIndex((prev) => (prev >= testimonials.length - 1 ? 0 : prev + 1));
   }, []);
 
-  const maxIndex = Math.max(0, testimonials.length - visibleCount);
-
-  useEffect(() => {
-    setCurrentIndex((prev) => Math.min(prev, maxIndex));
-  }, [maxIndex]);
-
-  // Slide forward
-  const nextSlide = useCallback(() => {
-    setCurrentIndex((prev) => (prev >= maxIndex ? 0 : prev + 1));
-  }, [maxIndex]);
-
-  // Slide backward
+  // Previous Slide
   const prevSlide = useCallback(() => {
-    setCurrentIndex((prev) => (prev <= 0 ? maxIndex : prev - 1));
-  }, [maxIndex]);
+    setCurrentIndex((prev) => (prev <= 0 ? testimonials.length - 1 : prev - 1));
+  }, []);
 
-  // Auto sliding every 4.5 seconds with pause support
+  // Auto sliding every 6 seconds with hover pause
   useEffect(() => {
     if (isPaused) return;
     const timer = setInterval(() => {
       nextSlide();
-    }, 4500);
+    }, 6000);
     return () => clearInterval(timer);
   }, [nextSlide, isPaused]);
 
-  // Touch swipe handlers for mobile
+  // Touch swipe support for mobile
   const handleTouchStart = (e: React.TouchEvent) => {
     setIsPaused(true);
     touchStartX.current = e.targetTouches[0].clientX;
@@ -194,9 +172,9 @@ export const TestimonialsSliderSection: React.FC = () => {
   const handleTouchEnd = () => {
     if (!touchStartX.current || !touchEndX.current) return;
     const diff = touchStartX.current - touchEndX.current;
-    if (diff > 35) {
+    if (diff > 40) {
       nextSlide();
-    } else if (diff < -35) {
+    } else if (diff < -40) {
       prevSlide();
     }
     touchStartX.current = null;
@@ -204,187 +182,247 @@ export const TestimonialsSliderSection: React.FC = () => {
     setTimeout(() => setIsPaused(false), 4000);
   };
 
+  const activeTestimonial = testimonials[currentIndex];
+
   return (
-    <section className="py-10 sm:py-12 lg:py-16 bg-slate-50 relative overflow-hidden border-t border-slate-200/80">
-      {/* Ambient solar blue backdrop */}
-      <div className="absolute top-0 right-1/4 w-96 h-96 bg-[#2B3CB8]/5 rounded-full blur-3xl pointer-events-none" />
+    <section
+      className="py-14 sm:py-10 lg:py-14 bg-white relative overflow-hidden text-slate-900 border-t border-slate-200/80"
+      aria-label="Customer Testimonials"
+    >
+      {/* Scoped CSS keyframe for running animated border and wireframe rotation */}
+      <style>{`
+        @keyframes borderBeamSpin {
+          from {
+            transform: rotate(0deg);
+          }
+          to {
+            transform: rotate(360deg);
+          }
+        }
+        .animate-border-beam {
+          animation: borderBeamSpin 6s linear infinite;
+        }
+        @keyframes wireframeSpin {
+          from {
+            transform: rotate(0deg);
+          }
+          to {
+            transform: rotate(360deg);
+          }
+        }
+        .animate-wireframe-spin {
+          animation: wireframeSpin 80s linear infinite;
+        }
+      `}</style>
+
+      {/* Dynamic Ambient Background Glows tailored for crisp white background */}
+      <div className="absolute top-1/4 left-10 w-125 h-125 bg-[#EF680C]/5 rounded-full blur-[130px] pointer-events-none" />
+      <div className="absolute bottom-10 right-10 w-125 h-125 bg-[#2B3CB8]/6 rounded-full blur-[130px] pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-175 h-87.5 bg-[#FFA000]/4 rounded-full blur-[140px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        {/* Header with Title & Desktop Controls */}
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-6 sm:mb-8">
-          <div className="text-center sm:text-left">
-            <h2 className="text-2xl xs:text-3xl sm:text-4xl font-serif font-extrabold text-slate-900 tracking-tight leading-tight">
-              Real Installations.{' '}
-              <span className="bg-linear-to-r from-[#2B3CB8] via-[#4658D9] to-[#6F8EE7] bg-clip-text text-transparent">
-                Real Customer Savings.
+
+        {/* ══════════════════════════════════════════════════════════════
+            TOP HEADER ROW (Eyebrow + Title)
+           ══════════════════════════════════════════════════════════════ */}
+        <div className="flex flex-col lg:flex-row lg:items-end justify-center text-center gap-6 sm:gap-8 mb-10 sm:mb-14">
+          <div className="max-w-3xl">
+            {/* Eyebrow badge with sparkle */}
+            <div className="flex items-center justify-center gap-2 text-xs sm:text-sm font-bold uppercase tracking-widest text-[#EF680C] mb-3">
+              <span className="text-[#FFA000]">✦</span> OUR TESTIMONIALS
+            </div>
+
+            {/* Headline with Brand Gradient Highlight */}
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-extrabold text-slate-900 tracking-tight leading-[1.15]">
+              Hear what others say <br className="hidden sm:inline" />
+              about{' '}
+              <span className="text-transparent bg-clip-text bg-linear-to-r from-[#EF680C] via-[#FF7700] to-[#2B3CB8]">
+                partnering with us
               </span>
             </h2>
           </div>
-
-          {/* Desktop Slider Arrow Controls */}
-          <div className="hidden sm:flex items-center gap-2">
-            <button
-              type="button"
-              onClick={prevSlide}
-              aria-label="Previous review"
-              className="w-9 h-9 rounded-xl bg-white border border-slate-200 text-slate-700 hover:text-[#2B3CB8] hover:border-[#2B3CB8] flex items-center justify-center transition-all shadow-xs active:scale-95 cursor-pointer"
-            >
-              <ChevronLeft className="w-4 h-4" />
-            </button>
-            <button
-              type="button"
-              onClick={nextSlide}
-              aria-label="Next review"
-              className="w-9 h-9 rounded-xl bg-white border border-slate-200 text-slate-700 hover:text-[#2B3CB8] hover:border-[#2B3CB8] flex items-center justify-center transition-all shadow-xs active:scale-95 cursor-pointer"
-            >
-              <ChevronRight className="w-4 h-4" />
-            </button>
-          </div>
         </div>
 
-        {/* Carousel Slider Window */}
-        <div
-          className="relative overflow-hidden cursor-grab py-2 pb-4 active:cursor-grabbing"
-          onTouchStart={handleTouchStart}
-          onTouchMove={handleTouchMove}
-          onTouchEnd={handleTouchEnd}
-          onMouseEnter={() => setIsPaused(true)}
-          onMouseLeave={() => setIsPaused(false)}
-        >
-          <div
-            className="flex transition-transform duration-500 ease-out"
-            style={{
-              transform: `translateX(-${currentIndex * (100 / visibleCount)}%)`,
-            }}
-          >
-            {testimonials.map((item) => (
-              <div
-                key={item.id}
-                className="px-1.5 sm:px-2.5 shrink-0"
-                style={{ width: `${100 / visibleCount}%` }}
-              >
-                <div className="h-full bg-white rounded-2xl border border-slate-200/90 hover:shadow-xl shadow-xs sm:shadow-md shadow-slate-900/5 hover:border-[#2B3CB8] transition-all duration-300 flex flex-col justify-between p-4.5 sm:p-5 group min-h-[260px]">
-                  <div className="space-y-3">
-                    {/* Author Header Row: Avatar + Name + Time + Verified Chip */}
-                    <div className="flex items-center justify-between gap-2">
-                      <div className="flex items-center gap-2.5 min-w-0">
-                        {/* Initial letter avatar */}
-                        <div
-                          className={`w-9 h-9 sm:w-10 sm:h-10 rounded-xl ${item.avatarBg} flex items-center justify-center font-extrabold text-sm shadow-xs shrink-0 select-none`}
-                        >
-                          {item.author.charAt(0)}
-                        </div>
-                        <div className="min-w-0">
-                          <div className="flex items-center gap-1 font-bold text-slate-900 text-xs sm:text-sm truncate">
-                            <span className="truncate">{item.author}</span>
-                            <CheckCircle2 className="w-3.5 h-3.5 text-[#2B3CB8] shrink-0" />
-                          </div>
-                          <div className="flex items-center gap-1 text-[11px] text-slate-400 font-medium truncate">
-                            <MapPin className="w-3 h-3 text-slate-400 shrink-0" />
-                            <span className="truncate">{item.location}</span>
-                            <span>•</span>
-                            <span className="shrink-0">{item.timeAgo}</span>
-                          </div>
-                        </div>
-                      </div>
+        {/* ══════════════════════════════════════════════════════════════
+            MAIN CONTENT GRID (4.8 Rating on left, Hero Card on right)
+           ══════════════════════════════════════════════════════════════ */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
 
-                      <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-[#F5F7FD] text-[#2B3CB8] border border-[#D1DCF8] shrink-0">
-                        Verified
-                      </span>
-                    </div>
+          {/* LEFT COLUMN: 3D Wireframe Orb + Doodle Arrow + Big 4.8 Rating */}
+          <div className="lg:col-span-4 relative flex flex-col items-center lg:items-start text-center lg:text-left py-4 sm:py-6">
 
-                    {/* Star Rating Row */}
-                    <div className="flex items-center gap-1 pt-0.5">
-                      {[...Array(item.rating)].map((_, i) => (
-                        <Star
-                          key={i}
-                          className="w-3.5 h-3.5 fill-[#2B3CB8] text-[#2B3CB8]"
-                        />
-                      ))}
-                      <span className="ml-1 text-xs font-bold text-slate-700">5.0</span>
-                    </div>
-
-                    {/* Review Title & Body */}
-                    <div className="space-y-1">
-                      <h3 className="font-bold text-sm sm:text-base text-slate-900 line-clamp-1 group-hover:text-[#2B3CB8] transition-colors">
-                        "{item.title}"
-                      </h3>
-                      <p className="text-xs sm:text-sm text-slate-600 leading-relaxed line-clamp-3">
-                        {item.comment}
-                      </p>
-                    </div>
-                  </div>
-
-                  {/* Bottom System & Metric Strip */}
-                  <div className="mt-3.5 pt-3 border-t border-slate-100 flex items-center justify-between gap-2 text-xs">
-                    <div className="flex items-center gap-1 text-slate-500 truncate text-[11px]">
-                      <Zap className="w-3 h-3 text-[#2B3CB8] shrink-0" />
-                      <span className="truncate">{item.systemSummary}</span>
-                    </div>
-                    <span className="px-2 py-0.5 rounded-md font-bold text-[10px] sm:text-[11px] bg-emerald-50 text-emerald-700 border border-emerald-200/60 shrink-0">
-                      {item.keyMetric}
-                    </span>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Navigation Controls, Dots & Link */}
-        <div className="mt-6 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <div className="flex items-center justify-between w-full sm:w-auto gap-3">
-            {/* Arrows for mobile */}
-            <div className="flex sm:hidden items-center gap-1.5">
-              <button
-                type="button"
-                onClick={prevSlide}
-                aria-label="Previous review"
-                className="w-8 h-8 rounded-full bg-white border border-slate-200 text-slate-700 flex items-center justify-center shadow-2xs active:scale-95 cursor-pointer"
-              >
-                <ChevronLeft className="w-4 h-4" />
-              </button>
-              <button
-                type="button"
-                onClick={nextSlide}
-                aria-label="Next review"
-                className="w-8 h-8 rounded-full bg-white border border-slate-200 text-slate-700 flex items-center justify-center shadow-2xs active:scale-95 cursor-pointer"
-              >
-                <ChevronRight className="w-4 h-4" />
-              </button>
+            {/* 3D Geometric Wireframe Mesh in Background */}
+            <div className="absolute top-1/2 left-1/2 lg:left-1/3 -translate-x-1/2 -translate-y-1/2 w-72 h-72 sm:w-88 sm:h-88 pointer-events-none opacity-35">
+              <svg viewBox="0 0 300 300" className="w-full h-full animate-wireframe-spin">
+                <g stroke="#EF680C" strokeWidth="0.8" fill="none">
+                  {/* Latitude ellipses */}
+                  <ellipse cx="150" cy="150" rx="130" ry="130" />
+                  <ellipse cx="150" cy="150" rx="130" ry="85" />
+                  <ellipse cx="150" cy="150" rx="130" ry="45" />
+                  <ellipse cx="150" cy="150" rx="130" ry="18" />
+                  {/* Longitude ellipses */}
+                  <ellipse cx="150" cy="150" rx="85" ry="130" />
+                  <ellipse cx="150" cy="150" rx="45" ry="130" />
+                  <ellipse cx="150" cy="150" rx="18" ry="130" />
+                  {/* Dynamic diagonal orbits */}
+                  <ellipse cx="150" cy="150" rx="125" ry="65" transform="rotate(45 150 150)" stroke="#FFA000" />
+                  <ellipse cx="150" cy="150" rx="125" ry="65" transform="rotate(-45 150 150)" stroke="#2B3CB8" />
+                </g>
+              </svg>
             </div>
 
-            {/* Dots */}
-            <div className="flex items-center gap-1.5">
-              {Array.from({ length: maxIndex + 1 }).map((_, idx) => (
-                <button
-                  key={idx}
-                  type="button"
-                  onClick={() => setCurrentIndex(idx)}
-                  aria-label={`Slide ${idx + 1}`}
-                  className={`transition-all duration-300 rounded-full cursor-pointer ${
-                    currentIndex === idx
-                      ? 'w-5 sm:w-6 h-2 bg-[#2B3CB8]'
-                      : 'w-2 h-2 bg-slate-300 hover:bg-slate-400'
-                  }`}
+
+            {/* Huge Monumental 4.8 Rating */}
+            <div className="relative z-10 text-6xl sm:text-7xl lg:text-8xl font-black text-slate-900 tracking-tighter leading-none  ">
+              4.8
+            </div>
+
+            {/* 5 Stars directly under rating */}
+            <div className="relative z-10 flex items-center gap-1.5 mt-3.5 text-[#EF680C]">
+              {[...Array(5)].map((_, i) => (
+                <Star
+                  key={i}
+                  className="w-5 h-5 sm:w-6 sm:h-6 fill-current text-[#EF680C] drop-shadow-xs"
                 />
               ))}
             </div>
 
-            {/* Mobile slide counter */}
-            <span className="sm:hidden text-xs font-semibold text-slate-400 font-mono">
-              0{currentIndex + 1} / 0{testimonials.length}
-            </span>
+            {/* Subtitle description below 4.8 */}
+            <p className="relative z-10 text-xs sm:text-sm text-slate-600 font-medium mt-3.5 max-w-60 leading-relaxed">
+              Verified customer satisfaction across 72,000+ Queensland installations.
+            </p>
           </div>
 
-          <Link
-            to="/reviews"
-            className="text-xs sm:text-sm font-bold text-[#2B3CB8] hover:text-[#1D2984] transition-colors flex items-center gap-1 group"
-          >
-            <span>View All Verified Reviews</span>
-            <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
-          </Link>
+          {/* RIGHT COLUMN: Big Featured Card with RUNNING ANIMATED BORDER */}
+          <div className="lg:col-span-8">
+            <div
+              className="relative p-[2.5px] rounded-xl overflow-hidden group shadow-[0_12px_45px_rgba(43,60,184,0.08),0_4px_20px_rgba(239,104,12,0.08)]"
+              onMouseEnter={() => setIsPaused(true)}
+              onMouseLeave={() => setIsPaused(false)}
+              onTouchStart={handleTouchStart}
+              onTouchMove={handleTouchMove}
+              onTouchEnd={handleTouchEnd}
+            >
+              {/* ══════════════════════════════════════════════════════════════
+                  RUNNING ANIMATED BORDER BEAM (From Image 2 reference)
+                  Uses Sunny Solar Logo Colors: #EF680C, #FFA000, #2B3CB8
+                 ══════════════════════════════════════════════════════════════ */}
+              {/* Outer diffused glowing halo */}
+              <div
+                className="absolute inset-[-150%] animate-border-beam blur-lg opacity-40 pointer-events-none"
+                style={{
+                  background:
+                    'conic-gradient(from 0deg, transparent 0deg, transparent 180deg, #2B3CB8 240deg, #FFA000 300deg, #EF680C 360deg)',
+                }}
+              />
+
+              {/* Crisp perimeter beam running around the rounded border */}
+              <div
+                className="absolute inset-[-150%] animate-border-beam pointer-events-none"
+                style={{
+                  background:
+                    'conic-gradient(from 0deg, transparent 0deg, transparent 180deg, #2B3CB8 240deg, #FFA000 300deg, #EF680C 360deg)',
+                }}
+              />
+
+              {/* Card Interior Surface - Clean White Glassmorphism */}
+              <div className="relative z-10 bg-white/95 backdrop-blur-2xl rounded-xl p-6 sm:p-6 lg:p-8 flex flex-col justify-between min-h-90 sm:min-h-97.5 border border-slate-400/90 shadow-xs">
+
+                {/* Large Background Decorative Quotation Mark Watermark */}
+                <div className="absolute top-4 left-6 text-7xl sm:text-8xl lg:text-9xl font-serif text-slate-200/60   pointer-events-none leading-none">
+                  “
+                </div>
+
+                {/* Top Section of Card: 5 Stars */}
+                <div className="relative z-10 flex items-center justify-between gap-3 mb-4">
+                  <div className="flex items-center gap-1.5 text-[#EF680C]">
+                    {[...Array(activeTestimonial.rating)].map((_, i) => (
+                      <Star
+                        key={i}
+                        className="w-5 h-5 sm:w-6 sm:h-6 fill-current text-[#EF680C] drop-shadow-xs"
+                      />
+                    ))}
+                  </div>
+
+                  {/* System Key Metric Pill */}
+                  <span className="px-2.5 py-1 rounded-full text-[11px] font-bold bg-[#EF680C]/10 text-[#EF680C] border border-[#EF680C]/20 shadow-xs">
+                    {activeTestimonial.keyMetric}
+                  </span>
+                </div>
+
+                {/* Middle: Testimonial Quote Body with Smooth Motion Transition */}
+                <div className="relative z-10 my-auto py-2">
+                  <AnimatePresence mode="wait">
+                    <motion.div
+                      key={currentIndex}
+                      initial={{ opacity: 0, y: 12 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -12 }}
+                      transition={{ duration: 0.35, ease: 'easeOut' }}
+                    >
+                      <p className="text-base sm:text-lg lg:text-xl text-slate-800 font-normal italic leading-relaxed sm:leading-loose">
+                        &ldquo;{activeTestimonial.comment}&rdquo;
+                      </p>
+                    </motion.div>
+                  </AnimatePresence>
+                </div>
+
+                {/* Bottom Row: Author Avatar + Name on left, Arrow Controls on right */}
+                <div className="relative z-10 mt-6 pt-5 border-t border-slate-100 flex items-center justify-between gap-4">
+
+                  {/* Author Information */}
+                  <div className="flex items-center gap-3.5 min-w-0">
+                    {/* Customer Photo Avatar with Glowing Ring */}
+                    <div className="relative shrink-0">
+                      <img
+                        src={activeTestimonial.avatar}
+                        alt={activeTestimonial.author}
+                        className="w-12 h-12 sm:w-14 sm:h-14 rounded-full object-cover ring-2 ring-[#EF680C] ring-offset-2 ring-offset-white shadow-xs"
+                        loading="lazy"
+                      />
+                      <div className="absolute -bottom-1 -right-1 w-4.5 h-4.5 rounded-full bg-[#EF680C] text-white flex items-center justify-center text-[10px] font-bold shadow-xs">
+                        ✓
+                      </div>
+                    </div>
+
+                    <div className="min-w-0">
+                      <h4 className="text-slate-900 font-bold text-sm sm:text-base lg:text-lg tracking-tight truncate">
+                        {activeTestimonial.author}
+                      </h4>
+                      <p className="text-slate-500 text-xs sm:text-sm font-medium truncate">
+                        {activeTestimonial.location}
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Circular Navigation Arrow Buttons (adapted for light theme) */}
+                  <div className="flex items-center gap-2 sm:gap-2.5 shrink-0">
+                    <button
+                      type="button"
+                      onClick={prevSlide}
+                      aria-label="Previous testimonial"
+                      className="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-slate-100 hover:bg-[#EF680C] text-slate-700 hover:text-white border border-slate-200 hover:border-[#EF680C] flex items-center justify-center transition-all cursor-pointer active:scale-95 shadow-2xs"
+                    >
+                      <ChevronLeft className="w-5 h-5" />
+                    </button>
+                    <button
+                      type="button"
+                      onClick={nextSlide}
+                      aria-label="Next testimonial"
+                      className="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-slate-100 hover:bg-[#EF680C] text-slate-700 hover:text-white border border-slate-200 hover:border-[#EF680C] flex items-center justify-center transition-all cursor-pointer active:scale-95 shadow-2xs"
+                    >
+                      <ChevronRight className="w-5 h-5" />
+                    </button>
+                  </div>
+
+                </div>
+
+              </div>
+            </div>
+          </div>
+
         </div>
+
       </div>
     </section>
   );
