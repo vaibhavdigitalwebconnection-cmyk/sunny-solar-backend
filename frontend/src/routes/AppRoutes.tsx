@@ -124,10 +124,17 @@ export const AppRoutes: React.FC = () => {
             <Route path="/learn" element={<Navigate to="/learn/knowledge-hub" replace />} />
             <Route path="/learn/knowledge-hub" element={<KnowledgeHubPage />} />
             <Route path="/learn/knowledge-hub/:slug" element={<KnowledgeDetailPage />} />
+            <Route path="/learn/knowledge" element={<Navigate to="/learn/knowledge-hub" replace />} />
+            <Route path="/learn/knowledge/:slug" element={<KnowledgeDetailPage />} />
+            <Route path="/knowledge-hub" element={<Navigate to="/learn/knowledge-hub" replace />} />
+            <Route path="/knowledge-hub/:slug" element={<KnowledgeDetailPage />} />
+            <Route path="/knowledge" element={<Navigate to="/learn/knowledge-hub" replace />} />
+            <Route path="/knowledge/:slug" element={<KnowledgeDetailPage />} />
+            <Route path="/Knowledge/:slug" element={<KnowledgeDetailPage />} />
             <Route path="/learn/blog" element={<BlogPage />} />
             <Route path="/learn/blog/:slug" element={<BlogDetailPage />} />
-            <Route path="/knowledge/:slug" element={<BlogDetailPage />} />
-            <Route path="/Knowledge/:slug" element={<BlogDetailPage />} />
+            <Route path="/blog" element={<Navigate to="/learn/blog" replace />} />
+            <Route path="/blog/:slug" element={<BlogDetailPage />} />
 
             {/* 7. Projects */}
             <Route path="/projects" element={<ProjectsPage />} />

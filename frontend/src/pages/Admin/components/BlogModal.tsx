@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { FileText, X, Image as ImageIcon, Upload, Trash2 } from 'lucide-react';
 import { BlogFormData, BlogItem, BlogModalTab, categories } from '../types';
 
@@ -37,13 +37,38 @@ export const BlogModal: React.FC<BlogModalProps> = ({
   handleClearFormatting,
   contentRef
 }) => {
+  const scrollBodyRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!isOpen) return;
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.body.style.overflow = prevOverflow;
+    };
+  }, [isOpen]);
+
+  const handleModalWheel = (e: React.WheelEvent) => {
+    if (!scrollBodyRef.current) return;
+    if (!scrollBodyRef.current.contains(e.target as Node)) {
+      scrollBodyRef.current.scrollTop += e.deltaY;
+    }
+  };
+
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/50 backdrop-blur-xs overflow-y-auto">
-      <div className="bg-white rounded-2xl w-full max-w-3xl max-h-[94vh] flex flex-col shadow-2xl overflow-hidden my-4 border border-slate-200">
-        {/* Modal Header */}
-        <div className="px-6 py-4 border-b border-neutral-200 flex items-center justify-between bg-white">
+    <div
+      data-lenis-prevent
+      className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-slate-950/60 backdrop-blur-xs overflow-hidden"
+    >
+      <div
+        data-lenis-prevent
+        onWheel={handleModalWheel}
+        className="bg-white rounded-2xl w-full max-w-3xl h-full max-h-[90vh] sm:max-h-[92vh] flex flex-col shadow-2xl overflow-hidden border border-slate-200"
+      >
+        {/* Modal Header (Fixed at top) */}
+        <div className="px-6 py-4 border-b border-neutral-200 flex items-center justify-between bg-white shrink-0">
           <div className="flex items-center gap-3">
             <div className="w-8 h-8 rounded-lg bg-neutral-900 text-white flex items-center justify-center">
               <FileText className="w-4 h-4" />
@@ -68,8 +93,8 @@ export const BlogModal: React.FC<BlogModalProps> = ({
           </button>
         </div>
 
-        {/* Three Tabs: Blog Info | Content | Meta Tags */}
-        <div className="px-6 pt-3 border-b border-neutral-200 flex items-center gap-6 bg-white">
+        {/* Three Tabs: Blog Info | Content | Meta Tags (Fixed at top) */}
+        <div className="px-6 pt-3 border-b border-neutral-200 flex items-center gap-6 bg-slate-50/50 shrink-0">
           <button
             type="button"
             onClick={() => setModalTab('info')}
@@ -107,11 +132,17 @@ export const BlogModal: React.FC<BlogModalProps> = ({
           </button>
         </div>
 
-        {/* Form Body */}
-        <form onSubmit={handleFormSubmit} className="flex-1 overflow-y-auto p-6 space-y-6">
-          {/* TAB 1: BLOG INFO */}
-          {modalTab === 'info' && (
-            <div className="border border-slate-200 rounded-2xl p-6 bg-white space-y-4">
+        {/* Form Container wrapping scrollable body and fixed footer */}
+        <form onSubmit={handleFormSubmit} className="flex flex-col flex-1 min-h-0 overflow-hidden">
+          {/* Scrollable Form Body */}
+          <div
+            ref={scrollBodyRef}
+            data-lenis-prevent
+            className="flex-1 min-h-0 overflow-y-auto p-5 sm:p-6 space-y-6 overscroll-contain"
+          >
+            {/* TAB 1: BLOG INFO */}
+            {modalTab === 'info' && (
+              <div className="border border-slate-200 rounded-2xl p-6 bg-white space-y-4">
               {/* Blog Title */}
               <div>
                 <label className="block text-xs font-bold text-slate-800 mb-1.5">Blog Title</label>
@@ -505,39 +536,42 @@ export const BlogModal: React.FC<BlogModalProps> = ({
             </div>
           )}
 
-          {/* Published Toggle */}
-          <div className="flex items-center gap-2.5 px-2">
-            <input
-              type="checkbox"
-              id="modalIsPublished"
-              checked={formData.isPublished}
-              onChange={(e) => setFormData({ ...formData, isPublished: e.target.checked })}
-              className="w-4 h-4 text-orange-500 rounded border-slate-300 focus:ring-orange-400 cursor-pointer"
-            />
-            <label htmlFor="modalIsPublished" className="text-xs font-bold text-slate-800 cursor-pointer">
-              Publish immediately on live blog
-            </label>
           </div>
 
-          {/* Modal Footer Actions */}
-          <div className="pt-4 border-t border-slate-200 flex items-center justify-end gap-3">
-            <button
-              type="button"
-              onClick={onClose}
-              className="px-4 py-2 rounded-lg border border-neutral-200 text-neutral-700 hover:bg-neutral-50 font-medium text-xs transition-colors cursor-pointer"
-            >
-              Cancel
-            </button>
-            <button
-              type="submit"
-              disabled={formLoading}
-              className="bg-neutral-900 hover:bg-neutral-800 text-white font-medium px-5 py-2 rounded-lg shadow-2xs disabled:opacity-50 cursor-pointer text-xs flex items-center gap-2 transition-colors"
-            >
-              {formLoading && (
-                <div className="w-3.5 h-3.5 border-2 border-white/20 border-t-white rounded-full animate-spin" />
-              )}
-              <span>{editingBlog ? 'Update Project' : 'Create Project'}</span>
-            </button>
+          {/* Fixed Modal Footer Actions Bar */}
+          <div className="px-6 py-3.5 bg-slate-50 border-t border-slate-200 flex items-center justify-between shrink-0 z-10">
+            <div className="flex items-center gap-2">
+              <input
+                type="checkbox"
+                id="modalIsPublished"
+                checked={formData.isPublished}
+                onChange={(e) => setFormData((prev) => ({ ...prev, isPublished: e.target.checked }))}
+                className="w-4 h-4 text-orange-500 rounded border-slate-300 focus:ring-orange-400 cursor-pointer"
+              />
+              <label htmlFor="modalIsPublished" className="text-xs font-bold text-slate-800 cursor-pointer select-none">
+                Publish immediately on live blog
+              </label>
+            </div>
+
+            <div className="flex items-center gap-2.5">
+              <button
+                type="button"
+                onClick={onClose}
+                className="px-4 py-2 rounded-lg border border-neutral-200 text-neutral-700 hover:bg-neutral-100 font-medium text-xs transition-colors cursor-pointer"
+              >
+                Cancel
+              </button>
+              <button
+                type="submit"
+                disabled={formLoading}
+                className="bg-neutral-900 hover:bg-neutral-800 text-white font-medium px-5 py-2 rounded-lg shadow-2xs disabled:opacity-50 cursor-pointer text-xs flex items-center gap-2 transition-colors"
+              >
+                {formLoading && (
+                  <div className="w-3.5 h-3.5 border-2 border-white/20 border-t-white rounded-full animate-spin" />
+                )}
+                <span>{editingBlog ? 'Update Article' : 'Publish Article'}</span>
+              </button>
+            </div>
           </div>
         </form>
       </div>

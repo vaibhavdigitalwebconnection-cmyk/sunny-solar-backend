@@ -1,5 +1,5 @@
 import Blog from '../models/Blog.js';
-import { shouldTrackView } from '../utils/viewTracker.js';
+import { shouldTrackView, recordTrafficEvent } from '../utils/viewTracker.js';
 import { uploadToCloudinary } from '../config/cloudinary.js';
 
 const initialArticles = [
@@ -116,8 +116,14 @@ export const getPublishedBlogs = async (req, res, next) => {
 
     const query = { isPublished: true, isDeleted: { $ne: true } };
 
-    if (category && category !== 'All Articles') {
-      query.category = category;
+    if (
+      category &&
+      category !== 'All Articles' &&
+      category !== 'All Categories' &&
+      category !== 'All' &&
+      category.toLowerCase() !== 'all'
+    ) {
+      query.category = { $regex: new RegExp(`^${category.trim()}$`, 'i') };
     }
 
     if (search) {
@@ -159,13 +165,30 @@ export const getBlogBySlug = async (req, res, next) => {
   try {
     await autoSeedIfEmpty();
     const { slug } = req.params;
-    const query = { slug: slug.toLowerCase(), isPublished: true, isDeleted: { $ne: true } };
+    const isPreview = req.query.preview === 'true';
+    const cleanSlug = slug.toLowerCase().trim();
 
-    const shouldIncrement = shouldTrackView(req, 'blog', slug);
+    const query = {
+      $or: [
+        { slug: cleanSlug },
+        { slug: cleanSlug.replace(/^-+|-+$/g, '') }
+      ],
+      isDeleted: { $ne: true }
+    };
+
+    if (!isPreview) {
+      query.isPublished = true;
+    }
+
+    const shouldIncrement = !isPreview && shouldTrackView(req, 'blog', cleanSlug);
 
     const blog = shouldIncrement
       ? await Blog.findOneAndUpdate(query, { $inc: { views: 1 } }, { returnDocument: 'after' })
       : await Blog.findOne(query);
+
+    if (shouldIncrement && blog) {
+      recordTrafficEvent(req, 'blog', blog.slug, blog.title);
+    }
 
     if (!blog) {
       return res.status(404).json({
@@ -422,10 +445,10 @@ export const deleteBlog = async (req, res, next) => {
   try {
     const { id } = req.params;
 
-    // Soft delete: keep permanently in MongoDB, mark as deleted and unpublished
+    // Soft delete: keep permanently in MongoDB, mark as deleted, unpublished, and reset views to 0
     const blog = await Blog.findByIdAndUpdate(
       id,
-      { $set: { isDeleted: true, deletedAt: new Date(), isPublished: false } },
+      { $set: { isDeleted: true, deletedAt: new Date(), isPublished: false, views: 0 } },
       { returnDocument: 'after' }
     );
 

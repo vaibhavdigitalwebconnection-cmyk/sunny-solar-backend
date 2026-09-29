@@ -26,33 +26,63 @@ export const getAllowedOrigins = () => {
 
 // Middlewares
 app.use(morgan('dev'));
-app.use(
-  cors({
-    origin: (origin, callback) => {
-      // Allow requests with no origin (like mobile apps, curl, Postman, or server-to-server)
-      if (!origin) return callback(null, true);
 
-      const allowedOrigins = getAllowedOrigins();
-      const cleanOrigin = origin.replace(/\/$/, '');
+const corsOptions = {
+  origin: (origin, callback) => {
+    // Allow requests with no origin (like mobile apps, curl, Postman, or server-to-server)
+    if (!origin) return callback(null, true);
 
-      if (
-        allowedOrigins.includes(cleanOrigin) ||
-        allowedOrigins.includes('*') ||
-        cleanOrigin.includes('localhost') ||
-        cleanOrigin.includes('127.0.0.1')
-      ) {
-        return callback(null, true);
-      }
+    const allowedOrigins = getAllowedOrigins();
+    const cleanOrigin = origin.replace(/\/$/, '');
 
-      console.warn(`[CORS Blocked] Origin "${origin}" not in allowed list:`, allowedOrigins);
-      return callback(new Error(`CORS blocked for origin: ${origin}`));
-    },
-    credentials: true,
-    methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
-    allowedHeaders: ['Content-Type', 'Authorization'],
-  })
-);
-app.options('*', cors());
+    if (
+      allowedOrigins.includes(cleanOrigin) ||
+      allowedOrigins.includes('*') ||
+      cleanOrigin.includes('localhost') ||
+      cleanOrigin.includes('127.0.0.1')
+    ) {
+      return callback(null, true);
+    }
+
+    console.warn(`[CORS Blocked] Origin "${origin}" not in allowed list:`, allowedOrigins);
+    return callback(new Error(`CORS blocked for origin: ${origin}`));
+  },
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
+  allowedHeaders: [
+    'Content-Type',
+    'Authorization',
+    'x-client-timezone',
+    'x-client-locale',
+    'x-preview-mode',
+    'Accept',
+    'Origin',
+    'X-Requested-With'
+  ]
+};
+
+app.use(cors(corsOptions));
+app.options('*', cors(corsOptions));
+
+// Explicit preflight fallback
+app.use((req, res, next) => {
+  const origin = req.headers.origin;
+  if (origin) {
+    res.setHeader('Access-Control-Allow-Origin', origin);
+  }
+  res.setHeader('Access-Control-Allow-Credentials', 'true');
+  res.setHeader(
+    'Access-Control-Allow-Headers',
+    'Content-Type, Authorization, x-client-timezone, x-client-locale, x-preview-mode, Accept, Origin, X-Requested-With'
+  );
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
+
+  if (req.method === 'OPTIONS') {
+    return res.status(200).end();
+  }
+  next();
+});
+
 app.use(express.json({ limit: '50mb' }));
 app.use(express.urlencoded({ limit: '50mb', extended: true }));
 

@@ -33,6 +33,7 @@ import { KnowledgeGrid } from './components/KnowledgeGrid';
 import { KnowledgeTable } from './components/KnowledgeTable';
 import { BlogModal } from './components/BlogModal';
 import { KnowledgeModal } from './components/KnowledgeModal';
+import { DeleteConfirmModal } from './components/DeleteConfirmModal';
 
 export const AdminPage: React.FC = () => {
   // Authentication states
@@ -103,23 +104,77 @@ export const AdminPage: React.FC = () => {
     )
   );
 
+  // Delete Confirmation Modal State
+  const [deleteModalState, setDeleteModalState] = useState<{
+    isOpen: boolean;
+    type: 'blog' | 'knowledge';
+    id: string;
+    title: string;
+    isDeleting: boolean;
+  }>({
+    isOpen: false,
+    type: 'blog',
+    id: '',
+    title: '',
+    isDeleting: false
+  });
+
+  // Listen for global auth:unauthorized events from api service
+  useEffect(() => {
+    const handleUnauthorized = (e: any) => {
+      setIsAuthenticated(false);
+      setAdminUser(null);
+      const msg = e.detail?.message || 'Session expired or unauthorized. Please sign in again.';
+      setLoginError(msg);
+      showToast('error', msg);
+    };
+
+    window.addEventListener('auth:unauthorized', handleUnauthorized);
+    return () => {
+      window.removeEventListener('auth:unauthorized', handleUnauthorized);
+    };
+  }, []);
+
   // Data Loading & Auto-refresh
   const loadDashboardData = async (silent: boolean = false) => {
+    if (!getAdminToken()) {
+      setIsAuthenticated(false);
+      setAdminUser(null);
+      return;
+    }
+
     if (!silent) {
       setLoadingBlogs(true);
       setLoadingKnowledge(true);
     }
     try {
       const [statsRes, blogsRes, knowledgeRes] = await Promise.all([
-        api.getStats().catch(() => null),
-        api.getAllAdminBlogs().catch(() => null),
-        api.getAllAdminKnowledge().catch(() => null)
+        api.getStats().catch((err) => {
+          if (err?.status === 401) throw err;
+          return null;
+        }),
+        api.getAllAdminBlogs().catch((err) => {
+          if (err?.status === 401) throw err;
+          return null;
+        }),
+        api.getAllAdminKnowledge().catch((err) => {
+          if (err?.status === 401) throw err;
+          return null;
+        })
       ]);
 
       if (statsRes?.stats) setStats(statsRes.stats);
       if (blogsRes?.data) setBlogs(blogsRes.data);
       if (knowledgeRes?.data) setKnowledgeItems(knowledgeRes.data);
     } catch (err: any) {
+      if (err?.status === 401 || err?.message?.includes('authorized') || err?.message?.includes('token')) {
+        api.logout();
+        setIsAuthenticated(false);
+        setAdminUser(null);
+        setLoginError(err.message || 'Session expired or unauthorized. Please sign in again.');
+        showToast('error', 'Session expired. Please sign in again.');
+        return;
+      }
       if (!silent) {
         showToast('error', err.message || 'Failed to fetch data from MongoDB');
       }
@@ -133,6 +188,12 @@ export const AdminPage: React.FC = () => {
 
   useEffect(() => {
     if (!isAuthenticated) return;
+
+    if (!getAdminToken()) {
+      setIsAuthenticated(false);
+      setAdminUser(null);
+      return;
+    }
 
     loadDashboardData(false);
 
@@ -502,24 +563,14 @@ export const AdminPage: React.FC = () => {
     }
   };
 
-  const handleDeleteBlog = async (id: string, title: string) => {
-    if (
-      !window.confirm(
-        `Are you sure you want to remove "${title}" from the website and admin view?\n\nNOTE: This data is NEVER deleted from the database. It is permanently saved in MongoDB Atlas and can be restored from the "Archived in DB" tab anytime.`
-      )
-    )
-      return;
-
-    try {
-      await api.deleteBlog(id);
-      setBlogs((prev) =>
-        prev.map((b) => (b._id === id ? { ...b, isDeleted: true, isPublished: false, deletedAt: new Date().toISOString() } : b))
-      );
-      showToast('success', 'Removed from website & active list. Safely preserved in database!');
-      await loadDashboardData(true);
-    } catch (err: any) {
-      showToast('error', err.message || 'Failed to remove article');
-    }
+  const handleDeleteBlog = (id: string, title: string) => {
+    setDeleteModalState({
+      isOpen: true,
+      type: 'blog',
+      id,
+      title,
+      isDeleting: false
+    });
   };
 
   const handleRestoreBlog = async (id: string, title: string) => {
@@ -580,7 +631,7 @@ export const AdminPage: React.FC = () => {
 
   const handleFormSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!formData.title || !formData.excerpt) {
+    if (!formData.title?.trim() || !formData.excerpt?.trim()) {
       showToast('error', 'Title and excerpt are required');
       return;
     }
@@ -588,9 +639,39 @@ export const AdminPage: React.FC = () => {
     setFormLoading(true);
 
     try {
+      // Ensure a valid, clean slug
+      const rawSlug = formData.slug ? formData.slug.replace(/^\/?(learn\/blog\/)?/, '').trim() : '';
+      const cleanSlug =
+        rawSlug
+          .toLowerCase()
+          .replace(/[^a-z0-9]+/g, '-')
+          .replace(/^-+|-+$/g, '') ||
+        formData.title
+          .trim()
+          .toLowerCase()
+          .replace(/[^a-z0-9]+/g, '-')
+          .replace(/^-+|-+$/g, '');
+
+      // Content fallback if user only filled first tab
+      const cleanContent = formData.content?.trim()
+        ? formData.content
+        : `<p>${formData.excerpt.trim()}</p>`;
+
+      const rawTakeaways: unknown = formData.keyTakeaways;
+      const keyTakeaways =
+        typeof rawTakeaways === 'string'
+          ? rawTakeaways.split('\n').map((k) => k.trim()).filter(Boolean)
+          : Array.isArray(rawTakeaways)
+            ? rawTakeaways.map((k) => String(k).trim()).filter(Boolean)
+            : [];
+
       const payload = {
         ...formData,
-        keyTakeaways: formData.keyTakeaways.split('\n').map((k) => k.trim()).filter(Boolean)
+        title: formData.title.trim(),
+        excerpt: formData.excerpt.trim(),
+        slug: cleanSlug,
+        content: cleanContent,
+        keyTakeaways
       };
 
       if (editingBlog) {
@@ -626,23 +707,88 @@ export const AdminPage: React.FC = () => {
     }
   };
 
-  const handleDeleteKnowledge = async (id: string, title: string) => {
-    if (
-      !window.confirm(
-        `Are you sure you want to remove "${title}" from the website and admin view?\n\nNOTE: This data is NEVER deleted from the database. It is permanently saved in MongoDB Atlas and can be restored from the "Archived in DB" tab anytime.`
-      )
-    )
-      return;
+  const handleDeleteKnowledge = (id: string, title: string) => {
+    setDeleteModalState({
+      isOpen: true,
+      type: 'knowledge',
+      id,
+      title,
+      isDeleting: false
+    });
+  };
+
+  const handleConfirmDelete = async () => {
+    const { id, title, type } = deleteModalState;
+    if (!id) return;
+
+    setDeleteModalState((prev) => ({ ...prev, isDeleting: true }));
 
     try {
-      await api.deleteKnowledge(id);
-      setKnowledgeItems((prev) =>
-        prev.map((k) => (k._id === id ? { ...k, isDeleted: true, isPublished: false, deletedAt: new Date().toISOString() } : k))
-      );
-      showToast('success', 'Removed from website & active list. Safely preserved in database!');
+      if (type === 'blog') {
+        const targetBlog = blogs.find((b) => b._id === id);
+        const removedViews = targetBlog?.views || 0;
+
+        await api.deleteBlog(id);
+        setBlogs((prev) =>
+          prev.map((b) =>
+            b._id === id
+              ? { ...b, isDeleted: true, isPublished: false, views: 0, deletedAt: new Date().toISOString() }
+              : b
+          )
+        );
+
+        // Optimistically update stats immediately so Total Reads drops with zero lag
+        setStats((prev: any) => {
+          if (!prev) return prev;
+          return {
+            ...prev,
+            totalBlogs: Math.max(0, (prev.totalBlogs ?? 1) - 1),
+            publishedBlogs: targetBlog?.isPublished ? Math.max(0, (prev.publishedBlogs ?? 1) - 1) : prev.publishedBlogs,
+            archivedBlogs: (prev.archivedBlogs ?? 0) + 1,
+            totalViews: Math.max(0, (prev.totalViews ?? removedViews) - removedViews)
+          };
+        });
+
+        showToast('success', `"${title}" moved to archive. Safely preserved in database!`);
+      } else {
+        const targetKnowledge = knowledgeItems.find((k) => k._id === id);
+        const removedViews = targetKnowledge?.views || 0;
+
+        await api.deleteKnowledge(id);
+        setKnowledgeItems((prev) =>
+          prev.map((k) =>
+            k._id === id
+              ? { ...k, isDeleted: true, isPublished: false, views: 0, deletedAt: new Date().toISOString() }
+              : k
+          )
+        );
+
+        // Optimistically update stats immediately
+        setStats((prev: any) => {
+          if (!prev) return prev;
+          return {
+            ...prev,
+            totalKnowledge: Math.max(0, (prev.totalKnowledge ?? 1) - 1),
+            publishedKnowledge: targetKnowledge?.isPublished ? Math.max(0, (prev.publishedKnowledge ?? 1) - 1) : prev.publishedKnowledge,
+            archivedKnowledge: (prev.archivedKnowledge ?? 0) + 1,
+            totalKnowledgeViews: Math.max(0, (prev.totalKnowledgeViews ?? removedViews) - removedViews)
+          };
+        });
+
+        showToast('success', `"${title}" moved to archive. Safely preserved in database!`);
+      }
+
+      setDeleteModalState({
+        isOpen: false,
+        type: 'blog',
+        id: '',
+        title: '',
+        isDeleting: false
+      });
       await loadDashboardData(true);
     } catch (err: any) {
-      showToast('error', err.message || 'Failed to remove knowledge guide');
+      showToast('error', err.message || `Failed to remove ${type === 'blog' ? 'article' : 'guide'}`);
+      setDeleteModalState((prev) => ({ ...prev, isDeleting: false }));
     }
   };
 
@@ -713,7 +859,7 @@ export const AdminPage: React.FC = () => {
 
   const handleKnowledgeFormSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!knowledgeFormData.title || !knowledgeFormData.excerpt) {
+    if (!knowledgeFormData.title?.trim() || !knowledgeFormData.excerpt?.trim()) {
       showToast('error', 'Title and excerpt are required');
       return;
     }
@@ -721,12 +867,42 @@ export const AdminPage: React.FC = () => {
     setKnowledgeFormLoading(true);
 
     try {
+      // Ensure clean slug
+      const rawSlug = knowledgeFormData.slug ? knowledgeFormData.slug.replace(/^\/?(learn\/knowledge\/)?/, '').trim() : '';
+      const cleanSlug =
+        rawSlug
+          .toLowerCase()
+          .replace(/[^a-z0-9]+/g, '-')
+          .replace(/^-+|-+$/g, '') ||
+        knowledgeFormData.title
+          .trim()
+          .toLowerCase()
+          .replace(/[^a-z0-9]+/g, '-')
+          .replace(/^-+|-+$/g, '');
+
+      // Content fallback if user only filled first tab
+      const cleanContent = knowledgeFormData.content?.trim()
+        ? knowledgeFormData.content
+        : `<p>${knowledgeFormData.excerpt.trim()}</p>`;
+
+      const rawTakeaways: unknown = knowledgeFormData.keyTakeaways;
+      const keyTakeaways =
+        typeof rawTakeaways === 'string'
+          ? rawTakeaways.split('\n').map((k) => k.trim()).filter(Boolean)
+          : Array.isArray(rawTakeaways)
+            ? rawTakeaways.map((k) => String(k).trim()).filter(Boolean)
+            : [];
+
       const payload = {
         ...knowledgeFormData,
-        keyTakeaways: knowledgeFormData.keyTakeaways.split('\n').map((k) => k.trim()).filter(Boolean),
-        quickStats: knowledgeFormData.quickStats.filter((s) => s.label.trim() || s.value.trim()),
-        matrixRows: knowledgeFormData.matrixRows.filter((r) => r.feature.trim() || r.col1.trim() || r.col2.trim() || r.col3.trim()),
-        faqs: knowledgeFormData.faqs.filter((f) => f.question.trim() || f.answer.trim())
+        title: knowledgeFormData.title.trim(),
+        excerpt: knowledgeFormData.excerpt.trim(),
+        slug: cleanSlug,
+        content: cleanContent,
+        keyTakeaways,
+        quickStats: (knowledgeFormData.quickStats || []).filter((s) => s.label.trim() || s.value.trim()),
+        matrixRows: (knowledgeFormData.matrixRows || []).filter((r) => r.feature.trim() || r.col1.trim() || r.col2.trim() || r.col3.trim()),
+        faqs: (knowledgeFormData.faqs || []).filter((f) => f.question.trim() || f.answer.trim())
       };
 
       if (editingKnowledge) {
@@ -890,7 +1066,7 @@ export const AdminPage: React.FC = () => {
             />
           )}
 
-          {/* SUBHEADER & ACTION BAR (Only for Bloge & Knowledge Hub views) */}
+          {/* SUBHEADER & ACTION BAR (Only for Blog & Knowledge Hub views) */}
           {activeTab !== 'overview' && (
             <AdminActionBar
               activeTab={activeTab}
@@ -935,13 +1111,14 @@ export const AdminPage: React.FC = () => {
                   handleOpenEdit={handleOpenEdit}
                   handleTogglePublish={handleTogglePublish}
                   handleDeleteBlog={handleDeleteBlog}
+                  handleRestoreBlog={handleRestoreBlog}
                   getTimelineHealth={getTimelineHealth}
                 />
               )}
             </>
           )}
 
-          {/* VIEW: TECHNICAL GUIDES & BLUEPRINTS (KNOWLEDGE HUB) */}
+          {/* VIEW: Knowledge Hub & BLUEPRINTS (KNOWLEDGE HUB) */}
           {activeTab === 'knowledge' && (
             <>
               {viewMode === 'grid' && (
@@ -961,6 +1138,7 @@ export const AdminPage: React.FC = () => {
                   handleOpenEditKnowledge={handleOpenEditKnowledge}
                   handleTogglePublishKnowledge={handleTogglePublishKnowledge}
                   handleDeleteKnowledge={handleDeleteKnowledge}
+                  handleRestoreKnowledge={handleRestoreKnowledge}
                   getTimelineHealth={getTimelineHealth}
                 />
               )}
@@ -1017,6 +1195,19 @@ export const AdminPage: React.FC = () => {
         handleAddFaq={handleAddFaq}
         handleRemoveFaq={handleRemoveFaq}
         handleUpdateFaq={handleUpdateFaq}
+      />
+
+      {/* 6. MODAL: DELETE / ARCHIVE CONFIRMATION */}
+      <DeleteConfirmModal
+        isOpen={deleteModalState.isOpen}
+        onClose={() =>
+          !deleteModalState.isDeleting &&
+          setDeleteModalState((prev) => ({ ...prev, isOpen: false }))
+        }
+        onConfirm={handleConfirmDelete}
+        title={deleteModalState.title}
+        type={deleteModalState.type}
+        isDeleting={deleteModalState.isDeleting}
       />
     </div>
   );

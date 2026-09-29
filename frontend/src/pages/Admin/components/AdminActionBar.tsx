@@ -50,13 +50,13 @@ export const AdminActionBar: React.FC<AdminActionBarProps> = ({
       <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
         {/* Title with Folder Icon */}
         <div className="flex items-center gap-2.5">
-     
+
           <h1 className="text-lg font-bold font-serif text-neutral-900 tracking-tight">
             {activeTab === 'articles'
-              ? 'Bloge'
+              ? 'Blog'
               : activeTab === 'knowledge'
-              ? 'Knowledge Hub'
-              : 'Analytics & Overview'}
+                ? 'Knowledge Hub'
+                : 'Analytics & Overview'}
           </h1>
         </div>
 
@@ -128,11 +128,10 @@ export const AdminActionBar: React.FC<AdminActionBarProps> = ({
             <button
               type="button"
               onClick={() => setViewMode('grid')}
-              className={`p-1.5 rounded-md transition-colors cursor-pointer ${
-                viewMode === 'grid'
+              className={`p-1.5 rounded-md transition-colors cursor-pointer ${viewMode === 'grid'
                   ? 'bg-neutral-900 text-white'
                   : 'text-black hover:text-neutral-900'
-              }`}
+                }`}
               title="Grid Cards View"
             >
               <LayoutGrid className="w-3.5 h-3.5" />
@@ -140,11 +139,10 @@ export const AdminActionBar: React.FC<AdminActionBarProps> = ({
             <button
               type="button"
               onClick={() => setViewMode('table')}
-              className={`p-1.5 rounded-md transition-colors cursor-pointer ${
-                viewMode === 'table'
+              className={`p-1.5 rounded-md transition-colors cursor-pointer ${viewMode === 'table'
                   ? 'bg-neutral-900 text-white'
                   : 'text-black hover:text-neutral-900'
-              }`}
+                }`}
               title="Table View"
             >
               <List className="w-3.5 h-3.5" />
@@ -168,7 +166,7 @@ export const AdminActionBar: React.FC<AdminActionBarProps> = ({
               className="bg-black hover:bg-black text-white font-medium text-xs px-3.5 py-1.5 rounded-lg flex items-center gap-1.5 shadow-2xs cursor-pointer transition-colors"
             >
               <Plus className="w-4 h-4" />
-              <span>Add Bloge</span>
+              <span>Add Blog</span>
             </button>
           )}
         </div>

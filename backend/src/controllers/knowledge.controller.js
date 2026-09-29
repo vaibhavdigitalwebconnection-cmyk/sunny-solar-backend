@@ -1,5 +1,5 @@
 import Knowledge from '../models/Knowledge.js';
-import { shouldTrackView } from '../utils/viewTracker.js';
+import { shouldTrackView, recordTrafficEvent } from '../utils/viewTracker.js';
 import { uploadToCloudinary } from '../config/cloudinary.js';
 
 // Default initial Knowledge guides for seamless startup
@@ -208,8 +208,14 @@ export const getPublishedKnowledge = async (req, res, next) => {
     const { category, search, page = 1, limit = 50 } = req.query;
     const query = { isPublished: true, isDeleted: { $ne: true } };
 
-    if (category && category !== 'All Guides' && category !== 'All Categories') {
-      query.category = category;
+    if (
+      category &&
+      category !== 'All Guides' &&
+      category !== 'All Categories' &&
+      category !== 'All Articles' &&
+      category.toLowerCase() !== 'all'
+    ) {
+      query.category = { $regex: new RegExp(`^${category.trim()}$`, 'i') };
     }
 
     if (search) {
@@ -250,13 +256,30 @@ export const getKnowledgeBySlug = async (req, res, next) => {
   try {
     await autoSeedIfEmpty();
     const { slug } = req.params;
-    const query = { slug: slug.toLowerCase(), isPublished: true, isDeleted: { $ne: true } };
+    const isPreview = req.query.preview === 'true';
+    const cleanSlug = slug.toLowerCase().trim();
 
-    const shouldIncrement = shouldTrackView(req, 'knowledge', slug);
+    const query = {
+      $or: [
+        { slug: cleanSlug },
+        { slug: cleanSlug.replace(/^-+|-+$/g, '') }
+      ],
+      isDeleted: { $ne: true }
+    };
+
+    if (!isPreview) {
+      query.isPublished = true;
+    }
+
+    const shouldIncrement = !isPreview && shouldTrackView(req, 'knowledge', cleanSlug);
 
     const guide = shouldIncrement
       ? await Knowledge.findOneAndUpdate(query, { $inc: { views: 1 } }, { returnDocument: 'after' })
       : await Knowledge.findOne(query);
+
+    if (shouldIncrement && guide) {
+      recordTrafficEvent(req, 'knowledge', guide.slug, guide.title);
+    }
 
     if (!guide) {
       return res.status(404).json({
@@ -519,10 +542,10 @@ export const deleteKnowledge = async (req, res, next) => {
   try {
     const { id } = req.params;
 
-    // Soft delete: keep permanently in MongoDB, mark as deleted and unpublished
+    // Soft delete: keep permanently in MongoDB, mark as deleted, unpublished, and reset views to 0
     const guide = await Knowledge.findByIdAndUpdate(
       id,
-      { $set: { isDeleted: true, deletedAt: new Date(), isPublished: false } },
+      { $set: { isDeleted: true, deletedAt: new Date(), isPublished: false, views: 0 } },
       { returnDocument: 'after' }
     );
 

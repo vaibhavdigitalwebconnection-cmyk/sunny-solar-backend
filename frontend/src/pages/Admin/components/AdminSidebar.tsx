@@ -34,20 +34,19 @@ export const AdminSidebar: React.FC<AdminSidebarProps> = ({
 }) => {
   return (
     <aside
-      className={`w-64 bg-white border-r border-neutral-200/80 flex flex-col shrink-0 fixed inset-y-0 left-0 z-30 transition-transform duration-200 shadow-2xs ${
-        sidebarOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'
-      }`}
+      className={`w-64 bg-white border-r border-neutral-200/80 flex flex-col shrink-0 fixed inset-y-0 left-0 z-30 transition-transform duration-200 shadow-2xs ${sidebarOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'
+        }`}
     >
       {/* Brand Area */}
       <div className="h-16 px-5 border-b border-neutral-100 flex items-center justify-between">
         <div className="flex items-center gap-3">
-        <img src={logo} alt="" className='w-15' />
+          <img src={logo} alt="" className='w-15' />
         </div>
-       <h1 className="text-xl font-bold font-serif">Admin penal</h1>
+        <h1 className="text-xl font-bold font-serif">Admin penal</h1>
       </div>
 
       {/* Navigation Sections */}
-      <div className="p-3 flex-1 overflow-y-auto space-y-6">
+      <div data-lenis-prevent className="p-3 flex-1 overflow-y-auto space-y-6">
         {/* Section 1: Ecommerce / Overview */}
         <div>
           <div className="px-3 pb-2 text-[10px] font-bold text-neutral-400 uppercase tracking-wider">
@@ -57,11 +56,10 @@ export const AdminSidebar: React.FC<AdminSidebarProps> = ({
             <button
               type="button"
               onClick={() => setActiveTab('overview')}
-              className={`w-full flex items-center justify-between px-3 py-2 rounded-lg text-xs font-medium transition-colors cursor-pointer ${
-                activeTab === 'overview'
+              className={`w-full flex items-center justify-between px-3 py-2 rounded-lg text-xs font-medium transition-colors cursor-pointer ${activeTab === 'overview'
                   ? 'bg-neutral-100 text-neutral-900 font-bold'
                   : 'text-neutral-600 hover:bg-neutral-50 hover:text-neutral-900'
-              }`}
+                }`}
             >
               <div className="flex items-center gap-2.5">
                 <LayoutDashboard className="w-4 h-4 text-neutral-500" />
@@ -76,15 +74,14 @@ export const AdminSidebar: React.FC<AdminSidebarProps> = ({
                 setActiveTab('articles');
                 setStatusFilter('all');
               }}
-              className={`w-full flex items-center justify-between px-3 py-2 rounded-lg text-xs font-medium transition-colors cursor-pointer ${
-                activeTab === 'articles'
+              className={`w-full flex items-center justify-between px-3 py-2 rounded-lg text-xs font-medium transition-colors cursor-pointer ${activeTab === 'articles'
                   ? 'bg-neutral-100 text-neutral-900 font-bold'
                   : 'text-neutral-600 hover:bg-neutral-50 hover:text-neutral-900'
-              }`}
+                }`}
             >
               <div className="flex items-center gap-2.5">
                 <FileText className="w-4 h-4 text-neutral-500" />
-                <span>Bloge</span>
+                <span>Blog</span>
               </div>
               <ChevronRight className="w-3.5 h-3.5 text-neutral-400" />
             </button>
@@ -95,11 +92,10 @@ export const AdminSidebar: React.FC<AdminSidebarProps> = ({
                 setActiveTab('knowledge');
                 setStatusFilterKnowledge('all');
               }}
-              className={`w-full flex items-center justify-between px-3 py-2 rounded-lg text-xs font-medium transition-colors cursor-pointer ${
-                activeTab === 'knowledge'
+              className={`w-full flex items-center justify-between px-3 py-2 rounded-lg text-xs font-medium transition-colors cursor-pointer ${activeTab === 'knowledge'
                   ? 'bg-neutral-100 text-neutral-900 font-bold'
                   : 'text-neutral-600 hover:bg-neutral-50 hover:text-neutral-900'
-              }`}
+                }`}
             >
               <div className="flex items-center gap-2.5">
                 <BookOpen className="w-4 h-4 text-neutral-500" />

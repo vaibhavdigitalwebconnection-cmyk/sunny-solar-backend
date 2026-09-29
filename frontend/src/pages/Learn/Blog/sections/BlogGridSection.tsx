@@ -3,7 +3,6 @@ import { ArticleCard } from '../../../../components/cards/ArticleCard';
 import { Newspaper } from 'lucide-react';
 import { api } from '../../../../services/api';
 import type { Article } from '../../../../types/blog';
-import { articlesData } from '../../../../data/blogData';
 import LatticeLoadingBlock from '../../../../components/ui/LatticeLoadingBlock';
 
 const categories = [
@@ -17,28 +16,21 @@ const categories = [
 
 export const BlogGridSection: React.FC = () => {
   const [selectedCategory, setSelectedCategory] = useState<string>('All Articles');
-  const [articles, setArticles] = useState<Article[]>(() => articlesData);
-  const [loading, setLoading] = useState(false);
+  const [articles, setArticles] = useState<Article[]>([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     let isMounted = true;
     const fetchArticles = async () => {
+      setLoading(true);
       try {
         const res = await api.getBlogs(selectedCategory);
-        if (isMounted && res?.data && res.data.length > 0) {
-          setArticles(res.data);
-        } else if (isMounted) {
-          const fallbackFiltered = selectedCategory === 'All Articles'
-            ? articlesData
-            : articlesData.filter((a) => a.category === selectedCategory);
-          setArticles(fallbackFiltered);
+        if (isMounted) {
+          setArticles(res?.data || []);
         }
       } catch (err) {
         if (isMounted) {
-          const fallbackFiltered = selectedCategory === 'All Articles'
-            ? articlesData
-            : articlesData.filter((a) => a.category === selectedCategory);
-          setArticles(fallbackFiltered);
+          setArticles([]);
         }
       } finally {
         if (isMounted) {

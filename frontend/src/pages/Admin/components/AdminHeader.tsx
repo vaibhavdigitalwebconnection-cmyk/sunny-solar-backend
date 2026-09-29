@@ -30,7 +30,7 @@ export const AdminHeader: React.FC<AdminHeaderProps> = ({
           <Folder className="w-4 h-4 text-neutral-500" />
           <span>
             {activeTab === 'articles'
-              ? 'Bloge'
+              ? 'Blog'
               : activeTab === 'knowledge'
                 ? 'Knowledge Hub '
                 : 'Dashboard Analytics'}

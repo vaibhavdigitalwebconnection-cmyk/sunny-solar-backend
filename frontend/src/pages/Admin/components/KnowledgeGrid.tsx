@@ -32,7 +32,7 @@ export const KnowledgeGrid: React.FC<KnowledgeGridProps> = ({
     return (
       <div className="bg-white border border-neutral-200 rounded-2xl p-12 text-center text-neutral-400">
         <BookOpen className="w-10 h-10 mx-auto mb-3 text-neutral-300" />
-        <p className="font-bold text-sm text-neutral-800">No technical guides found</p>
+        <p className="font-bold text-sm text-neutral-800">No Knowledge Hub found</p>
         <p className="text-xs text-neutral-400 mt-1">
           Try adjusting your search query, filter criteria, or add a new guide.
         </p>
@@ -77,22 +77,20 @@ export const KnowledgeGrid: React.FC<KnowledgeGridProps> = ({
               {/* Top Floating Glass Badges & Action Buttons */}
               <div className="absolute top-3 inset-x-3 flex items-center justify-between z-10">
                 <span
-                  className={`inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-medium backdrop-blur-md border ${
-                    item.isDeleted
+                  className={`inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-medium backdrop-blur-md border ${item.isDeleted
                       ? 'bg-black/50 text-amber-300 border-amber-400/30'
                       : item.isPublished
-                      ? 'bg-black/50 text-blue-400 border-blue-400/30'
-                      : 'bg-black/50 text-neutral-300 border-white/20'
-                  }`}
+                        ? 'bg-black/50 text-blue-400 border-blue-400/30'
+                        : 'bg-black/50 text-neutral-300 border-white/20'
+                    }`}
                 >
                   <span
-                    className={`w-1.5 h-1.5 rounded-full ${
-                      item.isDeleted
+                    className={`w-1.5 h-1.5 rounded-full ${item.isDeleted
                         ? 'bg-amber-400'
                         : item.isPublished
-                        ? 'bg-blue-600'
-                        : 'bg-black'
-                    }`}
+                          ? 'bg-blue-600'
+                          : 'bg-black'
+                      }`}
                   />
                   {item.isDeleted ? 'Archived' : item.isPublished ? 'Active' : 'Draft'}
                 </span>
@@ -120,7 +118,7 @@ export const KnowledgeGrid: React.FC<KnowledgeGridProps> = ({
 
               {/* Bottom Gradient Overlay */}
               <div className="absolute inset-0 bg-linear-to-t from-black/90 via-black/35 to-transparent flex flex-col justify-end p-4.5 pt-14 pointer-events-none">
-              
+
                 <h3 className="text-base font-bold text-white line-clamp-1 transition-colors drop-shadow-xs">
                   {item.title}
                 </h3>
@@ -131,7 +129,7 @@ export const KnowledgeGrid: React.FC<KnowledgeGridProps> = ({
             <div className="p-4.5 flex-1 flex flex-col justify-between space-y-4">
               {/* Cycle Line */}
               <div>
-               
+
                 <div className="flex items-center justify-between mt-0.5">
                   <span className="text-xs font-bold text-neutral-900">{item.category}</span>
                   <span className="text-[11px] text-neutral-900">
@@ -140,7 +138,7 @@ export const KnowledgeGrid: React.FC<KnowledgeGridProps> = ({
                 </div>
               </div>
 
-           
+
               {/* Meta Stats Grid: 2 Columns */}
               <div className="grid grid-cols-2 gap-4 pt-1">
                 <div>
@@ -148,7 +146,7 @@ export const KnowledgeGrid: React.FC<KnowledgeGridProps> = ({
                   <span className="text-xs font-bold text-black/80 block truncate mt-0.5">
                     {item.publishDate || '22 Feb 2026'}
                   </span>
-                 
+
                 </div>
 
                 <div>
@@ -176,17 +174,15 @@ export const KnowledgeGrid: React.FC<KnowledgeGridProps> = ({
                 <button
                   type="button"
                   onClick={() => handleTogglePublishKnowledge(item)}
-                  className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-semibold cursor-pointer transition-all border ${
-                    item.isPublished
+                  className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-semibold cursor-pointer transition-all border ${item.isPublished
                       ? 'bg-blue-50/40 text-blue-900 border-blue-200 hover:bg-blue-100'
                       : 'bg-white text-black border-neutral-200 hover:bg-neutral-100'
-                  }`}
+                    }`}
                   title="Toggle Live / Draft Status"
                 >
                   <span
-                    className={`w-1.5 h-1.5 rounded-full ${
-                      item.isPublished ? 'bg-blue-600' : 'bg-black'
-                    }`}
+                    className={`w-1.5 h-1.5 rounded-full ${item.isPublished ? 'bg-blue-600' : 'bg-black'
+                      }`}
                   />
                   <span>{item.isPublished ? 'Live' : 'Draft'}</span>
                 </button>

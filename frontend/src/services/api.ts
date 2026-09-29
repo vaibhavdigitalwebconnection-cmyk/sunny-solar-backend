@@ -1,50 +1,115 @@
-const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
+const RAW_API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
+const API_BASE_URL = RAW_API_URL.replace(/\/+$/, '');
 
 // Token helpers (stored in localStorage)
 export const getAdminToken = (): string | null => {
-  return localStorage.getItem('sunny_admin_Jwt_token') || localStorage.getItem('sunny_admin_token');
+  if (typeof window === 'undefined') return null;
+  const token = localStorage.getItem('sunny_admin_Jwt_token') || localStorage.getItem('sunny_admin_token');
+  if (!token || token === 'undefined' || token === 'null' || token.trim() === '') {
+    return null;
+  }
+  return token;
 };
 
 export const setAdminToken = (token: string): void => {
+  if (typeof window === 'undefined') return;
+  if (!token || token === 'undefined' || token === 'null' || token.trim() === '') {
+    removeAdminToken();
+    return;
+  }
   localStorage.setItem('sunny_admin_Jwt_token', token);
 };
 
 export const removeAdminToken = (): void => {
+  if (typeof window === 'undefined') return;
   localStorage.removeItem('sunny_admin_Jwt_token');
   localStorage.removeItem('sunny_admin_token');
   localStorage.removeItem('sunny_admin_user');
 };
 
 export const getStoredAdminUser = () => {
-  const user = localStorage.getItem('sunny_admin_user');
-  return user ? JSON.parse(user) : null;
+  if (typeof window === 'undefined') return null;
+  try {
+    const user = localStorage.getItem('sunny_admin_user');
+    if (!user || user === 'undefined' || user === 'null') return null;
+    return JSON.parse(user);
+  } catch {
+    return null;
+  }
 };
 
 export const setStoredAdminUser = (user: any) => {
+  if (typeof window === 'undefined') return;
+  if (!user) {
+    localStorage.removeItem('sunny_admin_user');
+    return;
+  }
   localStorage.setItem('sunny_admin_user', JSON.stringify(user));
 };
 
-// Generic fetch wrapper with auth header
+// Generic fetch wrapper with auth header & client telemetry
 const request = async (endpoint: string, options: RequestInit = {}) => {
+  const clientTimezone =
+    typeof Intl !== 'undefined' ? Intl.DateTimeFormat().resolvedOptions().timeZone : '';
+  const clientLocale = typeof navigator !== 'undefined' ? navigator.language : '';
+
   const headers: Record<string, string> = {
     'Content-Type': 'application/json',
+    'x-client-timezone': clientTimezone || 'Asia/Kolkata',
+    'x-client-locale': clientLocale || 'en-IN',
     ...((options.headers as Record<string, string>) || {})
   };
+
+  // If body is FormData, do not set application/json so browser sets multipart boundary
+  if (typeof FormData !== 'undefined' && options.body instanceof FormData) {
+    delete headers['Content-Type'];
+  }
 
   const token = getAdminToken();
   if (token) {
     headers['Authorization'] = `Bearer ${token}`;
   }
 
-  const response = await fetch(`${API_BASE_URL}${endpoint}`, {
-    ...options,
-    headers
-  });
+  const cleanEndpoint = endpoint.startsWith('/') ? endpoint : `/${endpoint}`;
 
-  const data = await response.json();
+  let response: Response;
+  try {
+    response = await fetch(`${API_BASE_URL}${cleanEndpoint}`, {
+      ...options,
+      headers
+    });
+  } catch (netErr: any) {
+    console.error(`[API Network Error] ${options.method || 'GET'} ${cleanEndpoint}:`, netErr);
+    throw new Error(
+      netErr.message === 'Failed to fetch'
+        ? `Could not reach server at ${API_BASE_URL}. Please check your connection or backend status.`
+        : netErr.message || 'Network request failed'
+    );
+  }
+
+  let data: any = {};
+  try {
+    data = await response.json();
+  } catch {
+    data = { message: response.statusText || 'API request failed' };
+  }
 
   if (!response.ok) {
-    throw new Error(data.message || 'API request failed');
+    if (response.status === 401) {
+      removeAdminToken();
+      if (typeof window !== 'undefined') {
+        window.dispatchEvent(
+          new CustomEvent('auth:unauthorized', {
+            detail: { message: data.message || 'Session expired or unauthorized. Please sign in again.' }
+          })
+        );
+      }
+    }
+
+    const error: any = new Error(data.message || 'API request failed');
+    error.status = response.status;
+    error.data = data;
+    throw error;
   }
 
   return data;
@@ -72,6 +137,9 @@ export const api = {
   getProfile: () => request('/admin/me'),
 
   getStats: () => request('/admin/stats'),
+
+  // Health Check & Render Keep-Alive
+  getHealth: () => request('/health'),
 
   // Image Upload to Cloudinary
   uploadImage: (image: string, folder: string = 'sunny-solar'): Promise<{ success: boolean; url: string; public_id?: string; message?: string }> =>

@@ -5,7 +5,7 @@ import type { Article } from '../../../../types/blog';
 import { Badge } from '../../../../components/ui/Badge';
 import { Calendar, Clock, ArrowRight, Sparkles, CheckCircle2 } from 'lucide-react';
 
-import { articlesData } from '../../../../data/blogData';
+import LatticeLoadingBlock from '../../../../components/ui/LatticeLoadingBlock';
 
 interface BlogFeaturedSectionProps {
   featuredArticle?: Article | null;
@@ -13,26 +13,37 @@ interface BlogFeaturedSectionProps {
 
 export const BlogFeaturedSection: React.FC<BlogFeaturedSectionProps> = ({ featuredArticle: propFeatured }) => {
   const [featured, setFeatured] = useState<Article | null>(
-    propFeatured !== undefined ? propFeatured : (articlesData[0] || null)
+    propFeatured !== undefined ? propFeatured : null
   );
+  const [loading, setLoading] = useState<boolean>(propFeatured === undefined);
 
   useEffect(() => {
     if (propFeatured !== undefined) {
       setFeatured(propFeatured);
+      setLoading(false);
       return;
     }
 
     let isMounted = true;
     const fetchFeatured = async () => {
+      setLoading(true);
       try {
         const res = await api.getBlogs();
-        if (isMounted && res?.data && res.data.length > 0) {
-          setFeatured(res.data[0]);
-        } else if (isMounted && !featured) {
-          setFeatured(articlesData[0] || null);
+        if (isMounted) {
+          if (res?.data && res.data.length > 0) {
+            setFeatured(res.data[0]);
+          } else {
+            setFeatured(null);
+          }
         }
       } catch (err) {
-        if (isMounted && !featured) setFeatured(articlesData[0] || null);
+        if (isMounted) {
+          setFeatured(null);
+        }
+      } finally {
+        if (isMounted) {
+          setLoading(false);
+        }
       }
     };
 
@@ -42,6 +53,14 @@ export const BlogFeaturedSection: React.FC<BlogFeaturedSectionProps> = ({ featur
       isMounted = false;
     };
   }, [propFeatured]);
+
+  if (loading) {
+    return (
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-10">
+        <LatticeLoadingBlock label="Loading featured editorial" />
+      </section>
+    );
+  }
 
   if (!featured) return null;
 
