@@ -56,7 +56,7 @@ export const Navbar: React.FC = () => {
                 className={`w-3.5 h-3.5 shrink-0 transition-colors ${isScrolled || !isHomePage ? 'text-white' : 'text-[#2B3CB8]'
                   }`}
               />
-              <span className="hidden sm:inline">NETCC APPROVED SELLER</span>
+              <span className="hidden sm:inline">Solar & Battery Specialists</span>
               <span className="sm:hidden">CEC Approved</span>
             </span>
             <span
@@ -66,13 +66,13 @@ export const Navbar: React.FC = () => {
                 }`}
             >
               <span className="w-1.5 h-1.5 rounded-full bg-[#ED4F11] inline-block animate-pulse" />
-              25-Year Performance Warranty
+              Serving Homes Across Australia
             </span>
             <span
               className={`hidden lg:inline-block ${isScrolled || !isHomePage ? 'text-white' : 'text-slate-700'
                 }`}
             >
-              • Over 4,200+ Homes Powered
+              4,200+ Homes Powered
             </span>
           </div>
 
@@ -84,7 +84,7 @@ export const Navbar: React.FC = () => {
                 : 'text-slate-700 hover:text-[#ED4F11]'
                 }`}
             >
-              Gold Coast • Brisbane • Sunshine Coast
+              Solar & Battery Guidance • Designed Around Your Energy Use
             </Link>
             <a
               href="tel:1300030479"

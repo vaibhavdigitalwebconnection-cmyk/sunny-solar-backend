@@ -9,6 +9,9 @@ export const WebsiteStartupLoader: React.FC = () => {
     // Keep startup loader visible briefly for smooth initial mount and kinetic animation cycle
     const timer = setTimeout(() => {
       setIsVisible(false);
+      if (typeof window !== 'undefined') {
+        window.dispatchEvent(new CustomEvent('website-startup-loader-finish'));
+      }
     }, 1500);
 
     return () => clearTimeout(timer);
@@ -21,6 +24,13 @@ export const WebsiteStartupLoader: React.FC = () => {
           key="website-startup-loader"
           initial={{ opacity: 1 }}
           exit={{ opacity: 0, transition: { duration: 0.4, ease: 'easeOut' } }}
+          onAnimationComplete={(definition) => {
+            if (definition === 'exit' || !isVisible) {
+              if (typeof window !== 'undefined') {
+                window.dispatchEvent(new CustomEvent('website-startup-loader-complete'));
+              }
+            }
+          }}
           className="fixed inset-0 z-9999 flex flex-col items-center justify-center bg-white text-neutral-900 selection:bg-transparent"
         >
           {/* Subtle clean ambient lighting */}
@@ -32,7 +42,7 @@ export const WebsiteStartupLoader: React.FC = () => {
               <img
                 src="/logo.png"
                 alt="Sunny Solar"
-                className="h-9 sm:h-40 w-auto object-contain"
+                className="h-40 w-auto object-contain"
               />
             </div>
 

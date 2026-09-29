@@ -1,136 +1,157 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import {
   Star,
   ChevronLeft,
   ChevronRight,
+  MapPin,
+  Zap,
+  ArrowRight,
+  ShieldCheck,
+  CheckCircle2,
 } from 'lucide-react';
 
-interface TestimonialSlide {
+interface ProjectSlide {
   id: string;
-  author: string;
-  location: string;
-  timeAgo: string;
-  rating: number;
+  slug: string;
   title: string;
-  comment: string;
-  systemSummary: string;
-  keyMetric: string;
-  avatar: string;
+  category: string;
+  location: string;
+  systemSize: string;
+  panels: string;
+  inverter: string;
+  annualSavings: string;
+  paybackPeriod: string;
+  selfConsumption: string;
+  image: string;
+  quote: string;
+  clientName: string;
+  clientSuburb: string;
+  rating: number;
+  highlightTag: string;
 }
 
-const testimonials: TestimonialSlide[] = [
+const projects: ProjectSlide[] = [
   {
-    id: 't-1',
-    author: 'Brett Thomson',
-    location: 'Broadbeach Waters, Gold Coast',
-    timeAgo: '2 days ago',
+    id: 'proj-1',
+    slug: 'coastal-contemporary-mermaid-beach',
+    title: 'Coastal High-Yield 13.2kW Rooftop Solar',
+    category: 'Residential Solar',
+    location: 'Mermaid Beach, Gold Coast',
+    systemSize: '13.2 kW',
+    panels: '30x REC Alpha Pure-R 440W All-Black Panels',
+    inverter: 'High-Efficiency Smart Solar Inverter',
+    annualSavings: '$3,850 / yr',
+    paybackPeriod: '3.6 Years',
+    selfConsumption: '94%',
+    image: '/images/projects/project-rooftop-array.webp',
+    quote:
+      'Trent and the Sunny Solar crew were exceptional. We cut our quarterly power bill from $1,280 down to an $85 credit in summer. The all-black panels look incredible on our roofline.',
+    clientName: 'Marcus & Elena V.',
+    clientSuburb: 'Mermaid Beach',
     rating: 5,
-    title: 'Zero sales pressure & spotless installation',
-    comment:
-      'Trent personally inspected our roof cavity and designed the perfect system. Power bill dropped from $940 to $22 last month! Cleanest tradesmen we have ever had on site, and their post-install handover was second to none.',
-    systemSummary: '10.5kW REC Solar + Tesla Powerwall 3',
-    keyMetric: '$940 → $22/mo',
-    avatar:
-      'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=256&q=80',
+    highlightTag: '$1,280 → $85 Credit',
   },
   {
-    id: 't-2',
-    author: 'Claire & Patrick Wilson',
-    location: 'Camp Hill, Brisbane',
-    timeAgo: '4 days ago',
+    id: 'proj-2',
+    slug: 'broadbeach-waters-luxury-solar-battery',
+    title: 'Waterfront Villa 15.4kW Architectural Solar',
+    category: 'Residential Solar',
+    location: 'Broadbeach Waters, QLD',
+    systemSize: '15.4 kW',
+    panels: '35x REC Alpha Pure-RX 440W All-Black',
+    inverter: 'Decoupled Microinverter Architecture',
+    annualSavings: '$4,650 / yr',
+    paybackPeriod: '4.1 Years',
+    selfConsumption: '98%',
+    image: '/images/projects/queensland-coastal-solar-home.webp',
+    quote:
+      'Zero electricity bills even with the air conditioning running non-stop in January. The black-on-black panel finish looks like an architectural feature on our slate roof.',
+    clientName: 'Greg & Fiona B.',
+    clientSuburb: 'Broadbeach Waters',
     rating: 5,
-    title: 'Cut our power bill by 82% immediately',
-    comment:
-      'With 3 teenagers and ducted A/C in summer heatwaves, our solar system slashed our electricity bills by 82% from day one. Communication with the team was exceptional from quote through to Energex grid approval.',
-    systemSummary: '13.2kW AIKO All-Black + Fronius',
-    keyMetric: '82% Bill Cut',
-    avatar:
-      'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=256&q=80',
+    highlightTag: '98% Self-Sufficient',
   },
   {
-    id: 't-3',
-    author: 'Mark Henderson',
+    id: 'proj-3',
+    slug: 'brisbane-family-home-paddington',
+    title: 'Heritage Cottage 8.8kW Precision Solar Array',
+    category: 'Residential Solar',
+    location: 'Paddington, Brisbane',
+    systemSize: '8.8 kW',
+    panels: '20x AIKO Neostar 2S+ 440W N-Type ABC',
+    inverter: 'Smart Hybrid Solar Inverter',
+    annualSavings: '$2,640 / yr',
+    paybackPeriod: '3.8 Years',
+    selfConsumption: '89%',
+    image: '/images/projects/pv-solar-thermal.webp',
+    quote:
+      'Other companies told us our heritage roof was too steep or split. Sunny Solar took the time to 3D model our roofline and found the perfect panel arrangement. Outstanding tradesmanship!',
+    clientName: 'Sarah K.',
+    clientSuburb: 'Paddington, Brisbane',
+    rating: 5,
+    highlightTag: 'Heritage Approved',
+  },
+  {
+    id: 'proj-4',
+    slug: 'currumbin-valley-residential-solar',
+    title: 'Queensland Suburban 10.4kW Rooftop Solar',
+    category: 'Residential Solar',
     location: 'Currumbin Valley, QLD',
-    timeAgo: '1 week ago',
+    systemSize: '10.4 kW',
+    panels: 'Tier-1 Monocrystalline High-Yield Panels',
+    inverter: 'High-Efficiency Clean Energy Inverter',
+    annualSavings: '$3,150 / yr',
+    paybackPeriod: '3.2 Years',
+    selfConsumption: '95%',
+    image: '/images/projects/sunny-solar-residential-dusk.png',
+    quote:
+      'The solar panels look magnificent on our roofline and generate amazing power right through dusk. Entire rebate paperwork was handled seamlessly by their office team.',
+    clientName: 'Mark Henderson',
+    clientSuburb: 'Currumbin Valley',
     rating: 5,
-    title: 'Flawless battery retrofit to existing solar',
-    comment:
-      'Added a Sungrow battery to our 6-year-old system. Entire rebate paperwork was handled seamlessly by their office team. Now completely blackout-proof when severe storms pass through our hinterland property.',
-    systemSummary: '9.6kWh Sungrow SBR Battery',
-    keyMetric: '0% Evening Grid Draw',
-    avatar:
-      'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=256&q=80',
+    highlightTag: '$3,150 / yr Saved',
   },
   {
-    id: 't-4',
-    author: 'Sophie Martin',
-    location: 'North Lakes, Brisbane',
-    timeAgo: '1 week ago',
+    id: 'proj-5',
+    slug: 'tamborine-mountain-acreage-solar',
+    title: 'Mountain Homestead 19.8kW High-Yield Solar',
+    category: 'Acreage Solar',
+    location: 'Tamborine Mountain, QLD',
+    systemSize: '19.8 kW',
+    panels: '45x Jinko Tiger Neo 440W Dual-Glass Bifacial',
+    inverter: 'Dual European 3-Phase Inverters',
+    annualSavings: '$5,900 / yr',
+    paybackPeriod: '3.4 Years',
+    selfConsumption: '96%',
+    image: '/images/projects/homestead-overview.jpg',
+    quote:
+      'When storms knock out mountain power lines, our neighbors lose power for days. We do not even notice the lights flicker. Outstanding craftsmanship and genuine long-term aftercare.',
+    clientName: 'David & Gillian M.',
+    clientSuburb: 'Tamborine Mountain',
     rating: 5,
-    title: 'Found a burnt isolator missed by others',
-    comment:
-      'Their technician found a hazardous degraded DC isolator with thermal imaging that two previous electricians overlooked. Safely replaced and restored to 100% capacity! Truly honest, master-level tradesmen.',
-    systemSummary: '24-Point Health Check & Repair',
-    keyMetric: '100% Restored',
-    avatar:
-      'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=256&q=80',
+    highlightTag: '100% Storm Resilient',
   },
   {
-    id: 't-5',
-    author: 'Graham Ross',
-    location: 'Helensvale, Gold Coast',
-    timeAgo: '2 weeks ago',
+    id: 'proj-6',
+    slug: 'brisbane-colorbond-solar',
+    title: 'Modern Colorbond Roof 10.8kW Solar Array',
+    category: 'Residential Solar',
+    location: 'Camp Hill, Brisbane',
+    systemSize: '10.8 kW',
+    panels: '25x High-Efficiency Monocrystalline Panels',
+    inverter: 'European Premium String Inverter',
+    annualSavings: '$2,950 / yr',
+    paybackPeriod: '3.5 Years',
+    selfConsumption: '92%',
+    image: '/images/projects/home-solar-brisbane.jpg',
+    quote:
+      'Installed on our dark Colorbond corrugated roof with clean flush clamps. Generates massive power all day long even during partly cloudy Queensland days. Zero issues.',
+    clientName: 'Lachlan McKay',
+    clientSuburb: 'Camp Hill, Brisbane',
     rating: 5,
-    title: 'Doubled our output with modern panels',
-    comment:
-      'Replaced an old 2013 inverter with modern high-efficiency equipment. Double the power output for a fraction of the roof space. Highly recommend Sunny Solar for anyone looking for honest advice.',
-    systemSummary: '8.8kW Trina Vertex + Sungrow Hybrid',
-    keyMetric: '2x Daily Output',
-    avatar:
-      'https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?auto=format&fit=crop&w=256&q=80',
-  },
-  {
-    id: 't-6',
-    author: 'Nadia El-Sayed',
-    location: 'New Farm, Brisbane',
-    timeAgo: '3 weeks ago',
-    rating: 5,
-    title: 'True whole-home blackout backup',
-    comment:
-      'During recent storm blackouts while our whole street was pitch black, our lights, refrigeration and Wi-Fi stayed on seamlessly without a flicker. Best investment we have made for our Queensland home.',
-    systemSummary: '11.4kW Solar + Tesla Powerwall 3',
-    keyMetric: 'Zero Blackout Downtime',
-    avatar:
-      'https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=256&q=80',
-  },
-  {
-    id: 't-7',
-    author: 'Darren S.',
-    location: 'Coomera Commercial District',
-    timeAgo: '1 month ago',
-    rating: 5,
-    title: 'Commercial connection with zero downtime',
-    comment:
-      'Warehouse installation executed over a planned weekend. Immediate demand charge reduction and effortless Energex approval. Prompt, professional, and zero disruption to our daily logistics operations.',
-    systemSummary: '66kW Commercial Warehouse Solar',
-    keyMetric: '$1,500+ Saved Monthly',
-    avatar:
-      'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=256&q=80',
-  },
-  {
-    id: 't-8',
-    author: 'David & Gillian M.',
-    location: 'Tamborine Mountain Acreage',
-    timeAgo: '1 month ago',
-    rating: 5,
-    title: '100% self-sufficient mountain acreage',
-    comment:
-      'Our neighbors lose power for days during mountain storms. We do not even notice the lights flicker. Outstanding craftsmanship, genuine long-term aftercare, and our bills are practically zero.',
-    systemSummary: '19.8kW Ground Array + BYD Battery',
-    keyMetric: '96% Self-Sufficiency',
-    avatar:
-      'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=256&q=80',
+    highlightTag: '82% Power Bill Cut',
   },
 ];
 
@@ -142,20 +163,20 @@ export const TestimonialsSliderSection: React.FC = () => {
 
   // Next Slide
   const nextSlide = useCallback(() => {
-    setCurrentIndex((prev) => (prev >= testimonials.length - 1 ? 0 : prev + 1));
+    setCurrentIndex((prev) => (prev >= projects.length - 1 ? 0 : prev + 1));
   }, []);
 
   // Previous Slide
   const prevSlide = useCallback(() => {
-    setCurrentIndex((prev) => (prev <= 0 ? testimonials.length - 1 : prev - 1));
+    setCurrentIndex((prev) => (prev <= 0 ? projects.length - 1 : prev - 1));
   }, []);
 
-  // Auto sliding every 6 seconds with hover pause
+  // Auto sliding every 6.5 seconds with hover pause
   useEffect(() => {
     if (isPaused) return;
     const timer = setInterval(() => {
       nextSlide();
-    }, 6000);
+    }, 6500);
     return () => clearInterval(timer);
   }, [nextSlide, isPaused]);
 
@@ -182,12 +203,12 @@ export const TestimonialsSliderSection: React.FC = () => {
     setTimeout(() => setIsPaused(false), 4000);
   };
 
-  const activeTestimonial = testimonials[currentIndex];
+  const activeProject = projects[currentIndex];
 
   return (
     <section
-      className="py-14 sm:py-10 lg:py-14 bg-white relative overflow-hidden text-slate-900 border-t border-slate-200/80"
-      aria-label="Customer Testimonials"
+      className="py-14 sm:py-16 lg:py-14 bg-white relative overflow-hidden text-slate-900 border-t border-slate-200/80"
+      aria-label="Featured Solar Projects"
     >
       {/* Scoped CSS keyframe for running animated border and wireframe rotation */}
       <style>{`
@@ -225,78 +246,97 @@ export const TestimonialsSliderSection: React.FC = () => {
         {/* ══════════════════════════════════════════════════════════════
             TOP HEADER ROW (Eyebrow + Title)
            ══════════════════════════════════════════════════════════════ */}
-        <div className="flex flex-col lg:flex-row lg:items-end justify-center text-center gap-6 sm:gap-8 mb-10 sm:mb-14">
-          <div className="max-w-3xl">
-            {/* Eyebrow badge with sparkle */}
-            <div className="flex items-center justify-center gap-2 text-xs sm:text-sm font-bold uppercase tracking-widest text-[#EF680C] mb-3">
-              <span className="text-[#FFA000]">✦</span> OUR TESTIMONIALS
+        <div className="flex flex-col lg:flex-row lg:items-end justify-center text-center gap-4 sm:gap-6 mb-10 sm:mb-12">
+          <div className="max-w-4xl">
+            {/* Eyebrow badge */}
+            <div className="inline-flex items-center justify-center gap-2 text-xs sm:text-sm font-bold uppercase tracking-widest text-[#EF680C] mb-3">
+              <span className="text-[#FFA000]">✦</span> FEATURED REAL-WORLD PROJECTS
             </div>
 
             {/* Headline with Brand Gradient Highlight */}
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-extrabold text-slate-900 tracking-tight leading-[1.15]">
-              Hear what others say <br className="hidden sm:inline" />
-              about{' '}
+              Proven Performance on{' '}
               <span className="text-transparent bg-clip-text bg-linear-to-r from-[#EF680C] via-[#FF7700] to-[#2B3CB8]">
-                partnering with us
+                Queensland Homes
               </span>
             </h2>
+
+            <p className="mt-3 text-xs sm:text-base text-slate-600 max-w-4xl mx-auto">
+              Explore genuine rooftop solar panel installations completed by accredited Master Electricians across Brisbane, Gold Coast, and the Sunshine Coast.
+            </p>
           </div>
         </div>
 
         {/* ══════════════════════════════════════════════════════════════
-            MAIN CONTENT GRID (4.8 Rating on left, Hero Card on right)
+            MAIN CONTENT GRID (Quick Selector on left, Hero Project Card on right)
            ══════════════════════════════════════════════════════════════ */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-stretch">
 
-          {/* LEFT COLUMN: 3D Wireframe Orb + Doodle Arrow + Big 4.8 Rating */}
-          <div className="lg:col-span-4 relative flex flex-col items-center lg:items-start text-center lg:text-left py-4 sm:py-6">
+          {/* LEFT COLUMN: 3D Wireframe Orb + Key Stats + Interactive Project Selector */}
+          <div className="lg:col-span-4 relative flex flex-col justify-between items-center lg:items-start text-center lg:text-left py-4 sm:py-6 bg-slate-50/70 rounded-2xl p-5 sm:p-6 border border-slate-200/70">
 
             {/* 3D Geometric Wireframe Mesh in Background */}
-            <div className="absolute top-1/2 left-1/2 lg:left-1/3 -translate-x-1/2 -translate-y-1/2 w-72 h-72 sm:w-88 sm:h-88 pointer-events-none opacity-35">
+            <div className="absolute top-1/2 left-1/2 lg:left-1/3 -translate-x-1/2 -translate-y-1/2 w-72 h-72 sm:w-88 sm:h-88 pointer-events-none opacity-25">
               <svg viewBox="0 0 300 300" className="w-full h-full animate-wireframe-spin">
                 <g stroke="#EF680C" strokeWidth="0.8" fill="none">
-                  {/* Latitude ellipses */}
                   <ellipse cx="150" cy="150" rx="130" ry="130" />
                   <ellipse cx="150" cy="150" rx="130" ry="85" />
                   <ellipse cx="150" cy="150" rx="130" ry="45" />
                   <ellipse cx="150" cy="150" rx="130" ry="18" />
-                  {/* Longitude ellipses */}
                   <ellipse cx="150" cy="150" rx="85" ry="130" />
                   <ellipse cx="150" cy="150" rx="45" ry="130" />
                   <ellipse cx="150" cy="150" rx="18" ry="130" />
-                  {/* Dynamic diagonal orbits */}
                   <ellipse cx="150" cy="150" rx="125" ry="65" transform="rotate(45 150 150)" stroke="#FFA000" />
                   <ellipse cx="150" cy="150" rx="125" ry="65" transform="rotate(-45 150 150)" stroke="#2B3CB8" />
                 </g>
               </svg>
             </div>
 
+            
 
-            {/* Huge Monumental 4.8 Rating */}
-            <div className="relative z-10 text-6xl sm:text-7xl lg:text-8xl font-black text-slate-900 tracking-tighter leading-none  ">
-              4.8
+            {/* Interactive Project Quick Switcher */}
+            <div className="relative z-10 w-full mt-6 space-y-2 text-left">
+              <div className="text-[11px] font-bold uppercase tracking-wider text-slate-400 mb-1 px-1">
+                Select project
+              </div>
+              {projects.map((proj, idx) => {
+                const isActive = idx === currentIndex;
+                return (
+                  <button
+                    key={proj.id}
+                    type="button"
+                    onClick={() => setCurrentIndex(idx)}
+                    className={`w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl transition-all cursor-pointer text-left text-xs ${
+                      isActive
+                        ? 'bg-slate-900 text-white font-bold shadow-md shadow-slate-900/15 ring-1 ring-white/10'
+                        : 'bg-white hover:bg-slate-100 text-slate-700 font-medium border border-slate-200/80 shadow-2xs'
+                    }`}
+                  >
+                    <div className="flex items-center gap-2.5 min-w-0">
+                      <span
+                        className={`w-2 h-2 rounded-full shrink-0 ${
+                          isActive ? 'bg-[#EF680C]' : 'bg-slate-300'
+                        }`}
+                      />
+                      <span className="truncate">{proj.location.split(',')[0]}</span>
+                    </div>
+                    <span
+                      className={`text-[11px] font-bold shrink-0 ml-2 ${
+                        isActive ? 'text-[#FFA000]' : 'text-slate-500'
+                      }`}
+                    >
+                      {proj.systemSize}
+                    </span>
+                  </button>
+                );
+              })}
             </div>
-
-            {/* 5 Stars directly under rating */}
-            <div className="relative z-10 flex items-center gap-1.5 mt-3.5 text-[#EF680C]">
-              {[...Array(5)].map((_, i) => (
-                <Star
-                  key={i}
-                  className="w-5 h-5 sm:w-6 sm:h-6 fill-current text-[#EF680C] drop-shadow-xs"
-                />
-              ))}
-            </div>
-
-            {/* Subtitle description below 4.8 */}
-            <p className="relative z-10 text-xs sm:text-sm text-slate-600 font-medium mt-3.5 max-w-60 leading-relaxed">
-              Verified customer satisfaction across 72,000+ Queensland installations.
-            </p>
           </div>
 
           {/* RIGHT COLUMN: Big Featured Card with RUNNING ANIMATED BORDER */}
-          <div className="lg:col-span-8">
+          <div className="lg:col-span-8 flex flex-col">
             <div
-              className="relative p-[2.5px] rounded-xl overflow-hidden group shadow-[0_12px_45px_rgba(43,60,184,0.08),0_4px_20px_rgba(239,104,12,0.08)]"
+              className="relative p-[2.5px] rounded-2xl overflow-hidden group shadow-[0_12px_45px_rgba(43,60,184,0.08),0_4px_20px_rgba(239,104,12,0.08)] h-full flex flex-col"
               onMouseEnter={() => setIsPaused(true)}
               onMouseLeave={() => setIsPaused(false)}
               onTouchStart={handleTouchStart}
@@ -304,10 +344,9 @@ export const TestimonialsSliderSection: React.FC = () => {
               onTouchEnd={handleTouchEnd}
             >
               {/* ══════════════════════════════════════════════════════════════
-                  RUNNING ANIMATED BORDER BEAM (From Image 2 reference)
+                  RUNNING ANIMATED BORDER BEAM
                   Uses Sunny Solar Logo Colors: #EF680C, #FFA000, #2B3CB8
                  ══════════════════════════════════════════════════════════════ */}
-              {/* Outer diffused glowing halo */}
               <div
                 className="absolute inset-[-150%] animate-border-beam blur-lg opacity-40 pointer-events-none"
                 style={{
@@ -316,7 +355,6 @@ export const TestimonialsSliderSection: React.FC = () => {
                 }}
               />
 
-              {/* Crisp perimeter beam running around the rounded border */}
               <div
                 className="absolute inset-[-150%] animate-border-beam pointer-events-none"
                 style={{
@@ -325,97 +363,135 @@ export const TestimonialsSliderSection: React.FC = () => {
                 }}
               />
 
-              {/* Card Interior Surface - Clean White Glassmorphism */}
-              <div className="relative z-10 bg-white/95 backdrop-blur-2xl rounded-xl p-6 sm:p-6 lg:p-8 flex flex-col justify-between min-h-90 sm:min-h-97.5 border border-slate-400/90 shadow-xs">
+              {/* Card Interior Surface */}
+              <div className="relative z-10 bg-white/98 backdrop-blur-2xl rounded-2xl p-5 sm:p-6 lg:p-7 flex flex-col justify-between border border-slate-300/80 shadow-xs h-full">
 
-                {/* Large Background Decorative Quotation Mark Watermark */}
-                <div className="absolute top-4 left-6 text-7xl sm:text-8xl lg:text-9xl font-serif text-slate-200/60   pointer-events-none leading-none">
-                  “
-                </div>
-
-                {/* Top Section of Card: 5 Stars */}
-                <div className="relative z-10 flex items-center justify-between gap-3 mb-4">
-                  <div className="flex items-center gap-1.5 text-[#EF680C]">
-                    {[...Array(activeTestimonial.rating)].map((_, i) => (
-                      <Star
-                        key={i}
-                        className="w-5 h-5 sm:w-6 sm:h-6 fill-current text-[#EF680C] drop-shadow-xs"
-                      />
-                    ))}
-                  </div>
-
-                  {/* System Key Metric Pill */}
-                  <span className="px-2.5 py-1 rounded-full text-[11px] font-bold bg-[#EF680C]/10 text-[#EF680C] border border-[#EF680C]/20 shadow-xs">
-                    {activeTestimonial.keyMetric}
-                  </span>
-                </div>
-
-                {/* Middle: Testimonial Quote Body with Smooth Motion Transition */}
-                <div className="relative z-10 my-auto py-2">
-                  <AnimatePresence mode="wait">
-                    <motion.div
-                      key={currentIndex}
-                      initial={{ opacity: 0, y: 12 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: -12 }}
-                      transition={{ duration: 0.35, ease: 'easeOut' }}
-                    >
-                      <p className="text-base sm:text-lg lg:text-xl text-slate-800 font-normal italic leading-relaxed sm:leading-loose">
-                        &ldquo;{activeTestimonial.comment}&rdquo;
-                      </p>
-                    </motion.div>
-                  </AnimatePresence>
-                </div>
-
-                {/* Bottom Row: Author Avatar + Name on left, Arrow Controls on right */}
-                <div className="relative z-10 mt-6 pt-5 border-t border-slate-100 flex items-center justify-between gap-4">
-
-                  {/* Author Information */}
-                  <div className="flex items-center gap-3.5 min-w-0">
-                    {/* Customer Photo Avatar with Glowing Ring */}
-                    <div className="relative shrink-0">
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={currentIndex}
+                    initial={{ opacity: 0, y: 14 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -14 }}
+                    transition={{ duration: 0.35, ease: 'easeOut' }}
+                    className="grid grid-cols-1 md:grid-cols-12 gap-5 lg:gap-6 items-stretch flex-1"
+                  >
+                    {/* Visual Showcase (5 cols on md/lg) */}
+                    <div className="md:col-span-5 relative rounded-xl overflow-hidden aspect-4/3 md:aspect-auto md:min-h-75 shadow-sm border border-slate-200/80 group/img bg-slate-900">
                       <img
-                        src={activeTestimonial.avatar}
-                        alt={activeTestimonial.author}
-                        className="w-12 h-12 sm:w-14 sm:h-14 rounded-full object-cover ring-2 ring-[#EF680C] ring-offset-2 ring-offset-white shadow-xs"
+                        src={activeProject.image}
+                        alt={activeProject.title}
+                        className="w-full h-full object-cover object-center group-hover/img:scale-105 transition-transform duration-500"
                         loading="lazy"
                       />
-                      <div className="absolute -bottom-1 -right-1 w-4.5 h-4.5 rounded-full bg-[#EF680C] text-white flex items-center justify-center text-[10px] font-bold shadow-xs">
-                        ✓
+                      <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/20 to-transparent pointer-events-none" />
+
+                      {/* Top Badges */}
+                      <div className="absolute top-2.5 inset-x-2.5 flex items-center justify-between gap-2 pointer-events-none">
+                        <span className="px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-black/60 backdrop-blur-md text-white border border-white/20">
+                          {activeProject.category}
+                        </span>
+                        <span className="px-2.5 py-1 rounded-full text-[10px] font-bold bg-[#EF680C] text-white shadow-xs">
+                          {activeProject.highlightTag}
+                        </span>
+                      </div>
+
+                      {/* Bottom Location */}
+                      <div className="absolute bottom-2.5 inset-x-2.5 flex items-center gap-1.5 text-white text-xs font-semibold drop-shadow-md pointer-events-none">
+                        <MapPin className="w-3.5 h-3.5 text-[#FFA000] shrink-0" />
+                        <span className="truncate">{activeProject.location}</span>
                       </div>
                     </div>
 
-                    <div className="min-w-0">
-                      <h4 className="text-slate-900 font-bold text-sm sm:text-base lg:text-lg tracking-tight truncate">
-                        {activeTestimonial.author}
-                      </h4>
-                      <p className="text-slate-500 text-xs sm:text-sm font-medium truncate">
-                        {activeTestimonial.location}
-                      </p>
+                    {/* Project Details & Performance (7 cols on md/lg) */}
+                    <div className="md:col-span-7 flex flex-col justify-between space-y-3.5">
+                      <div>
+                       
+
+                        {/* Project Title */}
+                        <h3 className="text-lg sm:text-xl lg:text-2xl font-bold text-slate-900 tracking-tight leading-snug">
+                          {activeProject.title}
+                        </h3>
+
+                        {/* Key Metrics Row */}
+                        <div className="grid grid-cols-3 gap-2 mt-3 pt-3 border-t border-slate-100">
+                          <div className="bg-slate-50/80 rounded-lg p-2.5 text-center border border-slate-100">
+                            <div className="text-[10px] uppercase font-bold text-slate-400">Annual Saved</div>
+                            <div className="text-xs sm:text-sm font-black text-[#EF680C] mt-0.5">
+                              {activeProject.annualSavings}
+                            </div>
+                          </div>
+                          <div className="bg-slate-50/80 rounded-lg p-2.5 text-center border border-slate-100">
+                            <div className="text-[10px] uppercase font-bold text-slate-400">Payback</div>
+                            <div className="text-xs sm:text-sm font-black text-slate-800 mt-0.5">
+                              {activeProject.paybackPeriod}
+                            </div>
+                          </div>
+                          <div className="bg-slate-50/80 rounded-lg p-2.5 text-center border border-slate-100">
+                            <div className="text-[10px] uppercase font-bold text-slate-400">Self-Use</div>
+                            <div className="text-xs sm:text-sm font-black text-emerald-600 mt-0.5">
+                              {activeProject.selfConsumption}
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* Hardware Specs line */}
+                        <div className="mt-3 flex items-center gap-1.5 text-xs text-slate-600 bg-slate-50/60 px-3 py-1.5 rounded-lg border border-slate-100">
+                          <ShieldCheck className="w-3.5 h-3.5 text-blue-600 shrink-0" />
+                          <span className="font-semibold text-slate-800">Panels:</span>
+                          <span className="truncate">{activeProject.panels}</span>
+                        </div>
+
+                        {/* Homeowner Review Quote */}
+                        <div className="mt-3 bg-amber-50/50 rounded-xl p-3 border border-amber-200/40">
+                          <p className="text-xs sm:text-[13px] text-slate-700 italic leading-relaxed line-clamp-3">
+                            &ldquo;{activeProject.quote}&rdquo;
+                          </p>
+                          <div className="mt-2 flex items-center justify-between text-[11px]">
+                            <span className="font-bold text-slate-900">{activeProject.clientName}</span>
+                            <span className="text-emerald-700 font-semibold flex items-center gap-1">
+                              <CheckCircle2 className="w-3 h-3 text-emerald-600" />
+                              Verified Customer
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Card Footer: Explore Link + Nav Controls */}
+                      <div className="pt-3 border-t border-slate-100 flex items-center justify-between gap-3">
+                        <Link
+                          to={`/projects/${activeProject.slug}`}
+                          className="inline-flex items-center gap-1.5 text-xs font-bold text-[#EF680C] hover:text-[#d65b09] transition-colors group/btn"
+                        >
+                          <span>Explore Case Study</span>
+                          <ArrowRight className="w-3.5 h-3.5 group-hover/btn:translate-x-0.5 transition-transform" />
+                        </Link>
+
+                        {/* Navigation Controls */}
+                        <div className="flex items-center gap-2">
+                          <span className="text-[11px] font-bold text-slate-400 mr-1">
+                            0{currentIndex + 1} <span className="text-slate-300">/</span> 0{projects.length}
+                          </span>
+                          <button
+                            type="button"
+                            onClick={prevSlide}
+                            aria-label="Previous project"
+                            className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-slate-100 hover:bg-[#EF680C] text-slate-700 hover:text-white border border-slate-200 hover:border-[#EF680C] flex items-center justify-center transition-all cursor-pointer active:scale-95 shadow-2xs"
+                          >
+                            <ChevronLeft className="w-4 h-4" />
+                          </button>
+                          <button
+                            type="button"
+                            onClick={nextSlide}
+                            aria-label="Next project"
+                            className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-slate-100 hover:bg-[#EF680C] text-slate-700 hover:text-white border border-slate-200 hover:border-[#EF680C] flex items-center justify-center transition-all cursor-pointer active:scale-95 shadow-2xs"
+                          >
+                            <ChevronRight className="w-4 h-4" />
+                          </button>
+                        </div>
+                      </div>
                     </div>
-                  </div>
-
-                  {/* Circular Navigation Arrow Buttons (adapted for light theme) */}
-                  <div className="flex items-center gap-2 sm:gap-2.5 shrink-0">
-                    <button
-                      type="button"
-                      onClick={prevSlide}
-                      aria-label="Previous testimonial"
-                      className="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-slate-100 hover:bg-[#EF680C] text-slate-700 hover:text-white border border-slate-200 hover:border-[#EF680C] flex items-center justify-center transition-all cursor-pointer active:scale-95 shadow-2xs"
-                    >
-                      <ChevronLeft className="w-5 h-5" />
-                    </button>
-                    <button
-                      type="button"
-                      onClick={nextSlide}
-                      aria-label="Next testimonial"
-                      className="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-slate-100 hover:bg-[#EF680C] text-slate-700 hover:text-white border border-slate-200 hover:border-[#EF680C] flex items-center justify-center transition-all cursor-pointer active:scale-95 shadow-2xs"
-                    >
-                      <ChevronRight className="w-5 h-5" />
-                    </button>
-                  </div>
-
-                </div>
+                  </motion.div>
+                </AnimatePresence>
 
               </div>
             </div>

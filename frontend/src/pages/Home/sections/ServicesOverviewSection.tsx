@@ -1,20 +1,12 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Link } from 'react-router-dom';
 import {
   ShieldCheck,
   ArrowRight,
   Phone,
   Sun,
-  Zap,
-  BatteryCharging,
   Sparkles,
-  ChevronLeft,
-  ChevronRight,
-  Pause,
-  Play,
-  TrendingUp,
-  CheckCircle2,
+ 
 } from 'lucide-react';
 import { Button } from '../../../components/ui/Button';
 
@@ -41,26 +33,13 @@ const SLIDES: SlideItem[] = [
       'We believe clean energy should empower every home without compromise. From custom rooftop arrays to smart battery storage, Sunny Solar bridges performance and savings to power your future.',
     buttonText: 'About Sunny Solar',
     buttonLink: '/about',
-    image: '/images/projects/queensland-coastal-solar-home.webp',
+    image: '/images/about/sunny-solar-director-consultation.png',
     metric: {
-      label: 'Live Peak Generation',
-      value: '10.4 kW Peak',
+      label: 'Leadership & Vision',
+      value: '100% QLD Owned',
     },
   },
-  {
-    id: 2,
-    badge: 'Smart Battery Storage',
-    title: 'Power your home beyond sunset',
-    description:
-      'Store surplus daytime generation and power your evening routine for $0 grid tariff. Blackout-proof protection engineered specifically for Australian weather conditions.',
-    buttonText: 'Explore Battery Solutions',
-    buttonLink: '/batteries/solar-plus-battery',
-    image: '/images/projects/project-battery-storage.jpg',
-    metric: {
-      label: 'Storage Reserve',
-      value: '13.5 kWh Capacity',
-    },
-  },
+  
   {
     id: 3,
     badge: 'Master Electrician Quality',
@@ -69,7 +48,7 @@ const SLIDES: SlideItem[] = [
       'Tier-1 bifacial panels, high-efficiency hybrid inverters, and cyclone-rated mounting hardware installed by licensed CEC master electricians with zero roof-leak guarantee.',
     buttonText: 'View Our Systems',
     buttonLink: '/solar/systems',
-    image: '/images/projects/project-rooftop-array.webp',
+    image: '/images/projects/sunny-solar-residential-dusk.png',
     metric: {
       label: 'Performance Guarantee',
       value: '25-Year Warranty',

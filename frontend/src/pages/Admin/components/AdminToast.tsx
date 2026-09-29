@@ -1,12 +1,13 @@
 import React from 'react';
-import { CheckCircle2, AlertTriangle } from 'lucide-react';
+import { CheckCircle2, AlertTriangle, X } from 'lucide-react';
 import { ToastInfo } from '../types';
 
 interface AdminToastProps {
   toast: ToastInfo | null;
+  onClose?: () => void;
 }
 
-export const AdminToast: React.FC<AdminToastProps> = ({ toast }) => {
+export const AdminToast: React.FC<AdminToastProps> = ({ toast, onClose }) => {
   if (!toast) return null;
 
   const isSuccess = toast.type === 'success';
@@ -14,36 +15,48 @@ export const AdminToast: React.FC<AdminToastProps> = ({ toast }) => {
   return (
     <div
       data-lenis-prevent
-      className="fixed bottom-6 right-6 z-60 max-w-sm w-full animate-in slide-in-from-bottom-4 fade-in duration-200"
+      className="fixed bottom-4 sm:bottom-6 left-1/2 -translate-x-1/2 sm:translate-x-0 sm:left-auto sm:right-6 z-60 w-auto max-w-[calc(100vw-32px)] sm:max-w-md animate-in slide-in-from-bottom-3 fade-in duration-200 pointer-events-auto"
     >
       <div
-        className={`flex items-center gap-3 p-4 rounded-2xl shadow-2xl backdrop-blur-md border ${
+        className={`flex items-center gap-2.5 sm:gap-3 py-2.5 px-3.5 sm:py-3 sm:px-4 rounded-xl sm:rounded-2xl shadow-xl backdrop-blur-md border ${
           isSuccess
-            ? 'bg-slate-900/95 text-white border-emerald-500/40'
-            : 'bg-rose-950/95 text-white border-rose-500/40'
+            ? 'bg-neutral-900/95 text-white border-neutral-700/80 shadow-black/30'
+            : 'bg-rose-950/95 text-white border-rose-500/40 shadow-rose-950/30'
         }`}
       >
+        {/* Status Icon */}
         <div
-          className={`w-8 h-8 rounded-xl flex items-center justify-center shrink-0 shadow-sm ${
+          className={`w-6 h-6 sm:w-7 sm:h-7 rounded-lg sm:rounded-xl flex items-center justify-center shrink-0 shadow-2xs ${
             isSuccess
               ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30'
               : 'bg-rose-500/20 text-rose-400 border border-rose-500/30'
           }`}
         >
           {isSuccess ? (
-            <CheckCircle2 className="w-4 h-4" />
+            <CheckCircle2 className="w-3.5 h-3.5 sm:w-4 sm:h-4 stroke-[2.5]" />
           ) : (
-            <AlertTriangle className="w-4 h-4" />
+            <AlertTriangle className="w-3.5 h-3.5 sm:w-4 sm:h-4 stroke-[2.5]" />
           )}
         </div>
+
+        {/* Message */}
         <div className="flex-1 min-w-0 pr-1">
-          <span className="text-[11px] font-semibold text-slate-300 block uppercase tracking-wider mb-0.5">
-            {isSuccess ? 'Success' : 'Notification'}
-          </span>
-          <p className="text-xs font-medium text-white leading-snug wrap-break-word">
+          <p className="text-xs sm:text-xs font-semibold text-white leading-snug break-words">
             {toast.message}
           </p>
         </div>
+
+        {/* Optional Close Button */}
+        {onClose && (
+          <button
+            type="button"
+            onClick={onClose}
+            className="p-1 rounded-md text-white/50 hover:text-white transition-colors cursor-pointer shrink-0 ml-1"
+            title="Dismiss notification"
+          >
+            <X className="w-3.5 h-3.5" />
+          </button>
+        )}
       </div>
     </div>
   );

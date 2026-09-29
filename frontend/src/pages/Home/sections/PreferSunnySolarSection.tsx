@@ -840,31 +840,7 @@ export const PreferSunnySolarSection: React.FC = () => {
                   })}
                 </g>
 
-                {/* Dual Interlocking Energy Orbital Rings (#346820 Clean Energy & Teal - GSAP Counter-Rotation) */}
-                <ellipse
-                  ref={orbitRing1Ref}
-                  cx="80"
-                  cy="72"
-                  rx="42"
-                  ry="20"
-                  fill="none"
-                  stroke="#5E9946"
-                  strokeWidth="2.2"
-                  transform="rotate(-28 80 72)"
-                  strokeDasharray="18 4"
-                />
-                <ellipse
-                  ref={orbitRing2Ref}
-                  cx="80"
-                  cy="72"
-                  rx="42"
-                  ry="20"
-                  fill="none"
-                  stroke="#34D399"
-                  strokeWidth="2.2"
-                  transform="rotate(28 80 72)"
-                  strokeDasharray="18 4"
-                />
+              
 
                 {/* Central High-Output Battery & Power Surge Core */}
                 <circle cx="80" cy="72" r="23" fill="url(#powerSurgeCoreGreen)" stroke="#D5E8CB" strokeWidth="1.2" />

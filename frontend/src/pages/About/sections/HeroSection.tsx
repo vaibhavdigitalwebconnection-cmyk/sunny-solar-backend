@@ -19,7 +19,7 @@ export const HeroSection: React.FC = () => {
   }, []);
 
   return (
-    <section ref={sectionRef} className="relative min-h-0 lg:min-h-160 bg-white overflow-hidden">
+    <section ref={sectionRef} className="relative min-h-0 lg:min-h-160 mt-20 bg-white overflow-hidden">
       {/* Ambient solar blue backdrop aura */}
       <div className="absolute top-10 left-10 w-96 h-96 bg-[#2B3CB8]/10 rounded-full blur-3xl pointer-events-none" />
 
@@ -29,7 +29,7 @@ export const HeroSection: React.FC = () => {
         <div className="lg:hidden px-4 sm:px-8 pt-24 pb-2">
           <div className="relative rounded-2xl overflow-hidden shadow-lg shadow-slate-900/10 border border-slate-200/80 aspect-16/10 xs:aspect-16/9 max-w-lg mx-auto">
             <img
-              src="/images/about/solar-team-hero.webp"
+              src="/images/about/gallery/hero about.jpeg"
               alt="Sunny Solar installation crew on a rooftop"
               className="w-full h-full object-cover"
             />
@@ -48,7 +48,7 @@ export const HeroSection: React.FC = () => {
             {/* Eyebrow Badge */}
             <div className="inline-flex items-center gap-2 px-3 sm:px-3.5 py-1 sm:py-1.5 rounded-full text-[11px] sm:text-xs font-bold uppercase tracking-wider text-[#2B3CB8] bg-[#F5F7FD] border border-[#D1DCF8] shadow-2xs mt-2 sm:mt-4 lg:mt-20 mb-3 sm:mb-4">
               <span className="w-2 h-2 rounded-full bg-[#2B3CB8] animate-pulse" />
-              <span>Master Electrician Founded • Est. 2011</span>
+              <span>MASTER ELECTRICIAN FOUNDED • EST. 2011</span>
             </div>
 
             {/* Main heading — animated with FlipText */}
@@ -59,10 +59,10 @@ export const HeroSection: React.FC = () => {
               transition={{ duration: 0.7, delay: 0.1 }}
             >
               <FlipText className="text-slate-950">
-                Solar Built by Electricians,
+                Solar Advice You Can Trust.
               </FlipText>{' '}
               <FlipText className="text-[#2B3CB8]" delay={0.3}>
-                Powered by Pure Trust.
+                Experience You Can Rely On.
               </FlipText>
             </motion.h1>
 
@@ -73,10 +73,8 @@ export const HeroSection: React.FC = () => {
               animate={isVisible ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.7, delay: 0.2 }}
             >
-              Founded on the Gold Coast by Master Electrician{' '}
-              <strong className="text-slate-900 font-semibold">Trent Palmer</strong>, Sunny Solar was built on one
-              simple rule: treat every rooftop like our own family's home. No pushy telemarketers, zero subcontractors—just
-              master-level engineering and 14+ years of honest Queensland service.
+              Founded by Master Electrician Trent Packer, Sunny Solar was built around a simple belief: choosing solar should feel clear, not complicated.
+               With 14+ years of industry experience, Trent and the Sunny Solar team help homeowners understand their energy needs, compare their options and choose a solar solution that makes sense for their home.
             </motion.p>
 
             {/* Trust highlights strip on mobile & desktop */}
@@ -88,15 +86,15 @@ export const HeroSection: React.FC = () => {
             >
               <div>
                 <span className="block font-extrabold text-sm sm:text-base text-[#2B3CB8]">14+ Years</span>
-                <span className="text-[10px] sm:text-xs text-slate-500 font-medium">Queensland Local</span>
+                <span className="text-[10px] sm:text-xs text-slate-500 font-medium">Industry Experience</span>
               </div>
               <div className="border-x border-slate-200/80">
-                <span className="block font-extrabold text-sm sm:text-base text-[#2B3CB8]">0% Subbies</span>
-                <span className="text-[10px] sm:text-xs text-slate-500 font-medium">In-House Trades</span>
+                <span className="block font-extrabold text-sm sm:text-base text-[#2B3CB8]">Customer First</span>
+                <span className="text-[10px] sm:text-xs text-slate-500 font-medium">Practical Advice</span>
               </div>
               <div>
-                <span className="block font-extrabold text-sm sm:text-base text-[#2B3CB8]">5.0 ★★★★★</span>
-                <span className="text-[10px] sm:text-xs text-slate-500 font-medium">Verified Reviews</span>
+                <span className="block font-extrabold text-sm sm:text-base text-[#2B3CB8]">Australia-Wide</span>
+                <span className="text-[10px] sm:text-xs text-slate-500 font-medium">Solar Solutions</span>
               </div>
             </motion.div>
 
@@ -114,7 +112,8 @@ export const HeroSection: React.FC = () => {
                 className="w-full sm:w-auto justify-center min-h-11.5 sm:min-h-12"
                 icon={<ArrowRight className="w-4 h-4" />}
               >
-                Get Free Assessment
+                Get Your Solar Options →
+
               </Button>
               <Button
                 to="/about/trent"
@@ -123,7 +122,7 @@ export const HeroSection: React.FC = () => {
                 className="w-full sm:w-auto justify-center min-h-11.5 sm:min-h-12"
                 icon={<ArrowRight className="w-4 h-4" />}
               >
-                Meet Founder Trent
+                Meet Trent Packer →
               </Button>
             </motion.div>
 
@@ -137,9 +136,9 @@ export const HeroSection: React.FC = () => {
             style={{ clipPath: 'polygon(15% 0, 100% 0, 100% 100%, 0% 100%)' }}
           >
             <img
-              src="/images/about/solar-team-hero.webp"
+              src="/images/about/gallery/hero about.jpeg"
               alt="Sunny Solar installation crew on a rooftop"
-              className="w-full h-full object-cover"
+              className="w-full h-full object-fill"
             />
             <div className="absolute inset-0 bg-linear-to-l from-transparent via-transparent to-white/40" />
           </div>

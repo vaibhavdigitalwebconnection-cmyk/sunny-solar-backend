@@ -17,7 +17,7 @@ function AppLayout() {
   // Automatic 14-minute health ping to keep Render server awake
   useEffect(() => {
     const pingHealth = () => {
-      api.getHealth().catch(() => {});
+      api.getHealth().catch(() => { });
     };
 
     pingHealth();

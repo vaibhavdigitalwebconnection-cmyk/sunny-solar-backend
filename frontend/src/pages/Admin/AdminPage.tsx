@@ -41,7 +41,7 @@ export const AdminPage: React.FC = () => {
   const [adminUser, setAdminUser] = useState<any>(getStoredAdminUser());
 
   // Active navigation tab: 'articles' | 'knowledge' | 'overview'
-  const [activeTab, setActiveTab] = useState<AdminTab>('articles');
+  const [activeTab, setActiveTab] = useState<AdminTab>('overview');
 
   // Login form state
   const [email, setEmail] = useState('');
@@ -63,7 +63,38 @@ export const AdminPage: React.FC = () => {
   // View states
   const [viewMode, setViewMode] = useState<ViewMode>('grid');
   const [sortBy, setSortBy] = useState<SortBy>('newest');
-  const [sidebarOpen, setSidebarOpen] = useState(true);
+  const [sidebarOpen, setSidebarOpen] = useState(() => {
+    if (typeof window !== 'undefined') {
+      const saved = localStorage.getItem('admin_sidebar_open');
+      if (saved !== null) {
+        return saved === 'true';
+      }
+      return window.innerWidth >= 1024;
+    }
+    return true;
+  });
+
+  const handleToggleSidebar = (val?: boolean | ((prev: boolean) => boolean)) => {
+    setSidebarOpen(prev => {
+      const next = typeof val === 'function' ? val(prev) : (typeof val === 'boolean' ? val : !prev);
+      try {
+        localStorage.setItem('admin_sidebar_open', String(next));
+      } catch (e) {
+        // ignore localStorage error
+      }
+      return next;
+    });
+  };
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape' && sidebarOpen && typeof window !== 'undefined' && window.innerWidth < 1024) {
+        handleToggleSidebar(false);
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [sidebarOpen]);
 
   // Blog Modal states
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -1011,7 +1042,7 @@ export const AdminPage: React.FC = () => {
 
   // VIEW 2: DEDICATED FULL ADMIN PANEL
   return (
-    <div className="min-h-screen bg-[#F5F7FD] text-slate-900 flex font-sans antialiased">
+    <div className="min-h-screen bg-[#ffffff] text-slate-900 flex font-sans antialiased">
       <Helmet>
         <title>Admin Dashboard | Sunny Solar Management Portal</title>
         <meta
@@ -1021,11 +1052,21 @@ export const AdminPage: React.FC = () => {
       </Helmet>
 
       {/* Toast Notification */}
-      <AdminToast toast={toast} />
+      <AdminToast toast={toast} onClose={() => setToast(null)} />
+
+      {/* Mobile backdrop overlay */}
+      {sidebarOpen && (
+        <div
+          onClick={() => handleToggleSidebar(false)}
+          className="fixed inset-0 bg-neutral-950/60 backdrop-blur-xs z-25 lg:hidden transition-opacity duration-300 cursor-pointer"
+          aria-label="Close navigation overlay"
+        />
+      )}
 
       {/* 1. LEFT SIDEBAR */}
       <AdminSidebar
         sidebarOpen={sidebarOpen}
+        setSidebarOpen={handleToggleSidebar}
         activeTab={activeTab}
         setActiveTab={setActiveTab}
         setStatusFilter={setStatusFilter}
@@ -1035,9 +1076,11 @@ export const AdminPage: React.FC = () => {
       />
 
       {/* 2. MAIN CONTENT AREA */}
-      <div className={`flex-1 flex flex-col min-w-0 transition-all duration-200 ${sidebarOpen ? 'lg:pl-64' : 'pl-0'}`}>
+      <div className={`flex-1 flex flex-col min-w-0 transition-all duration-300 ease-in-out ${sidebarOpen ? 'lg:pl-64' : 'lg:pl-18 pl-0'}`}>
         {/* Top Navbar Header */}
         <AdminHeader
+          sidebarOpen={sidebarOpen}
+          setSidebarOpen={handleToggleSidebar}
           activeTab={activeTab}
           searchTerm={searchTerm}
           setSearchTerm={setSearchTerm}
@@ -1049,7 +1092,7 @@ export const AdminPage: React.FC = () => {
         />
 
         {/* Content Container */}
-        <main className="p-6 sm:p-8 max-w-7xl w-full mx-auto space-y-6">
+        <main className="p-3.5 sm:p-6 lg:p-8 max-w-7xl w-full mx-auto space-y-4 sm:space-y-6">
           {/* Key Metric Stats Cards & Overview */}
           {activeTab === 'overview' && (
             <AdminOverview

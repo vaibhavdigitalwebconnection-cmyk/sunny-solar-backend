@@ -143,8 +143,8 @@ export const HeroSection: React.FC = () => {
               className="relative overflow-hidden inline-flex items-center gap-1.5 sm:gap-2 px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-full text-[11px] sm:text-xs font-semibold text-white bg-slate-900/80 border border-white/20 backdrop-blur-md shadow-lg"
             >
               <span className="w-2 h-2 rounded-full bg-[#ED4F11] animate-pulse shrink-0" />
-              <span className="text-[#D1DCF8] font-bold">SOLAR • BATTERY • </span>
-              <span className="text-white font-bold">SOLUTIONS</span>
+              <span className="text-[#D1DCF8] font-bold">SOLAR • BATTERY •  </span>
+              <span className="text-white font-bold">SMART ENERGY</span>
               <motion.span
                 animate={{ x: ['-100%', '200%'] }}
                 transition={{ repeat: Infinity, duration: 4, ease: "easeInOut", repeatDelay: 2 }}
@@ -160,7 +160,7 @@ export const HeroSection: React.FC = () => {
                 transition={{ duration: 0.6, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
                 className="text-2xl sm:text-4xl lg:text-5xl font-serif font-bold text-white tracking-tight leading-[1.2] drop-shadow-md"
               >
-                Make Your Solar Decision With Confidence.
+                Solar That Makes Sense For Your Home.
               </motion.h1>
 
               <div className="pt-0.5 sm:pt-1 flex items-center">
@@ -197,7 +197,8 @@ export const HeroSection: React.FC = () => {
               transition={{ duration: 0.6, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
               className="text-xs sm:text-base text-justify text-slate-100 sm:text-white leading-relaxed max-w-lg drop-shadow-sm"
             >
-              Solar solutions designed around your home, your energy use and your goals. Understand your options. Choose what works for your home.
+              Your home, your energy use, your solar system.
+Understand what you need, compare your options, and get a solar solution designed around how you actually use electricity.
             </motion.p>
 
             {/* CTA Button with Interactive Micro-hover Effect */}
@@ -215,7 +216,18 @@ export const HeroSection: React.FC = () => {
               >
                 {/* Shimmer light sweep */}
                 <span className="absolute inset-0 w-1/2 h-full bg-linear-to-r from-transparent via-white/20 to-transparent -skew-x-12 -translate-x-full group-hover:translate-x-[300%] transition-transform duration-1000 ease-out pointer-events-none" />
-                <span className="relative z-10">Explore Solar Options</span>
+                <span className="relative z-10">See Your Solar Options →</span>
+                <ArrowRight className="w-4 h-4 relative z-10 group-hover:translate-x-1 transition-transform duration-200" />
+              </motion.a>
+               <motion.a
+                whileHover={{ scale: 1.025, boxShadow: "0 12px 25px -4px rgba(43, 60, 184, 0.45)" }}
+                whileTap={{ scale: 0.98 }}
+                href="#hero-quote-form"
+                className="relative overflow-hidden group inline-flex items-center justify-center gap-2 font-bold px-5 sm:px-6 py-2.5 rounded-lg bg-[#ED4F11] hover:bg-[#1D2984] text-white shadow-md transition-all text-xs sm:text-sm cursor-pointer w-full sm:w-auto"
+              >
+                {/* Shimmer light sweep */}
+                <span className="absolute inset-0 w-1/2 h-full bg-linear-to-r from-transparent via-white/20 to-transparent -skew-x-12 -translate-x-full group-hover:translate-x-[300%] transition-transform duration-1000 ease-out pointer-events-none" />
+                <span className="relative z-10">Explore Solar & Battery →</span>
                 <ArrowRight className="w-4 h-4 relative z-10 group-hover:translate-x-1 transition-transform duration-200" />
               </motion.a>
             </motion.div>
@@ -235,7 +247,7 @@ export const HeroSection: React.FC = () => {
                 initial={{ opacity: 0, y: 18, scale: 0.95 }}
                 animate={{ opacity: 1, y: 0, scale: 1 }}
                 transition={{ duration: 0.7, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
-                className="absolute -top-10 sm:-top-8 right-2 sm:right-6 pointer-events-none z-20 flex flex-col items-end  "
+                className="absolute -top-10 sm:top-1 right-2 sm:right-6 pointer-events-none z-20 flex flex-col items-end  "
               >
                 {/* Cutout with subtle ambient glow and 3D shadow */}
                 <div className="relative">
@@ -274,10 +286,10 @@ export const HeroSection: React.FC = () => {
 
               <div className="mb-2.5 sm:mb-3 text-left pr-20 sm:pr-28">
                 <h3 className="text-base sm:text-2xl font-bold font-serif text-slate-900 leading-snug">
-                  Get a Free Quote
+                  Find The Right Solar Option For Your Home
                 </h3>
                 <p className="text-xs text-slate-500">
-                  Fixed pricing • No obligation
+                  Solar or battery - start with what your home actually needs.
                 </p>
               </div>
 
@@ -413,14 +425,14 @@ export const HeroSection: React.FC = () => {
                       <span>Submitting...</span>
                     ) : (
                       <>
-                        <span>Get Free Quote</span>
+                        <span>Show My Solar Options →</span>
                         <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform duration-200" />
                       </>
                     )}
                   </motion.button>
 
                   <p className="text-[10px] sm:text-[11px] text-center text-slate-500 pt-0.5">
-                    🔒 100% privacy protected • No spam
+                    🔒 No obligation • Personalised assessment • Privacy protected
                   </p>
                 </form>
               )}

@@ -55,8 +55,8 @@ export const projectsData: Project[] = [
         tag: 'Rooftop Array',
       },
       {
-        url: '/images/projects/project-battery-storage.jpg',
-        caption: 'Concealed conduit routing and laser-aligned Tesla Powerwall 3 battery wall installation',
+        url: '/images/projects/clarity-existing-solar-battery.jpg',
+        caption: 'Concealed conduit routing and laser-aligned smart modular battery wall installation',
         tag: 'Battery Storage',
       },
       {
@@ -133,8 +133,8 @@ export const projectsData: Project[] = [
         tag: 'All-Black Roof',
       },
       {
-        url: '/images/projects/project-battery-storage.jpg',
-        caption: 'Dual Tesla Powerwall battery units mounted side-by-side with whole-home 3-phase backup',
+        url: '/images/projects/clarity-existing-solar-battery.jpg',
+        caption: 'Dual high-efficiency smart battery units mounted side-by-side with whole-home backup',
         tag: 'Dual Batteries',
       },
       {
