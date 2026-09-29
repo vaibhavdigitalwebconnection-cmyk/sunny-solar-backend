@@ -182,24 +182,7 @@ export const FAQSection: React.FC = () => {
               )}
             </div>
 
-            {/* Mobile Contact Specialist CTA Card */}
-            <div className="mt-6 p-4 rounded-xl sm:rounded-2xl bg-[#F5F7FD] border border-[#D1DCF8] flex flex-col sm:flex-row items-center justify-between gap-3 text-center sm:text-left">
-              <div>
-                <h4 className="font-bold text-slate-900 text-xs sm:text-sm">
-                  Still have questions about solar or batteries?
-                </h4>
-                <p className="text-[11px] sm:text-xs text-slate-500 mt-0.5">
-                  Speak directly with an accredited clean energy specialist.
-                </p>
-              </div>
-              <Link
-                to="/contact"
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-xl bg-[#2B3CB8] text-white text-xs sm:text-sm font-bold shadow-xs hover:bg-[#1D2984] active:scale-95 transition-all shrink-0 min-h-[40px]"
-              >
-                <span>Ask Our Experts</span>
-                <ArrowRight className="w-3.5 h-3.5" />
-              </Link>
-            </div>
+        
           </div>
 
           {/* Right Column: High-Res FAQ 3D Character Illustration */}

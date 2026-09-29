@@ -1,88 +1,110 @@
 import React, { useState } from 'react';
-import { Sun, BatteryCharging, Wrench, ShieldCheck, Zap } from 'lucide-react';
+import { Sun, BatteryCharging, Wrench, ShieldCheck, Zap, type LucideIcon } from 'lucide-react';
 import { ImageScatter, ScatterSet } from '@/components/ui/ImageScatter';
 
-// 5 Curated Solar Datasets showcasing all aspects of Sunny Solar systems
-const solarScatterData: ScatterSet[] = [
+interface SolarCategory {
+  label: string;
+  icon: LucideIcon;
+  data: ScatterSet;
+}
+
+// Keeping each pill paired with its six-image set prevents the labels and galleries
+// from drifting out of sync as this section evolves.
+const solarCategories: SolarCategory[] = [
   {
-    tag: 'TIER-1 MONOCRYSTALLINE ARRAYS',
-    heading: 'Power Your Home With High-Efficiency Solar',
-    subtitle:
-      'Engineered with anti-reflective glass and multi-busbar silicon to harvest maximum clean energy even during overcast mornings.',
-    images: [
-      '/images/projects/project-rooftop-array.webp',
-      '/images/projects/solar-cell-detail.jpg',
-      '/images/projects/aerial-view-solar.webp',
-      '/images/projects/photovoltaik-nk.webp',
-      '/images/blog/solar-panel-tech.webp',
-      '/images/blog/solar-system-size.webp',
-    ],
+    label: 'Solar Arrays',
+    icon: Sun,
+    data: {
+      tag: 'TIER-1 MONOCRYSTALLINE ARRAYS',
+      heading: 'Power Your Home With High-Efficiency Solar',
+      subtitle:
+        'Engineered with anti-reflective glass and multi-busbar silicon to harvest maximum clean energy even during overcast mornings.',
+      images: [
+        '/images/home/solar-scatter/solar-arrays-01.png',
+        '/images/home/solar-scatter/solar-arrays-02.png',
+        '/images/home/solar-scatter/solar-arrays-03.png',
+        '/images/home/solar-scatter/solar-arrays-04.png',
+        '/images/home/solar-scatter/solar-arrays-05.png',
+        '/images/home/solar-scatter/solar-arrays-06.png',
+      ],
+    },
   },
   {
-    tag: '24/7 OFF-GRID & BLACKOUT READY',
-    heading: 'Store Sunshine For Clean Evening Power',
-    subtitle:
-      'Power your home through the night and eliminate peak electricity rates with intelligent lithium home battery storage.',
-    images: [
-      '/images/projects/project-battery-storage.jpg',
-      '/images/solutions/battery-hero.webp',
-      '/images/solutions/battery-bundle.webp',
-      '/images/solutions/battery-storm.webp',
-      '/images/blog/battery-comparison.webp',
-      '/images/projects/3phase-gateway.webp',
-    ],
+    label: 'Battery Storage',
+    icon: BatteryCharging,
+    data: {
+      tag: '24/7 OFF-GRID & BLACKOUT READY',
+      heading: 'Store Sunshine For Clean Evening Power',
+      subtitle:
+        'Power your home through the night and eliminate peak electricity rates with intelligent lithium home battery storage.',
+      images: [
+        '/images/home/solar-scatter/battery-storage-01.png',
+        '/images/home/solar-scatter/battery-storage-02.png',
+        '/images/home/solar-scatter/battery-storage-03.png',
+        '/images/home/solar-scatter/battery-storage-04.png',
+        '/images/home/solar-scatter/battery-storage-05.png',
+        '/images/home/solar-scatter/battery-storage-06.png',
+      ],
+    },
   },
   {
-    tag: 'ZERO SUBCONTRACTORS GUARANTEE',
-    heading: 'Precision Craftsmanship By Master Electricians',
-    subtitle:
-      'Spotless concealed conduit runs, cyclone-rated mounting brackets, and strict adherence to Australian Clean Energy Council codes.',
-    images: [
-      '/images/about/gallery/electrician-wiring-switchboard.webp',
-      '/images/about/gallery/electrician-carrying-panel.webp',
-      '/images/about/gallery/electrician-testing-equipment.webp',
-      '/images/about/gallery/rooftop-solar-drill.webp',
-      '/images/about/gallery/smiling-solar-electrician.webp',
-      '/images/projects/precision-torquing.jpg',
-    ],
+    label: 'Master Electricians',
+    icon: Wrench,
+    data: {
+      tag: 'ZERO SUBCONTRACTORS GUARANTEE',
+      heading: 'Precision Craftsmanship By Master Electricians',
+      subtitle:
+        'Spotless concealed conduit runs, cyclone-rated mounting brackets, and strict adherence to Australian Clean Energy Council codes.',
+      images: [
+        '/images/home/solar-scatter/master-electricians-01.png',
+        '/images/home/solar-scatter/master-electricians-02.png',
+        '/images/home/solar-scatter/master-electricians-03.png',
+        '/images/home/solar-scatter/master-electricians-04.png',
+        '/images/home/solar-scatter/master-electricians-05.png',
+        '/images/home/solar-scatter/master-electricians-06.png',
+      ],
+    },
   },
   {
-    tag: 'INTELLIGENT ENERGY TELEMETRY',
-    heading: 'Next-Gen Inverters & Live Smart Monitoring',
-    subtitle:
-      'Monitor household power generation, export tariffs, and self-consumption in real-time from your smartphone.',
-    images: [
-      '/images/projects/smart-solar-app-telemetry.webp',
-      '/images/projects/sunny-boy-inverter.webp',
-      '/images/about/gallery/electrician-mounting-inverter.webp',
-      '/images/solutions/net-metering.jpg',
-      '/images/projects/project-switchboard.jpg',
-      '/images/projects/dji-aerial-solar.webp',
-    ],
+    label: 'Smart Inverters',
+    icon: Zap,
+    data: {
+      tag: 'INTELLIGENT ENERGY TELEMETRY',
+      heading: 'Next-Gen Inverters & Live Smart Monitoring',
+      subtitle:
+        'Monitor household power generation, export tariffs, and self-consumption in real-time from your smartphone.',
+      images: [
+        '/images/home/solar-scatter/smart-inverters-01.png',
+        '/images/home/solar-scatter/smart-inverters-02.png',
+        '/images/home/solar-scatter/smart-inverters-03.png',
+        '/images/home/solar-scatter/smart-inverters-04.png',
+        '/images/home/solar-scatter/smart-inverters-05.png',
+        '/images/home/solar-scatter/smart-inverters-06.png',
+      ],
+    },
   },
   {
-    tag: 'ENGINEERED FOR QUEENSLAND',
-    heading: 'Built For Coastal Heat & Severe Weather',
-    subtitle:
-      'Heavy-duty anodised aluminium framing and corrosion-resistant hardware engineered to endure 25+ years of Gold Coast sunshine.',
-    images: [
-      '/images/projects/queensland-coastal-solar-home.webp',
-      '/images/projects/project-cyclone-clamping.jpg',
-      '/images/projects/homestead-overview.jpg',
-      '/images/home/parallax-solar-home.webp',
-      '/images/projects/ground-framework.webp',
-      '/images/about/solar-installation-aerial.webp',
-    ],
+    label: 'QLD Weather Rated',
+    icon: ShieldCheck,
+    data: {
+      tag: 'ENGINEERED FOR QUEENSLAND',
+      heading: 'Built For Coastal Heat & Severe Weather',
+      subtitle:
+        'Heavy-duty anodised aluminium framing and corrosion-resistant hardware engineered to endure 25+ years of Gold Coast sunshine.',
+      images: [
+        '/images/home/solar-scatter/qld-weather-rated-01.png',
+        '/images/home/solar-scatter/qld-weather-rated-02.png',
+        '/images/home/solar-scatter/qld-weather-rated-03.png',
+        '/images/home/solar-scatter/qld-weather-rated-04.png',
+        '/images/home/solar-scatter/qld-weather-rated-05.png',
+        '/images/home/solar-scatter/qld-weather-rated-06.png',
+      ],
+    },
   },
 ];
 
-const categoryPills = [
-  { label: 'Solar Arrays', icon: Sun },
-  { label: 'Battery Storage', icon: BatteryCharging },
-  { label: 'Master Electricians', icon: Wrench },
-  { label: 'Smart Inverters', icon: Zap },
-  { label: 'QLD Weather Rated', icon: ShieldCheck },
-];
+const categoryPills = solarCategories.map(({ label, icon }) => ({ label, icon }));
+const solarScatterData = solarCategories.map(({ data }) => data);
 
 export const SolarScatterSection: React.FC = () => {
   const [activeCategoryIndex, setActiveCategoryIndex] = useState(0);

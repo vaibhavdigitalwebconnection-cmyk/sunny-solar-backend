@@ -203,14 +203,14 @@ export const Footer: React.FC = () => {
 
       {/* Bottom Bar */}
       <div className="bg-[#070A24] border-t border-white/5">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 pb-28 sm:pb-24 lg:pb-5 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-white/80 text-center sm:text-left">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 pb-28 sm:pb-24 lg:pb-5 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-white/90 text-center sm:text-left">
           <span>© {new Date().getFullYear()} Sunny Solar Energy Pty Ltd. All rights reserved.</span>
-          <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-1.5 text-xs text-slate-300">
+          <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-1.5 text-xs text-slate-100">
             <Link to="/legal/privacy-policy" className="hover:text-white transition-colors">Privacy Policy</Link>
             <Link to="/legal/terms-conditions" className="hover:text-white transition-colors">Terms &amp; Conditions</Link>
             <Link to="/legal/terms-of-trade" className="hover:text-white transition-colors">Terms of Trade</Link>
             <Link to="/sitemap" className="hover:text-white transition-colors">Sitemap</Link>
-            <span className="text-slate-400">Digital Partner <a href="https://digitalwebconnection.com" target="_blank" rel="noopener noreferrer" className="text-[#6F8EE7] font-semibold hover:text-white transition-colors">Digital Web Connection</a></span>
+            <span className="text-white ">Digital Partner <a href="https://digitalwebconnection.com" target="_blank" rel="noopener noreferrer" className="text-white font-semibold text-sm hover:text-white transition-colors">Digital Web Connection</a></span>
           </div>
         </div>
       </div>
