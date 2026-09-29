@@ -65,7 +65,7 @@ export const BlogModal: React.FC<BlogModalProps> = ({
       <div
         data-lenis-prevent
         onWheel={handleModalWheel}
-        className="bg-white rounded-none sm:rounded-2xl w-full max-w-3xl h-full sm:h-auto max-h-[100dvh] sm:max-h-[92vh] flex flex-col shadow-2xl overflow-hidden border-0 sm:border sm:border-slate-200"
+        className="bg-white rounded-none sm:rounded-2xl w-full max-w-3xl h-full sm:h-auto max-h-dvh sm:max-h-[92vh] flex flex-col shadow-2xl overflow-hidden border-0 sm:border sm:border-slate-200"
       >
         {/* Modal Header (Fixed at top) */}
         <div className="px-4 py-3 sm:px-6 sm:py-4 border-b border-neutral-200 flex items-center justify-between bg-white shrink-0">

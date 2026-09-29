@@ -37,7 +37,7 @@ export const MobileWaveCard: React.FC<MobileWaveCardProps> = ({
   return (
     <div
       onClick={onClick}
-      className={`bg-white rounded-xl ${cardBorderClass} shadow-xs flex flex-col justify-between overflow-hidden relative min-h-[195px] sm:min-h-[220px] ${
+      className={`bg-white rounded-xl ${cardBorderClass} shadow-xs flex flex-col justify-between overflow-hidden relative min-h-48.75 sm:min-h-55 ${
         onClick ? 'cursor-pointer active:scale-[0.98] transition-transform' : ''
       }`}
     >

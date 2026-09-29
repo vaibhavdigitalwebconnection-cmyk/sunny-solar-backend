@@ -41,7 +41,7 @@ export const AdminToast: React.FC<AdminToastProps> = ({ toast, onClose }) => {
 
         {/* Message */}
         <div className="flex-1 min-w-0 pr-1">
-          <p className="text-xs sm:text-xs font-semibold text-white leading-snug break-words">
+          <p className="text-xs sm:text-xs font-semibold text-white leading-snug wrap-break-word">
             {toast.message}
           </p>
         </div>

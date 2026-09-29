@@ -292,10 +292,8 @@ export const TestimonialsSliderSection: React.FC = () => {
               </svg>
             </div>
 
-            
-
             {/* Interactive Project Quick Switcher */}
-            <div className="relative z-10 w-full mt-6 space-y-2 text-left">
+            <div className="relative z-10 w-full space-y-2 text-left">
               <div className="text-[11px] font-bold uppercase tracking-wider text-slate-400 mb-1 px-1">
                 Select project
               </div>
@@ -331,6 +329,15 @@ export const TestimonialsSliderSection: React.FC = () => {
                 );
               })}
             </div>
+
+            {/* Left Column Bottom Assurance */}
+            <div className="relative z-10 w-full pt-3 mt-3 border-t border-slate-200/70 flex items-center justify-between text-[11px] text-slate-500">
+              <span className="flex items-center gap-1 font-semibold text-slate-700">
+                <ShieldCheck className="w-3.5 h-3.5 text-[#2B3CB8]" />
+                CEC Approved
+              </span>
+              <span className="font-bold text-[#EF680C]">Master Electricians</span>
+            </div>
           </div>
 
           {/* RIGHT COLUMN: Big Featured Card with RUNNING ANIMATED BORDER */}
@@ -364,19 +371,19 @@ export const TestimonialsSliderSection: React.FC = () => {
               />
 
               {/* Card Interior Surface */}
-              <div className="relative z-10 bg-white/98 backdrop-blur-2xl rounded-2xl p-5 sm:p-6 lg:p-7 flex flex-col justify-between border border-slate-300/80 shadow-xs h-full">
+              <div className="relative z-10 bg-white/98 backdrop-blur-2xl rounded-2xl p-5 sm:p-6 flex flex-col justify-between border border-slate-300/80 shadow-xs h-full">
 
                 <AnimatePresence mode="wait">
                   <motion.div
                     key={currentIndex}
-                    initial={{ opacity: 0, y: 14 }}
+                    initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -14 }}
-                    transition={{ duration: 0.35, ease: 'easeOut' }}
-                    className="grid grid-cols-1 md:grid-cols-12 gap-5 lg:gap-6 items-stretch flex-1"
+                    exit={{ opacity: 0, y: -10 }}
+                    transition={{ duration: 0.3, ease: 'easeOut' }}
+                    className="grid grid-cols-1 md:grid-cols-12 gap-5 lg:gap-6 items-stretch flex-1 w-full h-full"
                   >
                     {/* Visual Showcase (5 cols on md/lg) */}
-                    <div className="md:col-span-5 relative rounded-xl overflow-hidden aspect-4/3 md:aspect-auto md:min-h-75 shadow-sm border border-slate-200/80 group/img bg-slate-900">
+                    <div className="md:col-span-5 relative rounded-xl overflow-hidden aspect-4/3 md:aspect-auto md:h-100 min-h-55 shadow-sm border border-slate-200/80 group/img bg-slate-900">
                       <img
                         src={activeProject.image}
                         alt={activeProject.title}
@@ -403,30 +410,28 @@ export const TestimonialsSliderSection: React.FC = () => {
                     </div>
 
                     {/* Project Details & Performance (7 cols on md/lg) */}
-                    <div className="md:col-span-7 flex flex-col justify-between space-y-3.5">
+                    <div className="md:col-span-7 flex flex-col min-h-100 md:h-107.5 justify-between space-y-3">
                       <div>
-                       
-
-                        {/* Project Title */}
-                        <h3 className="text-lg sm:text-xl lg:text-2xl font-bold text-slate-900 tracking-tight leading-snug">
+                        {/* Project Title with fixed 2-line height */}
+                        <h3 className="text-base sm:text-lg lg:text-xl font-bold text-slate-900 tracking-tight leading-snug min-h-11 sm:min-h-13 flex items-center">
                           {activeProject.title}
                         </h3>
 
                         {/* Key Metrics Row */}
-                        <div className="grid grid-cols-3 gap-2 mt-3 pt-3 border-t border-slate-100">
-                          <div className="bg-slate-50/80 rounded-lg p-2.5 text-center border border-slate-100">
+                        <div className="grid grid-cols-3 gap-2 mt-2.5 pt-2.5 border-t border-slate-100">
+                          <div className="bg-slate-50/80 rounded-lg p-2 text-center border border-slate-100">
                             <div className="text-[10px] uppercase font-bold text-slate-400">Annual Saved</div>
                             <div className="text-xs sm:text-sm font-black text-[#EF680C] mt-0.5">
                               {activeProject.annualSavings}
                             </div>
                           </div>
-                          <div className="bg-slate-50/80 rounded-lg p-2.5 text-center border border-slate-100">
+                          <div className="bg-slate-50/80 rounded-lg p-2 text-center border border-slate-100">
                             <div className="text-[10px] uppercase font-bold text-slate-400">Payback</div>
                             <div className="text-xs sm:text-sm font-black text-slate-800 mt-0.5">
                               {activeProject.paybackPeriod}
                             </div>
                           </div>
-                          <div className="bg-slate-50/80 rounded-lg p-2.5 text-center border border-slate-100">
+                          <div className="bg-slate-50/80 rounded-lg p-2 text-center border border-slate-100">
                             <div className="text-[10px] uppercase font-bold text-slate-400">Self-Use</div>
                             <div className="text-xs sm:text-sm font-black text-emerald-600 mt-0.5">
                               {activeProject.selfConsumption}
@@ -435,18 +440,18 @@ export const TestimonialsSliderSection: React.FC = () => {
                         </div>
 
                         {/* Hardware Specs line */}
-                        <div className="mt-3 flex items-center gap-1.5 text-xs text-slate-600 bg-slate-50/60 px-3 py-1.5 rounded-lg border border-slate-100">
+                        <div className="mt-2.5 flex items-center gap-1.5 text-xs text-slate-600 bg-slate-50/60 px-3 py-1.5 rounded-lg border border-slate-100">
                           <ShieldCheck className="w-3.5 h-3.5 text-blue-600 shrink-0" />
                           <span className="font-semibold text-slate-800">Panels:</span>
                           <span className="truncate">{activeProject.panels}</span>
                         </div>
 
-                        {/* Homeowner Review Quote */}
-                        <div className="mt-3 bg-amber-50/50 rounded-xl p-3 border border-amber-200/40">
-                          <p className="text-xs sm:text-[13px] text-slate-700 italic leading-relaxed line-clamp-3">
+                        {/* Homeowner Review Quote with fixed height */}
+                        <div className="mt-2.5 bg-amber-50/50 rounded-xl p-3 border border-amber-200/40 min-h-22 flex flex-col justify-between">
+                          <p className="text-xs sm:text-[13px] text-slate-700 italic leading-relaxed line-clamp-3 min-h-11">
                             &ldquo;{activeProject.quote}&rdquo;
                           </p>
-                          <div className="mt-2 flex items-center justify-between text-[11px]">
+                          <div className="mt-2 flex items-center justify-between text-[11px] pt-1">
                             <span className="font-bold text-slate-900">{activeProject.clientName}</span>
                             <span className="text-emerald-700 font-semibold flex items-center gap-1">
                               <CheckCircle2 className="w-3 h-3 text-emerald-600" />
@@ -457,7 +462,7 @@ export const TestimonialsSliderSection: React.FC = () => {
                       </div>
 
                       {/* Card Footer: Explore Link + Nav Controls */}
-                      <div className="pt-3 border-t border-slate-100 flex items-center justify-between gap-3">
+                      <div className="pt-2.5 border-t border-slate-100 flex items-center justify-between gap-3 mt-auto">
                         <Link
                           to={`/projects/${activeProject.slug}`}
                           className="inline-flex items-center gap-1.5 text-xs font-bold text-[#EF680C] hover:text-[#d65b09] transition-colors group/btn"
