@@ -121,7 +121,10 @@ export const api = {
   login: async (credentials: { email: string; password: string }) => {
     const res = await request('/admin/login', {
       method: 'POST',
-      body: JSON.stringify(credentials)
+      body: JSON.stringify({
+        email: credentials.email.trim().toLowerCase(),
+        password: credentials.password
+      })
     });
     if (res.token) {
       setAdminToken(res.token);
