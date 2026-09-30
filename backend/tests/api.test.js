@@ -87,4 +87,31 @@ describe('Backend API Tests', () => {
       spy.mockRestore();
     });
   });
+
+  describe('CORS & Preflight for Vercel Deployments', () => {
+    const vercelOrigin = 'https://sunny-solar-frontend-g6zskh4fd.vercel.app';
+
+    it('OPTIONS /api/admin/login should respond 204 with CORS headers for Vercel preview origin', async () => {
+      const response = await request(app)
+        .options('/api/admin/login')
+        .set('Origin', vercelOrigin)
+        .set('Access-Control-Request-Method', 'POST')
+        .set('Access-Control-Request-Headers', 'Content-Type, Authorization');
+
+      expect(response.status).toBe(204);
+      expect(response.headers['access-control-allow-origin']).toBe(vercelOrigin);
+      expect(response.headers['access-control-allow-credentials']).toBe('true');
+      expect(response.headers['access-control-allow-methods']).toContain('POST');
+    });
+
+    it('POST /api/admin/login includes Access-Control-Allow-Origin header matching Vercel origin', async () => {
+      const response = await request(app)
+        .post('/api/admin/login')
+        .set('Origin', vercelOrigin)
+        .send({});
+
+      expect(response.headers['access-control-allow-origin']).toBe(vercelOrigin);
+      expect(response.headers['access-control-allow-credentials']).toBe('true');
+    });
+  });
 });

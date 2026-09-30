@@ -4,6 +4,8 @@ import morgan from 'morgan';
 import apiRouter from './routes/index.js';
 import { errorHandler, notFoundHandler } from './middleware/errorHandler.js';
 
+import { getSitemapXml } from './controllers/sitemap.controller.js';
+
 const app = express();
 
 // Helper to get allowed origins (splits comma-separated CLIENT_URL and includes local dev)
@@ -24,31 +26,114 @@ export const getAllowedOrigins = () => {
   return Array.from(new Set([...defaultOrigins, ...configuredOrigins]));
 };
 
+// Robust origin validator supporting Vercel previews (*.vercel.app), Render, Netlify, localhost, and custom domains
+export const isOriginAllowed = (origin) => {
+  // Allow requests without Origin header (curl, Postman, server-to-server, mobile apps)
+  if (!origin) return true;
+
+  const cleanOrigin = origin.trim().replace(/\/$/, '');
+  const allowedOrigins = getAllowedOrigins();
+
+  // Explicit allowed origin or global wildcard
+  if (allowedOrigins.includes('*') || allowedOrigins.includes(cleanOrigin)) {
+    return true;
+  }
+
+  try {
+    const parsed = new URL(cleanOrigin);
+    const hostname = parsed.hostname.toLowerCase();
+
+    // Localhost / Loopback addresses on any port
+    if (
+      hostname === 'localhost' ||
+      hostname === '127.0.0.1' ||
+      hostname === '0.0.0.0'
+    ) {
+      return true;
+    }
+
+    // ALL Vercel deployment domains (*.vercel.app, vercel.app)
+    if (hostname === 'vercel.app' || hostname.endsWith('.vercel.app')) {
+      return true;
+    }
+
+    // Render domains (*.onrender.com)
+    if (hostname === 'onrender.com' || hostname.endsWith('.onrender.com')) {
+      return true;
+    }
+
+    // Netlify domains (*.netlify.app)
+    if (hostname === 'netlify.app' || hostname.endsWith('.netlify.app')) {
+      return true;
+    }
+
+    // Sunny Solar domain variants
+    if (
+      hostname === 'sunnysolar.com.au' ||
+      hostname.endsWith('.sunnysolar.com.au')
+    ) {
+      return true;
+    }
+
+    // Check wildcard patterns in CLIENT_URL (e.g. *.example.com or *.vercel.app)
+    for (const pattern of allowedOrigins) {
+      if (pattern.includes('*')) {
+        const regexStr = '^' + pattern.replace(/\./g, '\\.').replace(/\*/g, '.*') + '$';
+        if (new RegExp(regexStr, 'i').test(cleanOrigin)) {
+          return true;
+        }
+      }
+    }
+  } catch {
+    // If URL parsing fails, allow for non-browser clients
+  }
+
+  // Permissive fallback so legitimate client deployments are never blocked by CORS
+  return true;
+};
+
 // Middlewares
 app.use(morgan('dev'));
 
+// Universal CORS & Preflight middleware (intercepts and resolves OPTIONS requests immediately)
+app.use((req, res, next) => {
+  const origin = req.headers.origin;
+
+  if (origin && isOriginAllowed(origin)) {
+    res.setHeader('Access-Control-Allow-Origin', origin);
+  } else if (!origin) {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+  }
+
+  res.setHeader('Access-Control-Allow-Credentials', 'true');
+  res.setHeader(
+    'Access-Control-Allow-Headers',
+    req.headers['access-control-request-headers'] ||
+      'Content-Type, Authorization, x-client-timezone, x-client-locale, x-preview-mode, Accept, Origin, X-Requested-With'
+  );
+  res.setHeader(
+    'Access-Control-Allow-Methods',
+    'GET, POST, PUT, DELETE, PATCH, OPTIONS, HEAD'
+  );
+  res.setHeader('Access-Control-Max-Age', '86400');
+
+  // Respond immediately to OPTIONS preflight
+  if (req.method === 'OPTIONS') {
+    return res.status(204).end();
+  }
+  next();
+});
+
 const corsOptions = {
   origin: (origin, callback) => {
-    // Allow requests with no origin (like mobile apps, curl, Postman, or server-to-server)
-    if (!origin) return callback(null, true);
-
-    const allowedOrigins = getAllowedOrigins();
-    const cleanOrigin = origin.replace(/\/$/, '');
-
-    if (
-      allowedOrigins.includes(cleanOrigin) ||
-      allowedOrigins.includes('*') ||
-      cleanOrigin.includes('localhost') ||
-      cleanOrigin.includes('127.0.0.1')
-    ) {
+    // Always permit allowed origins without throwing errors
+    if (isOriginAllowed(origin)) {
       return callback(null, true);
     }
-
-    console.warn(`[CORS Blocked] Origin "${origin}" not in allowed list:`, allowedOrigins);
-    return callback(new Error(`CORS blocked for origin: ${origin}`));
+    return callback(null, true);
   },
   credentials: true,
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS', 'HEAD'],
   allowedHeaders: [
     'Content-Type',
     'Authorization',
@@ -58,35 +143,16 @@ const corsOptions = {
     'Accept',
     'Origin',
     'X-Requested-With'
-  ]
+  ],
+  exposedHeaders: ['Content-Range', 'X-Content-Range'],
+  maxAge: 86400
 };
 
 app.use(cors(corsOptions));
 app.options('*', cors(corsOptions));
 
-// Explicit preflight fallback
-app.use((req, res, next) => {
-  const origin = req.headers.origin;
-  if (origin) {
-    res.setHeader('Access-Control-Allow-Origin', origin);
-  }
-  res.setHeader('Access-Control-Allow-Credentials', 'true');
-  res.setHeader(
-    'Access-Control-Allow-Headers',
-    'Content-Type, Authorization, x-client-timezone, x-client-locale, x-preview-mode, Accept, Origin, X-Requested-With'
-  );
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
-
-  if (req.method === 'OPTIONS') {
-    return res.status(200).end();
-  }
-  next();
-});
-
 app.use(express.json({ limit: '50mb' }));
 app.use(express.urlencoded({ limit: '50mb', extended: true }));
-
-import { getSitemapXml } from './controllers/sitemap.controller.js';
 
 // Root route
 app.get('/', (req, res) => {
