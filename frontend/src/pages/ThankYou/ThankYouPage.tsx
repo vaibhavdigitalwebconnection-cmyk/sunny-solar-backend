@@ -3,10 +3,19 @@ import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { CheckCircle2, Phone, Mail, Clock, ArrowRight, ShieldCheck, Sparkles, Home } from 'lucide-react';
 import { Button } from '../../components/ui/Button';
+import { Particles } from '../../components/ui/Particles';
+import { BlurFade } from '../../components/ui/BlurFade';
+import { BorderBeam } from '../../components/ui/BorderBeam';
 
 export const ThankYouPage: React.FC = () => {
   return (
     <div className="min-h-screen bg-slate-50 pt-28 pb-20 overflow-hidden relative">
+      <Particles
+        className="absolute inset-0 z-0 opacity-60"
+        quantity={45}
+        color="#2B3CB8"
+        size={0.6}
+      />
       <Helmet>
         <title>Thank You - Request Received | Sunny Solar</title>
         <meta
@@ -45,56 +54,69 @@ export const ThankYouPage: React.FC = () => {
         {/* 3-Step Next Steps Timeline */}
         <div className="mt-10 grid grid-cols-1 md:grid-cols-3 gap-5 text-left">
           {/* Step 1 */}
-          <div className="bg-white rounded-2xl p-6 border border-slate-200/90 shadow-sm hover:shadow-md transition-shadow relative overflow-hidden">
-            <div className="w-9 h-9 rounded-xl bg-[#F5F7FD] border border-[#D1DCF8] text-[#2B3CB8] flex items-center justify-center font-bold text-sm mb-4">
-              01
+          <BlurFade delay={0.1} duration={0.4} className="h-full">
+            <div className="bg-white rounded-2xl p-6 border border-slate-200/90 shadow-sm hover:shadow-md transition-shadow relative overflow-hidden h-full flex flex-col justify-between">
+              <div>
+                <div className="w-9 h-9 rounded-xl bg-[#F5F7FD] border border-[#D1DCF8] text-[#2B3CB8] flex items-center justify-center font-bold text-sm mb-4">
+                  01
+                </div>
+                <h3 className="font-bold text-slate-900 text-base mb-1.5 flex items-center gap-2">
+                  <span>3D Satellite Roof Audit</span>
+                </h3>
+                <p className="text-xs text-slate-600 leading-relaxed">
+                  We analyze your roof pitch, orientation, sun hours, and any nearby shading using high-resolution aerial mapping.
+                </p>
+              </div>
+              <span className="inline-block mt-3 text-[11px] font-semibold text-[#1D2984] bg-[#F5F7FD] px-2 py-0.5 rounded-md w-fit">
+                Within 2–4 Hours
+              </span>
             </div>
-            <h3 className="font-bold text-slate-900 text-base mb-1.5 flex items-center gap-2">
-              <span>3D Satellite Roof Audit</span>
-            </h3>
-            <p className="text-xs text-slate-600 leading-relaxed">
-              We analyze your roof pitch, orientation, sun hours, and any nearby shading using high-resolution aerial mapping.
-            </p>
-            <span className="inline-block mt-3 text-[11px] font-semibold text-[#1D2984] bg-[#F5F7FD] px-2 py-0.5 rounded-md">
-              Within 2–4 Hours
-            </span>
-          </div>
+          </BlurFade>
 
           {/* Step 2 */}
-          <div className="bg-white rounded-2xl p-6 border border-slate-200/90 shadow-sm hover:shadow-md transition-shadow relative overflow-hidden">
-            <div className="w-9 h-9 rounded-xl bg-[#F5F7FD] border border-[#D1DCF8] text-[#2B3CB8] flex items-center justify-center font-bold text-sm mb-4">
-              02
+          <BlurFade delay={0.2} duration={0.4} className="h-full">
+            <div className="bg-white rounded-2xl p-6 border border-slate-200/90 shadow-sm hover:shadow-md transition-shadow relative overflow-hidden h-full flex flex-col justify-between">
+              <div>
+                <div className="w-9 h-9 rounded-xl bg-[#F5F7FD] border border-[#D1DCF8] text-[#2B3CB8] flex items-center justify-center font-bold text-sm mb-4">
+                  02
+                </div>
+                <h3 className="font-bold text-slate-900 text-base mb-1.5 flex items-center gap-2">
+                  <span>Fixed-Price Proposal</span>
+                </h3>
+                <p className="text-xs text-slate-600 leading-relaxed">
+                  You receive an itemized proposal with tier-1 equipment options, expected bill reductions, and verified government rebates.
+                </p>
+              </div>
+              <span className="inline-block mt-3 text-[11px] font-semibold text-[#1D2984] bg-[#F5F7FD] px-2 py-0.5 rounded-md w-fit">
+                Same-Day Delivery
+              </span>
             </div>
-            <h3 className="font-bold text-slate-900 text-base mb-1.5 flex items-center gap-2">
-              <span>Fixed-Price Proposal</span>
-            </h3>
-            <p className="text-xs text-slate-600 leading-relaxed">
-              You receive an itemized proposal with tier-1 equipment options, expected bill reductions, and verified government rebates.
-            </p>
-            <span className="inline-block mt-3 text-[11px] font-semibold text-[#1D2984] bg-[#F5F7FD] px-2 py-0.5 rounded-md">
-              Same-Day Delivery
-            </span>
-          </div>
+          </BlurFade>
 
           {/* Step 3 */}
-          <div className="bg-white rounded-2xl p-6 border border-slate-200/90 shadow-sm hover:shadow-md transition-shadow relative overflow-hidden">
-            <div className="w-9 h-9 rounded-xl bg-[#F5F7FD] border border-[#D1DCF8] text-[#2B3CB8] flex items-center justify-center font-bold text-sm mb-4">
-              03
+          <BlurFade delay={0.3} duration={0.4} className="h-full">
+            <div className="bg-white rounded-2xl p-6 border border-slate-200/90 shadow-sm hover:shadow-md transition-shadow relative overflow-hidden h-full flex flex-col justify-between">
+              <div>
+                <div className="w-9 h-9 rounded-xl bg-[#F5F7FD] border border-[#D1DCF8] text-[#2B3CB8] flex items-center justify-center font-bold text-sm mb-4">
+                  03
+                </div>
+                <h3 className="font-bold text-slate-900 text-base mb-1.5 flex items-center gap-2">
+                  <span>Zero-Pressure Advice</span>
+                </h3>
+                <p className="text-xs text-slate-600 leading-relaxed">
+                  No high-pressure sales reps. Speak directly with licensed electrical installers to ask any technical or financial questions.
+                </p>
+              </div>
+              <span className="inline-block mt-3 text-[11px] font-semibold text-[#1D2984] bg-[#F5F7FD] px-2 py-0.5 rounded-md w-fit">
+                Master Electrician direct
+              </span>
             </div>
-            <h3 className="font-bold text-slate-900 text-base mb-1.5 flex items-center gap-2">
-              <span>Zero-Pressure Advice</span>
-            </h3>
-            <p className="text-xs text-slate-600 leading-relaxed">
-              No high-pressure sales reps. Speak directly with licensed electrical installers to ask any technical or financial questions.
-            </p>
-            <span className="inline-block mt-3 text-[11px] font-semibold text-[#1D2984] bg-[#F5F7FD] px-2 py-0.5 rounded-md">
-              Master Electrician direct
-            </span>
-          </div>
+          </BlurFade>
         </div>
 
         {/* Immediate Contact Box */}
-        <div className="mt-10 bg-linear-to-r from-[#0C123E] via-[#070A24] to-[#0C123E] rounded-2xl p-6 sm:p-8 text-white border border-[#151E64] shadow-xl flex flex-col sm:flex-row items-center justify-between gap-6 text-left">
+        <div className="mt-10 bg-linear-to-r from-[#0C123E] via-[#070A24] to-[#0C123E] rounded-2xl p-6 sm:p-8 text-white border border-[#151E64] shadow-xl flex flex-col sm:flex-row items-center justify-between gap-6 text-left relative overflow-hidden">
+          <BorderBeam size={180} duration={8} colorFrom="#2B3CB8" colorTo="#6F8EE7" borderWidth={1.5} />
           <div>
             <span className="text-xs font-mono font-bold text-[#D1DCF8] uppercase tracking-wider block mb-1">
               Need Immediate Assistance?

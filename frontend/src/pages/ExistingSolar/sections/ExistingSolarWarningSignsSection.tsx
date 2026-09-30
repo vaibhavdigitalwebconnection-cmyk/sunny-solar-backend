@@ -239,7 +239,7 @@ export const ExistingSolarWarningSignsSection: React.FC = () => {
                     Suspect Your Solar Isn't Performing?
                   </h3>
                   <p className="text-xs text-slate-300 leading-relaxed mb-4">
-                    Our CEC Master Electricians conduct infrared thermal scans, string voltage audits, and isolator safety checks across Brisbane and Gold Coast.
+                    Our SAA Master Electricians conduct infrared thermal scans, string voltage audits, and isolator safety checks across Brisbane and Gold Coast.
                   </p>
                   <div className="text-2xl font-bold font-mono text-[#D1DCF8] mb-1">
                     $189 Fixed Price
@@ -272,11 +272,10 @@ export const ExistingSolarWarningSignsSection: React.FC = () => {
                 type="button"
                 onClick={() => goToSlide(dotIdx)}
                 aria-label={`Go to slide ${dotIdx + 1}`}
-                className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
-                  activeSlide === dotIdx
-                    ? 'w-6 bg-[#2B3CB8]'
-                    : 'w-2 bg-slate-300 hover:bg-slate-400'
-                }`}
+                className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${activeSlide === dotIdx
+                  ? 'w-6 bg-[#2B3CB8]'
+                  : 'w-2 bg-slate-300 hover:bg-slate-400'
+                  }`}
               />
             ))}
           </div>
@@ -368,7 +367,7 @@ export const ExistingSolarWarningSignsSection: React.FC = () => {
               Suspect Your Solar Isn't Performing?
             </h3>
             <p className="text-xs text-slate-300 leading-relaxed mb-4">
-              Our CEC Master Electricians conduct infrared thermal scans, string voltage audits, and isolator safety checks across Brisbane and Gold Coast.
+              Our SAA Master Electricians conduct infrared thermal scans, string voltage audits, and isolator safety checks across Brisbane and Gold Coast.
             </p>
             <div className="text-2xl font-bold font-mono text-[#D1DCF8] mb-1">
               $189 Fixed Price

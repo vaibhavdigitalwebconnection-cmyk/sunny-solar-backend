@@ -11,6 +11,7 @@ import {
 import { motion, AnimatePresence } from 'framer-motion';
 import { Badge } from '../../../../components/ui/Badge';
 import { Button } from '../../../../components/ui/Button';
+import { BorderBeam } from '../../../../components/ui/BorderBeam';
 
 interface PackageItem {
   id: string;
@@ -436,12 +437,15 @@ export const SolarLandingPackagesSection: React.FC = () => {
               }`}
             >
               {pkg.popular && (
-                <div className="absolute -top-3.5 left-1/2 -translate-x-1/2">
-                  <span className="bg-amber-500 w-52 text-slate-950 text-xs font-extrabold px-4 py-1 rounded-full uppercase tracking-wider shadow-md inline-flex items-center justify-center gap-1.5">
-                    <Sparkles className="w-3 h-3" />
-                    Most Popular Choice
-                  </span>
-                </div>
+                <>
+                  <BorderBeam size={200} duration={8} colorFrom="#F59E0B" colorTo="#2B3CB8" borderWidth={2} />
+                  <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 z-20">
+                    <span className="bg-amber-500 w-52 text-slate-950 text-xs font-extrabold px-4 py-1 rounded-full uppercase tracking-wider shadow-md inline-flex items-center justify-center gap-1.5">
+                      <Sparkles className="w-3 h-3" />
+                      Most Popular Choice
+                    </span>
+                  </div>
+                </>
               )}
 
               <div>

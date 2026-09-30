@@ -1,5 +1,6 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
+import { ScrollProgress } from '../../components/ui/ScrollProgress';
 import { BatteriesHeroSection } from './sections/BatteriesHeroSection';
 import { BatteryBenefitsSection } from './sections/BatteryBenefitsSection';
 import { BatteryGridSection } from './sections/BatteryGridSection';
@@ -9,6 +10,7 @@ import { BatteryProcessSection } from './sections/BatteryProcessSection';
 export const BatteriesLandingPage: React.FC = () => {
   return (
     <div className="flex flex-col min-h-screen">
+      <ScrollProgress />
       <Helmet>
         <title>Home Solar Battery Storage Systems | Sunny Solar</title>
         <meta

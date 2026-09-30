@@ -379,10 +379,51 @@
   animation-play-state: paused;
 }
 
+@keyframes marquee-vertical {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+
+  100% {
+    transform: translate3d(0, -50%, 0);
+  }
+}
+
+.animate-marquee-vertical {
+  display: flex;
+  flex-direction: column;
+  height: max-content;
+  animation: marquee-vertical 60s linear infinite;
+  will-change: transform;
+}
+
+.animate-marquee-vertical:hover,
+.group:hover .animate-marquee-vertical {
+  animation-play-state: paused;
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .animate-marquee {
+  .animate-marquee,
+  .animate-marquee-vertical {
     animation: none !important;
   }
+}
+
+/* Magic UI Animated Gradient Text */
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.animate-gradient {
+  animation: gradient 6s ease infinite;
 }
 
 /* ── Global Blue Ambient Animations ── */
@@ -583,4 +624,54 @@
 /* Lenis smooth scrolling header clearance */
 html {
   scroll-padding-top: 5.5rem;
+}
+
+/* Magic UI: Animated Shiny Text */
+@keyframes shiny-text {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+.animate-shiny-text {
+  background: linear-gradient(
+    90deg,
+    #2B3CB8 0%,
+    #2B3CB8 35%,
+    #8BA2EC 50%,
+    #2B3CB8 65%,
+    #2B3CB8 100%
+  );
+  background-size: 200% auto;
+  color: transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+  animation: shiny-text 4s ease-in-out infinite;
+}
+
+/* Magic UI Shine Border Animation */
+@keyframes shine {
+  0% {
+    background-position: 0% 0%;
+  }
+  50% {
+    background-position: 100% 100%;
+  }
+  to {
+    background-position: 0% 0%;
+  }
+}
+
+.animate-shine {
+  animation: shine var(--duration, 14s) linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-shine,
+  .animate-shiny-text {
+    animation: none !important;
+  }
 }

@@ -97,7 +97,7 @@ export const BatteryDecisionGuidePage: React.FC = () => {
           <div className="p-4 rounded-lg bg-slate-100 border border-slate-200 text-xs text-slate-600 flex items-center gap-3">
             <ShieldCheck className="w-5 h-5 text-emerald-600 shrink-0" />
             <span>
-              <strong>Zero Bias Guarantee:</strong> We carry CEC accreditation across multiple battery tier-1 manufacturers. This report offers unvarnished pros and cons for every model.
+              <strong>Zero Bias Guarantee:</strong> We carry SAA accreditation across multiple battery tier-1 manufacturers. This report offers unvarnished pros and cons for every model.
             </span>
           </div>
         </div>

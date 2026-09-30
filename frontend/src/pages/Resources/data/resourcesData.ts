@@ -106,7 +106,7 @@ export const resourcesPageData: Record<string, ResourcePageData> = {
         }
       ],
       footer: {
-        trustText: 'Tier-1 CEC Approved Lithium Storage',
+        trustText: 'Tier-1 SAA Approved Lithium Storage',
         buttonText: 'Read Battery Decision Guide',
         buttonTo: '/resources/battery-decision-guide'
       }
@@ -174,7 +174,7 @@ export const resourcesPageData: Record<string, ResourcePageData> = {
         }
       ],
       footer: {
-        trustText: 'CEC Accredited Storage Designers',
+        trustText: 'SAA Accredited Storage Designers',
         buttonText: 'Audit My Battery Quote',
         buttonTo: '/resources/quote-review'
       }
@@ -229,7 +229,7 @@ export const resourcesPageData: Record<string, ResourcePageData> = {
         'Installing battery storage involves high DC energy density and strict Australian electrical standards (AS/NZS 5139). Never sign a battery quote until you verify these four safety and installation requirements:',
       features: [
         {
-          bold: 'CEC Battery Accreditation:',
+          bold: 'SAA Battery Accreditation:',
           text: 'Ensure the installer holds specific Clean Energy Council Grid-Connected Storage accreditation, not just standard solar.'
         },
         {

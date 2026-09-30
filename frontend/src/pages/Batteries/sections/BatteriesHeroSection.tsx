@@ -15,10 +15,19 @@ import {
 import { Button } from '../../../components/ui/Button';
 import { Badge } from '../../../components/ui/Badge';
 import { Breadcrumbs } from '../../../components/layout/Breadcrumbs';
+import { BorderBeam } from '../../../components/ui/BorderBeam';
+import { Particles } from '../../../components/ui/Particles';
 
 export const BatteriesHeroSection: React.FC = () => {
   return (
     <section className="relative pt-28 sm:pt-36 pb-16 sm:pb-20 bg-linear-to-b from-[#2B3CB8]/10 via-[#2B3CB8]/5 to-white border-b border-slate-200/60 overflow-hidden">
+      {/* Magic UI Ambient Background Particles */}
+      <Particles
+        className="absolute inset-0 z-0 opacity-55"
+        quantity={35}
+        color="#2B3CB8"
+        size={0.6}
+      />
       {/* Ambient solar and brand blue glows */}
       <div className="absolute top-10 right-1/4 w-96 h-96 bg-[#2B3CB8]/10 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute top-20 left-1/3 w-80 h-80 bg-[#2B3CB8]/5 rounded-full blur-3xl pointer-events-none" />
@@ -34,7 +43,7 @@ export const BatteriesHeroSection: React.FC = () => {
             {/* Top Eyebrow Badge */}
             <div className="inline-flex items-center gap-2 px-3 sm:px-3.5 py-1 sm:py-1.5 rounded-full text-[11px] sm:text-xs font-bold uppercase tracking-wider text-[#2B3CB8] bg-[#F5F7FD] border border-[#D1DCF8] shadow-2xs max-w-full">
               <span className="w-2 h-2 rounded-full bg-[#2B3CB8] animate-pulse shrink-0" />
-              <span className="truncate xs:whitespace-normal">Smart Storage • Blackout Protection</span>
+              <span className="truncate xs:whitespace-normal animate-shiny-text font-bold">Smart Storage • Blackout Protection</span>
             </div>
 
             {/* Headline */}
@@ -100,6 +109,7 @@ export const BatteriesHeroSection: React.FC = () => {
           >
             {/* Main Visual Image Card */}
             <div className="relative rounded-2xl sm:rounded-3xl overflow-hidden shadow-xl sm:shadow-2xl border-2 sm:border-4 border-white aspect-16/10 xs:aspect-4/3 max-w-lg mx-auto lg:max-w-none bg-slate-950 group">
+              <BorderBeam size={160} duration={8} colorFrom="#2B3CB8" colorTo="#6F8EE7" borderWidth={2.5} />
               <img
                 src="/images/solutions/battery-hero.webp"
                 alt="Tesla Powerwall & Premium Home Battery Storage System"
@@ -108,7 +118,7 @@ export const BatteriesHeroSection: React.FC = () => {
               <div className="absolute inset-0 bg-linear-to-t from-slate-950/85 via-slate-950/20 to-transparent" />
               
               {/* Top Floating Badge */}
-              <div className="absolute top-4 left-4 flex items-center gap-2 bg-slate-900/80 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/20 text-white text-xs font-semibold">
+              <div className="absolute top-4 left-4 flex items-center gap-2 bg-slate-900/80 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/20 text-white text-xs font-semibold z-20">
                 <span className="w-2 h-2 rounded-full bg-[#2B3CB8] animate-ping" />
                 <span>Storm Watch Enabled</span>
               </div>

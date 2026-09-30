@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { 
-  Sun, 
-  Cpu, 
-  ShieldCheck, 
-  CheckCircle2, 
-  XCircle, 
-  ArrowRight, 
-  Award, 
-  Activity, 
+import {
+  Sun,
+  Cpu,
+  ShieldCheck,
+  CheckCircle2,
+  XCircle,
+  ArrowRight,
+  Award,
+  Activity,
   Sparkles,
   Wind
 } from 'lucide-react';
@@ -139,7 +139,7 @@ export const SolarHardwareComparisonSection: React.FC = () => {
   return (
     <section className="py-12 sm:py-16 lg:py-20 bg-white border-t border-slate-200/80 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
+
         {/* Section Header */}
         <div className="max-w-4xl mx-auto text-center mb-10 sm:mb-14">
           <Badge variant="amber">The Hardware Standard</Badge>
@@ -154,11 +154,10 @@ export const SolarHardwareComparisonSection: React.FC = () => {
           <div className="mt-6 sm:mt-8 p-1 sm:p-1.5 rounded-2xl sm:rounded-full bg-slate-100 border border-slate-200/80 shadow-inner max-w-2xl mx-auto grid grid-cols-2 sm:flex sm:flex-wrap items-center justify-center gap-1.5 sm:gap-2">
             <button
               onClick={() => setActiveTab('panels')}
-              className={`flex items-center justify-center gap-1.5 sm:gap-2 px-3 sm:px-5 py-2 sm:py-2 rounded-xl sm:rounded-full text-xs sm:text-sm font-semibold transition-all cursor-pointer ${
-                activeTab === 'panels'
-                  ? 'bg-amber-500 text-slate-950 shadow-sm font-bold'
-                  : 'text-slate-600 hover:text-slate-950 hover:bg-slate-200/60'
-              }`}
+              className={`flex items-center justify-center gap-1.5 sm:gap-2 px-3 sm:px-5 py-2 sm:py-2 rounded-xl sm:rounded-full text-xs sm:text-sm font-semibold transition-all cursor-pointer ${activeTab === 'panels'
+                ? 'bg-amber-500 text-slate-950 shadow-sm font-bold'
+                : 'text-slate-600 hover:text-slate-950 hover:bg-slate-200/60'
+                }`}
             >
               <Sun className="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0" />
               <span>1. Solar Panels</span>
@@ -166,11 +165,10 @@ export const SolarHardwareComparisonSection: React.FC = () => {
 
             <button
               onClick={() => setActiveTab('inverters')}
-              className={`flex items-center justify-center gap-1.5 sm:gap-2 px-3 sm:px-5 py-2 sm:py-2 rounded-xl sm:rounded-full text-xs sm:text-sm font-semibold transition-all cursor-pointer ${
-                activeTab === 'inverters'
-                  ? 'bg-amber-500 text-slate-950 shadow-sm font-bold'
-                  : 'text-slate-600 hover:text-slate-950 hover:bg-slate-200/60'
-              }`}
+              className={`flex items-center justify-center gap-1.5 sm:gap-2 px-3 sm:px-5 py-2 sm:py-2 rounded-xl sm:rounded-full text-xs sm:text-sm font-semibold transition-all cursor-pointer ${activeTab === 'inverters'
+                ? 'bg-amber-500 text-slate-950 shadow-sm font-bold'
+                : 'text-slate-600 hover:text-slate-950 hover:bg-slate-200/60'
+                }`}
             >
               <Cpu className="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0" />
               <span>2. Inverters</span>
@@ -178,11 +176,10 @@ export const SolarHardwareComparisonSection: React.FC = () => {
 
             <button
               onClick={() => setActiveTab('racking')}
-              className={`flex items-center justify-center gap-1.5 sm:gap-2 px-3 sm:px-5 py-2 sm:py-2 rounded-xl sm:rounded-full text-xs sm:text-sm font-semibold transition-all cursor-pointer ${
-                activeTab === 'racking'
-                  ? 'bg-amber-500 text-slate-950 shadow-sm font-bold'
-                  : 'text-slate-600 hover:text-slate-950 hover:bg-slate-200/60'
-              }`}
+              className={`flex items-center justify-center gap-1.5 sm:gap-2 px-3 sm:px-5 py-2 sm:py-2 rounded-xl sm:rounded-full text-xs sm:text-sm font-semibold transition-all cursor-pointer ${activeTab === 'racking'
+                ? 'bg-amber-500 text-slate-950 shadow-sm font-bold'
+                : 'text-slate-600 hover:text-slate-950 hover:bg-slate-200/60'
+                }`}
             >
               <Wind className="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0" />
               <span>3. Cyclone Racking</span>
@@ -190,11 +187,10 @@ export const SolarHardwareComparisonSection: React.FC = () => {
 
             <button
               onClick={() => setActiveTab('monitoring')}
-              className={`flex items-center justify-center gap-1.5 sm:gap-2 px-3 sm:px-5 py-2 sm:py-2 rounded-xl sm:rounded-full text-xs sm:text-sm font-semibold transition-all cursor-pointer ${
-                activeTab === 'monitoring'
-                  ? 'bg-amber-500 text-slate-950 shadow-sm font-bold'
-                  : 'text-slate-600 hover:text-slate-950 hover:bg-slate-200/60'
-              }`}
+              className={`flex items-center justify-center gap-1.5 sm:gap-2 px-3 sm:px-5 py-2 sm:py-2 rounded-xl sm:rounded-full text-xs sm:text-sm font-semibold transition-all cursor-pointer ${activeTab === 'monitoring'
+                ? 'bg-amber-500 text-slate-950 shadow-sm font-bold'
+                : 'text-slate-600 hover:text-slate-950 hover:bg-slate-200/60'
+                }`}
             >
               <Activity className="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0" />
               <span>4. Smart Meter</span>
@@ -221,7 +217,7 @@ export const SolarHardwareComparisonSection: React.FC = () => {
                   className="w-full h-full object-cover"
                 />
                 <div className="absolute inset-0 bg-linear-to-t from-slate-950/80 via-slate-950/20 to-transparent" />
-                
+
                 {/* Image Overlay Banner */}
                 <div className="absolute bottom-3 xs:bottom-4 left-3 xs:left-4 right-3 xs:right-4 flex flex-wrap items-end justify-between gap-2 text-white">
                   <div className="min-w-0 pr-2">
@@ -234,7 +230,7 @@ export const SolarHardwareComparisonSection: React.FC = () => {
                   </div>
                   <span className="inline-flex items-center gap-1 text-[10px] xs:text-[11px] font-mono px-2 xs:px-2.5 py-1 rounded-full bg-slate-900/90 border border-slate-700 text-amber-300 shrink-0">
                     <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" />
-                    CEC Approved
+                    SAA Approved
                   </span>
                 </div>
               </div>
@@ -251,7 +247,7 @@ export const SolarHardwareComparisonSection: React.FC = () => {
                 </h3>
               </div>
 
-              
+
 
               <p className="text-xs sm:text-sm md:text-base text-slate-600 leading-relaxed">
                 {current.description}
@@ -382,7 +378,7 @@ export const SolarHardwareComparisonSection: React.FC = () => {
           <div className="flex items-center gap-2 text-center sm:text-left">
             <Award className="w-4 h-4 text-amber-500 shrink-0" />
             <span className="font-medium text-slate-700">
-              All components Clean Energy Council (CEC) Approved and backed by Australian warranties.
+              All components Clean Energy Council (SAA) Approved and backed by Australian warranties.
             </span>
           </div>
 

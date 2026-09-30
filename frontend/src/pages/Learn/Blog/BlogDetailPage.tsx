@@ -19,6 +19,7 @@ import {
 import { api } from '../../../services/api';
 import type { Article } from '../../../types/blog';
 import LatticeLoadingBlock from '../../../components/ui/LatticeLoadingBlock';
+import { ScrollProgress } from '../../../components/ui/ScrollProgress';
 
 export const BlogDetailPage: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -185,6 +186,7 @@ export const BlogDetailPage: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-slate-50 pt-24 sm:pt-28 pb-20">
+      <ScrollProgress />
       <Helmet>
         <title>{article.metaTitle || `${article.title} | Sunny Solar`}</title>
         <meta

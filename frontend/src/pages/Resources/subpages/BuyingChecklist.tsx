@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
-import { 
-  Check, 
-  Download, 
-  ShieldCheck, 
-  Mail, 
-  User, 
-  FileText, 
-  Sparkles, 
-  CheckCircle2, 
+import {
+  Check,
+  Download,
+  ShieldCheck,
+  Mail,
+  User,
+  FileText,
+  Sparkles,
+  CheckCircle2,
   ExternalLink
 } from 'lucide-react';
 import { Button } from '../../../components/ui/Button';
@@ -32,8 +32,8 @@ export const CHECKLIST_ITEMS: ChecklistItemData[] = [
   {
     id: 'c3',
     category: 'Installer Credentials',
-    title: 'Is the installer CEC Accredited (Clean Energy Council)?',
-    description: "Ask for the electrician's personal CEC accreditation number and verify it on the official national registry.",
+    title: 'Is the installer SAA Accredited (Clean Energy Council)?',
+    description: "Ask for the electrician's personal SAA accreditation number and verify it on the official national registry.",
   },
   {
     id: 'c4',
@@ -163,7 +163,7 @@ export const BuyingChecklistPage: React.FC = () => {
                 </span>
               </div>
               <div className="w-full sm:w-48 bg-slate-200 h-2.5 rounded-full overflow-hidden">
-                <div 
+                <div
                   className="bg-amber-500 h-full transition-all duration-300 rounded-full"
                   style={{ width: `${progressPercent}%` }}
                 />
@@ -178,19 +178,17 @@ export const BuyingChecklistPage: React.FC = () => {
                   <div
                     key={item.id}
                     onClick={() => toggleItem(item.id)}
-                    className={`cursor-pointer rounded-lg border p-4 sm:p-4.5 transition-all duration-200 flex items-start gap-3.5 select-none ${
-                      isChecked 
-                        ? 'bg-amber-50/40 border-amber-300/90 shadow-2xs' 
-                        : 'bg-white border-slate-200 hover:border-slate-300 hover:shadow-2xs'
-                    }`}
+                    className={`cursor-pointer rounded-lg border p-4 sm:p-4.5 transition-all duration-200 flex items-start gap-3.5 select-none ${isChecked
+                      ? 'bg-amber-50/40 border-amber-300/90 shadow-2xs'
+                      : 'bg-white border-slate-200 hover:border-slate-300 hover:shadow-2xs'
+                      }`}
                   >
                     {/* Checkbox Icon */}
-                    <div 
-                      className={`w-5 h-5 rounded mt-0.5 flex items-center justify-center shrink-0 border transition-all ${
-                        isChecked 
-                          ? 'bg-amber-500 border-amber-500 text-white' 
-                          : 'border-slate-300 bg-white'
-                      }`}
+                    <div
+                      className={`w-5 h-5 rounded mt-0.5 flex items-center justify-center shrink-0 border transition-all ${isChecked
+                        ? 'bg-amber-500 border-amber-500 text-white'
+                        : 'border-slate-300 bg-white'
+                        }`}
                     >
                       {isChecked && <Check className="w-3.5 h-3.5 stroke-[2.5]" />}
                     </div>
@@ -219,7 +217,7 @@ export const BuyingChecklistPage: React.FC = () => {
                 <div className="w-14 h-14 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center mx-auto shadow-sm">
                   <CheckCircle2 className="w-8 h-8" />
                 </div>
-                
+
                 <div>
                   <h3 className="text-2xl font-serif font-bold text-slate-900">Checklist Downloaded!</h3>
                   <p className="text-xs text-emerald-700 font-medium mt-1">

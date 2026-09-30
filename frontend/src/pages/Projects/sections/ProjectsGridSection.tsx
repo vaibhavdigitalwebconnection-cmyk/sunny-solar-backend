@@ -4,6 +4,7 @@ import { Search, X, ArrowRight } from 'lucide-react';
 import { projectsData, Project } from '../../../data/projectsData';
 import { ProjectCard } from '../../../components/cards/ProjectCard';
 import { Button } from '../../../components/ui/Button';
+import { BorderBeam } from '../../../components/ui/BorderBeam';
 
 const CATEGORIES = [
   { key: 'all', label: 'All Installs' },
@@ -224,6 +225,7 @@ export const ProjectsGridSection: React.FC = () => {
 
           {/* Bottom CTA Banner */}
           <div className="mt-16 bg-slate-900 text-white rounded-3xl p-8 sm:p-12 text-center relative overflow-hidden border border-slate-800 shadow-xl">
+            <BorderBeam size={180} duration={9} colorFrom="#2B3CB8" colorTo="#6F8EE7" borderWidth={1.5} />
             <div className="absolute top-0 right-0 w-80 h-80 bg-amber-500/10 rounded-full blur-3xl pointer-events-none" />
             <div className="absolute bottom-0 left-0 w-80 h-80 bg-blue-500/10 rounded-full blur-3xl pointer-events-none" />
 

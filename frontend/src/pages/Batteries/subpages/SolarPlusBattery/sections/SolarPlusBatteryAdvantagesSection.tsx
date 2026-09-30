@@ -41,7 +41,7 @@ export const SolarPlusBatteryAdvantagesSection: React.FC = () => {
     },
     {
       feature: 'Warranty & Accountability',
-      bundle: 'Single CEC Master Electrician covers entire system',
+      bundle: 'Single SAA Master Electrician covers entire system',
       separate: 'Multiple installers blaming each other for faults',
       winner: 'bundle',
     },
@@ -216,11 +216,10 @@ export const SolarPlusBatteryAdvantagesSection: React.FC = () => {
                 type="button"
                 onClick={() => goToSlide(dotIdx)}
                 aria-label={`Go to comparison aspect ${dotIdx + 1}`}
-                className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
-                  activeSlide === dotIdx
+                className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${activeSlide === dotIdx
                     ? 'w-6 bg-[#2B3CB8]'
                     : 'w-2 bg-slate-300 hover:bg-slate-400'
-                }`}
+                  }`}
               />
             ))}
           </div>

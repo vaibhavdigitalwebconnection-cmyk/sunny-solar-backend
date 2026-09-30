@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
+import { ScrollProgress } from '../../../components/ui/ScrollProgress';
 import { KnowledgeHubHeroSection } from './sections/KnowledgeHubHeroSection';
 import { KnowledgeHubGridSection } from './sections/KnowledgeHubGridSection';
 import { api } from '../../../services/api';
@@ -48,6 +49,7 @@ export const KnowledgeHubPage: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-slate-50 pb-20 space-y-2">
+      <ScrollProgress />
       <Helmet>
         <title>Solar & Battery Knowledge Hub | Sunny Solar</title>
         <meta

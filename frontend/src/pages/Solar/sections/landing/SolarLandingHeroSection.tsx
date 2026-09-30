@@ -13,10 +13,19 @@ import {
 import { Button } from '../../../../components/ui/Button';
 import { Badge } from '../../../../components/ui/Badge';
 import { Breadcrumbs } from '../../../../components/layout/Breadcrumbs';
+import { BorderBeam } from '../../../../components/ui/BorderBeam';
+import { Particles } from '../../../../components/ui/Particles';
 
 export const SolarLandingHeroSection: React.FC = () => {
   return (
     <section className="relative pt-24 sm:pt-32 lg:pt-36 pb-10 sm:pb-14 lg:pb-16 bg-linear-to-b from-amber-500/10 via-amber-500/5 to-white border-b border-slate-200/60 overflow-hidden">
+      {/* Magic UI Ambient Background Particles */}
+      <Particles
+        className="absolute inset-0 z-0 opacity-60"
+        quantity={35}
+        color="#2B3CB8"
+        size={0.6}
+      />
       {/* Subtle ambient solar glow */}
       <div className="absolute top-10 right-1/4 w-96 h-96 bg-blue-600/10 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute top-36 left-10 w-80 h-80 bg-orange-300/10 rounded-full blur-3xl pointer-events-none" />
@@ -136,6 +145,7 @@ export const SolarLandingHeroSection: React.FC = () => {
             className="order-1 lg:order-2 lg:col-span-5 w-full"
           >
             <div className="relative rounded-2xl overflow-hidden shadow-xl border border-slate-200 bg-slate-950 group aspect-16/10 xs:aspect-4/3 max-w-lg mx-auto w-full">
+              <BorderBeam size={160} duration={8} colorFrom="#2B3CB8" colorTo="#6F8EE7" borderWidth={2} />
               <img
                 src="/images/about/solar-installation-aerial.webp"
                 alt="Solar Installation on Queensland Home"
@@ -144,7 +154,7 @@ export const SolarLandingHeroSection: React.FC = () => {
               <div className="absolute inset-0 bg-linear-to-t from-slate-950/75 via-transparent to-transparent pointer-events-none" />
 
               {/* Bottom Clean Status Strip */}
-              <div className="absolute bottom-2.5 xs:bottom-3 left-2.5 xs:left-3 right-2.5 xs:right-3 flex items-center justify-between text-white text-[11px] xs:text-xs bg-slate-950/80 backdrop-blur-md px-3 xs:px-3.5 py-1.5 xs:py-2 rounded-xl border border-white/10">
+              <div className="absolute bottom-2.5 xs:bottom-3 left-2.5 xs:left-3 right-2.5 xs:right-3 flex items-center justify-between text-white text-[11px] xs:text-xs bg-slate-950/80 backdrop-blur-md px-3 xs:px-3.5 py-1.5 xs:py-2 rounded-xl border border-white/10 z-20">
                 <div className="flex items-center gap-2">
                   <span className="w-2 h-2 rounded-full bg-[#2B3CB8] animate-pulse" />
                   <span className="font-serif font-bold text-white">8.6 kW Peak Generation</span>

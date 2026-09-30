@@ -49,7 +49,7 @@ export const TrustMarqueeSection: React.FC = () => {
       className="w-full bg-[#2B3CB8] py-3.5 sm:py-4 relative overflow-hidden z-20 shadow-lg   group border-t border-b border-[#1D2984]"
       aria-label="Sunny Solar Guarantees and Key Benefits"
     >
-      {/* Edge gradient masks for seamless fade */}
+      {/* Edge gradient masks for seamless fade  */}
       <div className="pointer-events-none absolute inset-y-0 left-0 w-12 sm:w-28 bg-linear-to-r from-[#2B3CB8] to-transparent z-10" />
       <div className="pointer-events-none absolute inset-y-0 right-0 w-12 sm:w-28 bg-linear-to-l from-[#2B3CB8] to-transparent z-10" />
 

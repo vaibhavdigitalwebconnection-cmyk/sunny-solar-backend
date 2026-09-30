@@ -334,11 +334,11 @@ export const ParallaxBannerSection: React.FC = () => {
   const [isDragging, setIsDragging] = useState<boolean>(false);
   const [selectedCard, setSelectedCard] = useState<CardItem | null>(null);
 
-  // Responsive dimensions - all cards have exact height h-50 (200px)
+  // Responsive dimensions - reduced card dimensions for a sleeker showcase
   const [dimensions, setDimensions] = useState({
-    radius: 560,
-    cardWidth: 160,
-    cardHeight: 200, // h-50 = 200px
+    radius: 540,
+    cardWidth: 130,
+    cardHeight: 165,
     perspective: 1100,
     yScale: 1,
   });
@@ -354,27 +354,27 @@ export const ParallaxBannerSection: React.FC = () => {
       if (width < 640) {
         // Mobile
         setDimensions({
-          radius: 350,
-          cardWidth: 140,
-          cardHeight: 200, // h-50 = 200px
+          radius: 340,
+          cardWidth: 110,
+          cardHeight: 140,
           perspective: 850,
           yScale: 0.65,
         });
       } else if (width < 1024) {
         // Tablet
         setDimensions({
-          radius: 460,
-          cardWidth: 155,
-          cardHeight: 200, // h-50 = 200px
+          radius: 450,
+          cardWidth: 120,
+          cardHeight: 155,
           perspective: 950,
           yScale: 0.85,
         });
       } else {
         // Desktop
         setDimensions({
-          radius: 560,
-          cardWidth: 160,
-          cardHeight: 200, // h-50 = 200px
+          radius: 540,
+          cardWidth: 130,
+          cardHeight: 165,
           perspective: 1100,
           yScale: 1,
         });
@@ -526,7 +526,7 @@ export const ParallaxBannerSection: React.FC = () => {
                   backfaceVisibility: 'visible',
                 }}
               >
-                {/* UNIFORM COMPACT CARD CONTAINER (Height: h-50 = 200px) */}
+                {/* UNIFORM COMPACT CARD CONTAINER */}
                 <div
                   onClick={(e) => {
                     if (Math.abs(velocity.current) < 0.25) {
@@ -534,7 +534,7 @@ export const ParallaxBannerSection: React.FC = () => {
                       setSelectedCard(card);
                     }
                   }}
-                  className="relative w-full h-50 rounded-xl overflow-hidden shadow-[0_10px_28px_rgba(0,0,0,0.9)] cursor-pointer transition-transform duration-300 group-hover:scale-105 border border-white/10 group-hover:border-[#EF680C]/60"
+                  className="relative w-full h-full rounded-xl overflow-hidden shadow-[0_10px_28px_rgba(0,0,0,0.9)] cursor-pointer transition-transform duration-300 group-hover:scale-105 border border-white/10 group-hover:border-[#EF680C]/60"
                   style={{
                     backfaceVisibility: 'visible',
                   }}
@@ -563,11 +563,11 @@ export const ParallaxBannerSection: React.FC = () => {
 
                   {/* Bottom Review Snippet & Reviewer Info */}
                   <div className="absolute bottom-2 inset-x-2 z-10 text-left pointer-events-none space-y-1">
-                    <p className="text-[11px] font-bold text-white leading-tight line-clamp-2 drop-shadow-md">
+                    <p className="text-[10px] font-bold text-white leading-tight line-clamp-2 drop-shadow-md">
                       "{card.reviewHighlight}"
                     </p>
-                    <div className="flex items-center justify-between text-[10px] text-white/70 font-medium pt-1 border-t border-white/15">
-                      <span className="truncate max-w-21.25 text-white/90">
+                    <div className="flex items-center justify-between text-[9px] text-white/70 font-medium pt-1 border-t border-white/15">
+                      <span className="truncate max-w-16.25 text-white/90">
                         {card.reviewerName.split(' ')[0]} {card.reviewerName.split(' ')[1]?.[0] ? card.reviewerName.split(' ')[1][0] + '.' : ''}
                       </span>
                       <span className="text-[#EF680C] text-[9px] font-bold shrink-0">{card.savings.split(' ')[0]}</span>

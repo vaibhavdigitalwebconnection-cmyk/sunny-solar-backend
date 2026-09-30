@@ -1,30 +1,38 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { 
-  ArrowRight, 
-  Calculator, 
-  ShieldCheck, 
+import {
+  ArrowRight,
+  Calculator,
+  ShieldCheck,
   Sun
 } from 'lucide-react';
 import { Button } from '../../../components/ui/Button';
+import { Particles } from '../../../components/ui/Particles';
 
 export const CalculatorsHeroSection: React.FC = () => {
   return (
     <section className="relative pt-24 sm:pt-32 lg:pt-36 pb-10 sm:pb-16 bg-linear-to-b from-[#2B3CB8]/10 via-[#2B3CB8]/5 to-white border-b border-slate-200/60 overflow-hidden">
+      {/* Magic UI Ambient Background Particles */}
+      <Particles
+        className="absolute inset-0 z-0 opacity-55"
+        quantity={35}
+        color="#2B3CB8"
+        size={0.6}
+      />
       {/* Subtle ambient solar lighting glow */}
       <div className="absolute top-10 right-1/4 w-72 sm:w-96 h-72 sm:h-96 bg-[#2B3CB8]/10 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute top-36 left-10 w-64 sm:w-80 h-64 sm:h-80 bg-[#2B3CB8]/5 rounded-full blur-3xl pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 lg:gap-12 items-center">
-          
+
           {/* Content Column (Top on mobile, Left on desktop) */}
           <div className="order-1 lg:order-1 lg:col-span-7 space-y-4 sm:space-y-5 text-center lg:text-left flex flex-col items-center lg:items-start">
-            
+
             {/* Top Micro Eyebrow Badge */}
             <div className="inline-flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-3.5 py-1 sm:py-1.5 rounded-full text-[10px] sm:text-xs font-bold uppercase tracking-wider text-[#2B3CB8] bg-[#F5F7FD] border border-[#D1DCF8] shadow-2xs max-w-full">
               <Calculator className="w-3 sm:w-3.5 h-3 sm:h-3.5 text-[#2B3CB8] shrink-0" />
-              <span className="truncate xs:whitespace-normal">Independent Energy Sizing Engine</span>
+              <span className="truncate xs:whitespace-normal animate-shiny-text font-bold">Independent Energy Sizing Engine</span>
             </div>
 
             {/* Headline */}
@@ -122,7 +130,7 @@ export const CalculatorsHeroSection: React.FC = () => {
               <div className="absolute bottom-2.5 sm:bottom-3 left-2.5 sm:left-3 right-2.5 sm:right-3 flex items-center justify-between text-white text-[11px] sm:text-xs bg-slate-950/85 backdrop-blur-md px-2.5 sm:px-3.5 py-1.5 sm:py-2 rounded-xl border border-white/10">
                 <div className="flex items-center gap-1.5 sm:gap-2">
                   <span className="w-2 h-2 rounded-full bg-[#2B3CB8] animate-pulse shrink-0" />
-                  <span className="font-semibold text-white truncate">CEC Certified Math</span>
+                  <span className="font-semibold text-white truncate">SAA Certified Math</span>
                 </div>
                 <span className="text-[10px] sm:text-[11px] font-mono text-[#D1DCF8] font-semibold shrink-0 ml-2">SEQ Irradiance</span>
               </div>
@@ -132,7 +140,7 @@ export const CalculatorsHeroSection: React.FC = () => {
 
         </div>
       </div>
-    </section> 
+    </section>
   );
 };
 

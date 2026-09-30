@@ -59,7 +59,7 @@ export const TrentBioPage: React.FC = () => {
             <div className="pt-3 space-y-2 text-xs font-semibold text-slate-700">
               <div className="flex items-center gap-2">
                 <CheckCircle2 className="w-4 h-4 text-emerald-600" />
-                <span>CEC Design & Grid-Connect Accreditation #A4892</span>
+                <span>SAA Design & Grid-Connect Accreditation #A4892</span>
               </div>
               <div className="flex items-center gap-2">
                 <CheckCircle2 className="w-4 h-4 text-emerald-600" />

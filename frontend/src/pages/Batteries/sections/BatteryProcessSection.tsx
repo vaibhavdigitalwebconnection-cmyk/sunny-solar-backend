@@ -149,7 +149,7 @@ export const BatteryProcessSection: React.FC = () => {
       tagline: '100% full-time employed tradesmen. Zero rushed subcontractors.',
       desc: 'Mounted strictly by our salaried Master Electricians using heavy-gauge concealed metallic conduit, independent lockable rotary DC/AC isolators, and sub-100ms automated grid transfer gateways. We treat your home with surgical care—zero dangling flex cables, no broken plaster, and immaculate switchboard labeling.',
       icon: Wrench,
-      complianceStandard: 'Clean Energy Council (CEC) & Master Electricians Australia',
+      complianceStandard: 'Clean Energy Council (SAA) & Master Electricians Australia',
       turnaroundTime: 'Same-Day Install (6 to 8 Hours On-Site)',
       keyDeliverables: [
         {
@@ -305,10 +305,10 @@ export const BatteryProcessSection: React.FC = () => {
                     {/* Node circle */}
                     <div
                       className={`w-10 h-10 sm:w-14 sm:h-14 rounded-xl flex items-center justify-center transition-all duration-300 font-mono font-bold text-xs sm:text-base shadow-sm ${isActive
-                          ? 'bg-emerald-600 text-white shadow-emerald-500/30 shadow-lg scale-105 sm:scale-110 ring-2 sm:ring-4 ring-emerald-500/20'
-                          : isPassed
-                            ? 'bg-emerald-100 text-emerald-800 border-2 border-emerald-500/40'
-                            : 'bg-white text-slate-500 border-2 border-slate-300 group-hover:border-slate-400 group-hover:text-slate-800'
+                        ? 'bg-emerald-600 text-white shadow-emerald-500/30 shadow-lg scale-105 sm:scale-110 ring-2 sm:ring-4 ring-emerald-500/20'
+                        : isPassed
+                          ? 'bg-emerald-100 text-emerald-800 border-2 border-emerald-500/40'
+                          : 'bg-white text-slate-500 border-2 border-slate-300 group-hover:border-slate-400 group-hover:text-slate-800'
                         }`}
                     >
                       {isPassed ? (
@@ -330,8 +330,8 @@ export const BatteryProcessSection: React.FC = () => {
                       </div>
                       <p
                         className={`text-xs sm:text-sm font-bold transition-colors ${isActive
-                            ? 'text-slate-950 font-extrabold'
-                            : 'text-slate-700 group-hover:text-slate-950'
+                          ? 'text-slate-950 font-extrabold'
+                          : 'text-slate-700 group-hover:text-slate-950'
                           }`}
                       >
                         {step.shortTitle}
@@ -352,8 +352,8 @@ export const BatteryProcessSection: React.FC = () => {
                   key={step.id}
                   onClick={() => setActiveStep(idx)}
                   className={`flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs font-semibold whitespace-nowrap transition-all shrink-0 cursor-pointer ${isActive
-                      ? 'bg-emerald-600 text-white shadow-md shadow-emerald-600/25 ring-2 ring-emerald-600/30'
-                      : 'bg-white text-slate-700 border border-slate-200 hover:bg-slate-50'
+                    ? 'bg-emerald-600 text-white shadow-md shadow-emerald-600/25 ring-2 ring-emerald-600/30'
+                    : 'bg-white text-slate-700 border border-slate-200 hover:bg-slate-50'
                     }`}
                 >
                   <span

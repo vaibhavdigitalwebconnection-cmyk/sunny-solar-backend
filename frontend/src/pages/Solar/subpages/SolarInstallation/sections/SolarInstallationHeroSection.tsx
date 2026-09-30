@@ -18,7 +18,7 @@ export const SolarInstallationHeroSection: React.FC = () => {
             {/* Eyebrow Badge */}
             <div className="inline-flex items-center gap-2 px-3 sm:px-3.5 py-1 sm:py-1.5 rounded-full text-[11px] sm:text-xs font-bold uppercase tracking-wider text-[#2B3CB8] bg-[#F5F7FD] border border-[#D1DCF8] shadow-2xs max-w-full">
               <span className="w-2 h-2 rounded-full bg-[#2B3CB8] animate-pulse shrink-0" />
-              <span className="truncate xs:whitespace-normal">CEC Master Electrician Standards</span>
+              <span className="truncate xs:whitespace-normal">SAA Master Electrician Standards</span>
             </div>
 
             <h1 className="text-2xl xs:text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-slate-950 tracking-tight leading-[1.18] sm:leading-tight">

@@ -2,10 +2,19 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { Home } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { Particles } from '../../components/ui/Particles';
 
 export const NotFoundPage: React.FC = () => {
   return (
-    <div className="min-h-[75vh] flex items-center justify-center bg-white px-4 py-20">
+    <div className="relative min-h-[75vh] flex items-center justify-center bg-white px-4 py-20 overflow-hidden">
+      <Particles
+        className="absolute inset-0 z-0 pointer-events-none"
+        quantity={35}
+        color="#2B3CB8"
+        size={0.6}
+        staticity={40}
+      />
       <Helmet>
         <title>404 - Page Not Found | Sunny Solar</title>
         <meta
@@ -13,7 +22,12 @@ export const NotFoundPage: React.FC = () => {
           content="The page you are looking for does not exist or has been moved."
         />
       </Helmet>
-      <div className="text-center space-y-4">
+      <motion.div
+        initial={{ opacity: 0, y: 16 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+        className="relative z-10 text-center space-y-4"
+      >
         {/* 404 in Big Font */}
         <h1 className="text-8xl sm:text-9xl font-black text-[#2B3CB8] tracking-tight leading-none">
           404
@@ -34,7 +48,7 @@ export const NotFoundPage: React.FC = () => {
             <span>Go to Home Page</span>
           </Link>
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 };

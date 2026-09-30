@@ -47,7 +47,7 @@ export const SolarPlusBatteryPackagesSection: React.FC = () => {
         '9.6 kWh modular stackable LiFePO4 cobalt-free storage bank',
         'Automatic switchboard EPS circuit protection (lights & fridge)',
         'Smart 24/7 digital consumption & solar monitoring meter',
-        'Full CEC Master Electrician install with 10-yr workmanship warranty',
+        'Full SAA Master Electrician install with 10-yr workmanship warranty',
       ],
     },
     {
@@ -186,11 +186,10 @@ export const SolarPlusBatteryPackagesSection: React.FC = () => {
             {packages.map((pkg) => (
               <div key={pkg.id} className="w-full shrink-0 px-0.5 flex flex-col">
                 <div
-                  className={`bg-white rounded-2xl p-5 flex flex-col justify-between h-full transition-all duration-300 ${
-                    pkg.isPopular
+                  className={`bg-white rounded-2xl p-5 flex flex-col justify-between h-full transition-all duration-300 ${pkg.isPopular
                       ? 'border-2 border-amber-500 shadow-md shadow-amber-500/10'
                       : 'border border-slate-200/90 shadow-2xs'
-                  }`}
+                    }`}
                 >
                   <div>
                     {/* Top Header Row: Badges & Savings */}
@@ -305,11 +304,10 @@ export const SolarPlusBatteryPackagesSection: React.FC = () => {
                 type="button"
                 onClick={() => goToSlide(dotIdx)}
                 aria-label={`Go to package ${dotIdx + 1}`}
-                className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
-                  activeSlide === dotIdx
+                className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${activeSlide === dotIdx
                     ? 'w-6 bg-[#2B3CB8]'
                     : 'w-2 bg-slate-300 hover:bg-slate-400'
-                }`}
+                  }`}
               />
             ))}
           </div>
@@ -359,11 +357,10 @@ export const SolarPlusBatteryPackagesSection: React.FC = () => {
         {packages.map((pkg) => (
           <div
             key={pkg.id}
-            className={`bg-white rounded-2xl p-6 sm:p-8 border transition-all duration-300 relative ${
-              pkg.isPopular
+            className={`bg-white rounded-2xl p-6 sm:p-8 border transition-all duration-300 relative ${pkg.isPopular
                 ? 'border-2 border-amber-500 shadow-lg shadow-amber-500/5 ring-1 ring-amber-500/20'
                 : 'border-slate-200/90 shadow-sm hover:shadow-md hover:border-slate-300'
-            }`}
+              }`}
           >
             {/* Featured Floating Badge */}
             {pkg.isPopular && (
@@ -392,7 +389,7 @@ export const SolarPlusBatteryPackagesSection: React.FC = () => {
                 <h3 className="text-xl sm:text-2xl font-serif font-bold text-slate-950">
                   {pkg.name}
                 </h3>
-                
+
                 <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
                   {pkg.tagline}
                 </p>
@@ -448,11 +445,11 @@ export const SolarPlusBatteryPackagesSection: React.FC = () => {
                 <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400 block mb-0.5">
                   Turnkey Net Investment
                 </span>
-                
+
                 <div className="text-2xl sm:text-3xl font-extrabold font-mono text-slate-950">
                   {pkg.price}
                 </div>
-                
+
                 <span className="text-xs text-slate-500 font-medium mt-0.5 mb-4 block">
                   {pkg.weeklyFinance} • Rebates Applied
                 </span>

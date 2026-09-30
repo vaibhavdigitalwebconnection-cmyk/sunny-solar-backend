@@ -1,5 +1,6 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
+import { ScrollProgress } from '../../components/ui/ScrollProgress';
 import { ExistingSolarHeroSection } from './sections/ExistingSolarHeroSection';
 import { ExistingSolarSolutionsGridSection } from './sections/ExistingSolarSolutionsGridSection';
 import { ExistingSolarWarningSignsSection } from './sections/ExistingSolarWarningSignsSection';
@@ -8,6 +9,7 @@ import { ExistingSolarEvolutionSection } from './sections/ExistingSolarEvolution
 export const ExistingSolarLandingPage: React.FC = () => {
   return (
     <div className="min-h-screen bg-slate-50 pb-20">
+      <ScrollProgress />
       <Helmet>
         <title>Services for Existing Solar Systems | Sunny Solar</title>
         <meta

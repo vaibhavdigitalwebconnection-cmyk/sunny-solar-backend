@@ -304,24 +304,21 @@ export const TestimonialsSliderSection: React.FC = () => {
                     key={proj.id}
                     type="button"
                     onClick={() => setCurrentIndex(idx)}
-                    className={`w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl transition-all cursor-pointer text-left text-xs ${
-                      isActive
+                    className={`w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl transition-all cursor-pointer text-left text-xs ${isActive
                         ? 'bg-slate-900 text-white font-bold shadow-md shadow-slate-900/15 ring-1 ring-white/10'
                         : 'bg-white hover:bg-slate-100 text-slate-700 font-medium border border-slate-200/80 shadow-2xs'
-                    }`}
+                      }`}
                   >
                     <div className="flex items-center gap-2.5 min-w-0">
                       <span
-                        className={`w-2 h-2 rounded-full shrink-0 ${
-                          isActive ? 'bg-[#EF680C]' : 'bg-slate-300'
-                        }`}
+                        className={`w-2 h-2 rounded-full shrink-0 ${isActive ? 'bg-[#EF680C]' : 'bg-slate-300'
+                          }`}
                       />
                       <span className="truncate">{proj.location.split(',')[0]}</span>
                     </div>
                     <span
-                      className={`text-[11px] font-bold shrink-0 ml-2 ${
-                        isActive ? 'text-[#FFA000]' : 'text-slate-500'
-                      }`}
+                      className={`text-[11px] font-bold shrink-0 ml-2 ${isActive ? 'text-[#FFA000]' : 'text-slate-500'
+                        }`}
                     >
                       {proj.systemSize}
                     </span>
@@ -334,7 +331,7 @@ export const TestimonialsSliderSection: React.FC = () => {
             <div className="relative z-10 w-full pt-3 mt-3 border-t border-slate-200/70 flex items-center justify-between text-[11px] text-slate-500">
               <span className="flex items-center gap-1 font-semibold text-slate-700">
                 <ShieldCheck className="w-3.5 h-3.5 text-[#2B3CB8]" />
-                CEC Approved
+                SAA Approved
               </span>
               <span className="font-bold text-[#EF680C]">Master Electricians</span>
             </div>

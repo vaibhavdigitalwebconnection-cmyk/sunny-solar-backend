@@ -154,7 +154,7 @@ export const HealthCheckAuditGridSection: React.FC = () => {
           The 24-Point Solar Health & Safety Audit
         </h2>
         <p className="mt-2 sm:mt-2.5 text-xs sm:text-sm text-slate-600 leading-relaxed px-1 sm:px-0">
-          Every check is physically tested and certified by a CEC-accredited Master Electrician on your roof and switchboard — in full compliance with AS/NZS 5033 and AS/NZS 4777.
+          Every check is physically tested and certified by a SAA-accredited Master Electrician on your roof and switchboard — in full compliance with AS/NZS 5033 and AS/NZS 4777.
         </p>
       </div>
 
@@ -236,11 +236,10 @@ export const HealthCheckAuditGridSection: React.FC = () => {
                 type="button"
                 onClick={() => goToSlide(dotIdx)}
                 aria-label={`Go to slide ${dotIdx + 1}`}
-                className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
-                  activeSlide === dotIdx
+                className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${activeSlide === dotIdx
                     ? 'w-6 bg-[#2B3CB8]'
                     : 'w-2 bg-slate-300 hover:bg-slate-400'
-                }`}
+                  }`}
               />
             ))}
           </div>

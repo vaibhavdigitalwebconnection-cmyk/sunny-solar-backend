@@ -50,7 +50,7 @@ export const ApprovedBrandsSection: React.FC = () => {
 
         {/* Main Heading */}
         <h2 className="text-xl sm:text-3xl lg:text-[40px] font-serif font-extrabold text-slate-950 tracking-tight leading-[1.2]">
-          We Install CEC Approved <br className="hidden sm:inline" />
+          We Install SAA Approved <br className="hidden sm:inline" />
           <span className="text-[#2B3CB8]">
             Panels, Inverters &amp; Batteries
           </span>
@@ -66,7 +66,7 @@ export const ApprovedBrandsSection: React.FC = () => {
               <div
                 key={`brand-t1-${idx}`}
                 className="mx-4 sm:mx-8 md:mx-12 flex items-center justify-center shrink-0 hover:scale-108 transition-transform duration-300"
-                title={`${brand.name} - CEC Approved`}
+                title={`${brand.name} - SAA Approved`}
               >
                 <img
                   src={brand.logo}
@@ -84,7 +84,7 @@ export const ApprovedBrandsSection: React.FC = () => {
               <div
                 key={`brand-t2-${idx}`}
                 className="mx-4 sm:mx-8 md:mx-12 flex items-center justify-center shrink-0 hover:scale-108 transition-transform duration-300"
-                title={`${brand.name} - CEC Approved`}
+                title={`${brand.name} - SAA Approved`}
               >
                 <img
                   src={brand.logo}

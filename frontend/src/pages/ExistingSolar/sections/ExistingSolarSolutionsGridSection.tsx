@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect, useCallback } from 'react';
 import { ArrowRight, CheckCircle2, Zap, ChevronLeft, ChevronRight } from 'lucide-react';
 import { Badge } from '../../../components/ui/Badge';
 import { Button } from '../../../components/ui/Button';
+import { BlurFade } from '../../../components/ui/BlurFade';
 
 export interface ExistingSolarSolution {
   title: string;
@@ -307,76 +308,77 @@ export const ExistingSolarSolutionsGridSection: React.FC = () => {
       {/* Desktop & Tablet Grid (>= md): 4-Column Card Grid */}
       <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-4 gap-6 items-stretch">
         {sections.map((sec, idx) => (
-          <div
-            key={idx}
-            className="bg-white rounded-xl sm:rounded-2xl overflow-hidden border border-slate-200/80 shadow-sm hover:shadow-md hover:border-[#2B3CB8]/40 transition-all duration-300 flex flex-col justify-between group"
-          >
-            <div>
-              {/* Photo Container */}
-              <div className="relative aspect-16/10 overflow-hidden bg-slate-950">
-                <img
-                  src={sec.image}
-                  alt={sec.title}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-90"
-                  loading="lazy"
-                />
-                <div className="absolute inset-0 bg-linear-to-t from-slate-950/85 via-slate-950/25 to-transparent" />
+          <BlurFade key={idx} delay={idx * 0.1} duration={0.4} className="h-full flex flex-col">
+            <div
+              className="bg-white rounded-xl sm:rounded-2xl overflow-hidden border border-slate-200/80 shadow-sm hover:shadow-md hover:border-[#2B3CB8]/40 transition-all duration-300 flex flex-col justify-between group h-full"
+            >
+              <div>
+                {/* Photo Container */}
+                <div className="relative aspect-16/10 overflow-hidden bg-slate-950">
+                  <img
+                    src={sec.image}
+                    alt={sec.title}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-90"
+                    loading="lazy"
+                  />
+                  <div className="absolute inset-0 bg-linear-to-t from-slate-950/85 via-slate-950/25 to-transparent" />
 
-                {/* Top Floating Badge */}
-                <div className="absolute top-3 left-3">
-                  <Badge variant={sec.badgeVariant} size="sm">
-                    {sec.badge}
-                  </Badge>
+                  {/* Top Floating Badge */}
+                  <div className="absolute top-3 left-3">
+                    <Badge variant={sec.badgeVariant} size="sm">
+                      {sec.badge}
+                    </Badge>
+                  </div>
+
+                  {/* Bottom Metric inside Photo */}
+                  <div className="absolute bottom-3 left-3 right-3">
+                    <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-slate-950/75 backdrop-blur-xs border border-white/10 text-xs font-semibold text-emerald-300 max-w-full">
+                      <Zap className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
+                      <span className="truncate">{sec.metric}</span>
+                    </div>
+                  </div>
                 </div>
 
-                {/* Bottom Metric inside Photo */}
-                <div className="absolute bottom-3 left-3 right-3">
-                  <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-slate-950/75 backdrop-blur-xs border border-white/10 text-xs font-semibold text-emerald-300 max-w-full">
-                    <Zap className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
-                    <span className="truncate">{sec.metric}</span>
+                {/* Content Body */}
+                <div className="p-5 flex-1 flex flex-col justify-between">
+                  <div>
+                    <h3 className="text-lg font-serif font-bold text-slate-950 group-hover:text-[#2B3CB8] transition-colors mb-1.5 leading-snug">
+                      {sec.title}
+                    </h3>
+                    <p className="text-xs text-slate-600 leading-relaxed mb-4 min-h-12">
+                      {sec.desc}
+                    </p>
+                  </div>
+
+                  {/* Bullets */}
+                  <div className="space-y-2 pt-3 border-t border-slate-100 text-xs text-slate-700">
+                    {sec.bullets.map((b, bIdx) => (
+                      <div key={bIdx} className="flex items-start gap-2">
+                        <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0 mt-0.5" />
+                        <span className="leading-snug">{b}</span>
+                      </div>
+                    ))}
                   </div>
                 </div>
               </div>
 
-              {/* Content Body */}
-              <div className="p-5 flex-1 flex flex-col justify-between">
-                <div>
-                  <h3 className="text-lg font-serif font-bold text-slate-950 group-hover:text-[#2B3CB8] transition-colors mb-1.5 leading-snug">
-                    {sec.title}
-                  </h3>
-                  <p className="text-xs text-slate-600 leading-relaxed mb-4 min-h-12">
-                    {sec.desc}
-                  </p>
-                </div>
-
-                {/* Bullets */}
-                <div className="space-y-2 pt-3 border-t border-slate-100 text-xs text-slate-700">
-                  {sec.bullets.map((b, bIdx) => (
-                    <div key={bIdx} className="flex items-start gap-2">
-                      <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0 mt-0.5" />
-                      <span className="leading-snug">{b}</span>
-                    </div>
-                  ))}
+              {/* CTA Button */}
+              <div className="p-5 pt-0">
+                <div className="pt-3 border-t border-slate-100">
+                  <Button
+                    to={sec.slug}
+                    variant="outline"
+                    size="sm"
+                    fullWidth
+                    icon={<ArrowRight className="w-3.5 h-3.5 transition-transform duration-200 group-hover:translate-x-1" />}
+                    className="w-full text-xs sm:text-sm py-2 sm:py-2.5 font-semibold hover:bg-[#2B3CB8] hover:text-white hover:border-[#2B3CB8] transition-all"
+                  >
+                    {sec.cta}
+                  </Button>
                 </div>
               </div>
             </div>
-
-            {/* CTA Button */}
-            <div className="p-5 pt-0">
-              <div className="pt-3 border-t border-slate-100">
-                <Button
-                  to={sec.slug}
-                  variant="outline"
-                  size="sm"
-                  fullWidth
-                  icon={<ArrowRight className="w-3.5 h-3.5 transition-transform duration-200 group-hover:translate-x-1" />}
-                  className="w-full text-xs sm:text-sm py-2 sm:py-2.5 font-semibold hover:bg-[#2B3CB8] hover:text-white hover:border-[#2B3CB8] transition-all"
-                >
-                  {sec.cta}
-                </Button>
-              </div>
-            </div>
-          </div>
+          </BlurFade>
         ))}
       </div>
     </section>

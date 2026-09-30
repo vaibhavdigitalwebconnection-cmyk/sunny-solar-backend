@@ -6,6 +6,7 @@ import { Badge } from '../../../components/ui/Badge';
 import { Button } from '../../../components/ui/Button';
 import { api } from '../../../services/api';
 import LatticeLoadingBlock from '../../../components/ui/LatticeLoadingBlock';
+import { ScrollProgress } from '../../../components/ui/ScrollProgress';
 import {
   Clock,
   Calendar,
@@ -75,7 +76,7 @@ const categoryConfig: Record<
     icon: Wrench,
     accentColor: 'amber',
     proTip:
-      'Rooftop DC isolator switches installed before 2018 have experienced high failure rates across Australia due to UV embrittlement and water ingress. Have a licensed CEC electrician inspect your isolators and carry out thermal imaging during any system health check.',
+      'Rooftop DC isolator switches installed before 2018 have experienced high failure rates across Australia due to UV embrittlement and water ingress. Have a licensed SAA electrician inspect your isolators and carry out thermal imaging during any system health check.',
     standardRef: 'AS/NZS 5033 Fire Safety Standards',
   },
   Technical: {
@@ -261,6 +262,7 @@ export const KnowledgeDetailPage: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-slate-50 pt-24 sm:pt-28 pb-24">
+      <ScrollProgress />
       <Helmet>
         <title>{article.metaTitle || `${article.title} | Sunny Solar Knowledge Hub`}</title>
         <meta
@@ -389,7 +391,7 @@ export const KnowledgeDetailPage: React.FC = () => {
 
                 <div className="flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium bg-emerald-50 text-emerald-800 border border-emerald-200/80">
                   <ShieldCheck className="w-3.5 h-3.5 text-emerald-600" />
-                  <span>CEC Master Electrician Reviewed</span>
+                  <span>SAA Master Electrician Reviewed</span>
                 </div>
               </div>
 
@@ -564,7 +566,7 @@ export const KnowledgeDetailPage: React.FC = () => {
                 <div className="mt-4 pt-3 border-t border-slate-800 flex flex-wrap items-center justify-between gap-2 text-xs text-slate-400">
                   <span className="flex items-center gap-1.5">
                     <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" />
-                    Verified by Trent Palmer (CEC Master Electrician #84920)
+                    Verified by Trent Palmer (SAA Master Electrician #84920)
                   </span>
                   <span className="text-amber-400 font-semibold">{config.standardRef}</span>
                 </div>

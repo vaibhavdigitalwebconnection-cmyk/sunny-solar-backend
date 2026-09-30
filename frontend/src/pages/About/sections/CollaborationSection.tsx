@@ -1,41 +1,60 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
-import { ShieldCheck, CheckCircle2, ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react';
+import {
+  ShieldCheck,
+  CheckCircle2,
+  ArrowRight,
+  Zap,
+  Award,
+  Sparkles,
+  Flame,
+} from 'lucide-react';
 import { Button } from '../../../components/ui/Button';
-import xsolaar from "../../../assets/xsolar.png";
-import jinko from "../../../assets/jinkosolar.png";
+import xsolaar from '../../../assets/xsolar.png';
+import jinko from '../../../assets/jinkosolar.png';
+import { BorderBeam } from '../../../components/ui/BorderBeam';
+import { DotPattern } from '../../../components/ui/DotPattern';
+import { AnimatedShinyText } from '../../../components/ui/AnimatedShinyText';
+import { AnimatedGradientText } from '../../../components/ui/AnimatedGradientText';
+import { SparklesText } from '../../../components/ui/SparklesText';
+import { NumberTicker } from '../../../components/ui/NumberTicker';
+import { Marquee } from '../../../components/ui/Marquee';
 
-interface PartnerBrand {
+interface Partner {
   name: string;
   logo: string;
-  badge: string;
-  category: string;
-  details: string;
+  beamFrom: string;
+  beamTo: string;
 }
 
 export const CollaborationSection: React.FC = () => {
   const sectionRef = useRef<HTMLElement>(null);
   const [isVisible, setIsVisible] = useState(false);
-  const [currentSlide, setCurrentSlide] = useState(0);
-  const [isPaused, setIsPaused] = useState(false);
-  const touchStartX = useRef<number | null>(null);
-  const touchEndX = useRef<number | null>(null);
 
-  const partners: PartnerBrand[] = [
+  const partners: Partner[] = [
     {
       name: 'SolaX Power',
       logo: xsolaar,
-      badge: 'Tier-1 Hybrid Inverters',
-      category: 'Hybrid Inverters & High-Voltage Storage',
-      details: 'Up to 98.4% Efficiency • Sub-10ms Blackout Switchover',
+      beamFrom: '#2B3CB8',
+      beamTo: '#6F8EE7',
     },
     {
       name: 'JinkoSolar',
       logo: jinko,
-      badge: 'Tier-1 Solar PV Modules',
-      category: "World's #1 N-Type TOPCon Solar PV Modules",
-      details: '25-Year Product & 30-Year Linear Power Guarantee',
+      beamFrom: '#1D2984',
+      beamTo: '#38BDF8',
     },
+  ];
+
+  const accreditations = [
+    { text: 'Clean Energy Council Approved', icon: ShieldCheck },
+    { text: 'Tier-1 BloombergNEF Rated Hardware', icon: Award },
+    { text: 'Sub-10ms Emergency Blackout Switching', icon: Zap },
+    { text: 'N-Type TOPCon Cell Architecture', icon: Sparkles },
+    { text: 'Tested for 42°C Queensland Heat', icon: Flame },
+    { text: 'Direct Manufacturer Warranty Backing', icon: ShieldCheck },
+    { text: '30-Year Guaranteed Linear Output', icon: Award },
+    { text: 'Australian Standard AS/NZS 5033 Compliant', icon: CheckCircle2 },
   ];
 
   useEffect(() => {
@@ -49,91 +68,95 @@ export const CollaborationSection: React.FC = () => {
     return () => observer.disconnect();
   }, []);
 
-  const prevSlide = () => {
-    setCurrentSlide((prev) => (prev === 0 ? partners.length - 1 : prev - 1));
-  };
-
-  const nextSlide = () => {
-    setCurrentSlide((prev) => (prev === partners.length - 1 ? 0 : prev + 1));
-  };
-
-  // Auto-switch partner cards every 3.8s on mobile when not paused
-  useEffect(() => {
-    if (isPaused) return;
-    const timer = setInterval(() => {
-      nextSlide();
-    }, 3800);
-    return () => clearInterval(timer);
-  }, [isPaused, currentSlide]);
-
-  // Touch handlers for mobile swipe
-  const handleTouchStart = (e: React.TouchEvent) => {
-    setIsPaused(true);
-    touchStartX.current = e.targetTouches[0].clientX;
-  };
-
-  const handleTouchMove = (e: React.TouchEvent) => {
-    touchEndX.current = e.targetTouches[0].clientX;
-  };
-
-  const handleTouchEnd = () => {
-    if (!touchStartX.current || !touchEndX.current) return;
-    const diff = touchStartX.current - touchEndX.current;
-    if (diff > 35) {
-      nextSlide();
-    } else if (diff < -35) {
-      prevSlide();
-    }
-    touchStartX.current = null;
-    touchEndX.current = null;
-    setTimeout(() => setIsPaused(false), 4000);
-  };
-
   return (
     <section
       ref={sectionRef}
-      className="relative py-12 xs:py-14 sm:py-20 lg:py-20 bg-white overflow-hidden"
+      className="relative py-14 xs:py-16 sm:py-20 lg:py-24 bg-white overflow-hidden"
     >
+      {/* Magic UI DotPattern Animated Background with Soft Radial Vignette */}
+      <DotPattern
+        width={24}
+        height={24}
+        cx={1}
+        cy={1}
+        cr={1.2}
+        glow={true}
+        className="text-[#2B3CB8]/12 mask-[radial-gradient(ellipse_75%_65%_at_50%_45%,#000_25%,transparent_100%)]"
+      />
+
+      {/* Ambient Lighting Gradients */}
+      <div className="absolute top-1/4 -left-20 w-80 h-80 bg-blue-100/50 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute bottom-10 right-0 w-96 h-96 bg-sky-100/40 rounded-full blur-3xl pointer-events-none" />
+
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-10 lg:gap-16 items-center">
-          {/* Left Column — Custom Authoritative Data & Value Pillars */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 sm:gap-12 lg:gap-16 items-center">
+          {/* Left Column — Narrative, Badges & Technical Value */}
           <motion.div
             className="lg:col-span-7 flex flex-col justify-center items-center lg:items-start text-center lg:text-left"
-            initial={{ opacity: 0, x: -30 }}
+            initial={{ opacity: 0, x: -35 }}
             animate={isVisible ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
           >
-            {/* Eyebrow Badge */}
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-[11px] sm:text-xs font-bold uppercase tracking-wider text-[#2B3CB8] bg-[#F5F7FD] border border-[#D1DCF8] shadow-2xs mb-3.5 sm:mb-4 w-fit">
+            {/* Eyebrow Badge with Magic UI AnimatedShinyText & Pulsing Radar */}
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-[11px] sm:text-xs font-bold uppercase tracking-wider text-[#2B3CB8] bg-linear-to-r from-[#F5F7FD] via-white to-[#F5F7FD] border border-[#D1DCF8] shadow-2xs mb-4 backdrop-blur-xs w-fit hover:border-[#2B3CB8]/40 transition-colors">
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#2B3CB8] opacity-75" />
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-[#2B3CB8]" />
+              </span>
               <ShieldCheck className="w-3.5 h-3.5 text-[#2B3CB8]" />
-              <span>Tier-1 Manufacturing Partnerships</span>
+              <AnimatedShinyText shimmerWidth={140} className="font-bold">
+                Tier-1 Manufacturing Partnerships
+              </AnimatedShinyText>
             </div>
 
-            {/* Main Heading — Custom Sunny Solar data as requested */}
-            <h2 className="text-2xl xs:text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-slate-950 tracking-tight leading-[1.2] sm:leading-[1.12] lg:leading-[1.05] text-center lg:text-left">
+            {/* Main Heading with Magic UI SparklesText & AnimatedGradientText */}
+            <h2 className="text-2xl xs:text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-slate-950 tracking-tight leading-[1.2] sm:leading-[1.14] lg:leading-[1.08] text-center lg:text-left">
               Partnering with World-Class Manufacturers for{' '}
-              <span className="bg-linear-to-r from-sky-600 via-sky-600 to-green-800 bg-clip-text text-transparent">
-                Uncompromising Solar Performance
-              </span>
+              <SparklesText
+                sparklesCount={6}
+                colors={{ first: '#2B3CB8', second: '#38BDF8' }}
+                className="inline text-2xl xs:text-3xl sm:text-4xl lg:text-5xl font-serif font-bold"
+              >
+                <AnimatedGradientText
+                  speed={1}
+                  colorFrom="#2B3CB8"
+                  colorTo="#0284C7"
+                  className="font-serif font-bold"
+                >
+                  Maximum Solar Yield &amp; Reliability
+                </AnimatedGradientText>
+              </SparklesText>
             </h2>
 
-            {/* Narrative Copy */}
-            <p className="mt-3.5 sm:mt-5 text-sm sm:text-base lg:text-lg text-slate-700 leading-relaxed font-normal text-center lg:text-left max-w-2xl lg:max-w-none">
+            {/* Narrative Copy with Elevated Brand Badges */}
+            <motion.p
+              initial={{ opacity: 0, y: 12 }}
+              animate={isVisible ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.6, delay: 0.15 }}
+              className="mt-4 sm:mt-5 text-sm sm:text-base lg:text-lg text-slate-700 leading-relaxed font-normal text-center lg:text-left max-w-2xl lg:max-w-none"
+            >
               We reject cheap clearance hardware. Sunny Solar collaborates directly with global Tier-1 pioneers like{' '}
-              <strong className="text-slate-900 font-semibold">SolaX Power</strong> and{' '}
-              <strong className="text-slate-900 font-semibold">JinkoSolar</strong> to deliver high-yield N-Type TOPCon
-              modules and intelligent hybrid inverters engineered to withstand Queensland’s brutal 42°C summer heat,
+              <strong className="text-slate-950 font-semibold bg-linear-to-r from-blue-50 to-indigo-50/80 px-1.5 py-0.5 rounded border border-blue-100/80 inline-block shadow-2xs">SolaX Power</strong> and{' '}
+              <strong className="text-slate-950 font-semibold bg-linear-to-r from-sky-50 to-blue-50/80 px-1.5 py-0.5 rounded border border-sky-100/80 inline-block shadow-2xs">JinkoSolar</strong> to deliver high-yield N-Type TOPCon
+              solar modules and smart hybrid inverters engineered to endure Australia&apos;s extreme summer heat,
               cyclonic winds, and coastal salt mist.
-            </p>
+            </motion.p>
+
+            
 
             {/* CTAs */}
-            <div className="mt-6 sm:mt-8 flex flex-col xs:flex-row items-center justify-center lg:justify-start gap-3 sm:gap-4 w-full xs:w-auto">
+            <motion.div
+              initial={{ opacity: 0, y: 15 }}
+              animate={isVisible ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.6, delay: 0.35 }}
+              className="mt-7 sm:mt-8 flex  items-center justify-center lg:justify-start gap-3 sm:gap-4 w-full xs:w-auto"
+            >
               <Button
                 to="/solar/systems"
                 variant="primary"
                 size="md"
-                className="w-full xs:w-auto text-center"
-                icon={<ArrowRight className="w-4 h-4" />}
+                className="group relative w-full xs:w-auto text-center shadow-md hover:shadow-xl hover:scale-[1.02] transition-all cursor-pointer overflow-hidden"
+                // icon={<ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />}
               >
                 Explore Tier-1 Systems
               </Button>
@@ -141,242 +164,107 @@ export const CollaborationSection: React.FC = () => {
                 to="/resources/buying-checklist"
                 variant="outline"
                 size="md"
-                className="w-full xs:w-auto text-center"
+                className="w-full xs:w-auto text-center bg-white/80 backdrop-blur-xs hover:bg-slate-50 hover:border-[#2B3CB8]/40 transition-all cursor-pointer shadow-2xs"
               >
                 View Quality Checklist
               </Button>
-            </div>
+            </motion.div>
           </motion.div>
 
-          {/* Right Column — SolaX & Jinko Showcase */}
+          {/* Right Column — Pure Tier-1 Brand Logos with Magic UI BorderBeam & Stage Illumination */}
           <motion.div
             className="lg:col-span-5 flex flex-col justify-center"
-            initial={{ opacity: 0, x: 30 }}
+            initial={{ opacity: 0, x: 35 }}
             animate={isVisible ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.15 }}
+            transition={{ duration: 0.7, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
           >
-            {/* Mobile View: One-by-One Sliding Carousel with Auto-Rotate */}
-            <div className="block lg:hidden">
-              <div
-                className="relative overflow-hidden "
-                onTouchStart={handleTouchStart}
-                onTouchMove={handleTouchMove}
-                onTouchEnd={handleTouchEnd}
-                onMouseEnter={() => setIsPaused(true)}
-                onMouseLeave={() => setIsPaused(false)}
-              >
-                {/* Ambient backdrop glow */}
-                <div className="absolute top-0 right-0 w-44 h-44 bg-sky-200/30 rounded-full blur-3xl pointer-events-none" />
-                <div className="absolute bottom-0 left-0 w-36 h-36 bg-amber-200/25 rounded-full blur-3xl pointer-events-none" />
+            {/* Magic UI Stage Container */}
+            <div className="relative p-5  overflow-hidden">
+              {/* Radiant Ambient Flares */}
+              <div className="absolute -top-16 -right-16 w-52 h-52 bg-[#2B3CB8]/12 rounded-full blur-3xl pointer-events-none" />
+              <div className="absolute -bottom-16 -left-16 w-52 h-52 bg-sky-400/15 rounded-full blur-3xl pointer-events-none" />
 
-                {/* Sliding single-card carousel */}
-                <div className="relative z-10 overflow-hidden">
+              {/* Inner Subtle Dot Pattern */}
+              <DotPattern
+                width={20}
+                height={20}
+                cx={1}
+                cy={1}
+                cr={1.1}
+                glow={false}
+                className="text-[#2B3CB8]/10 mask-[radial-gradient(ellipse_at_center,#000_40%,transparent_100%)]"
+              />
+
+              {/* Logo Cards Stack */}
+              <div className="relative z-10 flex flex-col gap-4 sm:gap-5">
+                {partners.map((partner, idx) => (
                   <div
-                    className="flex transition-transform duration-500 ease-out"
-                    style={{ transform: `translateX(-${currentSlide * 100}%)` }}
+                    key={partner.name}
+                    className="group relative flex items-center justify-center p-6 sm:p-8 rounded-xl bg-white/95 border border-[#D1DCF8]/80 shadow-xs hover:shadow-xl  hover:border-[#2B3CB8]/40 transition-all duration-400 overflow-hidden cursor-default"
                   >
-                    {partners.map((partner, idx) => (
-                      <div key={idx} className="w-full shrink-0 px-0.5">
-                        <div className="group flex flex-col items-center text-center p-5 rounded-xl bg-white/95 border border-sky-100/80 shadow-xs">
-                          {/* Mini partner badge */}
-                          <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[10px] font-semibold text-[#2B3CB8] bg-[#F5F7FD] border border-[#D1DCF8] mb-3">
-                            <span className="w-1.5 h-1.5 rounded-full bg-[#2B3CB8]" />
-                            <span>{partner.badge}</span>
-                          </div>
+                    {/* Magic UI BorderBeam Animated Orbiting Light */}
+                    <BorderBeam
+                      size={150}
+                      duration={idx === 0 ? 8 : 10}
+                      reverse={idx === 1}
+                      colorFrom={partner.beamFrom}
+                      colorTo={partner.beamTo}
+                      borderWidth={1.5}
+                    />
 
-                          {/* Brand Logo */}
-                          <div className="h-16 flex items-center justify-center w-full px-2">
-                            <img
-                              src={partner.logo}
-                              alt={partner.name}
-                              className="max-h-14 max-w-[210px] w-auto h-auto object-contain"
-                            />
-                          </div>
+                    {/* Radial Spotlight on Hover */}
+                    <div className="pointer-events-none absolute inset-0 bg-radial from-[#2B3CB8]/8 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
-                          {/* Specs / Meta */}
-                          <div className="mt-3.5 pt-3.5 border-t border-sky-100/80 w-full flex flex-col items-center">
-                            <span className="text-xs font-bold text-slate-800 uppercase tracking-wider">
-                              {partner.category}
-                            </span>
-                            <span className="text-[11px] text-slate-500 mt-1 leading-relaxed">
-                              {partner.details}
-                            </span>
-                          </div>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Mobile Controls: Previous, Indicators, Next */}
-                <div className="relative z-10 flex items-center justify-between mt-3.5 pt-1 px-1">
-                  <button
-                    type="button"
-                    onClick={prevSlide}
-                    aria-label="Previous partner"
-                    className="w-8 h-8 rounded-full bg-white border border-slate-200 text-slate-700 flex items-center justify-center shadow-2xs active:scale-95 transition-all cursor-pointer hover:bg-slate-50"
-                  >
-                    <ChevronLeft className="w-4 h-4" />
-                  </button>
-
-                  {/* Active Dots */}
-                  <div className="flex items-center gap-1.5">
-                    {partners.map((_, idx) => (
-                      <button
-                        key={idx}
-                        type="button"
-                        onClick={() => setCurrentSlide(idx)}
-                        aria-label={`Partner ${idx + 1}`}
-                        className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
-                          currentSlide === idx
-                            ? 'w-6 bg-[#2B3CB8]'
-                            : 'w-2 bg-slate-300 hover:bg-slate-400'
-                        }`}
+                    {/* Partner Logo Only */}
+                    <div className="relative z-10 h-16 sm:h-20 flex items-center justify-center w-full px-4">
+                      <img
+                        src={partner.logo}
+                        alt={partner.name}
+                        className="max-h-12 sm:max-h-25 max-w-57.5 sm:max-w-65 w-auto h-auto object-contain mix-blend-multiply transition-transform duration-500 ease-out group-hover:scale-108"
                       />
-                    ))}
+                    </div>
                   </div>
-
-                  <button
-                    type="button"
-                    onClick={nextSlide}
-                    aria-label="Next partner"
-                    className="w-8 h-8 rounded-full bg-white border border-slate-200 text-slate-700 flex items-center justify-center shadow-2xs active:scale-95 transition-all cursor-pointer hover:bg-slate-50"
-                  >
-                    <ChevronRight className="w-4 h-4" />
-                  </button>
-                </div>
-              </div>
-            </div>
-
-            {/* Desktop View: Stacked Brand Showcase */}
-            <div className="hidden lg:block">
-              <div className="relative overflow-hidden rounded-2xl bg-sky-50/50 p-6 border border-sky-100/70">
-                {/* Subtle ambient light gradient */}
-                <div className="absolute top-0 right-0 w-64 h-64 bg-sky-200/25 rounded-full blur-3xl pointer-events-none" />
-                <div className="absolute bottom-0 left-0 w-48 h-48 bg-amber-200/20 rounded-full blur-3xl pointer-events-none" />
-
-                <div className="relative z-10 flex flex-col gap-4">
-                  {partners.map((partner, idx) => (
-                    <React.Fragment key={idx}>
-                      <div className="group flex flex-col items-center text-center p-6 rounded-2xl bg-white/95 border border-sky-100/80 shadow-xs hover:shadow-md transition-all duration-300">
-                        <div className="h-20 flex items-center justify-center w-full px-2">
-                          <img
-                            src={partner.logo}
-                            alt={partner.name}
-                            className="max-h-16 max-w-[240px] w-auto h-auto object-contain transition-transform duration-300 group-hover:scale-105"
-                          />
-                        </div>
-
-                        <div className="mt-4 pt-4 border-t border-sky-100/80 w-full flex flex-col items-center">
-                          <span className="text-xs font-bold text-slate-800 uppercase tracking-wider">
-                            {partner.category}
-                          </span>
-                          <span className="text-xs text-slate-500 mt-1 leading-relaxed">
-                            {partner.details}
-                          </span>
-                        </div>
-                      </div>
-
-                      {idx < partners.length - 1 && (
-                        <div className="w-full h-px bg-linear-to-r from-transparent via-[#D1DCF8] to-transparent" />
-                      )}
-                    </React.Fragment>
-                  ))}
-                </div>
+                ))}
               </div>
             </div>
           </motion.div>
         </div>
+
+        {/* Bottom Industry Accreditations: Infinite Smooth Scrolling Marquee (Magic UI) */}
+        <motion.div
+          className="mt-14 sm:mt-18 pt-6 border-t border-slate-200/70"
+          initial={{ opacity: 0, y: 20 }}
+          animate={isVisible ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6, delay: 0.3 }}
+        >
+          <div className="flex items-center justify-between mb-3 px-2">
+            <span className="text-[11px] sm:text-xs font-bold uppercase tracking-wider text-slate-500">
+              Verified Compliance &amp; Engineering Standards
+            </span>
+            <span className="text-[11px] text-slate-400 font-medium hidden sm:inline-block">
+              Queensland Clean Energy Network
+            </span>
+          </div>
+
+          <div className="relative overflow-hidden py-1 rounded-xl bg-slate-50/60 border border-slate-200/60 mask-[linear-gradient(to_right,transparent,white_15%,white_85%,transparent)]">
+            <Marquee pauseOnHover={true} className="py-2 [--duration:28s]">
+              {accreditations.map((item, idx) => {
+                const IconComponent = item.icon;
+                return (
+                  <div
+                    key={idx}
+                    className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-lg bg-white border border-slate-200/80 shadow-2xs text-xs font-semibold text-slate-700 shrink-0"
+                  >
+                    <IconComponent className="w-3.5 h-3.5 text-[#2B3CB8] shrink-0" />
+                    <span>{item.text}</span>
+                  </div>
+                );
+              })}
+            </Marquee>
+          </div>
+        </motion.div>
       </div>
     </section>
-  );
-};
-
-// Precise Vector Logo for SolaX Power
-const SolaxLogo: React.FC = () => {
-  return (
-    <svg
-      viewBox="0 0 340 75"
-      className="h-12 sm:h-14 w-auto max-w-full"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      {/* SolaX Geometric 'X' Icon */}
-      <g fill="#2B3CB8">
-        {/* Top-Left to Center Arm */}
-        <path d="M12 8 L32 37.5 L46 37.5 L26 8 Z" />
-        {/* Top-Right to Center Arm */}
-        <path d="M68 8 L48 37.5 L34 37.5 L54 8 Z" />
-        {/* Bottom-Left to Center Arm */}
-        <path d="M12 67 L32 37.5 L46 37.5 L26 67 Z" />
-        {/* Bottom-Right to Center Arm */}
-        <path d="M68 67 L48 37.5 L34 37.5 L54 67 Z" />
-      </g>
-
-      {/* SOLAX Text */}
-      <text
-        x="88"
-        y="45"
-        fill="#2B3CB8"
-        fontFamily="'Plus Jakarta Sans', 'Outfit', sans-serif"
-        fontWeight="900"
-        fontSize="38"
-        letterSpacing="2.5"
-      >
-        SOLAX
-      </text>
-
-      {/* POWER Subtext */}
-      <text
-        x="180"
-        y="64"
-        fill="#2B3CB8"
-        fontFamily="'Plus Jakarta Sans', sans-serif"
-        fontWeight="800"
-        fontSize="13"
-        letterSpacing="4.2"
-      >
-        POWER
-      </text>
-    </svg>
-  );
-};
-
-// Precise Vector Logo for Jinko Solar
-const JinkoLogo: React.FC = () => {
-  return (
-    <svg
-      viewBox="0 0 280 80"
-      className="h-12 sm:h-15 w-auto max-w-full"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      {/* Stylized JinkO Wordmark */}
-      <g fill="#2B3CB8">
-        {/* Dot on J */}
-        <circle cx="26" cy="38" r="7" />
-        {/* J stem & curve */}
-        <path
-          d="M36 12 L50 12 L50 50 C50 64 39 72 23 72 C12 72 4 66 2 58 L16 54 C17 58 20 61 25 61 C32 61 36 57 36 49 Z"
-        />
-
-        {/* i */}
-        <ellipse cx="64" cy="27" rx="5" ry="5" />
-        <path d="M59 36 L70 36 L70 68 L59 68 Z" />
-
-        {/* n */}
-        <path d="M80 36 L91 36 L91 43 C94 38 100 35 107 35 C118 35 123 41 123 52 L123 68 L112 68 L112 53 C112 47 109 44 104 44 C98 44 91 48 91 55 L91 68 L80 68 Z" />
-
-        {/* k */}
-        <path d="M133 12 L144 12 L144 45 L157 36 L171 36 L154 48 L172 68 L158 68 L144 52 L144 68 L133 68 Z" />
-
-        {/* O */}
-        <path
-          d="M205 34 C222 34 233 46 233 60 C233 74 222 86 205 86 C188 86 177 74 177 60 C177 46 188 34 205 34 Z M205 44 C195 44 188 51 188 60 C188 69 195 76 205 76 C215 76 222 69 222 60 C222 51 215 44 205 44 Z"
-          transform="translate(10, -8)"
-        />
-      </g>
-    </svg>
   );
 };
 

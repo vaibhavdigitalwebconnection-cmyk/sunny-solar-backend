@@ -160,7 +160,7 @@ export const SolarBatteriesCatalogSection: React.FC = () => {
           Compare Top Battery Systems
         </h2>
         <p className="mt-2 text-xs xs:text-sm text-slate-600 max-w-xl mx-auto leading-relaxed">
-          Tier-1 CEC-accredited lithium storage backed by direct Australian warranties.
+          Tier-1 SAA-accredited lithium storage backed by direct Australian warranties.
         </p>
       </div>
 
@@ -186,11 +186,10 @@ export const SolarBatteriesCatalogSection: React.FC = () => {
                 className="w-full shrink-0 px-0.5 flex flex-col"
               >
                 <div
-                  className={`rounded-2xl p-5 xs:p-6 flex flex-col justify-between h-full bg-white transition-all duration-200 ${
-                    item.featured
+                  className={`rounded-2xl p-5 xs:p-6 flex flex-col justify-between h-full bg-white transition-all duration-200 ${item.featured
                       ? 'border-2 border-emerald-500 shadow-md shadow-emerald-500/10'
                       : 'border border-slate-200/90 shadow-2xs'
-                  }`}
+                    }`}
                 >
                   <div>
                     {item.featured && (
@@ -274,11 +273,10 @@ export const SolarBatteriesCatalogSection: React.FC = () => {
                 type="button"
                 onClick={() => goToSlide(dotIdx)}
                 aria-label={`Go to slide ${dotIdx + 1}`}
-                className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
-                  activeSlide === dotIdx
+                className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${activeSlide === dotIdx
                     ? 'w-6 bg-[#2B3CB8]'
                     : 'w-2 bg-slate-300 hover:bg-slate-400'
-                }`}
+                  }`}
               />
             ))}
           </div>
@@ -328,11 +326,10 @@ export const SolarBatteriesCatalogSection: React.FC = () => {
         {batteries.map((item) => (
           <div
             key={item.id}
-            className={`rounded-xl p-5 flex flex-col justify-between transition-all duration-200 relative ${
-              item.featured
+            className={`rounded-xl p-5 flex flex-col justify-between transition-all duration-200 relative ${item.featured
                 ? 'bg-white border-2 border-emerald-500 shadow-lg shadow-emerald-500/10'
                 : 'bg-white border border-slate-200/90 shadow-xs hover:border-slate-300 hover:shadow-md'
-            }`}
+              }`}
           >
             {item.featured && (
               <div className="absolute -top-3 left-1/2 -translate-x-1/2">

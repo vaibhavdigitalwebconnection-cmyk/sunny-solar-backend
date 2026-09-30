@@ -110,7 +110,7 @@ export const calculatorsPageData: Record<string, CalculatorPageData> = {
         }
       ],
       footer: {
-        trustText: 'CEC Approved Battery Installers',
+        trustText: 'SAA Approved Battery Installers',
         trustIcon: 'ShieldCheck',
         buttonText: 'View Solar + Battery Packages',
         buttonTo: '/batteries/solar-plus-battery'
@@ -346,7 +346,7 @@ export const calculatorsPageData: Record<string, CalculatorPageData> = {
         },
         {
           bold: 'Master Electrician vs Subcontractors:',
-          text: 'Battery storage operates at high DC voltages and requires CEC battery-accredited full-time installers.'
+          text: 'Battery storage operates at high DC voltages and requires SAA battery-accredited full-time installers.'
         }
       ],
       footer: {

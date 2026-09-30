@@ -1,6 +1,11 @@
 import React, { useRef } from 'react';
 import { motion, useScroll, useSpring } from 'framer-motion';
 import { Zap, Sun, ShieldCheck, Trophy, BatteryCharging, Award } from 'lucide-react';
+import { DotPattern } from '../../../components/ui/DotPattern';
+import { AnimatedShinyText } from '../../../components/ui/AnimatedShinyText';
+import { AnimatedGradientText } from '../../../components/ui/AnimatedGradientText';
+import { SparklesText } from '../../../components/ui/SparklesText';
+import { BorderBeam } from '../../../components/ui/BorderBeam';
 
 interface MilestoneData {
   year: string;
@@ -70,54 +75,70 @@ export const StorySection: React.FC = () => {
   ];
 
   return (
-    <section className="bg-slate-50 py-12 xs:py-14 sm:py-16 lg:py-20 relative overflow-hidden">
+    <section className="bg-slate-50 py-14 xs:py-16 sm:py-20 lg:py-24 relative overflow-hidden">
+      {/* Magic UI DotPattern Animated Background with Soft Radial Vignette */}
+      <DotPattern
+        width={24}
+        height={24}
+        cx={1}
+        cy={1}
+        cr={1.2}
+        glow={true}
+        className="text-amber-500/10 mask-[radial-gradient(ellipse_75%_65%_at_50%_45%,#000_25%,transparent_100%)]"
+      />
+
       {/* Top divider */}
       <div className="absolute top-0 left-0 w-full h-px bg-linear-to-r from-transparent via-slate-200 to-transparent" />
 
-      {/* Subtle ambient light glow */}
+      {/* Subtle ambient light glows */}
       <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-96 h-96 bg-amber-200/20 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute bottom-1/4 right-10 w-80 h-80 bg-orange-200/15 rounded-full blur-3xl pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section header */}
         <motion.div
-          className="text-center mb-10 sm:mb-14"
+          className="text-center mb-12 sm:mb-16"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.4 }}
           transition={{ duration: 0.6 }}
         >
-          <div className="flex items-center justify-center gap-3 mb-3.5 sm:mb-5">
-            <motion.div
-              className="w-6 xs:w-8 h-px bg-amber-500"
-              initial={{ width: 0 }}
-              whileInView={{ width: 32 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-            />
-            <span className="text-[11px] xs:text-xs font-bold uppercase tracking-[0.25em] text-amber-600">
-              Our Journey
+          {/* Eyebrow Badge with Magic UI AnimatedShinyText */}
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-[11px] xs:text-xs font-bold uppercase tracking-[0.2em] text-amber-700 bg-linear-to-r from-amber-50 via-white to-orange-50 border border-amber-200/80 shadow-2xs mb-4 backdrop-blur-xs hover:border-amber-300 transition-colors">
+            <span className="relative flex h-2 w-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-500 opacity-75" />
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-amber-500" />
             </span>
-            <motion.div
-              className="w-6 xs:w-8 h-px bg-amber-500"
-              initial={{ width: 0 }}
-              whileInView={{ width: 32 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-            />
+            <AnimatedShinyText shimmerWidth={120} className="font-bold text-amber-700">
+              Our Journey
+            </AnimatedShinyText>
           </div>
+
+          {/* Heading with Magic UI SparklesText & AnimatedGradientText */}
           <h2 className="text-2xl xs:text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-slate-950 tracking-tight leading-[1.2] sm:leading-tight">
             14 Years of Doing Things{' '}
             <br className="hidden xs:inline" />
-            <span className="bg-gradient-to-r from-amber-500 via-amber-600 to-orange-500 bg-clip-text text-transparent">
-              The Right Way
-            </span>
+            <SparklesText
+              sparklesCount={6}
+              colors={{ first: '#F59E0B', second: '#EA580C' }}
+              className="inline text-2xl xs:text-3xl sm:text-4xl lg:text-5xl font-serif font-bold"
+            >
+              <AnimatedGradientText
+                speed={1}
+                colorFrom="#D97706"
+                colorTo="#EA580C"
+                className="font-serif font-bold"
+              >
+                The Right Way
+              </AnimatedGradientText>
+            </SparklesText>
           </h2>
         </motion.div>
 
         {/* Timeline Container */}
         <div ref={containerRef} className="relative">
           {/* Base track line (Desktop) */}
-          <div className="hidden md:block absolute left-1/2 top-4 bottom-8 w-0.5 -translate-x-1/2 bg-slate-200" />
+          <div className="hidden md:block absolute left-1/2 top-4 bottom-8 w-0.5 -translate-x-1/2 bg-slate-200/90" />
 
           {/* Active progressive line (Desktop) */}
           <motion.div
@@ -126,16 +147,16 @@ export const StorySection: React.FC = () => {
           />
 
           {/* Base track line (Mobile - centered precisely on node at left: 26px) */}
-          <div className="md:hidden absolute left-[26px] -translate-x-1/2 top-4 bottom-8 w-0.5 bg-slate-200" />
+          <div className="md:hidden absolute left-6.5 -translate-x-1/2 top-4 bottom-8 w-0.5 bg-slate-200/90" />
 
           {/* Active progressive line (Mobile) */}
           <motion.div
-            className="md:hidden absolute left-[26px] -translate-x-1/2 top-4 bottom-8 w-1 bg-gradient-to-b from-amber-400 via-orange-400 to-amber-500 rounded-full shadow-sm shadow-amber-400/50 origin-top"
+            className="md:hidden absolute left-6.5 -translate-x-1/2 top-4 bottom-8 w-1 bg-linear-to-b from-amber-400 via-orange-400 to-amber-500 rounded-full shadow-sm shadow-amber-400/50 origin-top"
             style={{ scaleY }}
           />
 
           {/* Milestones List */}
-          <div className="space-y-6 sm:space-y-8 md:space-y-6">
+          <div className="space-y-7 sm:space-y-9 md:space-y-8">
             {milestones.map((m, idx) => {
               const isLeft = idx % 2 === 0;
               const Icon = m.icon;
@@ -149,32 +170,46 @@ export const StorySection: React.FC = () => {
                       {isLeft && (
                         <motion.div
                           className="w-full max-w-xl group relative"
-                          initial={{ opacity: 0, x: -70, scale: 0.96 }}
+                          initial={{ opacity: 0, x: -60, scale: 0.97 }}
                           whileInView={{ opacity: 1, x: 0, scale: 1 }}
                           viewport={{ once: true, amount: 0.3 }}
                           transition={{
-                            duration: 0.7,
+                            duration: 0.65,
                             ease: [0.22, 1, 0.36, 1],
                           }}
-                          whileHover={{ y: -4, transition: { duration: 0.2 } }}
+                          whileHover={{ y: -4, transition: { duration: 0.25 } }}
                         >
                           {/* Sliding connector line to center node */}
                           <motion.div
-                            className="hidden md:block absolute -right-14 top-1/2 -translate-y-1/2 w-14 h-0.5 bg-gradient-to-r from-slate-200 via-amber-300 to-amber-500 origin-left"
+                            className="hidden md:block absolute -right-14 top-1/2 -translate-y-1/2 w-14 h-0.5 bg-linear-to-r from-slate-200 via-amber-300 to-amber-500 origin-left"
                             initial={{ scaleX: 0 }}
                             whileInView={{ scaleX: 1 }}
                             viewport={{ once: true, amount: 0.3 }}
                             transition={{ duration: 0.5, delay: 0.2 }}
                           />
 
-                          <div className="bg-white rounded-lg border border-slate-200/80 p-6 sm:p-7 shadow-md shadow-black/50 hover:shadow-xl hover:shadow-slate-400/25 hover:border-amber-300 transition-all duration-300 relative text-right">
-                            <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-black uppercase tracking-[0.2em] bg-amber-50 text-amber-600 border border-amber-200/80 mb-3">
+                          <div className="group/card relative bg-white/95 rounded-2xl border border-slate-200/90 p-6 sm:p-7 shadow-sm hover:shadow-xl hover:border-amber-300/80 transition-all duration-400 overflow-hidden text-right">
+                            {/* Magic UI BorderBeam Animated Orbiting Light */}
+                            <BorderBeam
+                              size={140}
+                              duration={idx % 2 === 0 ? 8 : 10}
+                              reverse={idx % 2 !== 0}
+                              colorFrom="#F59E0B"
+                              colorTo="#F97316"
+                              borderWidth={1.5}
+                            />
+
+                            {/* Radial Spotlight on Hover */}
+                            <div className="pointer-events-none absolute inset-0 bg-radial from-amber-400/8 via-transparent to-transparent opacity-0 group-hover/card:opacity-100 transition-opacity duration-500" />
+
+                            <span className="relative z-10 inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-black uppercase tracking-[0.2em] bg-linear-to-r from-amber-50 to-orange-50 text-amber-700 border border-amber-200/80 mb-3 shadow-2xs">
+                              <span className="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse" />
                               {m.year}
                             </span>
-                            <h4 className="text-lg sm:text-xl font-extrabold text-slate-900 group-hover:text-amber-600 transition-colors duration-200">
+                            <h4 className="relative z-10 text-lg sm:text-xl font-extrabold text-slate-900 group-hover/card:text-amber-600 transition-colors duration-300">
                               {m.title}
                             </h4>
-                            <p className="mt-2 text-sm text-slate-500 leading-relaxed">
+                            <p className="relative z-10 mt-2 text-sm text-slate-600 leading-relaxed font-normal">
                               {m.description}
                             </p>
                           </div>
@@ -197,11 +232,12 @@ export const StorySection: React.FC = () => {
                     >
                       <div className="relative group/node cursor-pointer">
                         {/* Glowing backdrop pulse */}
-                        <div className="absolute inset-0 rounded-2xl bg-amber-400/30 blur-md group-hover/node:scale-125 transition-transform duration-300" />
+                        <div className="absolute inset-0 rounded-2xl bg-amber-400/25 blur-md group-hover/node:scale-130 transition-transform duration-300" />
+                        <span className="animate-ping absolute -inset-1 rounded-2xl bg-amber-400/20 opacity-75 pointer-events-none" />
 
                         {/* Node box */}
                         <div className="relative w-12 h-12 rounded-2xl bg-white border-2 border-amber-400 text-amber-600 flex items-center justify-center shadow-md group-hover/node:scale-110 group-hover/node:border-amber-500 group-hover/node:bg-amber-50 transition-all duration-300">
-                          <Icon className="w-5 h-5 stroke-[2.2]" />
+                          <Icon className="w-5 h-5 stroke-[2.2] group-hover/node:rotate-6 transition-transform duration-300" />
                         </div>
                       </div>
                     </motion.div>
@@ -211,32 +247,46 @@ export const StorySection: React.FC = () => {
                       {!isLeft && (
                         <motion.div
                           className="w-full max-w-xl group relative"
-                          initial={{ opacity: 0, x: 70, scale: 0.96 }}
+                          initial={{ opacity: 0, x: 60, scale: 0.97 }}
                           whileInView={{ opacity: 1, x: 0, scale: 1 }}
                           viewport={{ once: true, amount: 0.3 }}
                           transition={{
-                            duration: 0.7,
+                            duration: 0.65,
                             ease: [0.22, 1, 0.36, 1],
                           }}
-                          whileHover={{ y: -4, transition: { duration: 0.2 } }}
+                          whileHover={{ y: -4, transition: { duration: 0.25 } }}
                         >
                           {/* Sliding connector line to center node */}
                           <motion.div
-                            className="hidden md:block absolute -left-14 top-1/2 -translate-y-1/2 w-14 h-0.5 bg-gradient-to-l from-slate-200 via-amber-300 to-amber-500 origin-right"
+                            className="hidden md:block absolute -left-14 top-1/2 -translate-y-1/2 w-14 h-0.5 bg-linear-to-l from-slate-200 via-amber-300 to-amber-500 origin-right"
                             initial={{ scaleX: 0 }}
                             whileInView={{ scaleX: 1 }}
                             viewport={{ once: true, amount: 0.3 }}
                             transition={{ duration: 0.5, delay: 0.2 }}
                           />
 
-                          <div className="bg-white rounded-lg border border-slate-200/80 p-6 sm:p-7 shadow-md shadow-black/50   hover:shadow-xl hover:shadow-slate-400/25 hover:border-amber-300 transition-all duration-300 relative text-left">
-                            <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-black uppercase tracking-[0.2em] bg-amber-50 text-amber-600 border border-amber-200/80 mb-3">
+                          <div className="group/card relative bg-white/95 rounded-2xl border border-slate-200/90 p-6 sm:p-7 shadow-sm hover:shadow-xl hover:border-amber-300/80 transition-all duration-400 overflow-hidden text-left">
+                            {/* Magic UI BorderBeam Animated Orbiting Light */}
+                            <BorderBeam
+                              size={140}
+                              duration={idx % 2 === 0 ? 8 : 10}
+                              reverse={idx % 2 !== 0}
+                              colorFrom="#F59E0B"
+                              colorTo="#F97316"
+                              borderWidth={1.5}
+                            />
+
+                            {/* Radial Spotlight on Hover */}
+                            <div className="pointer-events-none absolute inset-0 bg-radial from-amber-400/8 via-transparent to-transparent opacity-0 group-hover/card:opacity-100 transition-opacity duration-500" />
+
+                            <span className="relative z-10 inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-black uppercase tracking-[0.2em] bg-linear-to-r from-amber-50 to-orange-50 text-amber-700 border border-amber-200/80 mb-3 shadow-2xs">
+                              <span className="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse" />
                               {m.year}
                             </span>
-                            <h4 className="text-lg sm:text-xl font-extrabold text-slate-900 group-hover:text-amber-600 transition-colors duration-200">
+                            <h4 className="relative z-10 text-lg sm:text-xl font-extrabold text-slate-900 group-hover/card:text-amber-600 transition-colors duration-300">
                               {m.title}
                             </h4>
-                            <p className="mt-2 text-sm text-slate-500 leading-relaxed">
+                            <p className="relative z-10 mt-2 text-sm text-slate-600 leading-relaxed font-normal">
                               {m.description}
                             </p>
                           </div>
@@ -276,14 +326,24 @@ export const StorySection: React.FC = () => {
                         ease: [0.22, 1, 0.36, 1],
                       }}
                     >
-                      <div className="bg-white rounded-xl sm:rounded-2xl border border-slate-200/90 p-4 xs:p-5 shadow-xs hover:shadow-sm active:scale-[0.99] transition-all">
-                        <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-[10px] xs:text-xs font-bold uppercase tracking-[0.16em] bg-amber-50 text-amber-600 border border-amber-200/80 mb-2">
+                      <div className="group relative bg-white/95 rounded-2xl border border-slate-200/90 p-4 xs:p-5 shadow-xs hover:shadow-md transition-all overflow-hidden">
+                        {/* Mobile BorderBeam */}
+                        <BorderBeam
+                          size={100}
+                          duration={8}
+                          colorFrom="#F59E0B"
+                          colorTo="#F97316"
+                          borderWidth={1.5}
+                        />
+
+                        <span className="relative z-10 inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[10px] xs:text-xs font-bold uppercase tracking-[0.16em] bg-linear-to-r from-amber-50 to-orange-50 text-amber-700 border border-amber-200/80 mb-2">
+                          <span className="w-1 h-1 rounded-full bg-amber-500 animate-pulse" />
                           {m.year}
                         </span>
-                        <h4 className="text-base xs:text-lg font-bold text-slate-900 leading-snug">
+                        <h4 className="relative z-10 text-base xs:text-lg font-bold text-slate-900 leading-snug">
                           {m.title}
                         </h4>
-                        <p className="mt-1.5 text-xs xs:text-sm text-slate-600 leading-relaxed font-normal">
+                        <p className="relative z-10 mt-1.5 text-xs xs:text-sm text-slate-600 leading-relaxed font-normal">
                           {m.description}
                         </p>
                       </div>

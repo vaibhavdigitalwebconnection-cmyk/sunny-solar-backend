@@ -22,7 +22,7 @@ export const resourcesData: Record<string, ResourceGuide> = {
     description: 'Avoid aggressive telemarketers, sub-contracted cut-rate crews, and cheap orphaned hardware. This printable checklist gives you an unfair advantage when vetting solar quotes.',
     whatInside: [
       'The 5 red flags in solar sales contracts that void your workmanship guarantees',
-      'How to verify genuine Clean Energy Council (CEC) installer accreditation',
+      'How to verify genuine Clean Energy Council (SAA) installer accreditation',
       'Questions to ask about switchboard upgrades and hidden roof-pitch fees',
       'Warranty comparison checklist: Product vs Performance vs Labor'
     ],
@@ -69,7 +69,7 @@ export const resourcesData: Record<string, ResourceGuide> = {
     badge: 'Zero Obligation',
     description: 'Already received a quote from another solar provider? Send it to our master electricians. We will inspect the hardware choices, string design, and line-item pricing to verify if it is fair value.',
     whatInside: [
-      'Verification of Tier-1 panel and CEC approved inverter listings',
+      'Verification of Tier-1 panel and SAA approved inverter listings',
       'Price-per-watt benchmark against current Australian market averages',
       'Identification of unstated switchboard or double-storey surcharge clauses',
       'Honest assessment of estimated generation figures'

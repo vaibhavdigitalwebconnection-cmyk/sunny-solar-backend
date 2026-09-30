@@ -14,10 +14,13 @@ import {
   UploadCloud,
   FileText,
   X,
+  ChevronDown,
 } from 'lucide-react';
 import { Button } from '../../../components/ui/Button';
 import { submitToWeb3Forms, fileToBase64 } from '../../../utils/web3forms';
 import { api } from '../../../services/api';
+import { motion } from 'framer-motion';
+import { BorderBeam } from '../../../components/ui/BorderBeam';
 
 export const FreeAssessmentFormSection: React.FC = () => {
   const navigate = useNavigate();
@@ -30,6 +33,7 @@ export const FreeAssessmentFormSection: React.FC = () => {
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
   const [submitError, setSubmitError] = useState<string>('');
   const [consultType, setConsultType] = useState<'satellite' | 'onsite' | 'phone'>('satellite');
+  const [countryCode, setCountryCode] = useState<string>('+61');
 
   const [formData, setFormData] = useState({
     name: '',
@@ -105,11 +109,38 @@ export const FreeAssessmentFormSection: React.FC = () => {
     return '';
   };
 
-  const validatePhone = (val: string): string => {
+  /**
+   * Validates Australian full mobile numbers.
+   * Matches +614 or 614 followed by 8 digits (with optional spaces or dashes).
+   * Example matches:
+   *   +61412345678 -> true
+   *   61412 345 678 -> true
+   *   0412345678 -> false (Doesn't start with 614)
+   */
+  const validateAUFullMobile = (phone: string): boolean => {
+    const regex = /^(?:\+?614)(?:[ -]?\d){8}$/;
+    return regex.test(phone.trim());
+  };
+
+  const validatePhone = (val: string, selectedCode: string = countryCode): string => {
     if (!val.trim()) return 'Phone number is required.';
-    const digits = val.replace(/\D/g, '');
-    if (digits.length < 8 || digits.length > 12) {
-      return 'Please enter a valid Australian phone number (e.g. 0400 123 456).';
+
+    if (selectedCode === '+61') {
+      const raw = val.trim();
+      const isValid =
+        validateAUFullMobile(raw) ||
+        (raw.startsWith('4') && validateAUFullMobile(`+61${raw}`));
+
+      if (!isValid) {
+        return 'Please enter a valid Australian mobile starting with +614 or 614 (e.g. +61412 345 678).';
+      }
+      return '';
+    }
+
+    // Generic international format for non-AU numbers: 7-15 digits
+    const digitsOnly = val.replace(/\D/g, '');
+    if (digitsOnly.length < 7 || digitsOnly.length > 15) {
+      return 'Please enter a valid phone number (7–15 digits).';
     }
     return '';
   };
@@ -138,7 +169,7 @@ export const FreeAssessmentFormSection: React.FC = () => {
       let err = '';
       if (field === 'name') err = validateName(value);
       if (field === 'email') err = validateEmail(value);
-      if (field === 'phone') err = validatePhone(value);
+      if (field === 'phone') err = validatePhone(value, countryCode);
       if (field === 'suburb') err = validateSuburb(value);
       setErrors((prev) => ({ ...prev, [field]: err }));
     }
@@ -150,7 +181,7 @@ export const FreeAssessmentFormSection: React.FC = () => {
     let err = '';
     if (field === 'name') err = validateName(formData.name);
     if (field === 'email') err = validateEmail(formData.email);
-    if (field === 'phone') err = validatePhone(formData.phone);
+    if (field === 'phone') err = validatePhone(formData.phone, countryCode);
     if (field === 'suburb') err = validateSuburb(formData.suburb);
     if (field === 'consent') err = validateConsent(authorizedConsent);
     if (field === 'captcha') err = validateCaptcha(isHumanVerified);
@@ -184,7 +215,7 @@ export const FreeAssessmentFormSection: React.FC = () => {
 
     const nameErr = validateName(formData.name);
     const emailErr = validateEmail(formData.email);
-    const phoneErr = validatePhone(formData.phone);
+    const phoneErr = validatePhone(formData.phone, countryCode);
     const suburbErr = validateSuburb(formData.suburb);
     const consentErr = validateConsent(authorizedConsent);
     const captchaErr = validateCaptcha(isHumanVerified);
@@ -222,13 +253,19 @@ export const FreeAssessmentFormSection: React.FC = () => {
         }
       }
 
-      // 2. Persist lead to MongoDB database
+      // 2. Normalize full phone with country code if needed
+      const rawPhone = formData.phone.trim();
+      const submittedPhone = rawPhone.startsWith('+')
+        ? rawPhone
+        : `${countryCode} ${rawPhone}`;
+
+      // Persist lead to MongoDB database
       let backendSuccess = false;
       try {
         await api.createLead({
           name: formData.name,
           email: formData.email,
-          phone: formData.phone,
+          phone: submittedPhone,
           suburb: formData.suburb,
           service: formData.service,
           consultType: consultType,
@@ -247,7 +284,7 @@ export const FreeAssessmentFormSection: React.FC = () => {
       const web3Payload: Record<string, any> = {
         name: formData.name,
         email: formData.email,
-        phone: formData.phone,
+        phone: submittedPhone,
         suburb: formData.suburb,
         service: formData.service,
         consult_type: consultType,
@@ -295,8 +332,8 @@ export const FreeAssessmentFormSection: React.FC = () => {
 
               <div className="space-y-5">
                 {/* Phone */}
-                <div className="flex items-start gap-4 p-4 rounded-xl border border-slate-300/80 bg-slate-50/50 hover:bg-slate-50 transition-colors">
-                  <div className="w-10 h-10 rounded-xl bg-amber-500/10 text-amber-700 flex items-center justify-center shrink-0 border border-amber-200/60">
+                <div className="group relative flex items-start gap-4 p-4 rounded-xl border border-slate-300/80 bg-slate-50/50 hover:bg-white hover:border-[#2B3CB8]/40 hover:shadow-md transition-all duration-300">
+                  <div className="w-10 h-10 rounded-xl bg-amber-500/10 text-amber-700 flex items-center justify-center shrink-0 border border-amber-200/60 group-hover:scale-105 group-hover:bg-amber-500/15 transition-all duration-300">
                     <Phone className="w-5 h-5" />
                   </div>
                   <div>
@@ -314,8 +351,8 @@ export const FreeAssessmentFormSection: React.FC = () => {
                 </div>
 
                 {/* Email */}
-                <div className="flex items-start gap-4 p-4 rounded-xl border border-slate-300/80 bg-slate-50/50 hover:bg-slate-50 transition-colors">
-                  <div className="w-10 h-10 rounded-xl bg-amber-500/10 text-amber-700 flex items-center justify-center shrink-0 border border-amber-200/60">
+                <div className="group relative flex items-start gap-4 p-4 rounded-xl border border-slate-300/80 bg-slate-50/50 hover:bg-white hover:border-[#2B3CB8]/40 hover:shadow-md transition-all duration-300">
+                  <div className="w-10 h-10 rounded-xl bg-amber-500/10 text-amber-700 flex items-center justify-center shrink-0 border border-amber-200/60 group-hover:scale-105 group-hover:bg-amber-500/15 transition-all duration-300">
                     <Mail className="w-5 h-5" />
                   </div>
                   <div>
@@ -333,8 +370,8 @@ export const FreeAssessmentFormSection: React.FC = () => {
                 </div>
 
                 {/* Office / Headquarters Address */}
-                <div className="flex items-start gap-4 p-4 rounded-xl border border-slate-300/80 bg-slate-50/50 hover:bg-slate-50 transition-colors">
-                  <div className="w-10 h-10 rounded-xl bg-amber-500/10 text-amber-700 flex items-center justify-center shrink-0 border border-amber-200/60">
+                <div className="group relative flex items-start gap-4 p-4 rounded-xl border border-slate-300/80 bg-slate-50/50 hover:bg-white hover:border-[#2B3CB8]/40 hover:shadow-md transition-all duration-300">
+                  <div className="w-10 h-10 rounded-xl bg-amber-500/10 text-amber-700 flex items-center justify-center shrink-0 border border-amber-200/60 group-hover:scale-105 group-hover:bg-amber-500/15 transition-all duration-300">
                     <MapPin className="w-5 h-5" />
                   </div>
                   <div>
@@ -362,12 +399,19 @@ export const FreeAssessmentFormSection: React.FC = () => {
             </div>
 
             {/* Security & Integrity Note */}
-            <div className="p-4 rounded-xl border border-slate-200 bg-slate-50/70 text-xs text-slate-600 space-y-2">
-              <div className="flex items-center gap-2 font-bold text-slate-900">
+            <div className="relative overflow-hidden p-4 rounded-xl border border-slate-200 bg-slate-50/70 text-xs text-slate-600 space-y-2 hover:border-emerald-300/80 transition-colors">
+              <BorderBeam
+                size={90}
+                duration={10}
+                colorFrom="#10B981"
+                colorTo="#34D399"
+                borderWidth={1.5}
+              />
+              <div className="relative z-10 flex items-center gap-2 font-bold text-slate-900">
                 <ShieldCheck className="w-4 h-4 text-emerald-600" />
                 <span>Verified Data Security Guarantee</span>
               </div>
-              <p className="leading-relaxed text-[11px] text-slate-500">
+              <p className="relative z-10 leading-relaxed text-[11px] text-slate-500">
                 Your contact details are encrypted and sent directly to our licensed Master Electricians. Zero third-party data broker sharing, zero persistent telemarketing.
               </p>
             </div>
@@ -376,7 +420,19 @@ export const FreeAssessmentFormSection: React.FC = () => {
           {/* Right Column: Authenticated & Validated Form */}
           <div className="lg:col-span-7 lg:pl-10 lg:border-l lg:border-slate-200/80">
             {submitted ? (
-              <div className="py-12 text-center space-y-4">
+              <motion.div
+                initial={{ opacity: 0, scale: 0.96 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+                className="relative overflow-hidden bg-white/95 rounded-2xl border border-emerald-200/90 p-8 sm:p-10 shadow-sm text-center space-y-4"
+              >
+                <BorderBeam
+                  size={120}
+                  duration={8}
+                  colorFrom="#10B981"
+                  colorTo="#059669"
+                  borderWidth={1.5}
+                />
                 <div className="w-16 h-16 rounded-full bg-emerald-50 text-emerald-600 border border-emerald-200 flex items-center justify-center mx-auto shadow-xs">
                   <CheckCircle2 className="w-8 h-8" />
                 </div>
@@ -398,7 +454,11 @@ export const FreeAssessmentFormSection: React.FC = () => {
                   </div>
                   <div className="flex justify-between">
                     <span className="text-slate-500">Contact Phone:</span>
-                    <span className="font-semibold">{formData.phone}</span>
+                    <span className="font-semibold">
+                      {formData.phone.trim().startsWith('+')
+                        ? formData.phone
+                        : `${countryCode} ${formData.phone}`}
+                    </span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-slate-500">Requested Service:</span>
@@ -425,6 +485,7 @@ export const FreeAssessmentFormSection: React.FC = () => {
                         service: 'New Solar Installation',
                         message: '',
                       });
+                      setCountryCode('+61');
                     }}
                     variant="outline"
                     size="md"
@@ -432,9 +493,17 @@ export const FreeAssessmentFormSection: React.FC = () => {
                     Submit Another Request
                   </Button>
                 </div>
-              </div>
+              </motion.div>
             ) : (
-              <form onSubmit={handleSubmit} noValidate className="space-y-4">
+              <div className="relative overflow-hidden bg-white/95 rounded-2xl border border-slate-200/90 p-5 sm:p-7 shadow-sm hover:shadow-md transition-shadow">
+                <BorderBeam
+                  size={160}
+                  duration={12}
+                  colorFrom="#2B3CB8"
+                  colorTo="#4658D9"
+                  borderWidth={1.5}
+                />
+                <form onSubmit={handleSubmit} noValidate className="space-y-4 relative z-10">
                 {/* Consultation Preference Toggle */}
                 <div>
                   <label className="block text-xs font-semibold text-slate-700 mb-1.5">
@@ -538,26 +607,61 @@ export const FreeAssessmentFormSection: React.FC = () => {
                   </div>
 
                   <div>
-                    <label className="block text-xs font-semibold text-slate-700 mb-1">
-                      Phone Number *
-                    </label>
-                    <div className="relative">
-                      <input
-                        type="tel"
-                        placeholder="0400 123 456"
-                        value={formData.phone}
-                        onChange={(e) => handleFieldChange('phone', e.target.value)}
-                        onBlur={() => handleBlur('phone')}
-                        className={`w-full px-4 py-2.5 rounded-xl border text-sm focus:outline-none transition-colors pr-10 ${touched.phone && errors.phone
-                          ? 'border-red-400 bg-red-50/20 focus:ring-2 focus:ring-red-400 focus:border-red-400'
-                          : touched.phone && !errors.phone && formData.phone
-                            ? 'border-emerald-400 focus:ring-2 focus:ring-emerald-400 bg-white'
-                            : 'border-slate-300 focus:ring-2 focus:ring-amber-500 focus:border-amber-500 bg-white'
-                          }`}
-                      />
-                      {touched.phone && !errors.phone && formData.phone && (
-                        <Check className="w-4 h-4 text-emerald-600 absolute right-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
-                      )}
+                    <div className="flex items-center justify-between mb-1">
+                      <label className="block text-xs font-semibold text-slate-700">
+                        Phone Number *
+                      </label>
+                      <span className="text-[10px] text-slate-400 font-mono">
+                        {countryCode === '+61' ? '+614XX XXX XXX' : 'Intl Format'}
+                      </span>
+                    </div>
+                    <div
+                      className={`relative flex items-center rounded-xl border text-sm transition-all overflow-hidden ${touched.phone && errors.phone
+                        ? 'border-red-400 bg-red-50/20 ring-2 ring-red-400/30'
+                        : touched.phone && !errors.phone && formData.phone
+                          ? 'border-emerald-400 ring-2 ring-emerald-400/30 bg-white'
+                          : 'border-slate-300 focus-within:ring-2 focus-within:ring-amber-500 focus-within:border-amber-500 bg-white'
+                        }`}
+                    >
+                      {/* Country Calling Code Selector */}
+                      <div className="relative flex items-center bg-slate-50 border-r border-slate-200/90 text-slate-700 shrink-0">
+                        <select
+                          value={countryCode}
+                          onChange={(e) => {
+                            const newCode = e.target.value;
+                            setCountryCode(newCode);
+                            if (touched.phone) {
+                              setErrors((prev) => ({
+                                ...prev,
+                                phone: validatePhone(formData.phone, newCode),
+                              }));
+                            }
+                          }}
+                          aria-label="Country Calling Code"
+                          className="appearance-none bg-transparent py-2.5 pl-2.5 pr-6 text-xs font-semibold text-slate-800 focus:outline-none cursor-pointer"
+                        >
+                          <option value="+61">🇦🇺 +61</option>
+                          <option value="+64">🇳🇿 +64</option>
+                          <option value="+44">🇬🇧 +44</option>
+                          <option value="+1">🇺🇸 +1</option>
+                        </select>
+                        <ChevronDown className="w-3.5 h-3.5 text-slate-400 pointer-events-none absolute right-1.5 top-1/2 -translate-y-1/2" />
+                      </div>
+
+                      {/* Phone Input */}
+                      <div className="relative flex-1">
+                        <input
+                          type="tel"
+                          placeholder={countryCode === '+61' ? '+61412 345 678' : 'Mobile number'}
+                          value={formData.phone}
+                          onChange={(e) => handleFieldChange('phone', e.target.value)}
+                          onBlur={() => handleBlur('phone')}
+                          className="w-full px-3 py-2.5 bg-transparent text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none pr-9"
+                        />
+                        {touched.phone && !errors.phone && formData.phone && (
+                          <Check className="w-4 h-4 text-emerald-600 absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none" />
+                        )}
+                      </div>
                     </div>
                     {touched.phone && errors.phone && (
                       <p className="text-[11px] text-red-600 mt-1 flex items-center gap-1 font-medium">
@@ -811,7 +915,8 @@ export const FreeAssessmentFormSection: React.FC = () => {
                   Protected by Sunny Solar lead authentication. Zero third-party marketing.
                 </div>
               </form>
-            )}
+            </div>
+          )}
           </div>
         </div>
       </div>

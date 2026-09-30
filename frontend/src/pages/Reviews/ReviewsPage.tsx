@@ -7,6 +7,10 @@ import { ReviewCard } from '../../components/cards/ReviewCard';
 import { Star, ShieldCheck, CheckCircle2, ArrowRight } from 'lucide-react';
 import { Button } from '../../components/ui/Button';
 import { Badge } from '../../components/ui/Badge';
+import { ScrollProgress } from '../../components/ui/ScrollProgress';
+import { NumberTicker } from '../../components/ui/NumberTicker';
+import { BlurFade } from '../../components/ui/BlurFade';
+import { BorderBeam } from '../../components/ui/BorderBeam';
 
 const serviceFilters = [
   'All Reviews',
@@ -30,6 +34,7 @@ export const ReviewsPage: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-slate-50 pb-20">
+      <ScrollProgress />
       <Helmet>
         <title>Verified Customer Reviews & Testimonials | Sunny Solar</title>
         <meta
@@ -74,18 +79,24 @@ export const ReviewsPage: React.FC = () => {
                 <Star key={i} className="w-6 h-6 fill-amber-400" />
               ))}
             </div>
-            <div className="text-3xl font-extrabold text-slate-900">4.98 / 5.0</div>
+            <div className="text-3xl font-extrabold text-slate-900">
+              <NumberTicker value={4.98} decimalPlaces={2} /> / 5.0
+            </div>
             <p className="text-xs text-slate-500 mt-1">Average Google & SolarQuotes Rating</p>
           </div>
 
           <div className="pt-4 sm:pt-0">
-            <div className="text-3xl font-extrabold text-slate-900">380+</div>
+            <div className="text-3xl font-extrabold text-slate-900">
+              <NumberTicker value={380} />+
+            </div>
             <div className="text-sm font-bold text-slate-800 mt-1">Verified Customer Reviews</div>
             <p className="text-xs text-slate-500">Zero sponsored or incentivized submissions</p>
           </div>
 
           <div className="pt-4 sm:pt-0">
-            <div className="text-3xl font-extrabold text-emerald-600">99.2%</div>
+            <div className="text-3xl font-extrabold text-emerald-600">
+              <NumberTicker value={99.2} decimalPlaces={1} />%
+            </div>
             <div className="text-sm font-bold text-slate-800 mt-1">Would Recommend to Family</div>
             <p className="text-xs text-slate-500">Based on our 2024 customer satisfaction survey</p>
           </div>
@@ -132,13 +143,16 @@ export const ReviewsPage: React.FC = () => {
 
         {/* Reviews Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filtered.map((review) => (
-            <ReviewCard key={review.id} review={review} />
+          {filtered.map((review, idx) => (
+            <BlurFade key={review.id} delay={0.04 * (idx % 6)} duration={0.35}>
+              <ReviewCard review={review} />
+            </BlurFade>
           ))}
         </div>
 
         {/* Bottom CTA Banner */}
-        <div className="bg-white rounded-3xl border border-slate-200/80 p-8 sm:p-12 text-center shadow-sm space-y-4">
+        <div className="relative overflow-hidden bg-white rounded-3xl border border-slate-200/80 p-8 sm:p-12 text-center shadow-sm space-y-4">
+          <BorderBeam size={180} duration={10} colorFrom="#2B3CB8" colorTo="#6F8EE7" borderWidth={1.5} />
           <h3 className="text-2xl sm:text-3xl font-extrabold text-slate-900 font-serif">
             Join 4,500+ Happy Queensland Solar &amp; Battery Owners
           </h3>

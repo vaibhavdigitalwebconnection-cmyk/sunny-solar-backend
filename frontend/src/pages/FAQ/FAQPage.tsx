@@ -6,6 +6,9 @@ import { Accordion } from '../../components/ui/Accordion';
 import { Badge } from '../../components/ui/Badge';
 import { Button } from '../../components/ui/Button';
 import { HelpCircle, Phone, ArrowRight } from 'lucide-react';
+import { ScrollProgress } from '../../components/ui/ScrollProgress';
+import { BorderBeam } from '../../components/ui/BorderBeam';
+import { BlurFade } from '../../components/ui/BlurFade';
 
 const categories = ['All', 'Solar', 'Batteries', 'Existing Solar', 'Buying', 'Technical'] as const;
 
@@ -19,6 +22,7 @@ export const FAQPage: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-slate-50 pb-20">
+      <ScrollProgress />
       <Helmet>
         <title>Solar & Battery Frequently Asked Questions | Sunny Solar</title>
         <meta
@@ -52,10 +56,13 @@ export const FAQPage: React.FC = () => {
         </div>
 
         {/* Accordion Component */}
-        <Accordion items={filteredItems} allowMultiple defaultOpenId={filteredItems[0]?.id} />
+        <BlurFade delay={0.1} duration={0.4}>
+          <Accordion items={filteredItems} allowMultiple defaultOpenId={filteredItems[0]?.id} />
+        </BlurFade>
 
         {/* Still have questions banner */}
-        <div className="bg-white rounded-3xl border border-slate-200/80 p-5 sm:p-8 text-center space-y-4 shadow-sm">
+        <div className="relative overflow-hidden bg-white rounded-3xl border border-slate-200/80 p-5 sm:p-8 text-center space-y-4 shadow-sm">
+          <BorderBeam size={160} duration={9} colorFrom="#2B3CB8" colorTo="#6F8EE7" borderWidth={1.5} />
           <h3 className="text-xl font-extrabold text-slate-900">
             Have a question not answered here?
           </h3>

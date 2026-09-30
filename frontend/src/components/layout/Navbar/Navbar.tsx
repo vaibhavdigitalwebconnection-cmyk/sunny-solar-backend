@@ -57,7 +57,7 @@ export const Navbar: React.FC = () => {
                   }`}
               />
               <span className="hidden sm:inline">Solar & Battery Specialists</span>
-              <span className="sm:hidden">CEC Approved</span>
+              <span className="sm:hidden">SAA Approved</span>
             </span>
             <span
               className={`hidden md:inline-flex items-center gap-1.5 font-bold text-[11px] px-2.5 py-0.5 rounded-full transition-all ${isScrolled || !isHomePage

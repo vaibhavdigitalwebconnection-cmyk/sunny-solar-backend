@@ -91,7 +91,7 @@ export const MegaMenu: React.FC<MegaMenuProps> = ({ section, isOpen, onClose }) 
       {/* Centered Floating Modern Card Container */}
       <div className={`mx-auto px-4 sm:px-6 transition-all duration-200 ${isLargeSet ? 'max-w-5xl' : 'max-w-4xl'}`}>
         <div className="bg-white rounded-lg shadow-[0_20px_50px_-12px_rgba(0,0,0,0.22),0_0_0_1px_rgba(0,0,0,0.06)] border border-[#ED4F11]/30 overflow-hidden">
-          
+
           {/* Top subtle highlight rim with Brand color */}
           <div className="h-1 w-full bg-[#ED4F11]" />
 
@@ -159,7 +159,7 @@ export const MegaMenu: React.FC<MegaMenuProps> = ({ section, isOpen, onClose }) 
               <div className="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500">
                 <div className="flex items-center gap-1.5 text-[#2B3CB8] font-semibold">
                   <ShieldCheck className="w-3.5 h-3.5 text-[#2B3CB8]" />
-                  <span>CEC Accredited • 25-Yr Performance Guarantee</span>
+                  <span>SAA Accredited • 25-Yr Performance Guarantee</span>
                 </div>
                 <Link
                   to="/service-areas"

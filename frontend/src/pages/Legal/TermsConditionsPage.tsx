@@ -29,7 +29,7 @@ export const TermsConditionsPage: React.FC = () => {
           </section>
 
           <section className="space-y-3">
-            <h2 className="text-xl font-bold text-slate-900">2. Clean Energy Council (CEC) Code of Conduct</h2>
+            <h2 className="text-xl font-bold text-slate-900">2. Clean Energy Council (SAA) Code of Conduct</h2>
             <p>
               Sunny Solar operates as an Approved Solar Retailer and adheres strictly to the Clean Energy Council's Solar Retailer Code of Conduct. We guarantee a 10-day cooling-off period on all signed residential solar installation contracts.
             </p>

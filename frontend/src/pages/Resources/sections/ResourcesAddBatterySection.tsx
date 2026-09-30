@@ -11,7 +11,7 @@ export const ResourcesAddBatterySection: React.FC = () => {
         <div className="absolute bottom-0 left-0 w-72 h-72 bg-amber-500/10 rounded-full blur-3xl pointer-events-none" />
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 items-center relative z-10">
-          
+
           {/* Left: Real Photography with Organic Overlays */}
           <div className="lg:col-span-5">
             <div className="relative rounded-xl overflow-hidden shadow-2xl border border-slate-700 group">
@@ -22,7 +22,7 @@ export const ResourcesAddBatterySection: React.FC = () => {
               />
               <div className="absolute inset-0 bg-linear-to-t from-slate-950/90 via-slate-950/25 to-transparent" />
 
-          
+
 
               {/* Bottom Telemetry Bar */}
               <div className="absolute bottom-3.5 left-3.5 right-3.5 text-white">
@@ -80,7 +80,7 @@ export const ResourcesAddBatterySection: React.FC = () => {
             <div className="pt-3 flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-t border-slate-700/80">
               <div className="flex items-center gap-1.5 text-xs text-slate-300">
                 <ShieldCheck className="w-4 h-4 text-emerald-400 shrink-0" />
-                <span>CEC Approved Battery Installers</span>
+                <span>SAA Approved Battery Installers</span>
               </div>
               <Button
                 to="/resources/battery-decision-guide"

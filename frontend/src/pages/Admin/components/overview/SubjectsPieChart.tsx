@@ -31,11 +31,11 @@ export const SubjectsPieChart: React.FC<SubjectsPieChartProps> = ({
     const activeSlices = allCategoriesData.filter((item) => item.percent > 0 || item.count > 0);
     if (activeSlices.length === 0) return null;
 
-    const totalSliceCount =
+    const totalSliSAAount =
       activeSlices.reduce((sum, item) => sum + item.count, 0) || totalCategorizedItems || 1;
 
     return activeSlices.map((item) => {
-      const sliceAngle = (item.count / totalSliceCount) * 360;
+      const sliceAngle = (item.count / totalSliSAAount) * 360;
       const isHovered = hoveredCategory === item.name;
 
       // Single slice circle handling
@@ -113,9 +113,8 @@ export const SubjectsPieChart: React.FC<SubjectsPieChartProps> = ({
                 key={sub.name}
                 onMouseEnter={() => setHoveredCategory(sub.name)}
                 onMouseLeave={() => setHoveredCategory(null)}
-                className={`flex items-center justify-between gap-2 cursor-pointer transition-colors ${
-                  isHovered ? 'text-neutral-950 font-bold' : ''
-                }`}
+                className={`flex items-center justify-between gap-2 cursor-pointer transition-colors ${isHovered ? 'text-neutral-950 font-bold' : ''
+                  }`}
               >
                 <div className="flex items-center gap-2.5 truncate">
                   <span
@@ -144,11 +143,10 @@ export const SubjectsPieChart: React.FC<SubjectsPieChartProps> = ({
                     title={`${cat.name}: ${cat.count} (${cat.percent}%)`}
                     onMouseEnter={() => setHoveredCategory(cat.name)}
                     onMouseLeave={() => setHoveredCategory(null)}
-                    className={`flex items-center gap-1 cursor-pointer px-1.5 py-0.5 rounded transition-all ${
-                      isHovered
-                        ? 'bg-neutral-100 font-bold text-neutral-950 scale-105'
-                        : 'hover:bg-neutral-50'
-                    }`}
+                    className={`flex items-center gap-1 cursor-pointer px-1.5 py-0.5 rounded transition-all ${isHovered
+                      ? 'bg-neutral-100 font-bold text-neutral-950 scale-105'
+                      : 'hover:bg-neutral-50'
+                      }`}
                   >
                     <span
                       className="w-2 h-2 rounded-full shrink-0"

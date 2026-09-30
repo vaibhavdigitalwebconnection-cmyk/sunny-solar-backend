@@ -46,7 +46,7 @@ export const navigationData: NavSection[] = [
         {
           title: 'Solar Installation',
           href: '/solar/installation',
-          description: 'CEC-accredited master installers, zero roof damage guarantee',
+          description: 'SAA-accredited master installers, zero roof damage guarantee',
           icon: 'Wrench',
         },
         {

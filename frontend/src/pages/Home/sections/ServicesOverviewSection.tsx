@@ -6,7 +6,7 @@ import {
   Phone,
   Sun,
   Sparkles,
- 
+
 } from 'lucide-react';
 import { Button } from '../../../components/ui/Button';
 
@@ -39,13 +39,13 @@ const SLIDES: SlideItem[] = [
       value: '100% QLD Owned',
     },
   },
-  
+
   {
     id: 3,
     badge: 'Master Electrician Quality',
     title: 'Built to outperform Queensland heat',
     description:
-      'Tier-1 bifacial panels, high-efficiency hybrid inverters, and cyclone-rated mounting hardware installed by licensed CEC master electricians with zero roof-leak guarantee.',
+      'Tier-1 bifacial panels, high-efficiency hybrid inverters, and cyclone-rated mounting hardware installed by licensed SAA master electricians with zero roof-leak guarantee.',
     buttonText: 'View Our Systems',
     buttonLink: '/solar/systems',
     image: '/images/projects/sunny-solar-residential-dusk.png',
@@ -154,7 +154,7 @@ export const ServicesOverviewSection: React.FC = () => {
                 </div>
                 <div>
                   <h4 className="text-xs font-bold text-slate-900">25-Year Warranty</h4>
-                  <p className="text-[11px] text-slate-500">Tier-1 certified panels & CEC master installers</p>
+                  <p className="text-[11px] text-slate-500">Tier-1 certified panels & SAA master installers</p>
                 </div>
               </div>
 

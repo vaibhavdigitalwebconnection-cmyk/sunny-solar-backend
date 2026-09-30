@@ -19,7 +19,7 @@ export const serviceAreasData: ServiceArea[] = [
     name: 'Gold Coast',
     region: 'South East Queensland',
     headline: 'Premium Residential Solar & Battery Installations Across the Gold Coast',
-    description: 'With over 300 days of sunshine annually, the Gold Coast is Australia’s premier climate for solar power. From coastal beachfront residences needing anti-corrosion marine-grade mounting to lush hinterland acreages in Tamborine and Currumbin, Sunny Solar is the local CEC-accredited installer trusted by over 2,400 coastal families.',
+    description: 'With over 300 days of sunshine annually, the Gold Coast is Australia’s premier climate for solar power. From coastal beachfront residences needing anti-corrosion marine-grade mounting to lush hinterland acreages in Tamborine and Currumbin, Sunny Solar is the local SAA-accredited installer trusted by over 2,400 coastal families.',
     solarHoursPerDay: 5.4,
     averageAnnualSolarSavings: '$2,850 - $4,200',
     rebateInfo: 'Eligible for Federal STC rebates + QLD Battery Booster bonus incentives.',
@@ -53,7 +53,7 @@ export const serviceAreasData: ServiceArea[] = [
       'Rapid Energex grid connection processing within 5 business days',
       'Panel-level shading mitigation for lush Brisbane tree canopies'
     ],
-    installerCount: '14 CEC Accredited Installers',
+    installerCount: '14 SAA Accredited Installers',
     reviewRating: 4.96
   },
   {
@@ -116,7 +116,7 @@ export const serviceAreasData: ServiceArea[] = [
       'Dual-glass all-black panels complementing architectural eco designs',
       'Fully compliant with Essential Energy NSW network rules'
     ],
-    installerCount: '6 CEC Accredited Technicians',
+    installerCount: '6 SAA Accredited Technicians',
     reviewRating: 4.99
   }
 ];

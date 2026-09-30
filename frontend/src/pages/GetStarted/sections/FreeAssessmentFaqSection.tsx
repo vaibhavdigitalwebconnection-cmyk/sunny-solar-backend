@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import { ChevronDown } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { DotPattern } from '../../../components/ui/DotPattern';
+import { BlurFade } from '../../../components/ui/BlurFade';
 
 export const FreeAssessmentFaqSection: React.FC = () => {
   const [openFaq, setOpenFaq] = useState<number | null>(0);
@@ -24,41 +27,70 @@ export const FreeAssessmentFaqSection: React.FC = () => {
   ];
 
   return (
-    <section className="pt-14 lg:pt-10">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-10">
+    <section className="relative pt-14 lg:py-10 overflow-hidden">
+      {/* Magic UI DotPattern with Radial Vignette */}
+      <DotPattern
+        width={24}
+        height={24}
+        cx={1}
+        cy={1}
+        cr={1.2}
+        glow={true}
+        className="text-slate-400/10 mask-[radial-gradient(ellipse_75%_65%_at_50%_45%,#000_25%,transparent_100%)]"
+      />
+
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.5 }}
+          className="text-center mb-10"
+        >
           <h2 className="text-2xl sm:text-3xl font-serif font-bold text-slate-950 tracking-tight">
             Frequently Asked Questions
           </h2>
           <p className="mt-2 text-sm text-slate-900">
             Quick answers to common questions about our assessments and quotes.
           </p>
-        </div>
+        </motion.div>
 
         <div className="divide-y divide-slate-200/90">
           {faqs.map((faq, idx) => {
             const isOpen = openFaq === idx;
             return (
-              <div key={idx} className="py-4">
-                <button
-                  onClick={() => setOpenFaq(isOpen ? null : idx)}
-                  className="w-full flex items-center justify-between text-left gap-4 cursor-pointer group"
-                >
-                  <span className="text-sm sm:text-base font-serif font-bold text-slate-900 group-hover:text-amber-700 transition-colors">
-                    {faq.q}
-                  </span>
-                  <ChevronDown
-                    className={`w-4 h-4 text-slate-400 group-hover:text-slate-700 shrink-0 transition-transform duration-200 ${
-                      isOpen ? 'rotate-180 text-amber-600' : ''
-                    }`}
-                  />
-                </button>
-                {isOpen && (
-                  <p className="pt-2 text-xs sm:text-sm text-slate-600 leading-relaxed">
-                    {faq.a}
-                  </p>
-                )}
-              </div>
+              <BlurFade key={idx} delay={0.08 * idx} inView>
+                <div className="py-4">
+                  <button
+                    onClick={() => setOpenFaq(isOpen ? null : idx)}
+                    className="w-full flex items-center justify-between text-left gap-4 cursor-pointer group"
+                  >
+                    <span className="text-sm sm:text-base font-serif font-bold text-slate-900 group-hover:text-amber-700 transition-colors">
+                      {faq.q}
+                    </span>
+                    <ChevronDown
+                      className={`w-4 h-4 text-slate-400 group-hover:text-slate-700 shrink-0 transition-transform duration-200 ${
+                        isOpen ? 'rotate-180 text-amber-600' : ''
+                      }`}
+                    />
+                  </button>
+                  <AnimatePresence initial={false}>
+                    {isOpen && (
+                      <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: 'auto', opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.25, ease: 'easeInOut' }}
+                        className="overflow-hidden"
+                      >
+                        <p className="pt-2 text-xs sm:text-sm text-slate-600 leading-relaxed">
+                          {faq.a}
+                        </p>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              </BlurFade>
             );
           })}
         </div>
