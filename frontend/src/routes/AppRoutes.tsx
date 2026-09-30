@@ -55,7 +55,6 @@ const ElectricityBillReviewPage = lazy(() => import('../pages/Resources/subpages
 
 const FAQPage = lazy(() => import('../pages/FAQ/FAQPage'));
 const FreeAssessmentPage = lazy(() => import('../pages/GetStarted/FreeAssessmentPage'));
-const ThankYouPage = lazy(() => import('../pages/ThankYou/ThankYouPage'));
 
 const PrivacyPolicyPage = lazy(() => import('../pages/Legal/PrivacyPolicyPage'));
 const TermsConditionsPage = lazy(() => import('../pages/Legal/TermsConditionsPage'));
@@ -162,11 +161,11 @@ export const AppRoutes: React.FC = () => {
             {/* 12. FAQ */}
             <Route path="/faq" element={<FAQPage />} />
 
-            {/* 13. Get Started, Thank You & Contact */}
+            {/* 13. Get Started & Contact */}
             <Route path="/get-started" element={<Navigate to="/get-started/free-assessment" replace />} />
             <Route path="/get-started/free-assessment" element={<FreeAssessmentPage />} />
             <Route path="/contact" element={<FreeAssessmentPage />} />
-            <Route path="/thank-you" element={<ThankYouPage />} />
+            <Route path="/thank-you" element={<Navigate to="/" replace />} />
 
             {/* 14. Legal & Sitemap */}
             <Route path="/legal/privacy-policy" element={<PrivacyPolicyPage />} />

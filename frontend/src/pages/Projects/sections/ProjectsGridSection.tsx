@@ -83,7 +83,7 @@ export const ProjectsGridSection: React.FC = () => {
   return (
     <>
       {/* Sticky Interactive Filter & Search Bar */}
-      <section className="py-6 bg-white sticky top-29 z-20 backdrop-blur-md bg-white/90 border-y border-slate-200/80 shadow-xs">
+      <section className="py-6 sticky top-29 z-20 backdrop-blur-md bg-white/90 border-y border-slate-200/80 shadow-xs">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
             {/* Category Filter Pills */}

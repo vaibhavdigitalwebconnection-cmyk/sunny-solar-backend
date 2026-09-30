@@ -257,7 +257,7 @@ export const TestimonialsSliderSection: React.FC = () => {
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-extrabold text-slate-900 tracking-tight leading-[1.15]">
               Proven Performance on{' '} <br />
               <span className="text-transparent bg-clip-text bg-linear-to-r from-[#EF680C] via-[#FF7700] to-[#2B3CB8]">
-                Queensland Homes
+                Queensland Homes.
               </span>
             </h2>
 

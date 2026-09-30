@@ -178,7 +178,7 @@ export const ValuesSection: React.FC = () => {
       className="bg-white py-12 xs:py-14 sm:py-20 lg:py-20 relative overflow-hidden"
     >
       {/* Top subtle divider */}
-      <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent" />
+      <div className="absolute top-0 left-0 w-full h-px bg-linear-to-r from-transparent via-slate-200 to-transparent" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Header section with top-tier copy */}
@@ -198,7 +198,7 @@ export const ValuesSection: React.FC = () => {
 
             <h2 className="text-2xl xs:text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-slate-950 tracking-tight leading-[1.2] sm:leading-[1.12]">
               Craftsmanship We Put Our Name On —{' '}
-              <span className="bg-gradient-to-r from-amber-500 via-orange-500 to-amber-600 bg-clip-text text-transparent">
+              <span className="bg-linear-to-r from-amber-500 via-orange-500 to-amber-600 bg-clip-text text-transparent">
                 Zero Subcontractors.
               </span>
             </h2>
@@ -208,7 +208,7 @@ export const ValuesSection: React.FC = () => {
         {/* ============================================================ */}
         {/* EXPANDING ACCORDION (Desktop & Tablet: md+)                  */}
         {/* ============================================================ */}
-        <div className="hidden md:flex h-[520px] lg:h-[560px] gap-3 lg:gap-4 w-full  ">
+        <div className="hidden md:flex h-130 lg:h-140 gap-3 lg:gap-4 w-full  ">
           {ACCORDION_ITEMS.map((item, index) => {
             const isActive = activeIndex === index;
             const Icon = item.icon;
@@ -219,8 +219,8 @@ export const ValuesSection: React.FC = () => {
                 onClick={() => setActiveIndex(index)}
                 onMouseEnter={() => setActiveIndex(index)}
                 className={`relative rounded-lg overflow-hidden cursor-pointer border transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] ${isActive
-                    ? 'flex-[5] shadow-2xl border-amber-400/80 ring-2 ring-amber-400/20'
-                    : 'flex-[1] hover:flex-[1.2] shadow-md border-slate-200/90 bg-slate-900 opacity-95 hover:opacity-100'
+                    ? 'flex-5 shadow-2xl border-amber-400/80 ring-2 ring-amber-400/20'
+                    : 'flex-1 hover:flex-[1.2] shadow-md border-slate-200/90 bg-slate-900 opacity-95 hover:opacity-100'
                   }`}
               >
                 {/* Background Image */}
@@ -234,7 +234,7 @@ export const ValuesSection: React.FC = () => {
                 {/* Overlays */}
                 <div
                   className={`absolute inset-0 transition-opacity duration-500 ${isActive
-                      ? 'bg-gradient-to-t from-slate-950/95 via-slate-950/40 to-slate-950/15'
+                      ? 'bg-linear-to-t from-slate-950/95 via-slate-950/40 to-slate-950/15'
                       : 'bg-slate-950/70 hover:bg-slate-950/50'
                     }`}
                 />
@@ -319,7 +319,7 @@ export const ValuesSection: React.FC = () => {
 
           {/* Active Standard Card with Auto-Hover & Swipe (Fixed Height) */}
           <div
-            className="relative rounded-2xl overflow-hidden border border-slate-200/90 shadow-md bg-slate-950 text-white flex flex-col h-[450px] xs:h-[470px] sm:h-[490px]"
+            className="relative rounded-2xl overflow-hidden border border-slate-200/90 shadow-md bg-slate-950 text-white flex flex-col h-112.5 xs:h-[470px] sm:h-122.5"
             onTouchStart={handleTouchStart}
             onTouchMove={handleTouchMove}
             onTouchEnd={handleTouchEnd}
@@ -341,7 +341,7 @@ export const ValuesSection: React.FC = () => {
                 />
               </AnimatePresence>
 
-              <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-black/25 pointer-events-none" />
+              <div className="absolute inset-0 bg-linear-to-t from-slate-950 via-slate-950/40 to-black/25 pointer-events-none" />
 
               {/* Top badges inside image */}
               <div className="absolute top-3 inset-x-3 flex items-center justify-between z-10">
@@ -371,7 +371,7 @@ export const ValuesSection: React.FC = () => {
                   <span className="truncate">{ACCORDION_ITEMS[activeIndex].specs}</span>
                 </div>
 
-                <h3 className="text-base xs:text-lg font-serif font-bold text-white leading-snug line-clamp-2 min-h-[2.5rem] xs:min-h-[2.75rem] flex items-center shrink-0">
+                <h3 className="text-base xs:text-lg font-serif font-bold text-white leading-snug line-clamp-2 min-h-10 xs:min-h-[2.75rem] flex items-center shrink-0">
                   {ACCORDION_ITEMS[activeIndex].title}
                 </h3>
 

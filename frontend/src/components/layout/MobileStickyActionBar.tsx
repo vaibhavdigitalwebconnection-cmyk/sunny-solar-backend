@@ -1,14 +1,9 @@
+
 import React from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { Phone, Sparkles } from 'lucide-react';
 
 export const MobileStickyActionBar: React.FC = () => {
-  const location = useLocation();
-
-  // Hide on thank you page so confirmation remains uncluttered
-  if (location.pathname === '/thank-you') {
-    return null;
-  }
 
   return (
     <aside

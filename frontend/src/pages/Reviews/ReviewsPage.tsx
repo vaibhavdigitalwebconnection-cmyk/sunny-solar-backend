@@ -109,7 +109,7 @@ export const ReviewsPage: React.FC = () => {
               <button
                 key={filter}
                 onClick={() => setSelectedFilter(filter)}
-                className={`px-3.5 py-2.5 lg:py-1.5 min-h-[44px] lg:min-h-0 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer whitespace-nowrap ${
+                className={`px-3.5 py-2.5 lg:py-1.5 min-h-11 lg:min-h-0 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer whitespace-nowrap ${
                   selectedFilter === filter
                     ? 'bg-amber-500 text-white shadow'
                     : 'bg-white text-slate-600 border border-slate-200/80 hover:bg-slate-100'
@@ -124,7 +124,7 @@ export const ReviewsPage: React.FC = () => {
             <span>Filter Rating:</span>
             <button
               onClick={() => setMinRating(0)}
-              className={`px-3 py-2 lg:px-2.5 lg:py-1 min-h-[44px] lg:min-h-0 rounded-lg border ${
+              className={`px-3 py-2 lg:px-2.5 lg:py-1 min-h-11 lg:min-h-0 rounded-lg border ${
                 minRating === 0 ? 'bg-slate-900 text-white border-slate-900' : 'bg-white border-slate-200'
               }`}
             >
@@ -132,7 +132,7 @@ export const ReviewsPage: React.FC = () => {
             </button>
             <button
               onClick={() => setMinRating(5)}
-              className={`px-3 py-2 lg:px-2.5 lg:py-1 min-h-[44px] lg:min-h-0 rounded-lg border flex items-center gap-1 ${
+              className={`px-3 py-2 lg:px-2.5 lg:py-1 min-h-11 lg:min-h-0 rounded-lg border flex items-center gap-1 ${
                 minRating === 5 ? 'bg-amber-500 text-white border-amber-500' : 'bg-white border-slate-200'
               }`}
             >

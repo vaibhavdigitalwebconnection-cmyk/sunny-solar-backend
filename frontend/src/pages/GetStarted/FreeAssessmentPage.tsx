@@ -10,7 +10,7 @@ import {
 export const FreeAssessmentPage: React.FC = () => {
   return (
     <div className="min-h-screen bg-white text-slate-900">
-      <ScrollProgress className="top-0 z-50 h-[3px]" />
+      <ScrollProgress className="top-0 z-50 h-0.75" />
       <Helmet>
         <title>Get a Free Solar & Battery Assessment | Sunny Solar</title>
         <meta

@@ -6,7 +6,7 @@ import { ScrollProgress } from '../../components/ui/ScrollProgress';
 export const TermsOfTradePage: React.FC = () => {
   return (
     <div className="min-h-screen bg-slate-50 pb-20">
-      <ScrollProgress className="top-0 z-50 h-[3px]" />
+      <ScrollProgress className="top-0 z-50 h-0.75" />
       <Helmet>
         <title>Terms of Trade & Commercial Agreements | Sunny Solar</title>
         <meta
