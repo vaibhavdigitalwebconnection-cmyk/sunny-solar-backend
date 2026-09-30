@@ -104,9 +104,7 @@ export const FeaturedProjectsSection: React.FC = () => {
 
           <h2 className="text-2xl sm:text-5xl lg:text-5xl font-extrabold text-[#18181b] tracking-tight font-serif leading-[1.15]">
             More Clarity. Better Solar Decisions. <br className="hidden sm:block" />
-            <span className="text-[#2B3CB8]">
-              Supporting copy
-            </span>
+         
           </h2>
 
           <p className="mt-4 text-base sm:text-lg  text-slate-600 leading-relaxed max-w-6xl mx-auto">
