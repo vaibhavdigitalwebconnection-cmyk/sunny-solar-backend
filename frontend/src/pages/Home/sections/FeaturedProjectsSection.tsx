@@ -57,7 +57,7 @@ const claritySlides: ClaritySlide[] = [
     description:
       'How much solar do you need? Is a battery worth it? Why is your bill still high? Sunny Solar tackles the questions homeowners ask before and after installation.',
     highlight: 'Real Questions • Practical Answers',
-    image: '/images/projects/clarity-real-solar-expertise.jpg',
+    image: '/images/projects/clarity-real-solar-expertise-consultation.jpg',
   },
   {
     id: '05',
