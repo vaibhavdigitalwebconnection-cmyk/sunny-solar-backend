@@ -255,7 +255,7 @@ export const TestimonialsSliderSection: React.FC = () => {
 
             {/* Headline with Brand Gradient Highlight */}
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-extrabold text-slate-900 tracking-tight leading-[1.15]">
-              Proven Performance on{' '}
+              Proven Performance on{' '} <br />
               <span className="text-transparent bg-clip-text bg-linear-to-r from-[#EF680C] via-[#FF7700] to-[#2B3CB8]">
                 Queensland Homes
               </span>
@@ -340,7 +340,7 @@ export const TestimonialsSliderSection: React.FC = () => {
           {/* RIGHT COLUMN: Big Featured Card with RUNNING ANIMATED BORDER */}
           <div className="lg:col-span-8 flex flex-col">
             <div
-              className="relative p-[2.5px] rounded-2xl overflow-hidden group shadow-[0_12px_45px_rgba(43,60,184,0.08),0_4px_20px_rgba(239,104,12,0.08)] h-full flex flex-col"
+              className="relative p-[2.5px] rounded-xl overflow-hidden group shadow-[0_12px_45px_rgba(43,60,184,0.08),0_4px_20px_rgba(239,104,12,0.08)] h-full flex flex-col"
               onMouseEnter={() => setIsPaused(true)}
               onMouseLeave={() => setIsPaused(false)}
               onTouchStart={handleTouchStart}
@@ -368,7 +368,7 @@ export const TestimonialsSliderSection: React.FC = () => {
               />
 
               {/* Card Interior Surface */}
-              <div className="relative z-10 bg-white/98 backdrop-blur-2xl rounded-2xl p-5 sm:p-6 flex flex-col justify-between border border-slate-300/80 shadow-xs h-full">
+              <div className="relative z-10 bg-white/98 backdrop-blur-2xl rounded-xl p-5 sm:p-6 flex flex-col justify-between border border-slate-300/80 shadow-xs h-full">
 
                 <AnimatePresence mode="wait">
                   <motion.div
@@ -380,7 +380,7 @@ export const TestimonialsSliderSection: React.FC = () => {
                     className="grid grid-cols-1 md:grid-cols-12 gap-5 lg:gap-6 items-stretch flex-1 w-full h-full"
                   >
                     {/* Visual Showcase (5 cols on md/lg) */}
-                    <div className="md:col-span-5 relative rounded-xl overflow-hidden aspect-4/3 md:aspect-auto md:h-100 min-h-55 shadow-sm border border-slate-200/80 group/img bg-slate-900">
+                    <div className="md:col-span-5 relative rounded-xl overflow-hidden aspect-4/3 md:aspect-auto md:h-90 min-h-50 shadow-sm border border-slate-200/80 group/img bg-slate-900">
                       <img
                         src={activeProject.image}
                         alt={activeProject.title}
@@ -407,7 +407,7 @@ export const TestimonialsSliderSection: React.FC = () => {
                     </div>
 
                     {/* Project Details & Performance (7 cols on md/lg) */}
-                    <div className="md:col-span-7 flex flex-col min-h-100 md:h-107.5 justify-between space-y-3">
+                    <div className="md:col-span-7 flex flex-col min-h-100 md:h-85 justify-between space-y-3">
                       <div>
                         {/* Project Title with fixed 2-line height */}
                         <h3 className="text-base sm:text-lg lg:text-xl font-bold text-slate-900 tracking-tight leading-snug min-h-11 sm:min-h-13 flex items-center">
@@ -458,39 +458,7 @@ export const TestimonialsSliderSection: React.FC = () => {
                         </div>
                       </div>
 
-                      {/* Card Footer: Explore Link + Nav Controls */}
-                      <div className="pt-2.5 border-t border-slate-100 flex items-center justify-between gap-3 mt-auto">
-                        <Link
-                          to={`/projects/${activeProject.slug}`}
-                          className="inline-flex items-center gap-1.5 text-xs font-bold text-[#EF680C] hover:text-[#d65b09] transition-colors group/btn"
-                        >
-                          <span>Explore Case Study</span>
-                          <ArrowRight className="w-3.5 h-3.5 group-hover/btn:translate-x-0.5 transition-transform" />
-                        </Link>
-
-                        {/* Navigation Controls */}
-                        <div className="flex items-center gap-2">
-                          <span className="text-[11px] font-bold text-slate-400 mr-1">
-                            0{currentIndex + 1} <span className="text-slate-300">/</span> 0{projects.length}
-                          </span>
-                          <button
-                            type="button"
-                            onClick={prevSlide}
-                            aria-label="Previous project"
-                            className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-slate-100 hover:bg-[#EF680C] text-slate-700 hover:text-white border border-slate-200 hover:border-[#EF680C] flex items-center justify-center transition-all cursor-pointer active:scale-95 shadow-2xs"
-                          >
-                            <ChevronLeft className="w-4 h-4" />
-                          </button>
-                          <button
-                            type="button"
-                            onClick={nextSlide}
-                            aria-label="Next project"
-                            className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-slate-100 hover:bg-[#EF680C] text-slate-700 hover:text-white border border-slate-200 hover:border-[#EF680C] flex items-center justify-center transition-all cursor-pointer active:scale-95 shadow-2xs"
-                          >
-                            <ChevronRight className="w-4 h-4" />
-                          </button>
-                        </div>
-                      </div>
+                    
                     </div>
                   </motion.div>
                 </AnimatePresence>
