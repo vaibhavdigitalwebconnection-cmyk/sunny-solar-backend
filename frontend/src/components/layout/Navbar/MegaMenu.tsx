@@ -26,9 +26,7 @@ import {
   FileCheck,
   FileSearch,
   ArrowRight,
-  Sparkles,
   Phone,
-  Check,
   LucideIcon,
 } from 'lucide-react';
 import { NavSection } from '../../../data/navigationData';
@@ -59,6 +57,25 @@ const iconMap: Record<string, LucideIcon> = {
   FileSpreadsheet,
   FileCheck,
   FileSearch,
+};
+
+const getFeaturedImage = (sectionTitle: string): string => {
+  switch (sectionTitle.toLowerCase()) {
+    case 'solar':
+      return '/images/navbar/navbar-feature.jpg';
+    case 'batteries':
+      return '/images/navbar/navbar-battery.jpg';
+    case 'existing solar':
+      return '/images/navbar/navbar-tech.jpg';
+    case 'calculators':
+      return '/images/navbar/navbar-calculators.jpg';
+    case 'resources':
+      return '/images/navbar/navbar-resources.jpg';
+    case 'learn':
+      return '/images/navbar/navbar-tech.jpg';
+    default:
+      return '/images/navbar/navbar-feature.jpg';
+  }
 };
 
 export interface MegaMenuProps {
@@ -174,54 +191,43 @@ export const MegaMenu: React.FC<MegaMenuProps> = ({ section, isOpen, onClose }) 
               </div>
             </div>
 
-            {/* Right Zone: Integrated Featured Panel */}
+            {/* Right Zone: Integrated Featured Panel with Full-Bleed Image (No Logo) */}
             {featured && (
-              <div className="lg:col-span-4 bg-linear-to-br from-[#0C123E] via-[#151E64] to-[#070A24] text-white p-6 flex flex-col justify-between relative overflow-hidden border-t lg:border-t-0 lg:border-l border-slate-800">
-                {/* Subtle radial glow */}
-                <div className="absolute top-0 right-0 w-36 h-36 bg-[#2B3CB8]/20 rounded-full blur-2xl pointer-events-none" />
+              <div className="lg:col-span-4 relative overflow-hidden border-t lg:border-t-0 lg:border-l border-slate-200/80 bg-slate-950 flex flex-col justify-end min-h-55 lg:min-h-full">
+                {/* Full-bleed Feature Image */}
+                <Link
+                  to={featured.href}
+                  onClick={onClose}
+                  onMouseEnter={() => preloadRoute(featured.href)}
+                  className="absolute inset-0 w-full h-full block overflow-hidden group/img"
+                >
+                  <img
+                    src={getFeaturedImage(section.title)}
+                    alt={featured.title || section.title}
+                    className="w-full h-full object-cover group-hover/img:scale-105 transition-transform duration-500"
+                    loading="lazy"
+                  />
+                  {/* Bottom gradient vignette for high legibility */}
+                  <div className="absolute inset-0 bg-linear-to-t from-slate-950/85 via-slate-950/20 to-transparent pointer-events-none" />
+                </Link>
 
-                <div className="relative z-10">
-                  <div className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-[#2B3CB8]/30 border border-[#6F8EE7]/40 text-[#D1DCF8] text-[10px] font-bold uppercase tracking-wider mb-3">
-                    <Sparkles className="w-3 h-3 text-[#D1DCF8]" />
-                    Featured Spotlight
-                  </div>
-
-                  <h4 className="text-base font-bold text-white leading-snug">
-                    {featured.title}
-                  </h4>
-
-                  <p className="mt-2 text-xs text-slate-300 leading-relaxed line-clamp-3">
-                    {featured.description}
-                  </p>
-
-                  <div className="mt-4 space-y-1.5 text-xs text-slate-300">
-                    <div className="flex items-center gap-2">
-                      <Check className="w-3 h-3 text-[#D1DCF8] shrink-0" />
-                      <span>Tier-1 Inverters & Panels</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <Check className="w-3 h-3 text-[#D1DCF8] shrink-0" />
-                      <span>$0 Upfront Payment Available</span>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="mt-5 pt-3 border-t border-white/10 relative z-10 flex items-center justify-between">
+                {/* Bottom Line Bar Overlaying Bottom of the Image */}
+                <div className="relative z-10 px-4 py-3 bg-slate-950/75 backdrop-blur-md border-t border-white/15 flex items-center justify-between">
                   <Link
                     to={featured.href}
                     onClick={onClose}
                     onMouseEnter={() => preloadRoute(featured.href)}
-                    className="inline-flex items-center gap-1.5 text-xs font-bold text-[#D1DCF8] hover:text-white transition-colors group/cta"
+                    className="inline-flex items-center gap-1.5 text-xs font-bold text-white hover:text-[#ED4F11] transition-colors group/cta"
                   >
                     <span>{featured.ctaText}</span>
-                    <ArrowRight className="w-3.5 h-3.5 transition-transform duration-150 group-hover/cta:translate-x-1" />
+                    <ArrowRight className="w-3.5 h-3.5 transition-transform duration-150 group-hover/cta:translate-x-1 text-[#ED4F11]" />
                   </Link>
 
                   <a
                     href="tel:1300030479"
-                    className="inline-flex items-center gap-1 text-[11px] text-[#ED4F11] hover:text-white transition-colors"
+                    className="inline-flex items-center gap-1.5 text-xs font-bold text-[#ED4F11] hover:text-white transition-colors"
                   >
-                    <Phone className="w-3 h-3 text-white" />
+                    <Phone className="w-3.5 h-3.5 text-white" />
                     <span>1300 030 479</span>
                   </a>
                 </div>

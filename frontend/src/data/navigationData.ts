@@ -253,7 +253,7 @@ export const navigationData: NavSection[] = [
         title: 'Solar Education Hub',
         description: 'No jargon, no pushy sales. Independent guides to help you make informed decisions.',
         href: '/learn/knowledge-hub',
-        ctaText: 'Browse Knowledge Hub',
+        ctaText: 'Knowledge Hub',
       },
       items: [
         {

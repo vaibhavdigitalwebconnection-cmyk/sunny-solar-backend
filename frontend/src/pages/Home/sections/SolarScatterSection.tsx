@@ -100,6 +100,7 @@ export const SolarScatterSection: React.FC = () => {
     <section className="relative py-12 sm:py-16 lg:py-20 overflow-hidden bg-linear-to-b from-[#F6F9FD] via-[#ECF2FB] to-[#F6F9FD] border-y border-slate-200/85">
       {/* ── Bespoke Monocrystalline Solar Wafer Circuit & Traveling Energy Beams (Zero Dots) ── */}
       {/* <SolarCircuitPattern activeCategoryIndex={activeCategoryIndex} /> */}
+          <SolarStageAnimation activeCategoryIndex={activeCategoryIndex} />
 
       {/* ── 4. Smooth Floating Solar Atmospheric Light Blooms ── */}
       {/* Top Left: Golden Amber Solar Flare */}
@@ -182,7 +183,6 @@ export const SolarScatterSection: React.FC = () => {
         {/* Dynamic Image Scatter Animation Canvas with Glassmorphic Stage Frame */}
         <div className="relative w-full  overflow-hidden ">
           {/* Bespoke Live Clean-Energy Solar Stage Animation (Core Aura, Photovoltaic Waves, Celestial Solar Compass, Light Surges) */}
-          <SolarStageAnimation activeCategoryIndex={activeCategoryIndex} />
 
           {/* Magic UI Dual Traveling Border Beams (Solar Cobalt + Solar Amber) */}
           <BorderBeam
