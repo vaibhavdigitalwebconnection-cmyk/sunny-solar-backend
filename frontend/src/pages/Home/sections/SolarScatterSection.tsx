@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
-import { Sun, BatteryCharging, Wrench, ShieldCheck, Zap, type LucideIcon } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { Sun, BatteryCharging, Wrench, Zap, Sparkles, type LucideIcon } from 'lucide-react';
 import { ImageScatter, ScatterSet } from '@/components/ui/ImageScatter';
+import { SolarCircuitPattern } from '@/components/ui/SolarCircuitPattern';
+import { BorderBeam } from '@/components/ui/BorderBeam';
+import { SolarStageAnimation } from '@/components/ui/SolarStageAnimation';
 
 interface SolarCategory {
   label: string;
@@ -83,24 +87,7 @@ const solarCategories: SolarCategory[] = [
       ],
     },
   },
-  {
-    label: 'QLD Weather Rated',
-    icon: ShieldCheck,
-    data: {
-      tag: 'ENGINEERED FOR Nationwide',
-      heading: 'Built For Coastal Heat & Severe Weather',
-      subtitle:
-        'Heavy-duty anodised aluminium framing and corrosion-resistant hardware engineered to endure 25+ years of Gold Coast sunshine.',
-      images: [
-        '/images/home/solar-scatter/qld-weather-rated-01.png',
-        '/images/home/solar-scatter/qld-weather-rated-02.png',
-        '/images/home/solar-scatter/qld-weather-rated-03.png',
-        '/images/home/solar-scatter/qld-weather-rated-04.png',
-        '/images/home/solar-scatter/qld-weather-rated-05.png',
-        '/images/home/solar-scatter/qld-weather-rated-06.png',
-      ],
-    },
-  },
+
 ];
 
 const categoryPills = solarCategories.map(({ label, icon }) => ({ label, icon }));
@@ -110,16 +97,62 @@ export const SolarScatterSection: React.FC = () => {
   const [activeCategoryIndex, setActiveCategoryIndex] = useState(0);
 
   return (
-    <section className="relative py-8 sm:py-10 lg:py-14 overflow-hidden">
+    <section className="relative py-12 sm:py-16 lg:py-20 overflow-hidden bg-linear-to-b from-[#F6F9FD] via-[#ECF2FB] to-[#F6F9FD] border-y border-slate-200/85">
+      {/* ── Bespoke Monocrystalline Solar Wafer Circuit & Traveling Energy Beams (Zero Dots) ── */}
+      {/* <SolarCircuitPattern activeCategoryIndex={activeCategoryIndex} /> */}
+
+      {/* ── 4. Smooth Floating Solar Atmospheric Light Blooms ── */}
+      {/* Top Left: Golden Amber Solar Flare */}
+      <motion.div
+        animate={{
+          scale: [1, 1.15, 1],
+          x: [0, 20, 0],
+          y: [0, -15, 0],
+        }}
+        transition={{ duration: 11, repeat: Infinity, ease: 'easeInOut' }}
+        className="absolute -top-24 -left-20 w-135 h-135 rounded-full bg-linear-to-br from-[#EF680C]/18 via-[#F59E0B]/12 to-transparent blur-[120px] pointer-events-none"
+      />
+
+      {/* Bottom Right: Clean Energy Cobalt Blue Bloom */}
+      <motion.div
+        animate={{
+          scale: [1, 1.18, 1],
+          x: [0, -25, 0],
+          y: [0, 20, 0],
+        }}
+        transition={{ duration: 13, repeat: Infinity, ease: 'easeInOut', delay: 1 }}
+        className="absolute -bottom-28 -right-20 w-145 h-145 rounded-full bg-linear-to-tl from-[#2B3CB8]/18 via-[#6F8EE7]/12 to-transparent blur-[130px] pointer-events-none"
+      />
+
+      {/* Center Radiance Spotlight behind the Scatter Stage */}
+      <motion.div
+        animate={{
+          scale: [0.95, 1.08, 0.95],
+          opacity: [0.4, 0.75, 0.4],
+        }}
+        transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-212.5 h-130 rounded-full bg-linear-to-r from-[#2B3CB8]/10 via-[#6F8EE7]/10 to-[#EF680C]/8 blur-[100px] pointer-events-none"
+      />
+
+      {/* ── 5. Edge Blend Gradient Transitions ── */}
+      <div className="absolute inset-x-0 top-0 h-16 bg-linear-to-b from-white/90 via-white/40 to-transparent pointer-events-none z-1" />
+      <div className="absolute inset-x-0 bottom-0 h-16 bg-linear-to-t from-white/90 via-white/40 to-transparent pointer-events-none z-1" />
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
-        <div className="text-center max-w-6xl mx-auto mb-8 sm:mb-12">
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-black tracking-tight font-serif leading-[1.16]">
+        <div className="text-center max-w-7xl mx-auto mb-8 sm:mb-5">
+          {/* Eyebrow Pill Badge */}
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider text-[#2B3CB8] bg-white/95 border border-[#2B3CB8]/30 shadow-xs mb-4 backdrop-blur-xs">
+            <Sparkles className="w-3.5 h-3.5 text-[#EF680C] animate-pulse" />
+            <span>SOLAR ENGINEERING & HARDWARE</span>
+          </div>
+
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#18181b] tracking-tight font-serif leading-[1.16]">
             Every Component Engineered for <br className="hidden sm:inline" />
-            <span className="text-black">Maximum Lifetime Yield.</span>
+            <span className="text-[#2B3CB8]">Maximum Lifetime Yield.</span>
           </h2>
 
-          <p className="mt-3.5 text-sm sm:text-base lg:text-lg text-neutral-800 font-medium max-w-5xl mx-auto leading-relaxed">
+          <p className="mt-3.5 text-sm sm:text-base lg:text-lg text-slate-600 font-medium max-w-5xl mx-auto leading-relaxed">
             From precision rooftop panel orientation to lithium backup integration, explore the engineering behind Nationwide highest-rated solar installations.
           </p>
 
@@ -133,12 +166,12 @@ export const SolarScatterSection: React.FC = () => {
                   key={pill.label}
                   type="button"
                   onClick={() => setActiveCategoryIndex(idx)}
-                  className={`inline-flex items-center gap-1.5 px-3.5 sm:px-4 py-1.5 rounded-full text-xs sm:text-sm font-semibold transition-all cursor-pointer ${isActive
-                    ? 'bg-[#2B3CB8] text-white shadow-sm'
-                    : 'bg-white text-black border border-[#ED4F11] hover:border-black'
+                  className={`inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-xs sm:text-sm font-semibold transition-all duration-200 cursor-pointer shadow-xs ${isActive
+                    ? 'bg-[#2B3CB8] text-white shadow-md shadow-[#2B3CB8]/30 border border-[#2B3CB8]'
+                    : 'bg-white/90 backdrop-blur-md text-slate-700 border border-slate-200/90 hover:border-[#2B3CB8] hover:text-[#2B3CB8]'
                     }`}
                 >
-                  <Icon className="w-3.5 h-3.5" />
+                  <Icon className={`w-3.5 h-3.5 ${isActive ? 'text-white' : 'text-[#2B3CB8]'}`} />
                   <span>{pill.label}</span>
                 </button>
               );
@@ -146,8 +179,31 @@ export const SolarScatterSection: React.FC = () => {
           </div>
         </div>
 
-        {/* Dynamic Image Scatter Animation Canvas (No background / No border) */}
-        <div className="relative w-full overflow-hidden">
+        {/* Dynamic Image Scatter Animation Canvas with Glassmorphic Stage Frame */}
+        <div className="relative w-full  overflow-hidden ">
+          {/* Bespoke Live Clean-Energy Solar Stage Animation (Core Aura, Photovoltaic Waves, Celestial Solar Compass, Light Surges) */}
+          <SolarStageAnimation activeCategoryIndex={activeCategoryIndex} />
+
+          {/* Magic UI Dual Traveling Border Beams (Solar Cobalt + Solar Amber) */}
+          <BorderBeam
+            size={280}
+            duration={12}
+            borderWidth={1.5}
+            borderRadius="1.5rem"
+            colorFrom="#2B3CB8"
+            colorTo="#6F8EE7"
+          />
+          <BorderBeam
+            size={280}
+            duration={12}
+            delay={6}
+            borderWidth={1.5}
+            borderRadius="1.5rem"
+            colorFrom="#EF680C"
+            colorTo="#FFA000"
+            reverse
+          />
+
           <ImageScatter
             data={solarScatterData}
             activeSectionIndex={activeCategoryIndex}
@@ -159,8 +215,6 @@ export const SolarScatterSection: React.FC = () => {
             className="h-140 sm:h-160 lg:h-180"
           />
         </div>
-
-
       </div>
     </section>
   );

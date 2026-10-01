@@ -108,7 +108,7 @@ export const FeaturedProjectsSection: React.FC = () => {
       onMouseMove={handleMouseMove}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      className="py-16 sm:py-20 lg:py-24 relative overflow-hidden bg-linear-to-b from-[#F8FAFC] via-[#EEF4FD] to-[#F8FAFC] border-y border-slate-200/80"
+      className="py-16 sm:py-20 lg:py-12 relative overflow-hidden bg-linear-to-b from-[#F8FAFC] via-[#EEF4FD] to-[#F8FAFC] border-y border-slate-200/80"
     >
       {/* ── 1. Clean Architectural Photovoltaic Grid (Smooth Solar Cell Reflections) ── */}
       <div className="absolute inset-0 z-0 pointer-events-none mask-[radial-gradient(ellipse_80%_70%_at_50%_50%,#000_25%,transparent_90%)]">

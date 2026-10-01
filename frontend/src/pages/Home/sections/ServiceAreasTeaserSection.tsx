@@ -240,7 +240,7 @@ export const ServiceAreasTeaserSection: React.FC = () => {
       </div>
 
       {/* Sticky Viewport Container: Pinned in view while user scrolls through the 300vh section */}
-      <div className="sticky top-16 sm:top-20 lg:top-24 pb-60 h-[calc(100vh-4rem)] sm:h-[calc(100vh-5rem)] lg:h-[calc(100vh-6rem)] max-h-230 min-h-145 flex items-center z-10">
+      <div className="sticky top-16 sm:top-20 lg:top-24 pb-60 md:pb-0 h-[calc(100vh-4rem)] sm:h-[calc(100vh-5rem)] lg:h-[calc(100vh-6rem)] max-h-230 min-h-145 flex items-center z-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
 
@@ -288,13 +288,13 @@ export const ServiceAreasTeaserSection: React.FC = () => {
                   to="/solar"
                   variant="primary"
                   size="md"
-                  className="w-full xs:w-auto group relative overflow-hidden rounded-xl shadow-lg shadow-[#2B3CB8]/25 bg-[#2B3CB8] hover:bg-[#1D2984] text-white border-0 font-bold px-6 sm:px-7 py-3 sm:py-3.5 transition-all duration-300 hover:shadow-[#2B3CB8]/40 hover:-translate-y-0.5 justify-center min-h-11.5 sm:min-h-12"
+                  className="w-full xs:w-auto   group relative overflow-hidden rounded-xl shadow-lg shadow-[#2B3CB8]/25 bg-[#2B3CB8] hover:bg-[#1D2984] text-white border-0 font-bold px-6 sm:px-7 py-3 sm:py-3.5 transition-all duration-300 hover:shadow-[#2B3CB8]/40 hover:-translate-y-0.5 justify-center min-h-11.5 sm:min-h-12"
        
                 >
                   <span>Explore Our Solutions</span>
-                                      <ArrowRight className="w-4 h-4 group-hover:translate-x-1.5 transition-transform duration-300" />
 
                 </Button>
+                
               </div>
             </div>
 

@@ -7,6 +7,7 @@ export interface BorderBeamProps {
   size?: number;
   duration?: number;
   borderWidth?: number;
+  borderRadius?: string | number;
   colorFrom?: string;
   colorTo?: string;
   delay?: number;
@@ -21,6 +22,7 @@ export const BorderBeam: React.FC<BorderBeamProps> = ({
   size = 140,
   duration = 8,
   borderWidth = 1.5,
+  borderRadius = '1rem',
   colorFrom = '#2B3CB8',
   colorTo = '#6F8EE7',
   delay = 0,
@@ -29,6 +31,8 @@ export const BorderBeam: React.FC<BorderBeamProps> = ({
   transition,
   style,
 }) => {
+  const roundValue = typeof borderRadius === 'number' ? `${borderRadius}px` : borderRadius;
+
   return (
     <div
       aria-hidden="true"
@@ -49,7 +53,7 @@ export const BorderBeam: React.FC<BorderBeamProps> = ({
         style={{
           width: size,
           height: size,
-          offsetPath: 'rect(0 100% 100% 0 round 1rem)',
+          offsetPath: `rect(0 100% 100% 0 round ${roundValue})`,
           background: `radial-gradient(circle at center, ${colorTo}, ${colorFrom} 40%, transparent 70%)`,
           filter: 'blur(1.5px)',
         }}
@@ -70,3 +74,5 @@ export const BorderBeam: React.FC<BorderBeamProps> = ({
     </div>
   );
 };
+
+export default BorderBeam;

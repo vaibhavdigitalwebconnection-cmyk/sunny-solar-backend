@@ -257,12 +257,12 @@ export const TestimonialsSliderSection: React.FC = () => {
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-extrabold text-slate-900 tracking-tight leading-[1.15]">
               Proven Performance on{' '} <br />
               <span className="text-transparent bg-clip-text bg-linear-to-r from-[#EF680C] via-[#FF7700] to-[#2B3CB8]">
-                Nationwide Homes.
+                Australia Homes.
               </span>
             </h2>
 
             <p className="mt-3 text-xs sm:text-base text-slate-600 max-w-4xl mx-auto">
-              Explore genuine rooftop solar panel installations completed by accredited Master Electricians across australia, Gold Coast, and the Sunshine Coast.
+              Explore genuine rooftop solar panel installations completed by accredited Master Electricians across Nationwide , Gold Coast, and the Sunshine Coast.
             </p>
           </div>
         </div>
