@@ -111,7 +111,7 @@ export const FeaturedProjectsSection: React.FC = () => {
       className="py-16 sm:py-20 lg:py-24 relative overflow-hidden bg-linear-to-b from-[#F8FAFC] via-[#EEF4FD] to-[#F8FAFC] border-y border-slate-200/80"
     >
       {/* ── 1. Clean Architectural Photovoltaic Grid (Smooth Solar Cell Reflections) ── */}
-      <div className="absolute inset-0 z-0 pointer-events-none [mask-image:radial-gradient(ellipse_80%_70%_at_50%_50%,#000_25%,transparent_90%)]">
+      <div className="absolute inset-0 z-0 pointer-events-none mask-[radial-gradient(ellipse_80%_70%_at_50%_50%,#000_25%,transparent_90%)]">
         <AnimatedGridPattern
           width={48}
           height={48}
@@ -124,11 +124,11 @@ export const FeaturedProjectsSection: React.FC = () => {
       </div>
 
       {/* ── 2. Subtle Volumetric Sunbeams / Solar Rays ── */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden [mask-image:radial-gradient(ellipse_75%_65%_at_65%_35%,#000_20%,transparent_85%)]">
+      <div className="absolute inset-0 pointer-events-none overflow-hidden mask-[radial-gradient(ellipse_75%_65%_at_65%_35%,#000_20%,transparent_85%)]">
         <motion.div
           animate={{ opacity: [0.25, 0.45, 0.25] }}
           transition={{ duration: 7, repeat: Infinity, ease: 'easeInOut' }}
-          className="absolute -top-32 right-1/10 w-[750px] h-[650px] -rotate-35 origin-top-right flex justify-around opacity-30"
+          className="absolute -top-32 right-1/10 w-187.5 h-162.5 -rotate-35 origin-top-right flex justify-around opacity-30"
         >
           <div className="w-16 h-full bg-linear-to-b from-amber-400/20 via-orange-300/5 to-transparent blur-xl" />
           <div className="w-28 h-full bg-linear-to-b from-blue-400/20 via-sky-300/5 to-transparent blur-2xl" />
@@ -146,7 +146,7 @@ export const FeaturedProjectsSection: React.FC = () => {
           y: [0, -12, 0],
         }}
         transition={{ duration: 11, repeat: Infinity, ease: 'easeInOut' }}
-        className="absolute -top-20 right-1/12 w-[540px] h-[540px] bg-linear-to-bl from-[#EF680C]/18 via-[#FFA000]/12 to-transparent rounded-full blur-[110px] pointer-events-none"
+        className="absolute -top-20 right-1/12 w-135 h-135 bg-linear-to-bl from-[#EF680C]/18 via-[#FFA000]/12 to-transparent rounded-full blur-[110px] pointer-events-none"
       />
 
       {/* Bottom left deep clean-energy blue bloom */}
@@ -157,7 +157,7 @@ export const FeaturedProjectsSection: React.FC = () => {
           y: [0, 16, 0],
         }}
         transition={{ duration: 13, repeat: Infinity, ease: 'easeInOut', delay: 1 }}
-        className="absolute -bottom-24 left-1/12 w-[560px] h-[560px] bg-linear-to-tr from-[#2B3CB8]/16 via-[#6F8EE7]/12 to-transparent rounded-full blur-[120px] pointer-events-none"
+        className="absolute -bottom-24 left-1/12 w-140 h-140 bg-linear-to-tr from-[#2B3CB8]/16 via-[#6F8EE7]/12 to-transparent rounded-full blur-[120px] pointer-events-none"
       />
 
       {/* Central Radiance Glow spotlighting the Interactive Carousel Stage */}
@@ -167,11 +167,11 @@ export const FeaturedProjectsSection: React.FC = () => {
           opacity: [0.4, 0.7, 0.4],
         }}
         transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[850px] h-[520px] bg-linear-to-r from-[#2B3CB8]/10 via-[#6F8EE7]/10 to-[#EF680C]/8 rounded-full blur-[90px] pointer-events-none"
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-212.5 h-130 bg-linear-to-r from-[#2B3CB8]/10 via-[#6F8EE7]/10 to-[#EF680C]/8 rounded-full blur-[90px] pointer-events-none"
       />
 
       {/* ── 4. Concentric Solar Energy Wave Rings ── */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-5xl h-full max-h-[600px] pointer-events-none z-0 opacity-45">
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-5xl h-full max-h-150 pointer-events-none z-0 opacity-45">
         <Ripple
           mainCircleSize={300}
           mainCircleOpacity={0.16}

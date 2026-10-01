@@ -93,7 +93,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ isLoaded = true }) => 
   };
 
   return (
-    <section className="relative min-h-[580px] lg:min-h-auto flex items-center overflow-hidden">
+    <section className="relative min-h-145 lg:min-h-auto flex items-center overflow-hidden">
       {/* Full-width Responsive Background Image */}
       <div className="absolute inset-0 z-0 overflow-hidden">
         <motion.img

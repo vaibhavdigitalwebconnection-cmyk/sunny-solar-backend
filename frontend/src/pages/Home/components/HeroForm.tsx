@@ -127,7 +127,7 @@ export const HeroForm: React.FC<HeroFormProps> = ({ isLoaded = true }) => {
           initial={{ opacity: 0, y: 16, scale: 0.95 }}
           animate={isLoaded ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 16 }}
           transition={{ duration: 0.7, delay: 0.45, ease: [0.16, 1, 0.3, 1] }}
-          className="absolute -top-10 sm:top-1 right-2 sm:right-6 pointer-events-none z-20 flex flex-col items-end"
+          className="absolute top-2 sm:top-1 right-2 sm:right-6 pointer-events-none z-20 flex flex-col items-end"
         >
           <div className="relative">
             {/* Subtle pulsing aura behind avatar */}

@@ -240,7 +240,7 @@ export const ServiceAreasTeaserSection: React.FC = () => {
       </div>
 
       {/* Sticky Viewport Container: Pinned in view while user scrolls through the 300vh section */}
-      <div className="sticky top-16 sm:top-20 lg:top-24 h-[calc(100vh-4rem)] sm:h-[calc(100vh-5rem)] lg:h-[calc(100vh-6rem)] max-h-230 min-h-145 flex items-center z-10">
+      <div className="sticky top-16 sm:top-20 lg:top-24 pb-60 h-[calc(100vh-4rem)] sm:h-[calc(100vh-5rem)] lg:h-[calc(100vh-6rem)] max-h-230 min-h-145 flex items-center z-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
 
@@ -302,7 +302,7 @@ export const ServiceAreasTeaserSection: React.FC = () => {
             <div className="lg:col-span-7 relative w-full flex flex-col items-center">
 
               {/* Card Deck Overlay Stage */}
-              <div className="relative w-full max-w-md sm:max-w-lg lg:max-w-xl h-[470px] sm:h-[490px] lg:h-[510px]">
+              <div className="relative w-full max-w-md sm:max-w-lg lg:max-w-xl h-117.5 sm:h-122.5 lg:h-127.5">
                 {solutionCards.map((card, index) => {
                   const IconComponent = card.icon;
                   const isStacked = index < activeCardIndex;
@@ -363,7 +363,7 @@ export const ServiceAreasTeaserSection: React.FC = () => {
                             setActiveCardIndex(index);
                           }
                         }}
-                        className={`group block relative rounded-3xl sm:rounded-4xl p-6 sm:p-7 lg:p-8 h-[370px] sm:h-[390px] lg:h-[400px] shadow-2xl shadow-black/20 transition-all duration-300 border cursor-pointer ${card.colors.bg} ${card.colors.border} ${card.rotation}`}
+                        className={`group block relative rounded-3xl sm:rounded-4xl p-6 sm:p-7 lg:p-8 h-92.5 sm:h-97.5 lg:h-100 shadow-2xl shadow-black/20 transition-all duration-300 border cursor-pointer ${card.colors.bg} ${card.colors.border} ${card.rotation}`}
                         style={{
                           boxShadow:
                             '0 20px 45px -12px rgba(0, 0, 0, 0.28), 0 0 1px 1px rgba(255, 255, 255, 0.1)',
