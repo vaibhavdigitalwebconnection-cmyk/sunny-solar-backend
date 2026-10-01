@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { api } from '../../../../services/api';
 import type { Article } from '../../../../types/blog';
-import { Badge } from '../../../../components/ui/Badge';
 import { Calendar, Clock, ArrowRight, Sparkles, CheckCircle2 } from 'lucide-react';
 
 import LatticeLoadingBlock from '../../../../components/ui/LatticeLoadingBlock';
