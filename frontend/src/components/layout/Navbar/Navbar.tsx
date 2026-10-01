@@ -23,10 +23,15 @@ export const Navbar: React.FC = () => {
   const isHomePage = location.pathname === '/';
 
   useEffect(() => {
+    let prevScrolled = window.scrollY > 25;
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 25);
+      const scrolled = window.scrollY > 25;
+      if (scrolled !== prevScrolled) {
+        prevScrolled = scrolled;
+        setIsScrolled(scrolled);
+      }
     };
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 

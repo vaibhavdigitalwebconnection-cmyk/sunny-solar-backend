@@ -183,20 +183,31 @@ export const ServiceAreasTeaserSection: React.FC = () => {
       setActiveCardIndex((prev) => (prev !== computedIndex ? computedIndex : prev));
     };
 
+    let ticking = false;
+    const onScroll = () => {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          calculateProgress();
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+
     calculateProgress();
-    window.addEventListener('scroll', calculateProgress, { passive: true });
-    window.addEventListener('resize', calculateProgress);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
 
     const lenis = (window as unknown as { __lenis?: { on: (event: string, cb: () => void) => void; off: (event: string, cb: () => void) => void } }).__lenis;
     if (lenis) {
-      lenis.on('scroll', calculateProgress);
+      lenis.on('scroll', onScroll);
     }
 
     return () => {
-      window.removeEventListener('scroll', calculateProgress);
-      window.removeEventListener('resize', calculateProgress);
+      window.removeEventListener('scroll', onScroll);
+      window.removeEventListener('resize', onScroll);
       if (lenis) {
-        lenis.off('scroll', calculateProgress);
+        lenis.off('scroll', onScroll);
       }
     };
   }, []);

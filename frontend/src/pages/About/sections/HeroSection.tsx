@@ -77,26 +77,7 @@ export const HeroSection: React.FC = () => {
               With 14+ years of industry experience, Trent and the Sunny Solar team help homeowners understand their energy needs, compare their options and choose a solar solution that makes sense for their home.
             </motion.p>
 
-            {/* Trust highlights strip on mobile & desktop */}
-            <motion.div
-              initial={{ opacity: 0, y: 15 }}
-              animate={isVisible ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: 0.3 }}
-              className="mt-5 sm:mt-6 pt-4 sm:pt-5 border-t border-slate-100 grid grid-cols-3 gap-2 w-full max-w-lg text-center"
-            >
-              <div>
-                <span className="block font-extrabold text-sm sm:text-base text-[#2B3CB8]">14+ Years</span>
-                <span className="text-[10px] sm:text-xs text-slate-500 font-medium">Industry Experience</span>
-              </div>
-              <div className="border-x border-slate-200/80">
-                <span className="block font-extrabold text-sm sm:text-base text-[#2B3CB8]">Customer First</span>
-                <span className="text-[10px] sm:text-xs text-slate-500 font-medium">Practical Advice</span>
-              </div>
-              <div>
-                <span className="block font-extrabold text-sm sm:text-base text-[#2B3CB8]">Australia-Wide</span>
-                <span className="text-[10px] sm:text-xs text-slate-500 font-medium">Solar Solutions</span>
-              </div>
-            </motion.div>
+            
 
             {/* Call to action buttons */}
             <motion.div

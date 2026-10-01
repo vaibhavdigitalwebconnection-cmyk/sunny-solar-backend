@@ -241,8 +241,11 @@ const CYLINDER_CARDS: CardItem[] = [
 
 export const ParallaxBannerSection: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
-  const [rotation, setRotation] = useState<number>(0);
+  const turntableRef = useRef<HTMLDivElement>(null);
+  const rotationRef = useRef<number>(0);
   const isAutoPlay = true;
+  const isDraggingRef = useRef<boolean>(false);
+  const isVisibleRef = useRef<boolean>(false);
   const [isDragging, setIsDragging] = useState<boolean>(false);
   const [selectedCard, setSelectedCard] = useState<CardItem | null>(null);
 
@@ -298,45 +301,66 @@ export const ParallaxBannerSection: React.FC = () => {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  // 60FPS continuous 3D rotation loop - non-stop moving
+  // Viewport intersection observer: only animate 3D carousel when section is in view
+  useEffect(() => {
+    if (!containerRef.current) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        isVisibleRef.current = entry.isIntersecting;
+      },
+      { threshold: 0.05 }
+    );
+    observer.observe(containerRef.current);
+    return () => observer.disconnect();
+  }, []);
+
+  // Hardware-accelerated 60FPS 3D turntable rotation loop (Direct DOM style update - Zero React re-renders)
   useEffect(() => {
     const animate = () => {
-      if (!isDragging) {
+      if (isVisibleRef.current && !isDraggingRef.current) {
         if (isAutoPlay) {
           velocity.current = velocity.current * 0.96 + 0.13 * 0.04;
         } else {
           velocity.current *= 0.92;
         }
-        setRotation((prev) => (prev + velocity.current) % 360);
+        rotationRef.current = (rotationRef.current + velocity.current) % 360;
+        if (turntableRef.current) {
+          turntableRef.current.style.transform = `rotateX(-6deg) rotateY(${rotationRef.current}deg)`;
+        }
       }
       animationFrameId.current = requestAnimationFrame(animate);
     };
 
     animationFrameId.current = requestAnimationFrame(animate);
     return () => cancelAnimationFrame(animationFrameId.current);
-  }, [isAutoPlay, isDragging]);
+  }, [isAutoPlay]);
 
   // Pointer drag to spin 3D cylinder
   const handlePointerDown = (e: React.PointerEvent) => {
     if (e.button !== 0 && e.pointerType === 'mouse') return;
+    isDraggingRef.current = true;
     setIsDragging(true);
     lastX.current = e.clientX;
     (e.target as HTMLElement).setPointerCapture?.(e.pointerId);
   };
 
   const handlePointerMove = (e: React.PointerEvent) => {
-    if (!isDragging) return;
+    if (!isDraggingRef.current) return;
     const deltaX = e.clientX - lastX.current;
     lastX.current = e.clientX;
 
     const sensitivity = 0.28;
     const deltaAngle = deltaX * sensitivity;
     velocity.current = deltaAngle * 0.4;
-    setRotation((prev) => (prev + deltaAngle) % 360);
+    rotationRef.current = (rotationRef.current + deltaAngle) % 360;
+    if (turntableRef.current) {
+      turntableRef.current.style.transform = `rotateX(-6deg) rotateY(${rotationRef.current}deg)`;
+    }
   };
 
   const handlePointerUp = (e: React.PointerEvent) => {
-    if (!isDragging) return;
+    if (!isDraggingRef.current) return;
+    isDraggingRef.current = false;
     setIsDragging(false);
     try {
       (e.target as HTMLElement).releasePointerCapture?.(e.pointerId);
@@ -413,10 +437,11 @@ export const ParallaxBannerSection: React.FC = () => {
       >
         {/* Rotating 3D Turntable Center */}
         <div
+          ref={turntableRef}
           className="relative w-0 h-0 flex items-center justify-center pointer-events-auto"
           style={{
             transformStyle: 'preserve-3d',
-            transform: `rotateX(-6deg) rotateY(${rotation}deg)`,
+            transform: 'rotateX(-6deg) rotateY(0deg)',
             willChange: 'transform',
           }}
         >

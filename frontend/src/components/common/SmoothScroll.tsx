@@ -64,13 +64,13 @@ export const SmoothScroll: React.FC<SmoothScrollProps> = ({ children }) => {
 
     // Initialize Lenis instance with production-grade settings
     const lenis = new Lenis({
-      duration: prefersReducedMotion ? 0 : 1.2,
+      duration: prefersReducedMotion ? 0 : 0.85,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       orientation: 'vertical',
       gestureOrientation: 'vertical',
       smoothWheel: !prefersReducedMotion,
-      wheelMultiplier: 1.0,
-      touchMultiplier: 1.0,
+      wheelMultiplier: 1.1,
+      touchMultiplier: 1.2,
       syncTouch: false, // Essential: maintains natural, hardware-accelerated touch physics on mobile
       infinite: false,
       autoRaf: true, // Clean internal RAF loop managed by Lenis lifecycle
@@ -103,7 +103,7 @@ export const SmoothScroll: React.FC<SmoothScrollProps> = ({ children }) => {
         lenis.options.duration = 0;
         lenis.options.smoothWheel = false;
       } else {
-        lenis.options.duration = 1.2;
+        lenis.options.duration = 0.85;
         lenis.options.smoothWheel = true;
       }
     };
