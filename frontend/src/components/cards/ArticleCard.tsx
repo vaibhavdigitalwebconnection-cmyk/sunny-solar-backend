@@ -20,10 +20,16 @@ export const ArticleCard: React.FC<ArticleCardProps> = ({
     >
       <div className="relative aspect-video lg:aspect-auto lg:h-48 overflow-hidden bg-slate-100">
         <img
-          src={article.imageUrl}
+          src={article.imageUrl || '/images/blog/default.jpg'}
           alt={article.title}
           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
           loading="lazy"
+          onError={(e) => {
+            const target = e.currentTarget;
+            if (!target.src.endsWith('/images/blog/default.jpg')) {
+              target.src = '/images/blog/default.jpg';
+            }
+          }}
         />
         <div className="absolute top-3 left-3">
           <Badge variant="blue" size="sm">

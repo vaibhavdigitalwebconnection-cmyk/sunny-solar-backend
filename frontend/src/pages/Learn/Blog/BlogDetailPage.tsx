@@ -265,8 +265,14 @@ export const BlogDetailPage: React.FC = () => {
         {article.imageUrl && (
           <div className="my-8 rounded-2xl overflow-hidden shadow-lg border border-slate-200/70 aspect-video bg-slate-900">
             <img
-              src={article.imageUrl}
+              src={article.imageUrl || '/images/blog/default.jpg'}
               alt={article.title}
+              onError={(e) => {
+                const target = e.currentTarget;
+                if (!target.src.endsWith('/images/blog/default.jpg')) {
+                  target.src = '/images/blog/default.jpg';
+                }
+              }}
               className="w-full h-full object-cover"
             />
           </div>

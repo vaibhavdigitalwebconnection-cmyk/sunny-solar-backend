@@ -153,7 +153,7 @@ export const SolarScatterSection: React.FC = () => {
           </h2>
 
           <p className="mt-3.5 text-sm sm:text-base lg:text-lg text-slate-600 font-medium max-w-5xl mx-auto leading-relaxed">
-            From precision rooftop panel orientation to lithium backup integration, explore the engineering behind Nationwide highest-rated solar installations.
+            From precision rooftop panel orientation to lithium backup integration, explore the engineering behind Australia's highest-rated solar installations.
           </p>
 
           {/* Interactive Feature Pills */}
