@@ -56,7 +56,7 @@ export const CalculatorsHeroSection: React.FC = () => {
               transition={{ duration: 0.4, delay: 0.14 }}
               className="text-xs xs:text-sm sm:text-base text-slate-600 leading-relaxed max-w-xl mx-auto lg:mx-0"
             >
-              Calculate estimated quarterly bill savings, ideal system capacity, battery payback horizons, and quote comparisons with transparent formulas built on real Queensland solar radiation data and network tariffs.
+              Calculate estimated quarterly bill savings, ideal system capacity, battery payback horizons, and quote comparisons with transparent formulas built on real Nationwide solar radiation data and network tariffs.
             </motion.p>
 
             {/* Guarantees / Trust Micro-list */}

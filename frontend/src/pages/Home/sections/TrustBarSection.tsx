@@ -2,6 +2,8 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import { Star, ShieldCheck, Zap, Award, ChevronLeft, ChevronRight, ArrowRight } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { Reveal } from '../components/Reveal';
+import { AnimatedCard } from '../components/AnimatedCard';
 
 const stats = [
   {
@@ -10,7 +12,7 @@ const stats = [
     suffix: '+',
     decimals: 0,
     label: 'Homes & Sites Powered',
-    description: 'Queensland residential and commercial installations completed with zero subcontractors.',
+    description: 'Nationwide residential and commercial installations completed with zero subcontractors.',
     accentColor: '#2B3CB8',
     iconBg: 'bg-[#2B3CB8]/10',
     linkTo: '/projects',
@@ -48,7 +50,7 @@ const stats = [
     suffix: '★',
     decimals: 1,
     label: 'Google Customer Rating',
-    description: 'Hundreds of verified 5-star reviews from homeowners across South East Queensland.',
+    description: 'Hundreds of verified 5-star reviews from homeowners across South East Nationwide.',
     accentColor: '#2B3CB8',
     iconBg: 'bg-[#2B3CB8]/10',
     linkTo: '/reviews',
@@ -165,6 +167,7 @@ export const TrustBarSection: React.FC = () => {
 
           {/* ── Sliding Stat Showcase (order-1 on mobile so number is ON TOP) ── */}
           <div className="order-1 lg:order-1">
+            <Reveal direction="left">
             <div className="flex flex-col justify-center min-h-65 sm:min-h-65 relative overflow-hidden">
               <AnimatePresence mode="wait" custom={direction}>
                 <motion.div
@@ -182,7 +185,7 @@ export const TrustBarSection: React.FC = () => {
                     className="w-13 h-13 sm:w-16 sm:h-16 rounded-lg sm:rounded-xl flex items-center justify-center transition-colors duration-500"
                     style={{ backgroundColor: `${active.accentColor}12` }}
                   >
-                    <Icon className="w-6 h-6 sm:w-8 sm:h-8 text-[#ED4F11]"  />
+                    <Icon className="w-6 h-6 sm:w-8 sm:h-8 text-[#ED4F11]" />
                   </div>
 
                   {/* Big number */}
@@ -277,10 +280,11 @@ export const TrustBarSection: React.FC = () => {
                 </div>
               </div>
             </div>
+            </Reveal>
           </div>
 
           {/* ── Fixed Summary Card (order-2 on mobile so it sits underneath) ── */}
-          <div className="order-2 lg:order-2">
+          <AnimatedCard direction="right" delay={0.15} className="order-2 lg:order-2">
             <div className="bg-[#0C123E] rounded-xl p-5 sm:p-8 lg:p-6 relative overflow-hidden shadow-2xl">
               {/* Decorative glow */}
               <div className="absolute -top-20 -right-20 w-60 h-60 rounded-full blur-[80px] pointer-events-none" style={{ background: `${active.accentColor}25` }} />
@@ -351,7 +355,7 @@ export const TrustBarSection: React.FC = () => {
                 </div>
               </div>
             </div>
-          </div>
+          </AnimatedCard>
         </div>
       </div>
     </section>

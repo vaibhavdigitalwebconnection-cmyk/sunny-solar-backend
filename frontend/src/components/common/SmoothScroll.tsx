@@ -74,9 +74,9 @@ export const SmoothScroll: React.FC<SmoothScrollProps> = ({ children }) => {
       syncTouch: false, // Essential: maintains natural, hardware-accelerated touch physics on mobile
       infinite: false,
       autoRaf: true, // Clean internal RAF loop managed by Lenis lifecycle
-      anchors: true, // Native anchor link interceptor
+      anchors: false, // Disabled: custom handleGlobalClick below handles #anchor scrolling
       autoToggle: true, // Automatically pauses Lenis during modal/drawer overflow locks
-      stopInertiaOnNavigate: true, // Prevents scroll momentum bleeding into new routes
+      stopInertiaOnNavigate: false, // Disabled: ScrollToTop component handles scroll reset on route change
       respectReducedMotion: true, // Live accessibility support
     });
 

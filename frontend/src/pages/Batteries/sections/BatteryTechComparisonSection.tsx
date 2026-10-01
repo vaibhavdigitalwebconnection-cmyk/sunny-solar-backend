@@ -109,7 +109,7 @@ export const BatteryTechComparisonSection: React.FC = () => {
       isFeatured: false,
       tag: 'Best Modular Value & 3-Phase Commercial Balance',
       desc: 'Stackable 3.2kWh blocks allow you to start with 9.6kWh and expand up to 25.6kWh as your energy needs or EV charging demands grow. Outstanding cost-per-kilowatt-hour value.',
-      pros: ['Expandable modular architecture anytime', 'Seamless 3-phase switchboard symmetry', 'Proven reliability in Queensland heat'],
+      pros: ['Expandable modular architecture anytime', 'Seamless 3-phase switchboard symmetry', 'Proven reliability in Nationwide heat'],
       verdict: 'The smart choice for budget-conscious homeowners wanting high capacity and clean stackable aesthetics.',
     },
     enphase: {
@@ -194,8 +194,8 @@ export const BatteryTechComparisonSection: React.FC = () => {
                   type="button"
                   onClick={() => setActiveSlide(idx)}
                   className={`py-2 px-2 text-center text-xs font-semibold rounded-lg transition-all cursor-pointer flex items-center justify-center gap-1.5 ${isSelected
-                      ? 'bg-white text-slate-950 shadow-xs font-bold'
-                      : 'text-slate-600 hover:text-slate-900'
+                    ? 'bg-white text-slate-950 shadow-xs font-bold'
+                    : 'text-slate-600 hover:text-slate-900'
                     }`}
                 >
                   {item.isFeatured && (
@@ -303,8 +303,8 @@ export const BatteryTechComparisonSection: React.FC = () => {
                   onClick={() => setActiveSlide(dotIdx)}
                   aria-label={`Go to battery ${dotIdx + 1}`}
                   className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${activeSlide === dotIdx
-                      ? 'w-6 bg-[#2B3CB8]'
-                      : 'w-2 bg-slate-300 hover:bg-slate-400'
+                    ? 'w-6 bg-[#2B3CB8]'
+                    : 'w-2 bg-slate-300 hover:bg-slate-400'
                     }`}
                 />
               ))}

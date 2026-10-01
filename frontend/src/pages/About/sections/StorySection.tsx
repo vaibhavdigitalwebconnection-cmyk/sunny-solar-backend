@@ -69,7 +69,7 @@ export const StorySection: React.FC = () => {
       year: '2026',
       title: '4,200+ Homes & Counting',
       description:
-        'Over 14 years later, Sunny Solar remains 100% privately owned, debt-free, and proud to maintain an unblemished 4.98-star rating across Queensland.',
+        'Over 14 years later, Sunny Solar remains 100% privately owned, debt-free, and proud to maintain an unblemished 4.98-star rating across Nationwide.',
       icon: Award,
     },
   ];

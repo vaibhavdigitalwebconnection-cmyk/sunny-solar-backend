@@ -24,7 +24,7 @@ function AppLayout() {
     const intervalId = setInterval(pingHealth, 14 * 60 * 1000);
 
     return () => clearInterval(intervalId);
-  }, []);
+  }, []); 
 
   // Completely separate layout for Admin Portal: no public header, footer, or sticky bar
   if (isAdmin) {
@@ -37,6 +37,8 @@ function AppLayout() {
       </>
     );
   }
+
+  const isHome = location.pathname === '/';
 
   // Standard public website layout
   return (

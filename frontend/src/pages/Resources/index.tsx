@@ -14,7 +14,7 @@ export const ResourcesLandingPage: React.FC = () => {
         <title>Free Solar Guides, Checklists & Downloadable Resources | Sunny Solar</title>
         <meta
           name="description"
-          content="Download free comprehensive buyer guides, battery decision matrices, and pre-purchase checklists for Queensland homeowners."
+          content="Download free comprehensive buyer guides, battery decision matrices, and pre-purchase checklists for Nationwide homeowners."
         />
       </Helmet>
       {/* Section 1: Hero Section */}

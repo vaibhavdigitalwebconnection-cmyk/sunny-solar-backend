@@ -197,10 +197,10 @@ export const SavingsProfilesSection: React.FC = () => {
       {/* Section Header */}
       <div className="text-center max-w-4xl mx-auto mb-6 sm:mb-8 lg:mb-10">
         <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-slate-900 tracking-tight">
-          Real Queensland <span className="text-emerald-600">Household Savings</span>
+          Real Nationwide <span className="text-emerald-600">Household Savings</span>
         </h2>
         <p className="mt-2.5 sm:mt-3 text-xs sm:text-sm md:text-base text-slate-600 leading-relaxed px-1 sm:px-0">
-          See verified annual savings profiles across different property types and rooftop capacities in South East Queensland.
+          See verified annual savings profiles across different property types and rooftop capacities in South East Nationwide.
         </p>
       </div>
 
@@ -213,11 +213,10 @@ export const SavingsProfilesSection: React.FC = () => {
               key={profile.id}
               type="button"
               onClick={() => setActiveProfile(idx)}
-              className={`flex-1 py-1.5 px-2 rounded-lg text-[11px] font-bold transition-all text-center cursor-pointer ${
-                activeProfile === idx
+              className={`flex-1 py-1.5 px-2 rounded-lg text-[11px] font-bold transition-all text-center cursor-pointer ${activeProfile === idx
                   ? `${profile.activeColor} shadow-xs`
                   : 'text-slate-600 hover:text-slate-900'
-              }`}
+                }`}
             >
               {profile.tabLabel}
             </button>
@@ -255,9 +254,8 @@ export const SavingsProfilesSection: React.FC = () => {
                 type="button"
                 onClick={() => setActiveProfile(idx)}
                 aria-label={`View profile ${idx + 1}`}
-                className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
-                  activeProfile === idx ? `w-6 ${p.dotColor}` : 'w-2 bg-slate-300'
-                }`}
+                className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${activeProfile === idx ? `w-6 ${p.dotColor}` : 'w-2 bg-slate-300'
+                  }`}
               />
             ))}
           </div>

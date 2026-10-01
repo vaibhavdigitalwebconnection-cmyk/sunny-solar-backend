@@ -37,7 +37,7 @@ const ACCORDION_ITEMS: AccordionItem[] = [
     category: '100% In-House Crew',
     specs: 'QLD Electrical Lic #38192 • Zero Subcontractors',
     description:
-      'Every Sunny Solar installation is personally managed on-site by certified Queensland Master Electricians. We never pawn off our reputation to third-party subbies.',
+      'Every Sunny Solar installation is personally managed on-site by certified Nationwide Master Electricians. We never pawn off our reputation to third-party subbies.',
     icon: ShieldCheck,
   },
   {
@@ -219,8 +219,8 @@ export const ValuesSection: React.FC = () => {
                 onClick={() => setActiveIndex(index)}
                 onMouseEnter={() => setActiveIndex(index)}
                 className={`relative rounded-lg overflow-hidden cursor-pointer border transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] ${isActive
-                    ? 'flex-5 shadow-2xl border-amber-400/80 ring-2 ring-amber-400/20'
-                    : 'flex-1 hover:flex-[1.2] shadow-md border-slate-200/90 bg-slate-900 opacity-95 hover:opacity-100'
+                  ? 'flex-5 shadow-2xl border-amber-400/80 ring-2 ring-amber-400/20'
+                  : 'flex-1 hover:flex-[1.2] shadow-md border-slate-200/90 bg-slate-900 opacity-95 hover:opacity-100'
                   }`}
               >
                 {/* Background Image */}
@@ -234,16 +234,16 @@ export const ValuesSection: React.FC = () => {
                 {/* Overlays */}
                 <div
                   className={`absolute inset-0 transition-opacity duration-500 ${isActive
-                      ? 'bg-linear-to-t from-slate-950/95 via-slate-950/40 to-slate-950/15'
-                      : 'bg-slate-950/70 hover:bg-slate-950/50'
+                    ? 'bg-linear-to-t from-slate-950/95 via-slate-950/40 to-slate-950/15'
+                    : 'bg-slate-950/70 hover:bg-slate-950/50'
                     }`}
                 />
 
                 {/* ACTIVE CARD EXPANDED CONTENT */}
                 <div
                   className={`absolute inset-0 p-6 sm:p-8 flex flex-col justify-between transition-all duration-500 ${isActive
-                      ? 'opacity-100 pointer-events-auto delay-100'
-                      : 'opacity-0 pointer-events-none'
+                    ? 'opacity-100 pointer-events-auto delay-100'
+                    : 'opacity-0 pointer-events-none'
                     }`}
                 >
                   {/* Top Bar inside Active Card */}
@@ -279,8 +279,8 @@ export const ValuesSection: React.FC = () => {
                 {/* INACTIVE CARD COMPRESSED CONTENT (Vertical Spine) */}
                 <div
                   className={`absolute inset-0 p-4 flex flex-col justify-between items-center transition-all duration-300 ${!isActive
-                      ? 'opacity-100 pointer-events-auto'
-                      : 'opacity-0 pointer-events-none'
+                    ? 'opacity-100 pointer-events-auto'
+                    : 'opacity-0 pointer-events-none'
                     }`}
                 >
                   {/* Top number */}
@@ -428,8 +428,8 @@ export const ValuesSection: React.FC = () => {
                 }}
                 aria-label={`Go to slide ${idx + 1}`}
                 className={`h-1.5 rounded-full transition-all duration-300 cursor-pointer ${activeIndex === idx
-                    ? 'w-6 bg-amber-500'
-                    : 'w-2 bg-slate-300 hover:bg-slate-400'
+                  ? 'w-6 bg-amber-500'
+                  : 'w-2 bg-slate-300 hover:bg-slate-400'
                   }`}
               />
             ))}

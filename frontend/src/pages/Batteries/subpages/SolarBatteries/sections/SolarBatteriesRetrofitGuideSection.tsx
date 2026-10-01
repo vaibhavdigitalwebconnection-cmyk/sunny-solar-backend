@@ -23,7 +23,7 @@ export const SolarBatteriesRetrofitGuideSection: React.FC = () => {
     },
     {
       id: 'blackout-backup',
-      title: 'Instant Backup When Queensland Storms Hit',
+      title: 'Instant Backup When Nationwide Storms Hit',
       badge: 'Sub-100ms Blackout Defense',
       badgeVariant: 'emerald' as const,
       image: '/images/solutions/battery-storm.webp',
@@ -115,7 +115,7 @@ export const SolarBatteriesRetrofitGuideSection: React.FC = () => {
           How You Use Your Solar Battery
         </h2>
         <p className="mt-2 text-xs xs:text-sm text-slate-600 max-w-2xl mx-auto leading-relaxed">
-          From eliminating 45¢ evening electricity rates to keeping your home running during severe Queensland storm blackouts, here is how home batteries work for you every day.
+          From eliminating 45¢ evening electricity rates to keeping your home running during severe Nationwide storm blackouts, here is how home batteries work for you every day.
         </p>
       </div>
 
@@ -198,11 +198,10 @@ export const SolarBatteriesRetrofitGuideSection: React.FC = () => {
                 type="button"
                 onClick={() => goToSlide(dotIdx)}
                 aria-label={`Go to slide ${dotIdx + 1}`}
-                className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
-                  activeSlide === dotIdx
+                className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${activeSlide === dotIdx
                     ? 'w-6 bg-[#2B3CB8]'
                     : 'w-2 bg-slate-300 hover:bg-slate-400'
-                }`}
+                  }`}
               />
             ))}
           </div>

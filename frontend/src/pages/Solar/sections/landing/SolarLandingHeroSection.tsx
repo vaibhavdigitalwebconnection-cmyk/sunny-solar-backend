@@ -1,14 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { 
-  ArrowRight, 
-  Sun, 
-  CheckCircle2, 
-  Star, 
-  Calculator, 
-  ShieldCheck, 
-  Zap 
+import {
+  ArrowRight,
+  Sun,
+  CheckCircle2,
+  Star,
+  Calculator,
+  ShieldCheck,
+  Zap
 } from 'lucide-react';
 import { Button } from '../../../../components/ui/Button';
 import { Badge } from '../../../../components/ui/Badge';
@@ -32,10 +32,10 @@ export const SolarLandingHeroSection: React.FC = () => {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-          
+
           {/* Content Column (Bottom on mobile, Left on desktop) */}
           <div className="order-2 lg:order-1 lg:col-span-7 space-y-4 xs:space-y-5 text-center lg:text-left flex flex-col items-center lg:items-start">
-            
+
             {/* Top Micro Badges */}
             <motion.div
               initial={{ opacity: 0, y: 12 }}
@@ -148,7 +148,7 @@ export const SolarLandingHeroSection: React.FC = () => {
               <BorderBeam size={160} duration={8} colorFrom="#2B3CB8" colorTo="#6F8EE7" borderWidth={2} />
               <img
                 src="/images/about/solar-installation-aerial.webp"
-                alt="Solar Installation on Queensland Home"
+                alt="Solar Installation on Nationwide Home"
                 className="w-full h-full object-cover group-hover:scale-103 transition-transform duration-500"
               />
               <div className="absolute inset-0 bg-linear-to-t from-slate-950/75 via-transparent to-transparent pointer-events-none" />

@@ -264,7 +264,7 @@ export const PreferSunnySolarSection: React.FC = () => {
           </h2>
 
           <p className="mt-2 sm:mt-3.5 text-xs sm:text-base lg:text-lg text-slate-600 font-medium max-w-4xl mx-auto leading-relaxed">
-            Delivering engineering excellence across Queensland — backed by Master Electricians, Tier-1 hardware, and thousands of verified five-star homeowners.
+            Delivering engineering excellence across Nationwide — backed by Master Electricians, Tier-1 hardware, and thousands of verified five-star homeowners.
           </p>
         </div>
 
@@ -840,7 +840,7 @@ export const PreferSunnySolarSection: React.FC = () => {
                   })}
                 </g>
 
-              
+
 
                 {/* Central High-Output Battery & Power Surge Core */}
                 <circle cx="80" cy="72" r="23" fill="url(#powerSurgeCoreGreen)" stroke="#D5E8CB" strokeWidth="1.2" />

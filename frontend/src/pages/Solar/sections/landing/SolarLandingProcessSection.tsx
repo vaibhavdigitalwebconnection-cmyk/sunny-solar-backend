@@ -32,7 +32,7 @@ export const SolarLandingProcessSection: React.FC = () => {
       icon: Smartphone,
       tag: 'Lifetime Monitoring',
       title: 'Testing, App Setup & Support',
-      desc: 'We commission the system, test output voltages, pair your smartphone telemetry app, and provide ongoing local Queensland support.',
+      desc: 'We commission the system, test output voltages, pair your smartphone telemetry app, and provide ongoing local Nationwide support.',
     },
   ];
 

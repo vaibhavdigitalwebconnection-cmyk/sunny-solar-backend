@@ -14,7 +14,7 @@ export const SolarLandingPage: React.FC = () => {
         <title>Residential Solar Systems & Installation | Sunny Solar</title>
         <meta
           name="description"
-          content="High-performance residential solar systems engineered for Queensland homes. Master Electrician installation, Tier-1 solar panels, and guaranteed energy savings."
+          content="High-performance residential solar systems engineered for Nationwide homes. Master Electrician installation, Tier-1 solar panels, and guaranteed energy savings."
         />
       </Helmet>
       <SolarLandingHeroSection />

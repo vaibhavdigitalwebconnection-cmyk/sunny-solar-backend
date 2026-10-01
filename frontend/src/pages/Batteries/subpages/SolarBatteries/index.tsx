@@ -12,7 +12,7 @@ export const SolarBatteriesPage: React.FC = () => {
         <title>Solar Battery Storage Options & Compatibility | Sunny Solar</title>
         <meta
           name="description"
-          content="Compare premium home battery storage systems. AC-coupled and DC-coupled storage options tailored for South East Queensland households."
+          content="Compare premium home battery storage systems. AC-coupled and DC-coupled storage options tailored for South East Nationwide households."
         />
       </Helmet>
       {/* 1. Page Header */}
@@ -28,7 +28,7 @@ export const SolarBatteriesPage: React.FC = () => {
         {/* 4. AS/NZS 5139 Battery Safety Standards Callout */}
         <SolarBatteriesSafetyStandardsSection />
 
-     
+
       </div>
     </div>
   );

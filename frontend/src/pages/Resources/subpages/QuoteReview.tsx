@@ -123,7 +123,7 @@ export const QuoteReviewPage: React.FC = () => {
               </div>
               <div className="flex items-start gap-3 text-xs sm:text-sm text-slate-700">
                 <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
-                <span><strong>Price-Per-Watt Benchmark:</strong> We compare your total price (before and after federal STC discounts) against actual South East Queensland market medians.</span>
+                <span><strong>Price-Per-Watt Benchmark:</strong> We compare your total price (before and after federal STC discounts) against actual South East Nationwide market medians.</span>
               </div>
               <div className="flex items-start gap-3 text-xs sm:text-sm text-slate-700">
                 <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />

@@ -248,8 +248,8 @@ export const CTASection: React.FC = () => {
                   >
                     <div
                       className={`group relative rounded-xl sm:rounded-2xl p-4.5 xs:p-6 sm:p-7 bg-white border transition-all duration-500 flex flex-col justify-between h-full ${isFirstVisible
-                          ? 'border-amber-300/90 shadow-md sm:shadow-xl shadow-amber-400/30 ring-1 ring-amber-300/40'
-                          : 'border-slate-200/90 shadow-xs hover:shadow-md hover:border-slate-300'
+                        ? 'border-amber-300/90 shadow-md sm:shadow-xl shadow-amber-400/30 ring-1 ring-amber-300/40'
+                        : 'border-slate-200/90 shadow-xs hover:shadow-md hover:border-slate-300'
                         }`}
                     >
                       {/* Card Top Row: Rating & Highlight Tag */}
@@ -316,8 +316,8 @@ export const CTASection: React.FC = () => {
                 key={dotIdx}
                 onClick={() => setCurrentIndex(dotIdx)}
                 className={`h-1.5 sm:h-2 rounded-full transition-all duration-300 cursor-pointer ${currentIndex === dotIdx
-                    ? 'w-6 sm:w-8 bg-amber-500'
-                    : 'w-2 bg-slate-200 hover:bg-slate-300'
+                  ? 'w-6 sm:w-8 bg-amber-500'
+                  : 'w-2 bg-slate-200 hover:bg-slate-300'
                   }`}
                 aria-label={`Go to slide ${dotIdx + 1}`}
               />
@@ -348,7 +348,7 @@ export const CTASection: React.FC = () => {
               {/* Eyebrow badge on CTA banner */}
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-[11px] sm:text-xs font-bold uppercase tracking-wider text-amber-300 bg-white/10 backdrop-blur-md border border-white/20 shadow-2xs mb-3.5 sm:mb-5">
                 <Sparkles className="w-3.5 h-3.5 text-amber-400" />
-                <span>Queensland's Trusted Solar Installers</span>
+                <span>Nationwide's Trusted Solar Installers</span>
               </div>
 
               <h3 className="text-2xl xs:text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-white tracking-tight leading-[1.2] sm:leading-tight">

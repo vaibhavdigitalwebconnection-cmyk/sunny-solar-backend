@@ -65,7 +65,7 @@ export const calculatorsPageData: Record<string, CalculatorPageData> = {
     seo: {
       title: 'Battery Savings & Peak Tariff Calculator | Sunny Solar',
       description:
-        'Estimate additional savings by storing daytime solar energy and avoiding peak grid tariff rates in South East Queensland.'
+        'Estimate additional savings by storing daytime solar energy and avoiding peak grid tariff rates in South East Nationwide.'
     },
     hero: {
       badge: 'Storage ROI',
@@ -216,7 +216,7 @@ export const calculatorsPageData: Record<string, CalculatorPageData> = {
       },
       title: 'Add Battery with Solar: 3 Property Checks That Guarantee Success',
       description:
-        'Wondering if your home can handle both solar and battery storage? Virtually all residential homes across Queensland are viable candidates. Here are the 3 technical aspects our team validates during your free site assessment:',
+        'Wondering if your home can handle both solar and battery storage? Virtually all residential homes across Nationwide are viable candidates. Here are the 3 technical aspects our team validates during your free site assessment:',
       features: [
         {
           bold: 'Switchboard Room & Safety Switches:',
@@ -277,7 +277,7 @@ export const calculatorsPageData: Record<string, CalculatorPageData> = {
       },
       title: 'Add Battery with Solar: The 33¢ Spread That Accelerates Payback',
       description:
-        'Feed-in tariffs in South East Queensland have fallen to ~5¢–7¢/kWh, while peak retail tariffs sit at 38¢–44¢/kWh. That means exporting 1 kWh of solar only earns you 5¢, but buying it back at 7 PM costs 38¢. Adding a battery captures that 33¢ spread every single day, keeping hundreds of dollars each quarter inside your family budget.',
+        'Feed-in tariffs in South East Nationwide have fallen to ~5¢–7¢/kWh, while peak retail tariffs sit at 38¢–44¢/kWh. That means exporting 1 kWh of solar only earns you 5¢, but buying it back at 7 PM costs 38¢. Adding a battery captures that 33¢ spread every single day, keeping hundreds of dollars each quarter inside your family budget.',
       metrics: [
         {
           label: 'Grid Export Return',
@@ -419,7 +419,7 @@ export const calculatorsPageData: Record<string, CalculatorPageData> = {
     seo: {
       title: 'Solar Savings Calculator | Sunny Solar',
       description:
-        'Calculate your estimated electricity bill savings with residential solar power in South East Queensland.'
+        'Calculate your estimated electricity bill savings with residential solar power in South East Nationwide.'
     },
     hero: {
       badge: 'Interactive Calculator',

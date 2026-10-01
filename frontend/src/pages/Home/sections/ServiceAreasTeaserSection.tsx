@@ -1,6 +1,6 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { motion, useScroll, useMotionValueEvent } from 'framer-motion';
+import { motion } from 'framer-motion';
 import {
   Sun,
   BatteryCharging,
@@ -159,21 +159,47 @@ export const ServiceAreasTeaserSection: React.FC = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
   const [activeCardIndex, setActiveCardIndex] = useState(0);
 
-  // Link scroll progress to active card index
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ['start start', 'end end'],
-  });
+  // Robust scroll tracking: supports both window scroll and Lenis
+  useEffect(() => {
+    const calculateProgress = () => {
+      if (!sectionRef.current) return;
+      const rect = sectionRef.current.getBoundingClientRect();
+      const windowHeight = window.innerHeight;
+      const totalScrollable = rect.height - windowHeight;
 
-  useMotionValueEvent(scrollYProgress, 'change', (latest) => {
-    // Map scroll percentage across the section's scroll duration to the 5 cards
-    const step = 1 / solutionCards.length;
-    const computedIndex = Math.min(
-      solutionCards.length - 1,
-      Math.max(0, Math.floor(latest / step))
-    );
-    setActiveCardIndex(computedIndex);
-  });
+      if (totalScrollable <= 0) return;
+
+      // Distance scrolled into the sticky section
+      const navbarOffset = 80;
+      const currentScroll = -(rect.top - navbarOffset);
+      const progress = Math.min(1, Math.max(0, currentScroll / totalScrollable));
+
+      const step = 1 / solutionCards.length;
+      const computedIndex = Math.min(
+        solutionCards.length - 1,
+        Math.max(0, Math.floor(progress / step))
+      );
+
+      setActiveCardIndex((prev) => (prev !== computedIndex ? computedIndex : prev));
+    };
+
+    calculateProgress();
+    window.addEventListener('scroll', calculateProgress, { passive: true });
+    window.addEventListener('resize', calculateProgress);
+
+    const lenis = (window as unknown as { __lenis?: { on: (event: string, cb: () => void) => void; off: (event: string, cb: () => void) => void } }).__lenis;
+    if (lenis) {
+      lenis.on('scroll', calculateProgress);
+    }
+
+    return () => {
+      window.removeEventListener('scroll', calculateProgress);
+      window.removeEventListener('resize', calculateProgress);
+      if (lenis) {
+        lenis.off('scroll', calculateProgress);
+      }
+    };
+  }, []);
 
   const handleNext = () => {
     setActiveCardIndex((prev) => Math.min(solutionCards.length - 1, prev + 1));
@@ -208,7 +234,7 @@ export const ServiceAreasTeaserSection: React.FC = () => {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
 
             {/* Left Column: Completely STATIC Section Heading, Copy & Action */}
-            <div className="lg:col-span-5 space-y-4 sm:space-y-5 flex flex-col items-center lg:items-start text-center lg:text-left  ">
+            <div className="lg:col-span-5 space-y-4 sm:space-y-5 flex flex-col items-center lg:items-start text-center lg:text-left">
               {/* Eyebrow */}
               <div className="inline-flex items-center gap-2 px-3 sm:px-3.5 py-1 sm:py-1.5 rounded-full text-[11px] sm:text-xs font-bold uppercase tracking-wider text-[#2B3CB8] bg-[#F5F7FD] border border-[#D1DCF8] shadow-2xs">
                 <span className="w-2 h-2 rounded-full bg-[#2B3CB8] animate-pulse" />
@@ -241,7 +267,7 @@ export const ServiceAreasTeaserSection: React.FC = () => {
                 </div>
                 <div className="flex items-center gap-2.5 text-xs sm:text-sm font-semibold text-slate-700">
                   <CheckCircle2 className="w-4 h-4 text-[#FF6854] shrink-0" />
-                  <span>25-year performance backing & local Queensland support</span>
+                  <span>25-year performance backing & local Nationwide support</span>
                 </div>
               </div>
 
@@ -252,11 +278,11 @@ export const ServiceAreasTeaserSection: React.FC = () => {
                   variant="primary"
                   size="md"
                   className="w-full xs:w-auto group relative overflow-hidden rounded-xl shadow-lg shadow-[#2B3CB8]/25 bg-[#2B3CB8] hover:bg-[#1D2984] text-white border-0 font-bold px-6 sm:px-7 py-3 sm:py-3.5 transition-all duration-300 hover:shadow-[#2B3CB8]/40 hover:-translate-y-0.5 justify-center min-h-11.5 sm:min-h-12"
-                  icon={
-                    <ArrowRight className="w-4 h-4 group-hover:translate-x-1.5 transition-transform duration-300" />
-                  }
+       
                 >
                   <span>Explore Our Solutions</span>
+                                      <ArrowRight className="w-4 h-4 group-hover:translate-x-1.5 transition-transform duration-300" />
+
                 </Button>
               </div>
             </div>
@@ -265,7 +291,7 @@ export const ServiceAreasTeaserSection: React.FC = () => {
             <div className="lg:col-span-7 relative w-full flex flex-col items-center">
 
               {/* Card Deck Overlay Stage */}
-              <div className="relative w-full max-w-md sm:max-w-lg lg:max-w-xl h-100 sm:h-112.5 lg:h-132">
+              <div className="relative w-full max-w-md sm:max-w-lg lg:max-w-xl h-[470px] sm:h-[490px] lg:h-[510px]">
                 {solutionCards.map((card, index) => {
                   const IconComponent = card.icon;
                   const isStacked = index < activeCardIndex;
@@ -273,35 +299,60 @@ export const ServiceAreasTeaserSection: React.FC = () => {
                   const isNextPeeking = index === activeCardIndex + 1;
                   const isHidden = index > activeCardIndex + 1;
 
-                  // Vertical offset when resting in the stacked deck
-                  // e.g. Card 0 -> 0px, Card 1 -> 44px, Card 2 -> 88px, etc.
+                  // Vertical offset in pixels when resting in the stacked deck
+                  // e.g. Card 0 -> 0px, Card 1 -> 42px, Card 2 -> 84px, etc.
                   const stackedTop = index * 42;
+
+                  // Integer pixel values for 100% reliable GPU-accelerated spring animations
+                  const targetY = isStacked || isActive
+                    ? stackedTop
+                    : isNextPeeking
+                      ? 415
+                      : 540;
+
+                  const targetScale = isActive
+                    ? 1
+                    : isStacked
+                      ? 1 - (activeCardIndex - index) * 0.02
+                      : 0.98;
+
+                  const targetZIndex = isActive
+                    ? 30
+                    : isStacked
+                      ? 10 + index
+                      : isNextPeeking
+                        ? 20
+                        : 5;
 
                   return (
                     <motion.div
                       key={card.id}
                       animate={{
-                        top: isStacked || isActive ? `${stackedTop}px` : isNextPeeking ? 'calc(100% - 68px)' : '110%',
+                        y: targetY,
                         opacity: isHidden ? 0 : 1,
-                        scale: isActive ? 1 : isStacked ? 1 : 0.98,
-                        zIndex: 10 + index,
+                        scale: targetScale,
+                        zIndex: targetZIndex,
                       }}
                       transition={{
                         type: 'spring',
-                        stiffness: 280,
-                        damping: 26,
+                        stiffness: 260,
+                        damping: 28,
+                        mass: 0.8,
                       }}
-                      className="absolute left-0 right-0"
-                      onClick={() => {
-                        // Clicking any stacked header or peeking card jumps to it
-                        if (!isActive) {
-                          setActiveCardIndex(index);
-                        }
-                      }}
+                      className="absolute inset-x-0 top-0 origin-top"
+                      style={{ willChange: 'transform, opacity' }}
                     >
                       <Link
                         to={card.link}
-                        className={`group block relative rounded-3xl sm:rounded-4xl p-6 sm:p-7 lg:p-8 h-85 sm:h-92.5 lg:h-97.5 shadow-2xl shadow-black transition-all duration-300 border cursor-pointer   ${card.colors.bg} ${card.colors.border} ${card.rotation}`}
+                        onClick={(e) => {
+                          // Clicking any stacked tab or peeking card activates it instead of navigating away
+                          if (!isActive) {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            setActiveCardIndex(index);
+                          }
+                        }}
+                        className={`group block relative rounded-3xl sm:rounded-4xl p-6 sm:p-7 lg:p-8 h-[370px] sm:h-[390px] lg:h-[400px] shadow-2xl shadow-black/20 transition-all duration-300 border cursor-pointer ${card.colors.bg} ${card.colors.border} ${card.rotation}`}
                         style={{
                           boxShadow:
                             '0 20px 45px -12px rgba(0, 0, 0, 0.28), 0 0 1px 1px rgba(255, 255, 255, 0.1)',
@@ -310,7 +361,7 @@ export const ServiceAreasTeaserSection: React.FC = () => {
                         {/* Top Header Row: Big Bold Number (01+) on left, Circular Icon Badge on right */}
                         <div className="flex items-start justify-between gap-4">
                           <span
-                            className={`text-5xl sm:text-6xl lg:text-7xl font-black font-sans tracking-tighter leading-none   ${card.colors.numberText}`}
+                            className={`text-5xl sm:text-6xl lg:text-7xl font-black font-sans tracking-tighter leading-none ${card.colors.numberText}`}
                           >
                             {card.displayNumber}
                           </span>
@@ -323,8 +374,9 @@ export const ServiceAreasTeaserSection: React.FC = () => {
 
                         {/* Bottom Content Area: Visible on the currently active card */}
                         <div
-                          className={`mt-auto pt-6 sm:pt-10 space-y-2.5 transition-opacity duration-300 ${isActive ? 'opacity-100' : 'opacity-0 pointer-events-none'
-                            }`}
+                          className={`mt-auto pt-6 sm:pt-8 space-y-2.5 transition-opacity duration-300 ${
+                            isActive ? 'opacity-100' : 'opacity-0 pointer-events-none'
+                          }`}
                         >
                           {/* Category Badge Tag */}
                           <div className="inline-block">
@@ -350,14 +402,13 @@ export const ServiceAreasTeaserSection: React.FC = () => {
                           </p>
 
                           {/* CTA Strip */}
-                          <div className="pt-1.5 flex items-center justify-between">
+                          <div className="pt-2 flex items-center justify-between">
                             <span
                               className={`inline-flex items-center gap-1.5 font-bold text-xs sm:text-sm px-3.5 py-1.5 rounded-lg transition-all duration-200 ${card.colors.ctaBg} ${card.colors.ctaText}`}
                             >
                               <span>{card.cta}</span>
                               <ArrowRight className="w-3.5 h-3.5 transition-transform duration-200 group-hover:translate-x-1" />
                             </span>
-
                           </div>
                         </div>
                       </Link>
@@ -366,7 +417,55 @@ export const ServiceAreasTeaserSection: React.FC = () => {
                 })}
               </div>
 
-             
+              {/* Interactive Card Navigation & Step Pills */}
+              <div className="mt-4 flex items-center justify-between w-full max-w-md sm:max-w-lg lg:max-w-xl px-2">
+                {/* Step Pills */}
+                <div className="flex items-center gap-1.5 sm:gap-2">
+                  {solutionCards.map((c, i) => (
+                    <button
+                      key={c.id}
+                      type="button"
+                      onClick={() => setActiveCardIndex(i)}
+                      aria-label={`Go to slide ${i + 1}`}
+                      className={`h-2.5 rounded-full transition-all duration-300 cursor-pointer ${
+                        activeCardIndex === i
+                          ? 'w-7 sm:w-8 bg-[#2B3CB8]'
+                          : 'w-2.5 bg-slate-300 hover:bg-slate-400'
+                      }`}
+                    />
+                  ))}
+                </div>
+
+                {/* Counter & Arrow Buttons */}
+                <div className="flex items-center gap-3">
+                  <span className="text-xs font-mono font-bold text-slate-500">
+                    0{activeCardIndex + 1} / 0{solutionCards.length}
+                  </span>
+
+                  <div className="flex items-center gap-1.5">
+                    <button
+                      type="button"
+                      onClick={handlePrev}
+                      disabled={activeCardIndex === 0}
+                      aria-label="Previous card"
+                      className="w-8 h-8 rounded-full bg-white border border-slate-200 text-slate-700 flex items-center justify-center shadow-xs transition-all cursor-pointer hover:bg-slate-50 disabled:opacity-30 disabled:cursor-not-allowed active:scale-95"
+                    >
+                      <ChevronLeft className="w-4 h-4" />
+                    </button>
+
+                    <button
+                      type="button"
+                      onClick={handleNext}
+                      disabled={activeCardIndex === solutionCards.length - 1}
+                      aria-label="Next card"
+                      className="w-8 h-8 rounded-full bg-white border border-slate-200 text-slate-700 flex items-center justify-center shadow-xs transition-all cursor-pointer hover:bg-slate-50 disabled:opacity-30 disabled:cursor-not-allowed active:scale-95"
+                    >
+                      <ChevronRight className="w-4 h-4" />
+                    </button>
+                  </div>
+                </div>
+              </div>
+
             </div>
 
           </div>

@@ -13,7 +13,7 @@ export const BlogPage: React.FC = () => {
         <title>Latest Solar News, Articles & Market Insights | Sunny Solar</title>
         <meta
           name="description"
-          content="Stay up to date with renewable industry updates, Queensland energy rebate news, and solar technology reviews."
+          content="Stay up to date with renewable industry updates, Nationwide energy rebate news, and solar technology reviews."
         />
       </Helmet>
       {/* 1. News & Market Analysis Hero */}

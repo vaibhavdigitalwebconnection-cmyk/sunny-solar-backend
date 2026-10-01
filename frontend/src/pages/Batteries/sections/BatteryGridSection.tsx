@@ -65,7 +65,7 @@ export const BatteryGridSection: React.FC = () => {
       badge: 'Storm & Disaster Resilience',
       badgeVariant: 'navy' as const,
       tagline: 'Sub-100ms whole-home emergency power supply & BOM storm tracking',
-      description: 'Severe Queensland summer storms regularly sever power transmission lines. Our automated Emergency Power Supply keeps your home running smoothly with zero downtime.',
+      description: 'Severe Nationwide summer storms regularly sever power transmission lines. Our automated Emergency Power Supply keeps your home running smoothly with zero downtime.',
       bullets: [
         'Sub-100 millisecond automatic grid isolation (computers & clocks never reboot)',
         'Option for Whole-Home Backup or protected Essential-Circuit sub-board',
@@ -119,7 +119,7 @@ export const BatteryGridSection: React.FC = () => {
             Our Battery Energy Storage Solutions
           </h2>
           <p className="mt-2.5 sm:mt-4 text-slate-600 text-xs xs:text-sm sm:text-base lg:text-lg leading-relaxed max-w-2xl mx-auto px-1 sm:px-0">
-            Whether you want to add storage to an existing solar setup, install a complete matched solar + battery bundle, or blackout-proof your home against Queensland storms, we have engineered solutions.
+            Whether you want to add storage to an existing solar setup, install a complete matched solar + battery bundle, or blackout-proof your home against Nationwide storms, we have engineered solutions.
           </p>
         </div>
 
@@ -133,8 +133,8 @@ export const BatteryGridSection: React.FC = () => {
                 type="button"
                 onClick={() => setActiveSlide(idx)}
                 className={`flex-1 py-2 px-1.5 text-center text-xs font-semibold rounded-lg transition-all cursor-pointer flex items-center justify-center gap-1 ${activeSlide === idx
-                    ? 'bg-white text-slate-950 shadow-xs font-bold'
-                    : 'text-slate-600 hover:text-slate-900'
+                  ? 'bg-white text-slate-950 shadow-xs font-bold'
+                  : 'text-slate-600 hover:text-slate-900'
                   }`}
               >
                 {item.isFeatured && (
@@ -162,8 +162,8 @@ export const BatteryGridSection: React.FC = () => {
                   <div key={idx} className="w-full shrink-0 px-0.5">
                     <div
                       className={`rounded-2xl p-5 xs:p-6 transition-all duration-300 flex flex-col justify-between relative min-h-120 ${sub.isFeatured
-                          ? 'bg-slate-950 text-white shadow-xl border-2 border-amber-500'
-                          : 'bg-white text-slate-900 border border-slate-200/90 shadow-2xs'
+                        ? 'bg-slate-950 text-white shadow-xl border-2 border-amber-500'
+                        : 'bg-white text-slate-900 border border-slate-200/90 shadow-2xs'
                         }`}
                     >
                       <div>
@@ -179,8 +179,8 @@ export const BatteryGridSection: React.FC = () => {
                         {/* Top Row: Icon & Badge */}
                         <div className="flex items-center justify-between gap-2 mb-4">
                           <div className={`w-12 h-12 rounded-xl flex items-center justify-center ${sub.isFeatured
-                              ? 'bg-amber-500/20 text-amber-400 border border-amber-400/30'
-                              : 'bg-emerald-500/10 text-emerald-600 border border-emerald-300/40'
+                            ? 'bg-amber-500/20 text-amber-400 border border-amber-400/30'
+                            : 'bg-emerald-500/10 text-emerald-600 border border-emerald-300/40'
                             }`}>
                             <Icon className="w-6 h-6" />
                           </div>
@@ -249,8 +249,8 @@ export const BatteryGridSection: React.FC = () => {
                   onClick={() => setActiveSlide(dotIdx)}
                   aria-label={`Go to slide ${dotIdx + 1}`}
                   className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${activeSlide === dotIdx
-                      ? 'w-6 bg-[#2B3CB8]'
-                      : 'w-2 bg-slate-300 hover:bg-slate-400'
+                    ? 'w-6 bg-[#2B3CB8]'
+                    : 'w-2 bg-slate-300 hover:bg-slate-400'
                     }`}
                 />
               ))}
@@ -295,8 +295,8 @@ export const BatteryGridSection: React.FC = () => {
               <div
                 key={idx}
                 className={`rounded-xl p-8 transition-all duration-300 flex flex-col justify-between relative ${sub.isFeatured
-                    ? 'bg-slate-950 text-white shadow-2xl border-2 border-amber-500 scale-100 lg:-translate-y-4'
-                    : 'bg-white text-slate-900 border border-slate-300/80 shadow-sm shadow-black/50 hover:shadow-xl hover:border-emerald-400'
+                  ? 'bg-slate-950 text-white shadow-2xl border-2 border-amber-500 scale-100 lg:-translate-y-4'
+                  : 'bg-white text-slate-900 border border-slate-300/80 shadow-sm shadow-black/50 hover:shadow-xl hover:border-emerald-400'
                   }`}
               >
                 {sub.isFeatured && (
@@ -312,8 +312,8 @@ export const BatteryGridSection: React.FC = () => {
                   {/* Top Row: Icon & Badge */}
                   <div className="flex items-center justify-between gap-2 mb-6">
                     <div className={`w-14 h-14 rounded-2xl flex items-center justify-center ${sub.isFeatured
-                        ? 'bg-amber-500/20 text-amber-400 border border-amber-400/30'
-                        : 'bg-emerald-500/10 text-emerald-600 border border-emerald-300/40'
+                      ? 'bg-amber-500/20 text-amber-400 border border-amber-400/30'
+                      : 'bg-emerald-500/10 text-emerald-600 border border-emerald-300/40'
                       }`}>
                       <Icon className="w-7 h-7" />
                     </div>

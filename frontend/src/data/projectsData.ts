@@ -183,7 +183,7 @@ export const projectsData: Project[] = [
     slug: 'brisbane-family-home-paddington',
     title: 'Character Cottage 8.8kW Solar & Sungrow SBR Battery',
     category: 'Residential',
-    location: 'Paddington, Brisbane, QLD',
+    location: 'Paddington, australia QLD',
     systemSize: '8.8 kW',
     panels: '20x AIKO Neostar 2S+ 440W All-Black N-Type',
     inverter: 'Sungrow SH6.0RS Hybrid Inverter',
@@ -206,7 +206,7 @@ export const projectsData: Project[] = [
       },
       {
         url: '/images/projects/sunny-boy-inverter.webp',
-        caption: 'Compact Sungrow hybrid inverter & modular high-voltage battery tucked under Queenslander sub-floor',
+        caption: 'Compact Sungrow hybrid inverter & modular high-voltage battery tucked under Nationwideer sub-floor',
         tag: 'Hybrid Battery',
       },
       {
@@ -219,7 +219,7 @@ export const projectsData: Project[] = [
       'A heritage tin-and-timber home with roof pitching and shading constraints. Micro-inverter architecture was paired with premium N-Type panels to maximize production even during partial morning shade from neighboring jacaranda trees.',
     challengeSolution: {
       challenge:
-      
+
         'Steep 34-degree corrugated iron roof with heritage building covenants and mature jacaranda trees casting intermittent shade.',
       solution:
         'Utilized ultra-high efficiency AIKO partial-shading resistant cells and specialized sub-floor battery mounting to keep hardware invisible from street level.',
@@ -231,7 +231,7 @@ export const projectsData: Project[] = [
       suburb: 'Paddington',
     },
     highlights: [
-      'Preserved architectural integrity of 1920s Queenslander',
+      'Preserved architectural integrity of 1920s Nationwideer',
       'Panel-level monitoring via individual optimizers',
       'Sungrow hybrid battery powers fridge and lights during storms',
       'Payback timeframe estimated at just 3.8 years',

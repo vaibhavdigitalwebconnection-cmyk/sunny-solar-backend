@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Plus, Minus, HelpCircle, ArrowRight } from 'lucide-react';
 import { CursorCard } from '@/components/ui/CursorCard';
+import { Reveal } from '../components/Reveal';
+import { AnimatedCard } from '../components/AnimatedCard';
 
 interface FAQ {
   question: string;
@@ -72,17 +74,21 @@ export const FAQSection: React.FC = () => {
 
           {/* Left Column: Heading, Search Bar & Accordions */}
           <div className="lg:col-span-7 flex flex-col justify-center">
-            {/* Eyebrow */}
-            <div className="inline-flex items-center gap-2 px-3 sm:px-3.5 py-1 sm:py-1.5 rounded-full text-[11px] sm:text-xs font-bold uppercase tracking-wider text-[#2B3CB8] bg-[#F5F7FD] border border-[#D1DCF8] shadow-2xs mb-3 self-center md:self-start">
-              <HelpCircle className="w-3.5 h-3.5 text-[#2B3CB8]" />
-              <span>FREQUENTLY ASKED QUESTIONS</span>
-            </div>
+            {/* Eyebrow (from TOP) */}
+            <Reveal direction="down">
+              <div className="inline-flex items-center gap-2 px-3 sm:px-3.5 py-1 sm:py-1.5 rounded-full text-[11px] sm:text-xs font-bold uppercase tracking-wider text-[#2B3CB8] bg-[#F5F7FD] border border-[#D1DCF8] shadow-2xs mb-3 self-center md:self-start">
+                <HelpCircle className="w-3.5 h-3.5 text-[#2B3CB8]" />
+                <span>FREQUENTLY ASKED QUESTIONS</span>
+              </div>
+            </Reveal>
 
-            {/* Main Headline */}
-            <h2 className="text-2xl xs:text-3xl sm:text-4xl lg:text-5xl text-center md:text-left font-serif font-extrabold text-[#232d4b] tracking-tight leading-[1.18] sm:leading-[1.15] mb-6 sm:mb-8">
-              Frequently Asked <br className="hidden sm:inline" />
-              <span className="text-[#2B3CB8]">Questions</span>
-            </h2>
+            {/* Main Headline (from LEFT) */}
+            <Reveal direction="left" delay={0.1}>
+              <h2 className="text-2xl xs:text-3xl sm:text-4xl lg:text-5xl text-center md:text-left font-serif font-extrabold text-[#232d4b] tracking-tight leading-[1.18] sm:leading-[1.15] mb-6 sm:mb-8">
+                Frequently Asked <br className="hidden sm:inline" />
+                <span className="text-[#2B3CB8]">Questions</span>
+              </h2>
+            </Reveal>
 
             {/* Accordion Questions List */}
             <div className="divide-y divide-slate-200/80 border-t border-b border-slate-200/80">

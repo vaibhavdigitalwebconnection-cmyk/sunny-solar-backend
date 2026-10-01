@@ -9,6 +9,8 @@ import {
 
 } from 'lucide-react';
 import { Button } from '../../../components/ui/Button';
+import { Reveal } from '../components/Reveal';
+import { AnimatedCard } from '../components/AnimatedCard';
 
 interface SlideItem {
   id: number;
@@ -43,7 +45,7 @@ const SLIDES: SlideItem[] = [
   {
     id: 3,
     badge: 'Master Electrician Quality',
-    title: 'Built to outperform Queensland heat',
+    title: 'Built to outperform Nationwide heat',
     description:
       'Tier-1 bifacial panels, high-efficiency hybrid inverters, and cyclone-rated mounting hardware installed by licensed SAA master electricians with zero roof-leak guarantee.',
     buttonText: 'View Our Systems',
@@ -59,7 +61,7 @@ const SLIDES: SlideItem[] = [
     badge: 'Proven Track Record',
     title: 'Real energy savings for 4,200+ homes',
     description:
-      'Serving Brisbane, Gold Coast, and the Sunshine Coast with transparent advice, zero pressure, and customized 3D solar designs that maximize annual household return.',
+      'Serving australia Gold Coast, and the Sunshine Coast with transparent advice, zero pressure, and customized 3D solar designs that maximize annual household return.',
     buttonText: 'Calculate Your Savings',
     buttonLink: '/calculators/solar-savings',
     image: '/images/projects/dji-aerial-solar.webp',
@@ -121,34 +123,43 @@ export const ServicesOverviewSection: React.FC = () => {
 
           {/* Left Column: Story & Information */}
           <div className="order-2 lg:order-1 lg:col-span-6 space-y-3">
-            {/* Eyebrow Pill Badge */}
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider text-[#2B3CB8] bg-[#F5F7FD] border border-[#ED4F11] shadow-2xs">
+            {/* Eyebrow Pill Badge (from TOP) */}
+            <Reveal direction="down">
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider text-[#2B3CB8] bg-[#F5F7FD] border border-[#ED4F11] shadow-2xs">
+                <Sun className="w-3.5 h-3.5 text-[#ED4F11]" />
+                <span>About Sunny Solar • Est. 2011</span>
+              </div>
+            </Reveal>
 
-              <Sun className="w-3.5 h-3.5 text-[#ED4F11]" />
-              <span>About Sunny Solar • Est. 2011</span>
-            </div>
+            {/* Main Headline (from LEFT) */}
+            <Reveal direction="left" delay={0.1}>
+              <h2 className="text-2xl sm:text-4xl lg:text-4xl text-center md:text-left font-serif font-bold text-[#18181b] tracking-tight leading-[1.15]">
+                Solar Is More Than Panels. <br />
+                <span className="text-[#2B3CB8]">
+                  It’s About Making the Right Energy Decision.
+                </span>
+              </h2>
+            </Reveal>
 
-            {/* Main Headline */}
-            <h2 className="text-2xl sm:text-4xl lg:text-4xl text-center md:text-left font-serif font-bold text-[#18181b] tracking-tight leading-[1.15]">
-              Solar Is More Than Panels. <br />
-              <span className="text-[#2B3CB8]">
-                It’s About Making the Right Energy Decision.
-              </span>
-            </h2>
+            {/* Narrative Story (from RIGHT) */}
+            <Reveal direction="right" delay={0.2}>
+              <div className="space-y-2 text-slate-600 text-justify text-base leading-relaxed">
+                <p>
+                  Solar is a major investment. Sunny Solar believes you should understand your options before you commit.
+                </p>
+                <p className="text-justify">
+                  From choosing the right solar system and battery to understanding your savings and existing system performance, we give you practical advice built around your energy needs.
+                </p>
+              </div>
+            </Reveal>
 
-            {/* Narrative Story */}
-            <div className="space-y-2 text-slate-600 text-justify text-base leading-relaxed">
-              <p>
-                Solar is a major investment. Sunny Solar believes you should understand your options before you commit.
-              </p>
-              <p className="text-justify">
-                From choosing the right solar system and battery to understanding your savings and existing system performance, we give you practical advice built around your energy needs.
-              </p>
-            </div>
-
-            {/* Trust Highlights */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 ">
-              <div className="p-3.5 rounded-xl bg-slate-50 border border-[#EF680C] flex items-start gap-3">
+            {/* Trust Highlights (staggered animated cards) */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <AnimatedCard
+                direction="left"
+                index={0}
+                className="p-3.5 rounded-xl bg-slate-50 border border-[#EF680C] flex items-start gap-3"
+              >
                 <div className="w-8 h-8 rounded-lg bg-[#2B3CB8]/10 text-[#ED4F11] flex items-center justify-center shrink-0 mt-0.5">
                   <ShieldCheck className="w-4 h-4" />
                 </div>
@@ -156,47 +167,52 @@ export const ServicesOverviewSection: React.FC = () => {
                   <h4 className="text-xs font-bold text-slate-900">25-Year Warranty</h4>
                   <p className="text-[11px] text-slate-500">Tier-1 certified panels & SAA master installers</p>
                 </div>
-              </div>
+              </AnimatedCard>
 
-              <div className="p-3.5 rounded-xl bg-[#F5F7FD] border border-[#EF680C] flex items-start gap-3">
+              <AnimatedCard
+                direction="right"
+                index={1}
+                className="p-3.5 rounded-xl bg-[#F5F7FD] border border-[#EF680C] flex items-start gap-3"
+              >
                 <div className="w-8 h-8 rounded-lg bg-[#2B3CB8] text-white flex items-center justify-center shrink-0 mt-0.5">
                   <Sparkles className="w-4 h-4" />
                 </div>
                 <div>
                   <h4 className="text-xs font-bold text-[#0C123E]">Tailored Solar Engineering</h4>
-                  <p className="text-[11px] text-slate-600">3D roof modeling for peak Queensland generation</p>
+                  <p className="text-[11px] text-slate-600">3D roof modeling for peak Nationwide generation</p>
                 </div>
+              </AnimatedCard>
+            </div>
+
+            {/* Action Buttons (from BOTTOM) */}
+            <Reveal direction="up" delay={0.3}>
+              <div className="pt-2 flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4">
+                <Button
+                  to="/about"
+                  variant="primary"
+                  size="md"
+                  className="w-full sm:w-auto rounded-lg shadow-lg shadow-[#2B3CB8]/20 bg-[#1D2984] text-white border-0 font-bold px-6 py-3 transition-all duration-300 hover:shadow-[#2B3CB8]/35 hover:-translate-y-0.5"
+                  icon={<ArrowRight className="w-4 h-4" />}
+                >
+                  Explore Your Solar Options
+                </Button>
+
+                <a
+                  href="tel:1300030479"
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-6 py-2.5 rounded-lg bg-[#366A23] hover:bg-[#15803d] text-white font-bold text-sm shadow-lg shadow-[#16a34a]/30 hover:shadow-xl hover:shadow-[#16a34a]/40 border border-[#22c55e]/40 transition-all duration-300 hover:-translate-y-0.5"
+                >
+                  <div className="w-6 h-6 rounded-md bg-white/20 flex items-center justify-center text-white">
+                    <Phone className="w-3.5 h-3.5" />
+                  </div>
+                  <span>Call Us: <span className="font-extrabold text-white">1300 030 479</span></span>
+                </a>
               </div>
-            </div>
-
-            {/* Action Buttons */}
-            <div className="pt-2 flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4">
-              <Button
-                to="/about"
-                variant="primary"
-                size="md"
-                className="w-full sm:w-auto rounded-lg shadow-lg shadow-[#2B3CB8]/20 bg-[#d35b0c] hover:bg-[#1D2984] text-white border-0 font-bold px-6 py-3 transition-all duration-300 hover:shadow-[#2B3CB8]/35 hover:-translate-y-0.5"
-                icon={<ArrowRight className="w-4 h-4" />}
-              >
-                Explore Your Solar Options
-              </Button>
-
-              <a
-                href="tel:1300030479"
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-6 py-2.5 rounded-lg bg-[#16a34a] hover:bg-[#15803d] text-white font-bold text-sm shadow-lg shadow-[#16a34a]/30 hover:shadow-xl hover:shadow-[#16a34a]/40 border border-[#22c55e]/40 transition-all duration-300 hover:-translate-y-0.5"
-              >
-                <div className="w-6 h-6 rounded-md bg-white/20 flex items-center justify-center text-white">
-                  <Phone className="w-3.5 h-3.5" />
-                </div>
-                <span>Call Us: <span className="font-extrabold text-white">1300 030 479</span></span>
-              </a>
-            </div>
-
-
+            </Reveal>
           </div>
 
-          {/* Right Column: WaveRun Media Style Horizontal Shutter / Blind Animated Card */}
+          {/* Right Column: WaveRun Media Style Showcase Card */}
           <div className="order-1 lg:order-2 lg:col-span-6 relative flex items-center justify-center py-4 sm:py-6">
+            <Reveal direction="right" delay={0.2} className="w-full">
 
             {/* Luminous Ambient Halo */}
             <div className="absolute w-72 sm:w-96 h-72 sm:h-96  -z-10 pointer-events-none" />
@@ -251,6 +267,7 @@ export const ServicesOverviewSection: React.FC = () => {
               </div>
 
             </div>
+            </Reveal>
 
           </div>
 

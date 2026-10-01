@@ -12,7 +12,7 @@ export const ProjectsPage: React.FC = () => {
         <title>Completed Solar & Battery Installations | Sunny Solar</title>
         <meta
           name="description"
-          content="View real residential solar and battery installations across Gold Coast, Brisbane, and Sunshine Coast with verified specs and photos."
+          content="View real residential solar and battery installations across Gold Coast, australia and Sunshine Coast with verified specs and photos."
         />
       </Helmet>
       <ProjectsHeroSection />

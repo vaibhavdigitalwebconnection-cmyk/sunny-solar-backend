@@ -1,14 +1,14 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { 
-  ArrowRight, 
-  BatteryCharging, 
-  ShieldCheck, 
-  Zap, 
-  Award, 
-  Calculator, 
-  Sun, 
-  CheckCircle2, 
+import {
+  ArrowRight,
+  BatteryCharging,
+  ShieldCheck,
+  Zap,
+  Award,
+  Calculator,
+  Sun,
+  CheckCircle2,
   Activity,
   CloudRain
 } from 'lucide-react';
@@ -36,10 +36,10 @@ export const BatteriesHeroSection: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-6 relative z-10">
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center mt-6">
-          
+
           {/* Content Column (Bottom on mobile, Left on desktop) */}
           <div className="order-2 lg:order-1 lg:col-span-7 space-y-4 sm:space-y-6 text-center lg:text-left flex flex-col items-center lg:items-start">
-            
+
             {/* Top Eyebrow Badge */}
             <div className="inline-flex items-center gap-2 px-3 sm:px-3.5 py-1 sm:py-1.5 rounded-full text-[11px] sm:text-xs font-bold uppercase tracking-wider text-[#2B3CB8] bg-[#F5F7FD] border border-[#D1DCF8] shadow-2xs max-w-full">
               <span className="w-2 h-2 rounded-full bg-[#2B3CB8] animate-pulse shrink-0" />
@@ -67,7 +67,7 @@ export const BatteriesHeroSection: React.FC = () => {
               transition={{ duration: 0.4, delay: 0.15 }}
               className="text-xs xs:text-sm sm:text-base text-slate-600 leading-relaxed max-w-xl mx-auto lg:mx-0"
             >
-              Retailers pay just 3¢ to 5¢ for daytime solar export, but charge up to 45¢/kWh the moment the sun sets. A home battery stores your solar surplus to eliminate peak evening power bills and protect your household when Queensland storms knock out the grid.
+              Retailers pay just 3¢ to 5¢ for daytime solar export, but charge up to 45¢/kWh the moment the sun sets. A home battery stores your solar surplus to eliminate peak evening power bills and protect your household when Nationwide storms knock out the grid.
             </motion.p>
 
             {/* Primary Action Buttons */}
@@ -97,7 +97,7 @@ export const BatteriesHeroSection: React.FC = () => {
               </Button>
             </motion.div>
 
-        
+
           </div>
 
           {/* Image Column (Top on mobile, Right on desktop) */}
@@ -116,7 +116,7 @@ export const BatteriesHeroSection: React.FC = () => {
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
               />
               <div className="absolute inset-0 bg-linear-to-t from-slate-950/85 via-slate-950/20 to-transparent" />
-              
+
               {/* Top Floating Badge */}
               <div className="absolute top-4 left-4 flex items-center gap-2 bg-slate-900/80 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/20 text-white text-xs font-semibold z-20">
                 <span className="w-2 h-2 rounded-full bg-[#2B3CB8] animate-ping" />

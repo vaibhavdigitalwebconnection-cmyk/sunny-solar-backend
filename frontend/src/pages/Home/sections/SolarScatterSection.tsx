@@ -87,7 +87,7 @@ const solarCategories: SolarCategory[] = [
     label: 'QLD Weather Rated',
     icon: ShieldCheck,
     data: {
-      tag: 'ENGINEERED FOR QUEENSLAND',
+      tag: 'ENGINEERED FOR Nationwide',
       heading: 'Built For Coastal Heat & Severe Weather',
       subtitle:
         'Heavy-duty anodised aluminium framing and corrosion-resistant hardware engineered to endure 25+ years of Gold Coast sunshine.',
@@ -120,7 +120,7 @@ export const SolarScatterSection: React.FC = () => {
           </h2>
 
           <p className="mt-3.5 text-sm sm:text-base lg:text-lg text-neutral-800 font-medium max-w-5xl mx-auto leading-relaxed">
-            From precision rooftop panel orientation to lithium backup integration, explore the engineering behind Queensland’s highest-rated solar installations.
+            From precision rooftop panel orientation to lithium backup integration, explore the engineering behind Nationwide highest-rated solar installations.
           </p>
 
           {/* Interactive Feature Pills */}
@@ -134,8 +134,8 @@ export const SolarScatterSection: React.FC = () => {
                   type="button"
                   onClick={() => setActiveCategoryIndex(idx)}
                   className={`inline-flex items-center gap-1.5 px-3.5 sm:px-4 py-1.5 rounded-full text-xs sm:text-sm font-semibold transition-all cursor-pointer ${isActive
-                      ? 'bg-[#ED4F11] text-white shadow-sm'
-                      : 'bg-white text-black border border-[#ED4F11] hover:border-black'
+                    ? 'bg-[#2B3CB8] text-white shadow-sm'
+                    : 'bg-white text-black border border-[#ED4F11] hover:border-black'
                     }`}
                 >
                   <Icon className="w-3.5 h-3.5" />

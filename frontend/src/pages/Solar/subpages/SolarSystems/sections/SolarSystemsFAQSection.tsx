@@ -10,7 +10,7 @@ export const SolarSystemsFAQSection: React.FC = () => {
   const faqs = [
     {
       q: 'How many kilowatts (kW) of solar does an average home actually need?',
-      a: 'For a typical 3-4 bedroom Queensland home with ducted air conditioning or a pool, a 10.0kW to 13.2kW panel array paired with an 8kW or 10kW inverter delivers the strongest ROI. Even on overcast days or during winter, a larger array ensures your home stays powered without drawing expensive grid electricity.',
+      a: 'For a typical 3-4 bedroom Nationwide home with ducted air conditioning or a pool, a 10.0kW to 13.2kW panel array paired with an 8kW or 10kW inverter delivers the strongest ROI. Even on overcast days or during winter, a larger array ensures your home stays powered without drawing expensive grid electricity.',
     },
     {
       q: 'What is the difference between single-phase and three-phase solar?',
@@ -26,7 +26,7 @@ export const SolarSystemsFAQSection: React.FC = () => {
     },
     {
       q: 'How much will I receive for feeding excess electricity back into the grid?',
-      a: 'Feed-in tariffs in South East Queensland typically range from 5c to 10c per kWh depending on your electricity retailer. Because buying grid power costs 32c+ per kWh, the highest return on investment comes from consuming your own power (self-consumption) or storing it in a battery rather than exporting it.',
+      a: 'Feed-in tariffs in South East Nationwide typically range from 5c to 10c per kWh depending on your electricity retailer. Because buying grid power costs 32c+ per kWh, the highest return on investment comes from consuming your own power (self-consumption) or storing it in a battery rather than exporting it.',
     },
   ];
 
@@ -39,7 +39,7 @@ export const SolarSystemsFAQSection: React.FC = () => {
             Frequently Asked Questions About Solar Sizing
           </h2>
           <p className="mt-2.5 sm:mt-3 text-slate-600 text-xs sm:text-sm md:text-base leading-relaxed max-w-2xl mx-auto px-1 sm:px-0">
-            Everything you need to know about Queensland connection limits, sizing, and warranties.
+            Everything you need to know about Nationwide connection limits, sizing, and warranties.
           </p>
         </div>
 

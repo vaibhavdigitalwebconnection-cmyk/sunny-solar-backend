@@ -52,7 +52,7 @@ const categoryConfig: Record<
     icon: Sun,
     accentColor: 'amber',
     proTip:
-      'Under AS/NZS 5033 and Clean Energy Council guidelines, you can oversize panel capacity by up to 133% of your inverter AC rating (e.g. 8.8kW of panels on a 6.6kW inverter). This ensures full harvest earlier in the morning and sustains yield through cloudy Queensland weather.',
+      'Under AS/NZS 5033 and Clean Energy Council guidelines, you can oversize panel capacity by up to 133% of your inverter AC rating (e.g. 8.8kW of panels on a 6.6kW inverter). This ensures full harvest earlier in the morning and sustains yield through cloudy Nationwide weather.',
     standardRef: 'AS/NZS 5033:2021 Installation Standard',
   },
   Batteries: {
@@ -84,7 +84,7 @@ const categoryConfig: Record<
     icon: Cpu,
     accentColor: 'slate',
     proTip:
-      'In hot Australian summers where roof temperatures exceed 65°C, N-Type TOPCon panels (-0.26%/°C) lose significantly less power than older P-Type PERC panels (-0.38%/°C). Over a full year, this yields 8-12% higher real-world energy harvest in sunny Queensland.',
+      'In hot Australian summers where roof temperatures exceed 65°C, N-Type TOPCon panels (-0.26%/°C) lose significantly less power than older P-Type PERC panels (-0.38%/°C). Over a full year, this yields 8-12% higher real-world energy harvest in sunny Nationwide.',
     standardRef: 'IEC 61215 & IEC 61730 Photovoltaic Testing Standards',
   },
 };
@@ -730,7 +730,7 @@ export const KnowledgeDetailPage: React.FC = () => {
                 Need Help Applying This To Your Roof?
               </h3>
               <p className="mt-2 text-xs text-amber-50 leading-relaxed">
-                Get an independent 3D solar layout and battery sizing calculation custom-engineered for your Queensland home.
+                Get an independent 3D solar layout and battery sizing calculation custom-engineered for your Nationwide home.
               </p>
 
               <div className="mt-5 space-y-2.5">

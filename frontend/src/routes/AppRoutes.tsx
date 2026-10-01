@@ -1,6 +1,5 @@
 import React, { Suspense, lazy } from 'react';
 import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
-import { AnimatePresence, motion } from 'framer-motion';
 
 // Lazy-loaded Pages for Route Code-Splitting & Optimized Chunking
 const HomePage = lazy(() => import('../pages/Home'));
@@ -72,20 +71,138 @@ const RouteFallback: React.FC = () => (
   </div>
 );
 
+// Route preloader helper to warm lazy bundles on hover
+export const preloadRoute = (path: string) => {
+  const cleanPath = path.split('?')[0].split('#')[0];
+  switch (cleanPath) {
+    case '/solar':
+      import('../pages/Solar/SolarLandingPage');
+      break;
+    case '/solar/systems':
+      import('../pages/Solar/subpages/SolarSystems');
+      break;
+    case '/solar/installation':
+      import('../pages/Solar/subpages/SolarInstallation');
+      break;
+    case '/solar/upgrades':
+      import('../pages/Solar/subpages/SolarUpgrades');
+      break;
+    case '/batteries':
+      import('../pages/Batteries/BatteriesLandingPage');
+      break;
+    case '/batteries/solar-batteries':
+      import('../pages/Batteries/subpages/SolarBatteries');
+      break;
+    case '/batteries/solar-plus-battery':
+      import('../pages/Batteries/subpages/SolarPlusBattery');
+      break;
+    case '/batteries/battery-backup':
+      import('../pages/Batteries/subpages/BatteryBackup');
+      break;
+    case '/existing-solar':
+      import('../pages/ExistingSolar');
+      break;
+    case '/existing-solar/health-check':
+      import('../pages/ExistingSolar/subpages/HealthCheck');
+      break;
+    case '/existing-solar/savings':
+      import('../pages/ExistingSolar/subpages/Savings');
+      break;
+    case '/existing-solar/upgrade':
+      import('../pages/ExistingSolar/subpages/Upgrade');
+      break;
+    case '/existing-solar/add-battery':
+      import('../pages/ExistingSolar/subpages/AddBattery');
+      break;
+    case '/calculators':
+      import('../pages/Calculators');
+      break;
+    case '/calculators/solar-savings':
+      import('../pages/Calculators/subpages/SolarSavings');
+      break;
+    case '/calculators/system-size':
+      import('../pages/Calculators/subpages/SystemSize');
+      break;
+    case '/calculators/payback':
+      import('../pages/Calculators/subpages/Payback');
+      break;
+    case '/calculators/battery-savings':
+      import('../pages/Calculators/subpages/BatterySavings');
+      break;
+    case '/calculators/battery-size':
+      import('../pages/Calculators/subpages/BatterySize');
+      break;
+    case '/calculators/quote-comparison':
+      import('../pages/Calculators/subpages/QuoteComparison');
+      break;
+    case '/calculators/savings-so-far':
+      import('../pages/Calculators/subpages/SavingsSoFar');
+      break;
+    case '/calculators/is-solar-right-for-me':
+      import('../pages/Calculators/subpages/IsSolarRight');
+      break;
+    case '/learn/knowledge-hub':
+    case '/learn/knowledge':
+    case '/knowledge-hub':
+    case '/knowledge':
+      import('../pages/Learn/KnowledgeHub');
+      break;
+    case '/learn/blog':
+    case '/blog':
+      import('../pages/Learn/Blog');
+      break;
+    case '/projects':
+      import('../pages/Projects/ProjectsPage');
+      break;
+    case '/reviews':
+      import('../pages/Reviews/ReviewsPage');
+      break;
+    case '/about':
+      import('../pages/About/AboutPage');
+      break;
+    case '/about/trent':
+      import('../pages/About/TrentBioPage');
+      break;
+    case '/service-areas':
+      import('../pages/ServiceAreas/ServiceAreasPage');
+      break;
+    case '/resources':
+      import('../pages/Resources');
+      break;
+    case '/resources/buying-checklist':
+      import('../pages/Resources/subpages/BuyingChecklist');
+      break;
+    case '/resources/buyer-guide':
+      import('../pages/Resources/subpages/BuyerGuide');
+      break;
+    case '/resources/battery-decision-guide':
+      import('../pages/Resources/subpages/BatteryDecisionGuide');
+      break;
+    case '/resources/quote-review':
+      import('../pages/Resources/subpages/QuoteReview');
+      break;
+    case '/resources/electricity-bill-review':
+      import('../pages/Resources/subpages/ElectricityBillReview');
+      break;
+    case '/faq':
+      import('../pages/FAQ/FAQPage');
+      break;
+    case '/get-started':
+    case '/get-started/free-assessment':
+    case '/contact':
+      import('../pages/GetStarted/FreeAssessmentPage');
+      break;
+    default:
+      break;
+  }
+};
+
 export const AppRoutes: React.FC = () => {
   const location = useLocation();
 
   return (
-    <AnimatePresence mode="wait">
-      <motion.div
-        key={location.pathname}
-        initial={{ opacity: 0, y: 8 }}
-        animate={{ opacity: 1, y: 0 }}
-        exit={{ opacity: 0, y: -8 }}
-        transition={{ duration: 0.2, ease: [0.25, 1, 0.5, 1] }}
-      >
-        <Suspense fallback={<RouteFallback />}>
-          <Routes location={location}>
+    <Suspense fallback={<RouteFallback />}>
+      <Routes location={location} key={location.pathname}>
             {/* 1. Home */}
             <Route path="/" element={<HomePage />} />
 
@@ -178,10 +295,8 @@ export const AppRoutes: React.FC = () => {
             {/* 404 Catch All */}
             <Route path="*" element={<NotFoundPage />} />
           </Routes>
-        </Suspense>
-      </motion.div>
-    </AnimatePresence>
-  );
-};
+      </Suspense>
+    );
+  };
 
 export default AppRoutes;

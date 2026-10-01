@@ -233,11 +233,10 @@ export const SavingsOptimizationSection: React.FC = () => {
           <button
             type="button"
             onClick={() => setActiveSlide(0)}
-            className={`flex-1 py-2 px-3 rounded-lg text-xs font-bold transition-all flex items-center justify-center gap-1.5 cursor-pointer ${
-              activeSlide === 0
+            className={`flex-1 py-2 px-3 rounded-lg text-xs font-bold transition-all flex items-center justify-center gap-1.5 cursor-pointer ${activeSlide === 0
                 ? 'bg-rose-500 text-white shadow-xs'
                 : 'text-slate-600 hover:text-slate-900'
-            }`}
+              }`}
           >
             <AlertTriangle className="w-3.5 h-3.5" />
             <span>Unmonitored Leak</span>
@@ -245,11 +244,10 @@ export const SavingsOptimizationSection: React.FC = () => {
           <button
             type="button"
             onClick={() => setActiveSlide(1)}
-            className={`flex-1 py-2 px-3 rounded-lg text-xs font-bold transition-all flex items-center justify-center gap-1.5 cursor-pointer ${
-              activeSlide === 1
+            className={`flex-1 py-2 px-3 rounded-lg text-xs font-bold transition-all flex items-center justify-center gap-1.5 cursor-pointer ${activeSlide === 1
                 ? 'bg-emerald-600 text-white shadow-xs'
                 : 'text-slate-600 hover:text-slate-900'
-            }`}
+              }`}
           >
             <CheckCircle className="w-3.5 h-3.5" />
             <span>Calibrated Setup</span>
@@ -289,17 +287,15 @@ export const SavingsOptimizationSection: React.FC = () => {
               type="button"
               onClick={() => setActiveSlide(0)}
               aria-label="View unmonitored system"
-              className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
-                activeSlide === 0 ? 'w-6 bg-rose-500' : 'w-2 bg-slate-300'
-              }`}
+              className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${activeSlide === 0 ? 'w-6 bg-rose-500' : 'w-2 bg-slate-300'
+                }`}
             />
             <button
               type="button"
               onClick={() => setActiveSlide(1)}
               aria-label="View calibrated setup"
-              className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
-                activeSlide === 1 ? 'w-6 bg-emerald-600' : 'w-2 bg-slate-300'
-              }`}
+              className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${activeSlide === 1 ? 'w-6 bg-emerald-600' : 'w-2 bg-slate-300'
+                }`}
             />
           </div>
 
@@ -339,7 +335,7 @@ export const SavingsOptimizationSection: React.FC = () => {
       {/* Visual Diagnostic Banner with Photo & 4 Small Diagnostic Test Containers */}
       <div className="bg-white rounded-xl sm:rounded-2xl border border-slate-200/90 p-4 sm:p-6 lg:p-8 shadow-xs">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 sm:gap-6 items-center">
-          
+
           {/* Image Left */}
           <div className="lg:col-span-4 rounded-xl overflow-hidden shadow-inner border border-slate-200 relative h-48 sm:h-56 lg:h-full lg:min-h-55">
             <img
@@ -361,7 +357,7 @@ export const SavingsOptimizationSection: React.FC = () => {
                 How We Recover Your Lost Rooftop Savings
               </h3>
               <p className="text-xs sm:text-sm text-slate-500 mt-1 leading-relaxed">
-                Our technicians test key physical and digital failure points to restore peak efficiency on existing solar setups across Queensland.
+                Our technicians test key physical and digital failure points to restore peak efficiency on existing solar setups across Nationwide.
               </p>
             </div>
 

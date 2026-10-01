@@ -44,7 +44,7 @@ export const SolarPlusBatterySavingsSliderSection: React.FC = () => {
       icon: ShieldCheck,
       iconColor: 'text-sky-500 bg-sky-500/10',
       description:
-        'If severe Queensland weather knocks down neighborhood power lines, your automatic transfer gateway keeps your refrigeration, lights, and Wi-Fi running uninterrupted.',
+        'If severe Nationwide weather knocks down neighborhood power lines, your automatic transfer gateway keeps your refrigeration, lights, and Wi-Fi running uninterrupted.',
       metric: 'Seamless whole-home backup',
     },
     {
@@ -206,11 +206,10 @@ export const SolarPlusBatterySavingsSliderSection: React.FC = () => {
                 type="button"
                 onClick={() => goToSlide(dotIdx)}
                 aria-label={`Go to step ${dotIdx + 1}`}
-                className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
-                  activeSlide === dotIdx
+                className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${activeSlide === dotIdx
                     ? 'w-6 bg-[#2B3CB8]'
                     : 'w-2 bg-slate-300 hover:bg-slate-400'
-                }`}
+                  }`}
               />
             ))}
           </div>

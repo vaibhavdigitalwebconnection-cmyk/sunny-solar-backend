@@ -45,7 +45,7 @@ export const TermsConditionsPage: React.FC = () => {
           <section className="space-y-3">
             <h2 className="text-xl font-bold text-slate-900">4. Governing Law</h2>
             <p>
-              These terms are governed by and construed in accordance with the laws of Queensland, Australia.
+              These terms are governed by and construed in accordance with the laws of Nationwide, Australia.
             </p>
           </section>
 

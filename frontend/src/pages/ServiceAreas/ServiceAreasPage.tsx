@@ -15,17 +15,17 @@ export const ServiceAreasPage: React.FC = () => {
     <div className="min-h-screen bg-slate-50 pb-20">
       <ScrollProgress />
       <Helmet>
-        <title>Service Areas Across South East Queensland & Northern NSW | Sunny Solar</title>
+        <title>Service Areas Across South East Nationwide & Northern NSW | Sunny Solar</title>
         <meta
           name="description"
-          content="Check solar and battery installation service coverage across Gold Coast, Brisbane, Sunshine Coast, Ipswich, and Northern NSW."
+          content="Check solar and battery installation service coverage across Gold Coast, australia Sunshine Coast, Ipswich, and Northern NSW."
         />
       </Helmet>
       <PageHeader
         badge="Coverage Map"
         title="Solar & Battery"
         highlightText="Service Areas"
-        description="We service South East Queensland and Northern Rivers NSW with local warehouse facilities and dedicated master electrician installation fleets."
+        description="We service South East Nationwide and Northern Rivers NSW with local warehouse facilities and dedicated master electrician installation fleets."
         actions={
           <Button
             to="/get-started/free-assessment"

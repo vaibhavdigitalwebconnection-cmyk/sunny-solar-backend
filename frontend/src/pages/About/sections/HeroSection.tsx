@@ -36,7 +36,7 @@ export const HeroSection: React.FC = () => {
             <div className="absolute inset-0 bg-linear-to-t from-black/50 via-transparent to-transparent pointer-events-none" />
             <div className="absolute bottom-3 left-3 right-3 text-white text-xs font-semibold flex items-center gap-1.5 drop-shadow-sm">
               <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-              <span>Queensland Master Electricians on site</span>
+              <span>Nationwide Master Electricians on site</span>
             </div>
           </div>
         </div>
@@ -74,7 +74,7 @@ export const HeroSection: React.FC = () => {
               transition={{ duration: 0.7, delay: 0.2 }}
             >
               Founded by Master Electrician Trent Packer, Sunny Solar was built around a simple belief: choosing solar should feel clear, not complicated.
-               With 14+ years of industry experience, Trent and the Sunny Solar team help homeowners understand their energy needs, compare their options and choose a solar solution that makes sense for their home.
+              With 14+ years of industry experience, Trent and the Sunny Solar team help homeowners understand their energy needs, compare their options and choose a solar solution that makes sense for their home.
             </motion.p>
 
             {/* Trust highlights strip on mobile & desktop */}

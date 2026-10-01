@@ -29,7 +29,7 @@ export const SolarHardwareComparisonSection: React.FC = () => {
       statSecondary: '-0.24%',
       statSecondaryLabel: 'Heat Loss / °C (Best in AU)',
       description:
-        'Queensland metal roofs reach 65°C on summer afternoons. We install N-Type All-Back-Contact (ABC) and Heterojunction (HJT) cells that produce up to 25% more electricity during extreme heatwaves compared to older P-type panels.',
+        'Nationwide metal roofs reach 65°C on summer afternoons. We install N-Type All-Back-Contact (ABC) and Heterojunction (HJT) cells that produce up to 25% more electricity during extreme heatwaves compared to older P-type panels.',
       highlights: [
         'Zero front-side busbars for 100% active solar absorption and pure black aesthetics',
         'Cell-level bypass circuitry eliminates hot spots and prevents string power collapse',
@@ -37,7 +37,7 @@ export const SolarHardwareComparisonSection: React.FC = () => {
         'Tested to 7,000 Pa severe cyclonic wind loads and coastal salt-mist corrosion',
       ],
       electricianVerdict:
-        'Cheap panels degrade and turn brown under Queensland UV in 3 to 5 years. N-Type silicon eliminates Light-Induced Degradation, guaranteeing 88%+ output after 30 years.',
+        'Cheap panels degrade and turn brown under Nationwide UV in 3 to 5 years. N-Type silicon eliminates Light-Induced Degradation, guaranteeing 88%+ output after 30 years.',
     },
     inverters: {
       tag: 'Component 02 • Power Conversion & Storage',
@@ -69,7 +69,7 @@ export const SolarHardwareComparisonSection: React.FC = () => {
       statSecondary: 'Region C',
       statSecondaryLabel: 'Severe Cyclone Wind Certified',
       description:
-        'Your solar system is only as secure as the mounting framing holding it to your roof. We exclusively use anodized marine-grade aluminium rails and stainless-steel roof brackets engineered for Queensland storm seasons.',
+        'Your solar system is only as secure as the mounting framing holding it to your roof. We exclusively use anodized marine-grade aluminium rails and stainless-steel roof brackets engineered for Nationwide storm seasons.',
       highlights: [
         'Custom bracket mounting for tile, Colorbond, Klip-Lok, and corrugated iron',
         'Zero penetration clamps used on standing-seam and commercial metal profiles',
@@ -300,7 +300,7 @@ export const SolarHardwareComparisonSection: React.FC = () => {
               Sunny Solar Tier-1 Standard vs. Cheap Generic Solar
             </h3>
             <p className="text-xs sm:text-sm text-slate-600 sm:text-slate-800 mt-2 leading-relaxed">
-              Why thousands of Queensland families choose engineered quality over bargain packages that fail in summer heat.
+              Why thousands of Nationwide families choose engineered quality over bargain packages that fail in summer heat.
             </p>
           </div>
 

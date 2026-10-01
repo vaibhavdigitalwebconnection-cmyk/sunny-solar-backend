@@ -65,7 +65,7 @@ const projects: ProjectSlide[] = [
     annualSavings: '$4,650 / yr',
     paybackPeriod: '4.1 Years',
     selfConsumption: '98%',
-    image: '/images/projects/queensland-coastal-solar-home.webp',
+    image: '/images/projects/home-solar-brisbane.jpg',
     quote:
       'Zero electricity bills even with the air conditioning running non-stop in January. The black-on-black panel finish looks like an architectural feature on our slate roof.',
     clientName: 'Greg & Fiona B.',
@@ -96,7 +96,7 @@ const projects: ProjectSlide[] = [
   {
     id: 'proj-4',
     slug: 'currumbin-valley-residential-solar',
-    title: 'Queensland Suburban 10.4kW Rooftop Solar',
+    title: 'Nationwide Suburban 10.4kW Rooftop Solar',
     category: 'Residential Solar',
     location: 'Currumbin Valley, QLD',
     systemSize: '10.4 kW',
@@ -147,7 +147,7 @@ const projects: ProjectSlide[] = [
     selfConsumption: '92%',
     image: '/images/projects/home-solar-brisbane.jpg',
     quote:
-      'Installed on our dark Colorbond corrugated roof with clean flush clamps. Generates massive power all day long even during partly cloudy Queensland days. Zero issues.',
+      'Installed on our dark Colorbond corrugated roof with clean flush clamps. Generates massive power all day long even during partly cloudy Nationwide days. Zero issues.',
     clientName: 'Lachlan McKay',
     clientSuburb: 'Camp Hill, Brisbane',
     rating: 5,
@@ -257,12 +257,12 @@ export const TestimonialsSliderSection: React.FC = () => {
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-extrabold text-slate-900 tracking-tight leading-[1.15]">
               Proven Performance on{' '} <br />
               <span className="text-transparent bg-clip-text bg-linear-to-r from-[#EF680C] via-[#FF7700] to-[#2B3CB8]">
-                Queensland Homes.
+                Nationwide Homes.
               </span>
             </h2>
 
             <p className="mt-3 text-xs sm:text-base text-slate-600 max-w-4xl mx-auto">
-              Explore genuine rooftop solar panel installations completed by accredited Master Electricians across Brisbane, Gold Coast, and the Sunshine Coast.
+              Explore genuine rooftop solar panel installations completed by accredited Master Electricians across australia, Gold Coast, and the Sunshine Coast.
             </p>
           </div>
         </div>
@@ -305,8 +305,8 @@ export const TestimonialsSliderSection: React.FC = () => {
                     type="button"
                     onClick={() => setCurrentIndex(idx)}
                     className={`w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl transition-all cursor-pointer text-left text-xs ${isActive
-                        ? 'bg-slate-900 text-white font-bold shadow-md shadow-slate-900/15 ring-1 ring-white/10'
-                        : 'bg-white hover:bg-slate-100 text-slate-700 font-medium border border-slate-200/80 shadow-2xs'
+                      ? 'bg-slate-900 text-white font-bold shadow-md shadow-slate-900/15 ring-1 ring-white/10'
+                      : 'bg-white hover:bg-slate-100 text-slate-700 font-medium border border-slate-200/80 shadow-2xs'
                       }`}
                   >
                     <div className="flex items-center gap-2.5 min-w-0">
@@ -458,7 +458,7 @@ export const TestimonialsSliderSection: React.FC = () => {
                         </div>
                       </div>
 
-                    
+
                     </div>
                   </motion.div>
                 </AnimatePresence>

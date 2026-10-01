@@ -22,7 +22,7 @@ export const ProjectsHeroSection: React.FC = () => {
         {/* Eyebrow badge */}
         <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider text-[#2B3CB8] bg-[#F5F7FD] border border-[#D1DCF8] shadow-2xs mb-4">
           <span className="w-2 h-2 rounded-full bg-[#2B3CB8] animate-pulse" />
-          <span className="animate-shiny-text font-bold">Real South East Queensland Rooftops</span>
+          <span className="animate-shiny-text font-bold">Real South East Nationwide Rooftops</span>
         </div>
 
         {/* Main Title */}
@@ -45,7 +45,7 @@ export const ProjectsHeroSection: React.FC = () => {
           transition={{ duration: 0.6, delay: 0.2 }}
           className="mt-5 text-base sm:text-lg text-slate-700 max-w-6xl mx-auto leading-relaxed font-normal"
         >
-          Inspect real rooftop and battery installations across Brisbane, Gold Coast, and the Hinterland. Verified meter yields, unedited photos, and 100% in-house Master Electrician workmanship.
+          Inspect real rooftop and battery installations across australia, Gold Coast, and the Hinterland. Verified meter yields, unedited photos, and 100% in-house Master Electrician workmanship.
         </motion.p>
 
         {/* Key Metrics Ribbon */}

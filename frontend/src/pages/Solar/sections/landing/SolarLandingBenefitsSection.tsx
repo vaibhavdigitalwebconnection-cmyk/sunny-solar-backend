@@ -49,7 +49,7 @@ export const SolarLandingBenefitsSection: React.FC = () => {
       stat: '-0.26%',
       statLabel: 'Loss/°C over 25°C',
       description:
-        'Standard cheap solar drops 25%+ efficiency when the mercury hits 38°C. Our N-Type TOPCon panels are specifically engineered for Queensland summer heatwaves.',
+        'Standard cheap solar drops 25%+ efficiency when the mercury hits 38°C. Our N-Type TOPCon panels are specifically engineered for Nationwide summer heatwaves.',
       linkTo: '/solar/systems',
       linkText: 'View N-Type Systems',
     },
@@ -181,11 +181,10 @@ export const SolarLandingBenefitsSection: React.FC = () => {
                 <button
                   key={item.id}
                   onClick={() => selectSlide(idx)}
-                  className={`py-2 px-1 rounded-lg text-[11px] font-semibold transition-all duration-200 text-center truncate ${
-                    isActive
+                  className={`py-2 px-1 rounded-lg text-[11px] font-semibold transition-all duration-200 text-center truncate ${isActive
                       ? 'bg-amber-500 text-white shadow-xs font-bold'
                       : 'text-slate-600 hover:text-slate-900'
-                  }`}
+                    }`}
                   aria-label={`View ${item.title}`}
                 >
                   {item.shortTitle}
@@ -272,11 +271,10 @@ export const SolarLandingBenefitsSection: React.FC = () => {
                         <button
                           key={dotIdx}
                           onClick={() => selectSlide(dotIdx)}
-                          className={`h-1.5 rounded-full transition-all duration-300 ${
-                            dotIdx === activeMobileIndex
+                          className={`h-1.5 rounded-full transition-all duration-300 ${dotIdx === activeMobileIndex
                               ? 'w-6 bg-amber-500'
                               : 'w-2 bg-slate-300 hover:bg-slate-400'
-                          }`}
+                            }`}
                           aria-label={`Go to slide ${dotIdx + 1}`}
                         />
                       ))}

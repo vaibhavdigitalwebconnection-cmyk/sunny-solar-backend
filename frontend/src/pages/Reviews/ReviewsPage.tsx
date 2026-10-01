@@ -39,14 +39,14 @@ export const ReviewsPage: React.FC = () => {
         <title>Verified Customer Reviews & Testimonials | Sunny Solar</title>
         <meta
           name="description"
-          content="Read verified 4.98-star reviews and customer stories from homeowners across South East Queensland."
+          content="Read verified 4.98-star reviews and customer stories from homeowners across South East Nationwide."
         />
       </Helmet>
       <PageHeader
         badge="Customer Testimonials"
         title="4.98-Star Customer"
         highlightText="Reviews & Stories"
-        description="Read unedited, verified feedback from homeowners across South East Queensland. Filter by installation service or rating."
+        description="Read unedited, verified feedback from homeowners across South East Nationwide. Filter by installation service or rating."
         actions={
           <div className="flex flex-wrap items-center gap-3">
             <Button
@@ -109,11 +109,10 @@ export const ReviewsPage: React.FC = () => {
               <button
                 key={filter}
                 onClick={() => setSelectedFilter(filter)}
-                className={`px-3.5 py-2.5 lg:py-1.5 min-h-11 lg:min-h-0 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer whitespace-nowrap ${
-                  selectedFilter === filter
+                className={`px-3.5 py-2.5 lg:py-1.5 min-h-11 lg:min-h-0 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer whitespace-nowrap ${selectedFilter === filter
                     ? 'bg-amber-500 text-white shadow'
                     : 'bg-white text-slate-600 border border-slate-200/80 hover:bg-slate-100'
-                }`}
+                  }`}
               >
                 {filter}
               </button>
@@ -124,17 +123,15 @@ export const ReviewsPage: React.FC = () => {
             <span>Filter Rating:</span>
             <button
               onClick={() => setMinRating(0)}
-              className={`px-3 py-2 lg:px-2.5 lg:py-1 min-h-11 lg:min-h-0 rounded-lg border ${
-                minRating === 0 ? 'bg-slate-900 text-white border-slate-900' : 'bg-white border-slate-200'
-              }`}
+              className={`px-3 py-2 lg:px-2.5 lg:py-1 min-h-11 lg:min-h-0 rounded-lg border ${minRating === 0 ? 'bg-slate-900 text-white border-slate-900' : 'bg-white border-slate-200'
+                }`}
             >
               All
             </button>
             <button
               onClick={() => setMinRating(5)}
-              className={`px-3 py-2 lg:px-2.5 lg:py-1 min-h-11 lg:min-h-0 rounded-lg border flex items-center gap-1 ${
-                minRating === 5 ? 'bg-amber-500 text-white border-amber-500' : 'bg-white border-slate-200'
-              }`}
+              className={`px-3 py-2 lg:px-2.5 lg:py-1 min-h-11 lg:min-h-0 rounded-lg border flex items-center gap-1 ${minRating === 5 ? 'bg-amber-500 text-white border-amber-500' : 'bg-white border-slate-200'
+                }`}
             >
               5 Star Only ★
             </button>
@@ -154,7 +151,7 @@ export const ReviewsPage: React.FC = () => {
         <div className="relative overflow-hidden bg-white rounded-3xl border border-slate-200/80 p-8 sm:p-12 text-center shadow-sm space-y-4">
           <BorderBeam size={180} duration={10} colorFrom="#2B3CB8" colorTo="#6F8EE7" borderWidth={1.5} />
           <h3 className="text-2xl sm:text-3xl font-extrabold text-slate-900 font-serif">
-            Join 4,500+ Happy Queensland Solar &amp; Battery Owners
+            Join 4,500+ Happy Nationwide Solar &amp; Battery Owners
           </h3>
           <p className="text-sm sm:text-base text-slate-600 max-w-xl mx-auto leading-relaxed">
             Experience our in-house master craftsmanship, zero sales pressure, and industry-leading 25-year performance warranties.

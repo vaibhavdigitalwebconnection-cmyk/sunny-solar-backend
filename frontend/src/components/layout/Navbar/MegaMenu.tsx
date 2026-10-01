@@ -32,6 +32,7 @@ import {
   LucideIcon,
 } from 'lucide-react';
 import { NavSection } from '../../../data/navigationData';
+import { preloadRoute } from '../../../routes/AppRoutes';
 
 const iconMap: Record<string, LucideIcon> = {
   Sun,
@@ -112,6 +113,7 @@ export const MegaMenu: React.FC<MegaMenuProps> = ({ section, isOpen, onClose }) 
                   <Link
                     to={section.href}
                     onClick={onClose}
+                    onMouseEnter={() => preloadRoute(section.href)}
                     className="text-xs font-bold text-slate-600 hover:text-[#ED4F11] inline-flex items-center gap-1 transition-colors"
                   >
                     <span>View all</span>
@@ -129,6 +131,7 @@ export const MegaMenu: React.FC<MegaMenuProps> = ({ section, isOpen, onClose }) 
                         key={idx}
                         to={item.href}
                         onClick={onClose}
+                        onMouseEnter={() => preloadRoute(item.href)}
                         className="group flex items-start gap-3 p-2.5 rounded-xl hover:bg-orange-50/50 transition-all duration-150 border border-transparent hover:border-[#ED4F11]/30"
                       >
                         {/* Icon */}
@@ -207,6 +210,7 @@ export const MegaMenu: React.FC<MegaMenuProps> = ({ section, isOpen, onClose }) 
                   <Link
                     to={featured.href}
                     onClick={onClose}
+                    onMouseEnter={() => preloadRoute(featured.href)}
                     className="inline-flex items-center gap-1.5 text-xs font-bold text-[#D1DCF8] hover:text-white transition-colors group/cta"
                   >
                     <span>{featured.ctaText}</span>

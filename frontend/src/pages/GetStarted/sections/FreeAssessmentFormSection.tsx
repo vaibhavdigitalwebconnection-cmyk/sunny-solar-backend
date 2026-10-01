@@ -40,7 +40,7 @@ import { submitToWeb3Forms, fileToBase64 } from '../../../utils/web3forms';
 import { api } from '../../../services/api';
 import { Toast } from '../../../components/ui/Toast';
 
-// Live social proof feed for Queensland audits
+// Live social proof feed for Nationwide audits
 const RECENT_AUDITS = [
   {
     id: 'audit-1',
@@ -471,7 +471,7 @@ export const FreeAssessmentFormSection: React.FC = () => {
               <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-600" />
             </span>
             <span className="font-mono uppercase text-[11px] tracking-wider text-emerald-800 font-bold">
-              Queensland Master Electrician Desk Active
+              Nationwide Master Electrician Desk Active
             </span>
             <span className="text-slate-300">•</span>
             <span className="text-slate-600">Zero Pressure Guaranteed</span>
@@ -533,7 +533,7 @@ export const FreeAssessmentFormSection: React.FC = () => {
                 </div>
               </OrbitingCircles>
 
-              
+
             </div>
 
             {/* Magic UI AnimatedList Social Proof Stream */}
@@ -601,7 +601,7 @@ export const FreeAssessmentFormSection: React.FC = () => {
                     1300 030 479
                   </a>
                   <p className="text-xs text-slate-300 mt-0.5">
-                    Mon–Fri 7am–5pm AEST • Direct to our Queensland office
+                    Mon–Fri 7am–5pm AEST • Direct to our Nationwide office
                   </p>
                 </div>
               </div>
@@ -653,7 +653,7 @@ export const FreeAssessmentFormSection: React.FC = () => {
                   </h3>
                   <p className="text-sm text-slate-600 max-w-md mx-auto leading-relaxed">
                     Thank you, <strong className="text-slate-900">{formData.name}</strong>. Your property specifications for{' '}
-                    <strong className="text-slate-900">{formData.suburb}</strong> have been allocated to our Queensland Master Electrician desk.
+                    <strong className="text-slate-900">{formData.suburb}</strong> have been allocated to our Nationwide Master Electrician desk.
                   </p>
                 </div>
 
@@ -727,13 +727,11 @@ export const FreeAssessmentFormSection: React.FC = () => {
                     <button
                       type="button"
                       onClick={() => setCurrentStep(1)}
-                      className={`flex items-center gap-1.5 cursor-pointer transition-colors ${
-                        currentStep === 1 ? 'text-[#2B3CB8]' : 'text-slate-600 hover:text-slate-900'
-                      }`}
+                      className={`flex items-center gap-1.5 cursor-pointer transition-colors ${currentStep === 1 ? 'text-[#2B3CB8]' : 'text-slate-600 hover:text-slate-900'
+                        }`}
                     >
-                      <span className={`w-5 h-5 rounded-full flex items-center justify-center text-[10px] ${
-                        currentStep === 1 ? 'bg-[#2B3CB8] text-white' : 'bg-slate-200 text-slate-700'
-                      }`}>
+                      <span className={`w-5 h-5 rounded-full flex items-center justify-center text-[10px] ${currentStep === 1 ? 'bg-[#2B3CB8] text-white' : 'bg-slate-200 text-slate-700'
+                        }`}>
                         1
                       </span>
                       <span>Energy Setup</span>
@@ -744,13 +742,11 @@ export const FreeAssessmentFormSection: React.FC = () => {
                     <button
                       type="button"
                       onClick={() => setCurrentStep(2)}
-                      className={`flex items-center gap-1.5 cursor-pointer transition-colors ${
-                        currentStep === 2 ? 'text-[#2B3CB8]' : 'text-slate-600 hover:text-slate-900'
-                      }`}
+                      className={`flex items-center gap-1.5 cursor-pointer transition-colors ${currentStep === 2 ? 'text-[#2B3CB8]' : 'text-slate-600 hover:text-slate-900'
+                        }`}
                     >
-                      <span className={`w-5 h-5 rounded-full flex items-center justify-center text-[10px] ${
-                        currentStep === 2 ? 'bg-[#2B3CB8] text-white' : currentStep > 2 ? 'bg-emerald-600 text-white' : 'bg-slate-200 text-slate-700'
-                      }`}>
+                      <span className={`w-5 h-5 rounded-full flex items-center justify-center text-[10px] ${currentStep === 2 ? 'bg-[#2B3CB8] text-white' : currentStep > 2 ? 'bg-emerald-600 text-white' : 'bg-slate-200 text-slate-700'
+                        }`}>
                         2
                       </span>
                       <span>Audit Mode</span>
@@ -761,13 +757,11 @@ export const FreeAssessmentFormSection: React.FC = () => {
                     <button
                       type="button"
                       onClick={() => setCurrentStep(3)}
-                      className={`flex items-center gap-1.5 cursor-pointer transition-colors ${
-                        currentStep === 3 ? 'text-[#2B3CB8]' : 'text-slate-600 hover:text-slate-900'
-                      }`}
+                      className={`flex items-center gap-1.5 cursor-pointer transition-colors ${currentStep === 3 ? 'text-[#2B3CB8]' : 'text-slate-600 hover:text-slate-900'
+                        }`}
                     >
-                      <span className={`w-5 h-5 rounded-full flex items-center justify-center text-[10px] ${
-                        currentStep === 3 ? 'bg-[#2B3CB8] text-white' : 'bg-slate-200 text-slate-700'
-                      }`}>
+                      <span className={`w-5 h-5 rounded-full flex items-center justify-center text-[10px] ${currentStep === 3 ? 'bg-[#2B3CB8] text-white' : 'bg-slate-200 text-slate-700'
+                        }`}>
                         3
                       </span>
                       <span>Dispatch Quote</span>
@@ -807,11 +801,10 @@ export const FreeAssessmentFormSection: React.FC = () => {
                             <button
                               type="button"
                               onClick={() => setPropertyType('residential')}
-                              className={`p-3.5 rounded-2xl border text-center transition-all cursor-pointer flex flex-col items-center gap-1.5 ${
-                                propertyType === 'residential'
+                              className={`p-3.5 rounded-2xl border text-center transition-all cursor-pointer flex flex-col items-center gap-1.5 ${propertyType === 'residential'
                                   ? 'border-[#2B3CB8] bg-blue-50/70 text-[#2B3CB8] shadow-xs ring-2 ring-[#2B3CB8]/20'
                                   : 'border-slate-200 hover:border-slate-300 bg-white text-slate-700'
-                              }`}
+                                }`}
                             >
                               <Home className="w-5 h-5" />
                               <span className="text-xs font-bold">Residential</span>
@@ -821,11 +814,10 @@ export const FreeAssessmentFormSection: React.FC = () => {
                             <button
                               type="button"
                               onClick={() => setPropertyType('commercial')}
-                              className={`p-3.5 rounded-2xl border text-center transition-all cursor-pointer flex flex-col items-center gap-1.5 ${
-                                propertyType === 'commercial'
+                              className={`p-3.5 rounded-2xl border text-center transition-all cursor-pointer flex flex-col items-center gap-1.5 ${propertyType === 'commercial'
                                   ? 'border-[#2B3CB8] bg-blue-50/70 text-[#2B3CB8] shadow-xs ring-2 ring-[#2B3CB8]/20'
                                   : 'border-slate-200 hover:border-slate-300 bg-white text-slate-700'
-                              }`}
+                                }`}
                             >
                               <Building2 className="w-5 h-5" />
                               <span className="text-xs font-bold">Commercial</span>
@@ -835,11 +827,10 @@ export const FreeAssessmentFormSection: React.FC = () => {
                             <button
                               type="button"
                               onClick={() => setPropertyType('rural')}
-                              className={`p-3.5 rounded-2xl border text-center transition-all cursor-pointer flex flex-col items-center gap-1.5 ${
-                                propertyType === 'rural'
+                              className={`p-3.5 rounded-2xl border text-center transition-all cursor-pointer flex flex-col items-center gap-1.5 ${propertyType === 'rural'
                                   ? 'border-[#2B3CB8] bg-blue-50/70 text-[#2B3CB8] shadow-xs ring-2 ring-[#2B3CB8]/20'
                                   : 'border-slate-200 hover:border-slate-300 bg-white text-slate-700'
-                              }`}
+                                }`}
                             >
                               <Tractor className="w-5 h-5" />
                               <span className="text-xs font-bold">Rural / Shed</span>
@@ -863,16 +854,14 @@ export const FreeAssessmentFormSection: React.FC = () => {
                                 key={tier.id}
                                 type="button"
                                 onClick={() => setSelectedBillTier(tier.id)}
-                                className={`p-3 rounded-2xl border text-center transition-all cursor-pointer ${
-                                  selectedBillTier === tier.id
+                                className={`p-3 rounded-2xl border text-center transition-all cursor-pointer ${selectedBillTier === tier.id
                                     ? 'bg-linear-to-br from-[#2B3CB8] to-[#151E64] text-white border-[#2B3CB8] shadow-md ring-2 ring-[#2B3CB8]/30 scale-[1.02]'
                                     : 'bg-white border-slate-200 text-slate-700 hover:border-slate-300 hover:bg-slate-50'
-                                }`}
+                                  }`}
                               >
                                 <span className="block text-xs font-bold">{tier.label}</span>
-                                <span className={`block text-[10px] mt-0.5 ${
-                                  selectedBillTier === tier.id ? 'text-blue-200' : 'text-slate-500'
-                                }`}>
+                                <span className={`block text-[10px] mt-0.5 ${selectedBillTier === tier.id ? 'text-blue-200' : 'text-slate-500'
+                                  }`}>
                                   {tier.subtitle}
                                 </span>
                               </button>
@@ -939,15 +928,13 @@ export const FreeAssessmentFormSection: React.FC = () => {
                                 key={sol.id}
                                 type="button"
                                 onClick={() => setSelectedService(sol.id)}
-                                className={`p-3.5 rounded-2xl border text-left transition-all cursor-pointer flex items-start gap-3 ${
-                                  selectedService === sol.id
+                                className={`p-3.5 rounded-2xl border text-left transition-all cursor-pointer flex items-start gap-3 ${selectedService === sol.id
                                     ? 'border-[#2B3CB8] bg-blue-50/70 text-slate-950 ring-2 ring-[#2B3CB8]/20 shadow-xs'
                                     : 'border-slate-200 hover:border-slate-300 bg-white text-slate-700'
-                                }`}
+                                  }`}
                               >
-                                <div className={`w-8 h-8 rounded-xl flex items-center justify-center shrink-0 ${
-                                  selectedService === sol.id ? 'bg-[#2B3CB8] text-white' : 'bg-slate-100 text-slate-600'
-                                }`}>
+                                <div className={`w-8 h-8 rounded-xl flex items-center justify-center shrink-0 ${selectedService === sol.id ? 'bg-[#2B3CB8] text-white' : 'bg-slate-100 text-slate-600'
+                                  }`}>
                                   <sol.icon className="w-4 h-4" />
                                 </div>
                                 <div>
@@ -992,11 +979,10 @@ export const FreeAssessmentFormSection: React.FC = () => {
                             <button
                               type="button"
                               onClick={() => setConsultType('satellite')}
-                              className={`p-4 rounded-2xl border text-left transition-all cursor-pointer relative ${
-                                consultType === 'satellite'
+                              className={`p-4 rounded-2xl border text-left transition-all cursor-pointer relative ${consultType === 'satellite'
                                   ? 'border-[#2B3CB8] bg-blue-50/70 shadow-md ring-2 ring-[#2B3CB8]/20'
                                   : 'border-slate-200 hover:border-slate-300 bg-white'
-                              }`}
+                                }`}
                             >
                               <div className="flex items-center justify-between mb-2">
                                 <Satellite className="w-5 h-5 text-[#2B3CB8]" />
@@ -1014,11 +1000,10 @@ export const FreeAssessmentFormSection: React.FC = () => {
                             <button
                               type="button"
                               onClick={() => setConsultType('onsite')}
-                              className={`p-4 rounded-2xl border text-left transition-all cursor-pointer relative ${
-                                consultType === 'onsite'
+                              className={`p-4 rounded-2xl border text-left transition-all cursor-pointer relative ${consultType === 'onsite'
                                   ? 'border-[#2B3CB8] bg-blue-50/70 shadow-md ring-2 ring-[#2B3CB8]/20'
                                   : 'border-slate-200 hover:border-slate-300 bg-white'
-                              }`}
+                                }`}
                             >
                               <div className="flex items-center justify-between mb-2">
                                 <Home className="w-5 h-5 text-[#2B3CB8]" />
@@ -1036,11 +1021,10 @@ export const FreeAssessmentFormSection: React.FC = () => {
                             <button
                               type="button"
                               onClick={() => setConsultType('phone')}
-                              className={`p-4 rounded-2xl border text-left transition-all cursor-pointer relative ${
-                                consultType === 'phone'
+                              className={`p-4 rounded-2xl border text-left transition-all cursor-pointer relative ${consultType === 'phone'
                                   ? 'border-[#2B3CB8] bg-blue-50/70 shadow-md ring-2 ring-[#2B3CB8]/20'
                                   : 'border-slate-200 hover:border-slate-300 bg-white'
-                              }`}
+                                }`}
                             >
                               <div className="flex items-center justify-between mb-2">
                                 <Headphones className="w-5 h-5 text-[#2B3CB8]" />
@@ -1078,11 +1062,10 @@ export const FreeAssessmentFormSection: React.FC = () => {
                                   key={tag}
                                   type="button"
                                   onClick={() => toggleTag(tag)}
-                                  className={`px-3 py-1.5 rounded-xl text-xs font-semibold border transition-all cursor-pointer ${
-                                    isSelected
+                                  className={`px-3 py-1.5 rounded-xl text-xs font-semibold border transition-all cursor-pointer ${isSelected
                                       ? 'bg-[#2B3CB8] text-white border-[#2B3CB8] shadow-2xs'
                                       : 'bg-white text-slate-600 border-slate-200 hover:border-slate-300'
-                                  }`}
+                                    }`}
                                 >
                                   {isSelected ? `✓ ${tag}` : `+ ${tag}`}
                                 </button>
@@ -1156,13 +1139,12 @@ export const FreeAssessmentFormSection: React.FC = () => {
                               value={formData.name}
                               onChange={(e) => handleFieldChange('name', e.target.value)}
                               onBlur={() => handleBlur('name')}
-                              className={`w-full px-4 py-2.5 rounded-xl border text-sm focus:outline-none transition-all pr-10 ${
-                                touched.name && errors.name
+                              className={`w-full px-4 py-2.5 rounded-xl border text-sm focus:outline-none transition-all pr-10 ${touched.name && errors.name
                                   ? 'border-red-400 bg-red-50/20 focus:ring-2 focus:ring-red-400'
                                   : touched.name && !errors.name && formData.name
-                                  ? 'border-emerald-500 ring-2 ring-emerald-500/20 bg-white'
-                                  : 'border-slate-300 focus:ring-2 focus:ring-[#2B3CB8] focus:border-[#2B3CB8] bg-white'
-                              }`}
+                                    ? 'border-emerald-500 ring-2 ring-emerald-500/20 bg-white'
+                                    : 'border-slate-300 focus:ring-2 focus:ring-[#2B3CB8] focus:border-[#2B3CB8] bg-white'
+                                }`}
                             />
                             {touched.name && !errors.name && formData.name && (
                               <CheckCircle className="w-4 h-4 text-emerald-600 absolute right-3.5 top-1/2 -translate-y-1/2 pointer-events-none fill-emerald-100" />
@@ -1190,13 +1172,12 @@ export const FreeAssessmentFormSection: React.FC = () => {
                                 value={formData.email}
                                 onChange={(e) => handleFieldChange('email', e.target.value)}
                                 onBlur={() => handleBlur('email')}
-                                className={`w-full px-4 py-2.5 rounded-xl border text-sm focus:outline-none transition-all pr-10 ${
-                                  touched.email && errors.email
+                                className={`w-full px-4 py-2.5 rounded-xl border text-sm focus:outline-none transition-all pr-10 ${touched.email && errors.email
                                     ? 'border-red-400 bg-red-50/20 focus:ring-2 focus:ring-red-400'
                                     : touched.email && !errors.email && formData.email
-                                    ? 'border-emerald-500 ring-2 ring-emerald-500/20 bg-white'
-                                    : 'border-slate-300 focus:ring-2 focus:ring-[#2B3CB8] focus:border-[#2B3CB8] bg-white'
-                                }`}
+                                      ? 'border-emerald-500 ring-2 ring-emerald-500/20 bg-white'
+                                      : 'border-slate-300 focus:ring-2 focus:ring-[#2B3CB8] focus:border-[#2B3CB8] bg-white'
+                                  }`}
                               />
                               {touched.email && !errors.email && formData.email && (
                                 <CheckCircle className="w-4 h-4 text-emerald-600 absolute right-3.5 top-1/2 -translate-y-1/2 pointer-events-none fill-emerald-100" />
@@ -1219,13 +1200,12 @@ export const FreeAssessmentFormSection: React.FC = () => {
                               <span className="text-[10px] text-slate-400 font-mono">+614XX XXX XXX</span>
                             </div>
                             <div
-                              className={`relative flex items-center rounded-xl border text-sm transition-all overflow-hidden ${
-                                touched.phone && errors.phone
+                              className={`relative flex items-center rounded-xl border text-sm transition-all overflow-hidden ${touched.phone && errors.phone
                                   ? 'border-red-400 bg-red-50/20 ring-2 ring-red-400/30'
                                   : touched.phone && !errors.phone && formData.phone
-                                  ? 'border-emerald-500 ring-2 ring-emerald-500/20 bg-white'
-                                  : 'border-slate-300 focus-within:ring-2 focus-within:ring-[#2B3CB8] bg-white'
-                              }`}
+                                    ? 'border-emerald-500 ring-2 ring-emerald-500/20 bg-white'
+                                    : 'border-slate-300 focus-within:ring-2 focus-within:ring-[#2B3CB8] bg-white'
+                                }`}
                             >
                               <div className="relative flex items-center bg-slate-50 border-r border-slate-200/90 text-slate-700 shrink-0">
                                 <select
@@ -1286,13 +1266,12 @@ export const FreeAssessmentFormSection: React.FC = () => {
                               value={formData.suburb}
                               onChange={(e) => handleFieldChange('suburb', e.target.value)}
                               onBlur={() => handleBlur('suburb')}
-                              className={`w-full px-4 py-2.5 rounded-xl border text-sm focus:outline-none transition-all pr-10 ${
-                                touched.suburb && errors.suburb
+                              className={`w-full px-4 py-2.5 rounded-xl border text-sm focus:outline-none transition-all pr-10 ${touched.suburb && errors.suburb
                                   ? 'border-red-400 bg-red-50/20 focus:ring-2 focus:ring-red-400'
                                   : touched.suburb && !errors.suburb && formData.suburb
-                                  ? 'border-emerald-500 ring-2 ring-emerald-500/20 bg-white'
-                                  : 'border-slate-300 focus:ring-2 focus:ring-[#2B3CB8] focus:border-[#2B3CB8] bg-white'
-                              }`}
+                                    ? 'border-emerald-500 ring-2 ring-emerald-500/20 bg-white'
+                                    : 'border-slate-300 focus:ring-2 focus:ring-[#2B3CB8] focus:border-[#2B3CB8] bg-white'
+                                }`}
                             />
                             {touched.suburb && !errors.suburb && formData.suburb && (
                               <CheckCircle className="w-4 h-4 text-emerald-600 absolute right-3.5 top-1/2 -translate-y-1/2 pointer-events-none fill-emerald-100" />
@@ -1326,11 +1305,10 @@ export const FreeAssessmentFormSection: React.FC = () => {
                               onDragLeave={() => setIsDraggingFile(false)}
                               onDrop={handleDrop}
                               onClick={() => fileInputRef.current?.click()}
-                              className={`border-2 border-dashed rounded-2xl p-4 text-center cursor-pointer transition-all ${
-                                isDraggingFile
+                              className={`border-2 border-dashed rounded-2xl p-4 text-center cursor-pointer transition-all ${isDraggingFile
                                   ? 'border-[#2B3CB8] bg-blue-50/60'
                                   : 'border-slate-300 hover:border-[#2B3CB8] hover:bg-slate-50 bg-white'
-                              }`}
+                                }`}
                             >
                               <input
                                 ref={fileInputRef}
@@ -1386,13 +1364,12 @@ export const FreeAssessmentFormSection: React.FC = () => {
 
                         {/* Anti-Bot Verification Tile */}
                         <div
-                          className={`p-3 rounded-xl border transition-all ${
-                            isHumanVerified
+                          className={`p-3 rounded-xl border transition-all ${isHumanVerified
                               ? 'bg-emerald-50/70 border-emerald-300 text-emerald-950'
                               : touched.captcha && errors.captcha
-                              ? 'bg-red-50/50 border-red-300'
-                              : 'bg-slate-50 border-slate-200'
-                          }`}
+                                ? 'bg-red-50/50 border-red-300'
+                                : 'bg-slate-50 border-slate-200'
+                            }`}
                         >
                           <div className="flex items-center justify-between">
                             <button
@@ -1401,13 +1378,12 @@ export const FreeAssessmentFormSection: React.FC = () => {
                               className="flex items-center gap-3 cursor-pointer text-left focus:outline-none"
                             >
                               <div
-                                className={`w-5 h-5 rounded-md border flex items-center justify-center transition-all ${
-                                  isVerifyingHuman
+                                className={`w-5 h-5 rounded-md border flex items-center justify-center transition-all ${isVerifyingHuman
                                     ? 'border-amber-500 bg-amber-50'
                                     : isHumanVerified
-                                    ? 'border-emerald-600 bg-emerald-600 text-white'
-                                    : 'border-slate-300 bg-white'
-                                }`}
+                                      ? 'border-emerald-600 bg-emerald-600 text-white'
+                                      : 'border-slate-300 bg-white'
+                                  }`}
                               >
                                 {isVerifyingHuman && <Loader2 className="w-3.5 h-3.5 animate-spin text-amber-600" />}
                                 {isHumanVerified && <Check className="w-3.5 h-3.5 text-white stroke-3" />}
@@ -1416,8 +1392,8 @@ export const FreeAssessmentFormSection: React.FC = () => {
                                 {isVerifyingHuman
                                   ? 'Verifying cryptographic security token...'
                                   : isHumanVerified
-                                  ? 'Security check passed: Verified human request'
-                                  : 'Click to verify: I am not a robot'}
+                                    ? 'Security check passed: Verified human request'
+                                    : 'Click to verify: I am not a robot'}
                               </span>
                             </button>
                             <div className="flex items-center gap-1 text-[10px] text-slate-400 font-mono">
@@ -1498,7 +1474,7 @@ export const FreeAssessmentFormSection: React.FC = () => {
                           </div>
 
                           <div className="flex items-center justify-between text-[10px] text-slate-400 font-mono pt-1">
-                            <span>Queensland Master Electricians Lic #38192</span>
+                            <span>Nationwide Master Electricians Lic #38192</span>
                             <span>Zero Sales Pressure Guarantee</span>
                           </div>
                         </div>

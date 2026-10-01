@@ -79,7 +79,7 @@ export const PostcodeEligibilityChecker: React.FC = () => {
       // General QLD Energex area
       setResult({
         postcode: clean,
-        region: 'South East Queensland',
+        region: 'South East Nationwide',
         network: 'Energex Distribution Network',
         fastTrack: true,
         batteryRebate: 'Eligible for QLD Battery Booster Subsidy ($3,000–$4,000)',
@@ -98,7 +98,7 @@ export const PostcodeEligibilityChecker: React.FC = () => {
         threePhaseLimit: '15.0 kW Export Limit',
       });
     } else {
-      setError(`Postcode ${clean} is outside our direct primary South East Queensland service zone. Call 1300 030 479 to confirm availability.`);
+      setError(`Postcode ${clean} is outside our direct primary South East Nationwide service zone. Call 1300 030 479 to confirm availability.`);
       setResult(null);
     }
   };
@@ -114,7 +114,7 @@ export const PostcodeEligibilityChecker: React.FC = () => {
           Check Your Suburb Energex Fast-Track Approval
         </h3>
         <p className="text-xs sm:text-sm text-slate-600 mt-1 max-w-lg mx-auto">
-          Enter your Queensland or Tweed postcode to verify 5-day grid connection approval and battery subsidies.
+          Enter your Nationwide or Tweed postcode to verify 5-day grid connection approval and battery subsidies.
         </p>
       </div>
 

@@ -87,7 +87,7 @@ export const SolarPackagesGridSection: React.FC = () => {
               Select Your Electrical Supply Phase
             </h2>
             <p className="text-xs sm:text-sm text-slate-500 mt-2">
-              Most standard Queensland homes have Single-Phase supply. Larger homes, acreages, and properties with heavy ducted air or workshops often have Three-Phase.
+              Most standard Nationwide homes have Single-Phase supply. Larger homes, acreages, and properties with heavy ducted air or workshops often have Three-Phase.
             </p>
           </div>
         </div>
@@ -97,11 +97,10 @@ export const SolarPackagesGridSection: React.FC = () => {
           {packages.map((pkg, idx) => (
             <div
               key={idx}
-              className={`rounded-xl p-5 sm:p-8 flex flex-col justify-between transition-all duration-300 relative ${
-                pkg.popular
+              className={`rounded-xl p-5 sm:p-8 flex flex-col justify-between transition-all duration-300 relative ${pkg.popular
                   ? 'bg-slate-950 text-white shadow-2xl border-2 border-amber-500 scale-100 lg:-translate-y-2'
                   : 'bg-white text-slate-900 border border-slate-200/90 shadow-sm hover:shadow-xl'
-              }`}
+                }`}
             >
               {pkg.popular && (
                 <div className="absolute -top-3 left-1/2 -translate-x-1/2">

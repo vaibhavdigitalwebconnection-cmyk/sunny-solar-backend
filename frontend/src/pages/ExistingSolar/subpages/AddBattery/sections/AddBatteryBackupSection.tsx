@@ -119,7 +119,7 @@ export const AddBatteryBackupSection: React.FC = () => {
     <div className="bg-slate-900 rounded-xl overflow-hidden border border-slate-800 shadow-md relative h-56 sm:h-72 lg:h-full lg:min-h-105 flex flex-col justify-end group">
       <img
         src="/images/solutions/battery-storm.webp"
-        alt="Queensland severe summer storm with resilient battery powered home"
+        alt="Nationwide severe summer storm with resilient battery powered home"
         className="absolute inset-0 w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500 opacity-85"
       />
       <div className="absolute inset-0 bg-linear-to-t from-slate-950/90 via-slate-950/40 to-transparent" />
@@ -204,17 +204,15 @@ export const AddBatteryBackupSection: React.FC = () => {
               type="button"
               onClick={() => setActiveSlide(0)}
               aria-label="View without battery"
-              className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
-                activeSlide === 0 ? 'w-6 bg-rose-500' : 'w-2 bg-slate-300'
-              }`}
+              className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${activeSlide === 0 ? 'w-6 bg-rose-500' : 'w-2 bg-slate-300'
+                }`}
             />
             <button
               type="button"
               onClick={() => setActiveSlide(1)}
               aria-label="View with battery retrofit"
-              className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
-                activeSlide === 1 ? 'w-6 bg-emerald-600' : 'w-2 bg-slate-300'
-              }`}
+              className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${activeSlide === 1 ? 'w-6 bg-emerald-600' : 'w-2 bg-slate-300'
+                }`}
             />
           </div>
 

@@ -9,6 +9,7 @@ import {
   ArrowRight,
 } from 'lucide-react';
 import { navigationData } from '../../../data/navigationData';
+import { preloadRoute } from '../../../routes/AppRoutes';
 import { MegaMenu } from './MegaMenu';
 import { MobileMenu } from './MobileMenu';
 import { Button } from '../../ui/Button';
@@ -66,7 +67,7 @@ export const Navbar: React.FC = () => {
                 }`}
             >
               <span className="w-1.5 h-1.5 rounded-full bg-[#ED4F11] inline-block animate-pulse" />
-              Serving Homes Across Australia
+              Serving Homes across
             </span>
             <span
               className={`hidden lg:inline-block ${isScrolled || !isHomePage ? 'text-white' : 'text-slate-700'
@@ -134,11 +135,14 @@ export const Navbar: React.FC = () => {
                 <div
                   key={section.title}
                   className="relative py-1 group"
-                  onMouseEnter={() => hasChildren && setActiveMenu(section.title)}
+                  onMouseEnter={() => {
+                    preloadRoute(section.href);
+                    if (hasChildren) setActiveMenu(section.title);
+                  }}
                 >
                   <Link
                     to={section.href}
-                    onClick={() => !hasChildren && setActiveMenu(null)}
+                    onClick={() => setActiveMenu(null)}
                     className={`px-2.5 py-1 rounded-lg text-base font-semibold tracking-wide flex items-center gap-1.5 transition-all duration-150 ${isActive
                       ? 'text-[#ED4F11] bg-[#ED4F11]/10 font-bold border border-[#ED4F11]/30 shadow-2xs'
                       : isMenuOpen

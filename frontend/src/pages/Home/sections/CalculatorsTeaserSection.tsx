@@ -11,6 +11,8 @@ import {
   Sparkles,
 } from 'lucide-react';
 import advisorAvatar from '@/assets/main.png';
+import { Reveal } from '../components/Reveal';
+import { AnimatedCard } from '../components/AnimatedCard';
 
 /* ── Brand colors (monochromatic blue scale) ── */
 const BRAND = {
@@ -146,33 +148,29 @@ export const CalculatorsTeaserSection: React.FC = () => {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-6 relative z-10">
 
-        {/* Section Header with Scroll Reveal Animation */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-40px' }}
-          transition={{ duration: 0.6, ease: 'easeOut' }}
-          className="text-center max-w-5xl mx-auto mb-10 sm:mb-12"
-        >
-          <h2 className="text-2xl sm:text-4xl lg:text-5xl font-extrabold text-[#18181b] tracking-tight font-serif leading-[1.15]">
-            Before You Buy Solar, <br />
-            <span className="text-[#2B3CB8]">
-              Run the Numbers.
-            </span>
-          </h2>
-          <p className="text-sm sm:text-base text-slate-900 mt-2">
-            See what could work for your home — from system size and savings to battery needs and payback.
-          </p>
-        </motion.div>
+        {/* Section Header with mixed Scroll Reveal directions */}
+        <div className="text-center max-w-5xl mx-auto mb-10 sm:mb-12">
+          <Reveal direction="right">
+            <h2 className="text-2xl sm:text-4xl lg:text-5xl font-extrabold text-[#18181b] tracking-tight font-serif leading-[1.15]">
+              Before You Buy Solar, <br />
+              <span className="text-[#2B3CB8]">
+                Run the Numbers.
+              </span>
+            </h2>
+          </Reveal>
+          <Reveal direction="left" delay={0.15}>
+            <p className="text-sm sm:text-base text-slate-900 mt-2">
+              See what could work for your home — from system size and savings to battery needs and payback.
+            </p>
+          </Reveal>
+        </div>
 
         {/* ══════════════════════════════════════════════════════════════
             ONE UNIFIED MASTER BOX CONTAINER
            ══════════════════════════════════════════════════════════════ */}
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-30px' }}
-          transition={{ duration: 0.6, ease: 'easeOut', delay: 0.1 }}
+        <AnimatedCard
+          direction="up"
+          delay={0.2}
           className="relative border border-[#EF680C] rounded-xl bg-white shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden group/card"
         >
 
@@ -385,7 +383,7 @@ export const CalculatorsTeaserSection: React.FC = () => {
               <div className="absolute right-0 top-0 bottom-0 w-3 bg-white/70 blur-xs" />
             </motion.div>
           </div>
-        </motion.div>
+        </AnimatedCard>
       </div>
     </section>
   );

@@ -60,11 +60,11 @@ const initialKnowledgeGuides = [
         answer: 'Yes! Under Clean Energy Council rules, you can oversize panel capacity by up to 133% of your inverter AC output rating (e.g. 8.8kW of panels on a 6.6kW inverter). This provides earlier morning yield and better performance in cloudy weather.'
       },
       {
-        question: 'What is the network export limit in South East Queensland?',
+        question: 'What is the network export limit in South East Nationwide?',
         answer: 'Most Energex networks allow a standard 5kW single-phase feed-in limit. However, dynamic export controls allow you to install larger systems up to 10kW while optimizing self-consumption.'
       }
     ],
-    content: `<h3>The Death of the 5kW Residential System</h3><p>Five years ago, a 5kW solar system was considered standard for an Australian 3-bedroom home. Today, that recommendation is thoroughly obsolete.</p><p>Between high-efficiency ducted air conditioning, induction cooktops, swimming pool pumps, and the rapid arrival of home electric vehicle chargers, modern Queensland households consume between 22 and 35 kWh per day.</p><p>Because federal STC government rebates heavily subsidize panel capacity upfront, the incremental cost of adding an extra 2.2kW of panels during initial installation is exceptionally low. Sizing up covers your winter dip and ensures your future battery will have enough daytime surplus to charge fully.</p>`,
+    content: `<h3>The Death of the 5kW Residential System</h3><p>Five years ago, a 5kW solar system was considered standard for an Australian 3-bedroom home. Today, that recommendation is thoroughly obsolete.</p><p>Between high-efficiency ducted air conditioning, induction cooktops, swimming pool pumps, and the rapid arrival of home electric vehicle chargers, modern Nationwide households consume between 22 and 35 kWh per day.</p><p>Because federal STC government rebates heavily subsidize panel capacity upfront, the incremental cost of adding an extra 2.2kW of panels during initial installation is exceptionally low. Sizing up covers your winter dip and ensures your future battery will have enough daytime surplus to charge fully.</p>`,
     metaTitle: 'What Size Solar System Do You Need in 2025? | Sizing Guide',
     metaDescription: 'Expert sizing guide for Australian homes: baseline 6.6kW vs sweet spot 8.8kW with EV and battery planning.',
     isPublished: true,
@@ -174,7 +174,7 @@ const initialKnowledgeGuides = [
         answer: 'No. As a Clean Energy Council Approved Solar Retailer, Sunny Solar assigns and claims the STCs on your behalf, providing the full rebate as an instant point-of-sale deduction on your invoice.'
       }
     ],
-    content: `<h3>Understanding the True Value of Daytime Solar</h3><p>With feed-in tariffs hovering around 5c/kWh across Queensland, customers often ask if solar still makes financial sense. The answer is an emphatic yes — provided you understand the shift from feed-in credits to avoided retail grid costs.</p>`,
+    content: `<h3>Understanding the True Value of Daytime Solar</h3><p>With feed-in tariffs hovering around 5c/kWh across Nationwide, customers often ask if solar still makes financial sense. The answer is an emphatic yes — provided you understand the shift from feed-in credits to avoided retail grid costs.</p>`,
     metaTitle: 'Australian Solar Rebates & Feed-in Tariffs Explained 2025',
     metaDescription: 'Discover how STC rebates work, why feed-in tariffs dropped, and how self-consumption saves 36c/kWh.',
     isPublished: true,

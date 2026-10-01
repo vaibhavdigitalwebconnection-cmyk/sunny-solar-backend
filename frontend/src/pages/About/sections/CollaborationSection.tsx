@@ -51,7 +51,7 @@ export const CollaborationSection: React.FC = () => {
     { text: 'Tier-1 BloombergNEF Rated Hardware', icon: Award },
     { text: 'Sub-10ms Emergency Blackout Switching', icon: Zap },
     { text: 'N-Type TOPCon Cell Architecture', icon: Sparkles },
-    { text: 'Tested for 42°C Queensland Heat', icon: Flame },
+    { text: 'Tested for 42°C Nationwide Heat', icon: Flame },
     { text: 'Direct Manufacturer Warranty Backing', icon: ShieldCheck },
     { text: '30-Year Guaranteed Linear Output', icon: Award },
     { text: 'Australian Standard AS/NZS 5033 Compliant', icon: CheckCircle2 },
@@ -142,7 +142,7 @@ export const CollaborationSection: React.FC = () => {
               cyclonic winds, and coastal salt mist.
             </motion.p>
 
-            
+
 
             {/* CTAs */}
             <motion.div
@@ -156,7 +156,7 @@ export const CollaborationSection: React.FC = () => {
                 variant="primary"
                 size="md"
                 className="group relative w-full xs:w-auto text-center shadow-md hover:shadow-xl hover:scale-[1.02] transition-all cursor-pointer overflow-hidden"
-                // icon={<ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />}
+              // icon={<ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />}
               >
                 Explore Tier-1 Systems
               </Button>
@@ -242,7 +242,7 @@ export const CollaborationSection: React.FC = () => {
               Verified Compliance &amp; Engineering Standards
             </span>
             <span className="text-[11px] text-slate-400 font-medium hidden sm:inline-block">
-              Queensland Clean Energy Network
+              Nationwide Clean Energy Network
             </span>
           </div>
 

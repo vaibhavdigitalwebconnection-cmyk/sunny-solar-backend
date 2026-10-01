@@ -10,7 +10,7 @@ export const BatteryBackupHeroSection: React.FC = () => {
       badgeVariant="navy"
       title="Whole-Home Backup &"
       highlightText="Emergency Power Supply (EPS)"
-      description="Queensland storms and transmission collapses are becoming more severe. Protect your family's refrigeration, lights, Wi-Fi, air-con, and medical equipment with sub-100ms automated grid isolation."
+      description="Nationwide storms and transmission collapses are becoming more severe. Protect your family's refrigeration, lights, Wi-Fi, air-con, and medical equipment with sub-100ms automated grid isolation."
       actions={
         <>
           <Button

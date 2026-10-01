@@ -163,7 +163,7 @@ export const SolarPlusBatteryPackagesSection: React.FC = () => {
           Signature Solar + Battery Packages
         </h2>
         <p className="mt-2 text-xs sm:text-sm text-slate-600 leading-relaxed max-w-2xl mx-auto">
-          Turnkey all-in-one systems engineered with Tier-1 panels, matched hybrid lithium storage, automated switchboard backup, and local Queensland grid approval.
+          Turnkey all-in-one systems engineered with Tier-1 panels, matched hybrid lithium storage, automated switchboard backup, and local Nationwide grid approval.
         </p>
       </div>
 
@@ -187,8 +187,8 @@ export const SolarPlusBatteryPackagesSection: React.FC = () => {
               <div key={pkg.id} className="w-full shrink-0 px-0.5 flex flex-col">
                 <div
                   className={`bg-white rounded-2xl p-5 flex flex-col justify-between h-full transition-all duration-300 ${pkg.isPopular
-                      ? 'border-2 border-amber-500 shadow-md shadow-amber-500/10'
-                      : 'border border-slate-200/90 shadow-2xs'
+                    ? 'border-2 border-amber-500 shadow-md shadow-amber-500/10'
+                    : 'border border-slate-200/90 shadow-2xs'
                     }`}
                 >
                   <div>
@@ -305,8 +305,8 @@ export const SolarPlusBatteryPackagesSection: React.FC = () => {
                 onClick={() => goToSlide(dotIdx)}
                 aria-label={`Go to package ${dotIdx + 1}`}
                 className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${activeSlide === dotIdx
-                    ? 'w-6 bg-[#2B3CB8]'
-                    : 'w-2 bg-slate-300 hover:bg-slate-400'
+                  ? 'w-6 bg-[#2B3CB8]'
+                  : 'w-2 bg-slate-300 hover:bg-slate-400'
                   }`}
               />
             ))}
@@ -358,8 +358,8 @@ export const SolarPlusBatteryPackagesSection: React.FC = () => {
           <div
             key={pkg.id}
             className={`bg-white rounded-2xl p-6 sm:p-8 border transition-all duration-300 relative ${pkg.isPopular
-                ? 'border-2 border-amber-500 shadow-lg shadow-amber-500/5 ring-1 ring-amber-500/20'
-                : 'border-slate-200/90 shadow-sm hover:shadow-md hover:border-slate-300'
+              ? 'border-2 border-amber-500 shadow-lg shadow-amber-500/5 ring-1 ring-amber-500/20'
+              : 'border-slate-200/90 shadow-sm hover:shadow-md hover:border-slate-300'
               }`}
           >
             {/* Featured Floating Badge */}

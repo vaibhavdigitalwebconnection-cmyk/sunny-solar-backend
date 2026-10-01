@@ -40,7 +40,7 @@ export const ExistingSolarSolutionsGridSection: React.FC = () => {
       badge: 'Savings Audit',
       badgeVariant: 'emerald',
       metric: 'Benchmark Lifetime ROI',
-      desc: 'Audit your existing solar system against Queensland historical radiation data to verify your true lifetime return on investment.',
+      desc: 'Audit your existing solar system against Nationwide historical radiation data to verify your true lifetime return on investment.',
       bullets: [
         'Lifetime retail bill savings audit',
         'Analyze low feed-in tariff losses',
@@ -256,11 +256,10 @@ export const ExistingSolarSolutionsGridSection: React.FC = () => {
                 type="button"
                 onClick={() => goToSlide(dotIdx)}
                 aria-label={`Go to slide ${dotIdx + 1}`}
-                className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
-                  activeSlide === dotIdx
+                className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${activeSlide === dotIdx
                     ? 'w-6 bg-[#2B3CB8]'
                     : 'w-2 bg-slate-300 hover:bg-slate-400'
-                }`}
+                  }`}
               />
             ))}
           </div>

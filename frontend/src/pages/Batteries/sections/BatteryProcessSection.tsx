@@ -108,7 +108,7 @@ export const BatteryProcessSection: React.FC = () => {
       title: 'Thermal Management & AS/NZS 5139 Spatial Engineering',
       category: 'Fire Safety & Longevity Protection',
       tagline: 'Batteries hate direct sun. We engineer optimal cool airflow for 15+ year cell lifespan.',
-      desc: 'Queensland summer afternoon heat can degrade lithium battery cells prematurely. We engineer mounting locations in your garage, carport, or shaded breeze-path with mandatory fire-resistant non-combustible backing sheets and exact clearance distances from windows, doors, and ground level.',
+      desc: 'Nationwide summer afternoon heat can degrade lithium battery cells prematurely. We engineer mounting locations in your garage, carport, or shaded breeze-path with mandatory fire-resistant non-combustible backing sheets and exact clearance distances from windows, doors, and ground level.',
       icon: Thermometer,
       complianceStandard: 'Strict AS/NZS 5139:2019 Residential Battery Fire Code',
       turnaroundTime: 'Engineered During Pre-Install Design Stage',
@@ -186,7 +186,7 @@ export const BatteryProcessSection: React.FC = () => {
       title: 'Live Blackout Simulation, App Pairing & Handover',
       category: 'Commissioning & Peace of Mind',
       tagline: 'We cut the main council power grid right in front of you to prove it works.',
-      desc: 'We don’t pack up our tools until you see your home maintain uninterrupted power with your own eyes. We physically flip the main Energex street breaker to simulate a Queensland storm blackout, verify instantaneous sub-second cutover, configure your smartphone app, and activate automated BOM Severe Weather Storm Watch.',
+      desc: 'We don’t pack up our tools until you see your home maintain uninterrupted power with your own eyes. We physically flip the main Energex street breaker to simulate a Nationwide storm blackout, verify instantaneous sub-second cutover, configure your smartphone app, and activate automated BOM Severe Weather Storm Watch.',
       icon: Smartphone,
       complianceStandard: 'Full Commissioning Handover Certificate & Energex Sign-off',
       turnaroundTime: 'Handover Session (45–60 Minutes)',
@@ -201,7 +201,7 @@ export const BatteryProcessSection: React.FC = () => {
         },
         {
           label: 'Automated BOM Storm Watch Activation',
-          detail: 'Configuring automatic cloud-based weather tracking so your battery tops itself up to 100% before severe weather hits Queensland.',
+          detail: 'Configuring automatic cloud-based weather tracking so your battery tops itself up to 100% before severe weather hits Nationwide.',
         },
       ],
       hudTelemetry: {

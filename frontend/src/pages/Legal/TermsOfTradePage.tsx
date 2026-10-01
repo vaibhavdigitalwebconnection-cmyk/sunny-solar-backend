@@ -33,7 +33,7 @@ export const TermsOfTradePage: React.FC = () => {
           <section className="space-y-3">
             <h2 className="text-xl font-bold text-slate-900">2. Payment Milestones &amp; Deposit</h2>
             <p>
-              Under Queensland legislation and Clean Energy Council guidelines:
+              Under Nationwide legislation and Clean Energy Council guidelines:
             </p>
             <ul className="list-disc pl-5 space-y-1 text-slate-600">
               <li>A refundable preliminary deposit of 10% is required upon contract signing.</li>
@@ -71,7 +71,7 @@ export const TermsOfTradePage: React.FC = () => {
           <section className="space-y-3">
             <h2 className="text-xl font-bold text-slate-900">6. Governing Law</h2>
             <p>
-              These Terms of Trade are governed by the laws of the State of Queensland and the Commonwealth of Australia.
+              These Terms of Trade are governed by the laws of the State of Nationwide and the Commonwealth of Australia.
             </p>
           </section>
 

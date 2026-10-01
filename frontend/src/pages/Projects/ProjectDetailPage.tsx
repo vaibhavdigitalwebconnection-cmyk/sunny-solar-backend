@@ -277,11 +277,10 @@ export const ProjectDetailPage: React.FC = () => {
                 <button
                   key={idx}
                   onClick={() => setActiveImageIndex(idx)}
-                  className={`relative rounded-2xl overflow-hidden h-20 sm:h-24 transition-all duration-200 cursor-pointer border text-left group ${
-                    isSelected
+                  className={`relative rounded-2xl overflow-hidden h-20 sm:h-24 transition-all duration-200 cursor-pointer border text-left group ${isSelected
                       ? 'ring-3 ring-amber-500 border-transparent shadow-md scale-[1.02]'
                       : 'border-slate-200 hover:border-slate-300 opacity-75 hover:opacity-100'
-                  }`}
+                    }`}
                 >
                   <img
                     src={img.url}
@@ -361,7 +360,7 @@ export const ProjectDetailPage: React.FC = () => {
                     {project.customerQuote.author}
                   </span>
                   <span className="text-xs text-slate-400">
-                    {project.customerQuote.suburb}, Queensland
+                    {project.customerQuote.suburb}, Nationwide
                   </span>
                 </div>
               </div>
@@ -419,7 +418,7 @@ export const ProjectDetailPage: React.FC = () => {
         <div className="pt-8 border-t border-slate-200/80">
           <div className="flex items-center justify-between mb-8">
             <h2 className="text-2xl sm:text-3xl font-serif font-bold text-slate-950">
-              More Queensland Case Studies
+              More Nationwide Case Studies
             </h2>
 
             <Link

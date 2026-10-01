@@ -45,7 +45,7 @@ export const SavingsPillarsSection: React.FC = () => {
       badge: 'Pillar 02 • 20% Value',
       tabLabel: '02. Feed-In (20%)',
       title: 'Grid Export Credits (FIT)',
-      desc: 'Surplus daytime generation spills safely back into the Queensland grid. These credits directly chip away at mandatory daily service charges (typically $1.30/day).',
+      desc: 'Surplus daytime generation spills safely back into the Nationwide grid. These credits directly chip away at mandatory daily service charges (typically $1.30/day).',
       icon: ArrowLeftRight,
       iconBg: 'bg-emerald-50',
       iconBorder: 'border-emerald-200',
@@ -202,11 +202,10 @@ export const SavingsPillarsSection: React.FC = () => {
               key={pillar.id}
               type="button"
               onClick={() => setActivePillar(idx)}
-              className={`flex-1 py-1.5 px-2 rounded-lg text-[11px] font-bold transition-all text-center cursor-pointer ${
-                activePillar === idx
+              className={`flex-1 py-1.5 px-2 rounded-lg text-[11px] font-bold transition-all text-center cursor-pointer ${activePillar === idx
                   ? `${pillar.activeColor} shadow-xs`
                   : 'text-slate-600 hover:text-slate-900'
-              }`}
+                }`}
             >
               {pillar.tabLabel}
             </button>
@@ -244,9 +243,8 @@ export const SavingsPillarsSection: React.FC = () => {
                 type="button"
                 onClick={() => setActivePillar(idx)}
                 aria-label={`View pillar ${idx + 1}`}
-                className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
-                  activePillar === idx ? `w-6 ${p.dotColor}` : 'w-2 bg-slate-300'
-                }`}
+                className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${activePillar === idx ? `w-6 ${p.dotColor}` : 'w-2 bg-slate-300'
+                  }`}
               />
             ))}
           </div>
@@ -290,7 +288,7 @@ export const SavingsPillarsSection: React.FC = () => {
       {/* 2. Visual Net-Metering Container Paired with Small Proportion Badges */}
       <div className="bg-slate-900 rounded-xl sm:rounded-2xl overflow-hidden text-white shadow-xl">
         <div className="grid grid-cols-1 lg:grid-cols-12 items-center">
-          
+
           {/* Visual Image Container Left */}
           <div className="lg:col-span-6 relative h-52 sm:h-64 lg:h-full lg:min-h-90">
             <img
@@ -299,7 +297,7 @@ export const SavingsPillarsSection: React.FC = () => {
               className="absolute inset-0 w-full h-full object-cover object-center"
             />
             <div className="absolute inset-0 bg-linear-to-t from-slate-950/80 via-transparent to-transparent lg:bg-linear-to-r lg:from-transparent lg:to-slate-900" />
-            
+
             <div className="absolute bottom-3 left-3 sm:bottom-6 sm:left-6 backdrop-blur-md bg-slate-950/80 p-2.5 sm:p-3 rounded-lg border border-white/20">
               <span className="text-[10px] sm:text-xs font-bold text-amber-400 uppercase tracking-wider block">Real Flow Topology</span>
               <span className="text-xs sm:text-sm font-extrabold text-white">Bi-Directional Smart Metering</span>
@@ -322,7 +320,7 @@ export const SavingsPillarsSection: React.FC = () => {
 
             {/* Grid of 4 Small Containers */}
             <div className="grid grid-cols-2 gap-2.5 sm:gap-4 mt-5 sm:mt-6">
-              
+
               {/* Small Container 1 */}
               <div className="bg-slate-800/80 border border-slate-700/80 rounded-xl p-2.5 sm:p-3.5">
                 <div className="flex items-center justify-between gap-1">

@@ -63,7 +63,7 @@ const initialArticles = [
       'Self-consumption is 6-7x more valuable than exporting: prioritize running heavy appliances between 10am and 2pm.'
     ],
     content: [
-      'With electricity bills continuing to rise across Queensland and New South Wales, understanding how solar economics actually work in 2025 is critical.',
+      'With electricity bills continuing to rise across Nationwide and New South Wales, understanding how solar economics actually work in 2025 is critical.',
       'The biggest misconception homeowners have is expecting a massive feed-in tariff credit on their power bill. The golden era of 44c/kWh feed-in tariffs is long gone. Today, the real financial return of solar comes from avoided grid consumption: every kilowatt-hour you produce and use directly behind your own meter avoids paying 32c to 42c to your energy retailer.',
       'Furthermore, the Small-scale Renewable Energy Scheme (SRES) which provides upfront STC discounts drops by one year every January 1st until it concludes in 2030. Locking in your installation sooner maximizes this federal subsidy.'
     ],

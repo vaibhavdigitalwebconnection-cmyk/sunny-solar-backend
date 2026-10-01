@@ -46,7 +46,7 @@ export const getFlagEmoji = (countryCode) => {
 const TIMEZONE_TO_COUNTRY = {
   'Asia/Kolkata': { country: 'India', countryCode: 'IN', flag: '🇮🇳', region: 'India' },
   'Asia/Calcutta': { country: 'India', countryCode: 'IN', flag: '🇮🇳', region: 'India' },
-  'Australia/Brisbane': { country: 'Australia', countryCode: 'AU', flag: '🇦🇺', region: 'Queensland' },
+  'Australia/Brisbane': { country: 'Australia', countryCode: 'AU', flag: '🇦🇺', region: 'Nationwide' },
   'Australia/Sydney': { country: 'Australia', countryCode: 'AU', flag: '🇦🇺', region: 'New South Wales' },
   'Australia/Melbourne': { country: 'Australia', countryCode: 'AU', flag: '🇦🇺', region: 'Victoria' },
   'Australia/Perth': { country: 'Australia', countryCode: 'AU', flag: '🇦🇺', region: 'Western Australia' },

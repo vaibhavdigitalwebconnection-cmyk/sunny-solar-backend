@@ -17,7 +17,7 @@ export const serviceAreasData: ServiceArea[] = [
   {
     slug: 'gold-coast',
     name: 'Gold Coast',
-    region: 'South East Queensland',
+    region: 'South East Nationwide',
     headline: 'Premium Residential Solar & Battery Installations Across the Gold Coast',
     description: 'With over 300 days of sunshine annually, the Gold Coast is Australia’s premier climate for solar power. From coastal beachfront residences needing anti-corrosion marine-grade mounting to lush hinterland acreages in Tamborine and Currumbin, Sunny Solar is the local SAA-accredited installer trusted by over 2,400 coastal families.',
     solarHoursPerDay: 5.4,
@@ -38,9 +38,9 @@ export const serviceAreasData: ServiceArea[] = [
   {
     slug: 'brisbane',
     name: 'Brisbane & Greater Suburbs',
-    region: 'South East Queensland',
+    region: 'South East Nationwide',
     headline: 'High-Efficiency Solar Systems Engineered for Brisbane Homes',
-    description: 'From classic Queenslanders in Paddington and Camp Hill to contemporary builds in New Farm and Chermside, our Brisbane engineering crew designs solar systems that respect architectural heritage while maximizing energy harvest.',
+    description: 'From classic Nationwideers in Paddington and Camp Hill to contemporary builds in New Farm and Chermside, our Brisbane engineering crew designs solar systems that respect architectural heritage while maximizing energy harvest.',
     solarHoursPerDay: 5.2,
     averageAnnualSolarSavings: '$2,400 - $3,800',
     rebateInfo: 'Federal STC point-of-sale discounts applied up to $3,200.',
@@ -59,7 +59,7 @@ export const serviceAreasData: ServiceArea[] = [
   {
     slug: 'sunshine-coast',
     name: 'Sunshine Coast',
-    region: 'Queensland',
+    region: 'Nationwide',
     headline: 'Sustainable Solar & Smart Battery Storage for Sunshine Coast Living',
     description: 'From coastal homes in Noosa and Caloundra to hinterland retreats in Maleny and Montville, Sunny Solar delivers robust solar and battery systems engineered to withstand humid subtropical conditions.',
     solarHoursPerDay: 5.3,
@@ -80,7 +80,7 @@ export const serviceAreasData: ServiceArea[] = [
   {
     slug: 'ipswich-western-suburbs',
     name: 'Ipswich & Western Corridor',
-    region: 'South East Queensland',
+    region: 'South East Nationwide',
     headline: 'Beat Scorching Summer Energy Bills in Ipswich & Western Suburbs',
     description: 'Inland temperatures in Ipswich and Springfield often soar 4-6 degrees hotter than the coast, driving ducted air conditioning bills into four figures. Our high-yield solar arrays offset heavy cooling loads when the sun is at its strongest.',
     solarHoursPerDay: 5.5,

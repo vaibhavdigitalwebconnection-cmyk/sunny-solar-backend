@@ -45,7 +45,7 @@ export const ExistingSolarWarningSignsSection: React.FC = () => {
       badgeColor: 'bg-[#F5F7FD] text-[#1D2984] border-[#D1DCF8]',
       title: 'Degraded or Recalled DC Isolators',
       symptom:
-        'Queensland summer UV cracks switch housings, causing water ingress, internal arcing, and severe switchboard fire hazards.',
+        'Nationwide summer UV cracks switch housings, causing water ingress, internal arcing, and severe switchboard fire hazards.',
       remedy: 'Immediate replacement with certified weatherproof IP66 rotary isolators compliant with AS/NZS 5033.',
       linkTo: '/existing-solar/health-check',
       linkText: 'Inspect DC Isolators',

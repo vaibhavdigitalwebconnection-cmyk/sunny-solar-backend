@@ -238,36 +238,7 @@ export function TestimonialsCard({
                     </AnimatePresence>
                 </div>
 
-                {/* 3. Navigation Controls: ← 01 / 05 → (On mobile: row-start-3, centered) */}
-                <div className="row-start-3 col-start-1 md:col-start-2 md:row-start-3 flex justify-center md:justify-start items-center gap-3 w-full md:w-auto  px-1 md:pl-4">
-                    {showNavigation && items.length > 1 && (
-                        <div className="inline-flex items-center gap-3 bg-white border border-[#ED4F11] rounded-full px-2 py-1 shadow-sm">
-                            <button
-                                type="button"
-                                onClick={handlePrev}
-                                className="flex items-center justify-center w-9 h-9 rounded-full bg-[#F5F7FD] hover:bg-[#ED4F11] text-[#ED4F11] hover:text-white transition-all cursor-pointer active:scale-95"
-                                aria-label="Previous slide"
-                            >
-                                <ArrowLeft className="w-4 h-4" />
-                            </button>
-
-                            {showCounter && (
-                                <span className="font-mono text-xs sm:text-sm font-bold text-[#ED4F11]   tracking-wider px-2">
-                                    {String(activeIndex + 1).padStart(2, '0')} / {String(items.length).padStart(2, '0')}
-                                </span>
-                            )}
-
-                            <button
-                                type="button"
-                                onClick={handleNext}
-                                className="flex items-center justify-center w-9 h-9 rounded-full bg-[#F5F7FD] hover:bg-[#ED4F11] text-[#ED4F11] hover:text-white transition-all cursor-pointer active:scale-95"
-                                aria-label="Next slide"
-                            >
-                                <ArrowRight className="w-4 h-4" />
-                            </button>
-                        </div>
-                    )}
-                </div>
+               
             </div>
         </div>
     );

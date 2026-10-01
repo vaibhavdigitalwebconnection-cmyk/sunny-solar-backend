@@ -76,17 +76,17 @@
   --color-amber-900: #0C123E;
   --color-amber-950: #070A24;
 
-  --color-yellow-50: #F5F7FD;
-  --color-yellow-100: #E8EDFB;
-  --color-yellow-200: #D1DCF8;
-  --color-yellow-300: #A4B9F1;
-  --color-yellow-400: #6F8EE7;
-  --color-yellow-500: #2B3CB8;
-  --color-yellow-600: #2433A1;
-  --color-yellow-700: #1D2984;
-  --color-yellow-800: #151E64;
-  --color-yellow-900: #0C123E;
-  --color-yellow-950: #070A24;
+  --color-yellow-50: #FEFCE8;
+  --color-yellow-100: #FEF9C3;
+  --color-yellow-200: #FEF08A;
+  --color-yellow-300: #FDE047;
+  --color-yellow-400: #FACC15;
+  --color-yellow-500: #EAB308;
+  --color-yellow-600: #CA8A04;
+  --color-yellow-700: #A16207;
+  --color-yellow-800: #854D0E;
+  --color-yellow-900: #713F12;
+  --color-yellow-950: #422006;
 
   --color-emerald-50: #F5F7FD;
   --color-emerald-100: #E8EDFB;
@@ -254,6 +254,22 @@
 
 .animate-megamenu {
   animation: megaMenuSlide 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Page entrance smooth fade & subtle lift transition */
+@keyframes pageEnter {
+  0% {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-page-enter {
+  animation: pageEnter 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 /* FlipText Component Animations */

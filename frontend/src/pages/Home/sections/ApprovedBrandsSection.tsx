@@ -1,5 +1,6 @@
 import React from 'react';
 import { ShieldCheck } from 'lucide-react';
+import { Reveal } from '../components/Reveal';
 
 // Brand logos from assets/logo-brands
 import foxLogo from '@/assets/logo-brands/fox.png';
@@ -48,13 +49,15 @@ export const ApprovedBrandsSection: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-6 sm:mb-10 text-center">
 
 
-        {/* Main Heading */}
-        <h2 className="text-xl sm:text-3xl lg:text-[40px] font-serif font-extrabold text-slate-950 tracking-tight leading-[1.2]">
-          We Install SAA Approved <br className="hidden sm:inline" />
-          <span className="text-[#2B3CB8]">
-            Panels, Inverters &amp; Batteries
-          </span>
-        </h2>
+        {/* Main Heading (from BOTTOM) */}
+        <Reveal direction="up">
+          <h2 className="text-xl sm:text-3xl lg:text-[40px] font-serif font-extrabold text-slate-950 tracking-tight leading-[1.2]">
+            We Install SAA Approved <br className="hidden sm:inline" />
+            <span className="text-[#2B3CB8]">
+              Panels, Inverters &amp; Batteries
+            </span>
+          </h2>
+        </Reveal>
       </div>
 
       {/* Infinite Marquee Running Belt (Full Color Logos, No Boxes) */}

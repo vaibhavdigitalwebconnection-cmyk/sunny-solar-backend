@@ -68,7 +68,7 @@ export const UpgradeComparisonSection: React.FC = () => {
             <ArrowDownRight className="w-4 h-4 text-rose-500 shrink-0 mt-0.5" />
             <div>
               <span className="font-bold text-slate-900">200W – 250W Polycrystalline:</span>
-              <p className="text-slate-500 text-[11px] mt-0.5">Low 15% efficiency rating with severe power drop-off in hot Queensland summers.</p>
+              <p className="text-slate-500 text-[11px] mt-0.5">Low 15% efficiency rating with severe power drop-off in hot Nationwide summers.</p>
             </div>
           </div>
 
@@ -174,11 +174,10 @@ export const UpgradeComparisonSection: React.FC = () => {
           <button
             type="button"
             onClick={() => setActiveSlide(0)}
-            className={`flex-1 py-2 px-2.5 rounded-lg text-xs font-bold transition-all flex items-center justify-center gap-1.5 cursor-pointer ${
-              activeSlide === 0
+            className={`flex-1 py-2 px-2.5 rounded-lg text-xs font-bold transition-all flex items-center justify-center gap-1.5 cursor-pointer ${activeSlide === 0
                 ? 'bg-rose-500 text-white shadow-xs'
                 : 'text-slate-600 hover:text-slate-900'
-            }`}
+              }`}
           >
             <AlertCircle className="w-3.5 h-3.5" />
             <span>Legacy (2012–18)</span>
@@ -186,11 +185,10 @@ export const UpgradeComparisonSection: React.FC = () => {
           <button
             type="button"
             onClick={() => setActiveSlide(1)}
-            className={`flex-1 py-2 px-2.5 rounded-lg text-xs font-bold transition-all flex items-center justify-center gap-1.5 cursor-pointer ${
-              activeSlide === 1
+            className={`flex-1 py-2 px-2.5 rounded-lg text-xs font-bold transition-all flex items-center justify-center gap-1.5 cursor-pointer ${activeSlide === 1
                 ? 'bg-emerald-600 text-white shadow-xs'
                 : 'text-slate-600 hover:text-slate-900'
-            }`}
+              }`}
           >
             <ShieldCheck className="w-3.5 h-3.5" />
             <span>Modern (2025/26)</span>
@@ -227,17 +225,15 @@ export const UpgradeComparisonSection: React.FC = () => {
               type="button"
               onClick={() => setActiveSlide(0)}
               aria-label="View legacy architecture"
-              className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
-                activeSlide === 0 ? 'w-6 bg-rose-500' : 'w-2 bg-slate-300'
-              }`}
+              className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${activeSlide === 0 ? 'w-6 bg-rose-500' : 'w-2 bg-slate-300'
+                }`}
             />
             <button
               type="button"
               onClick={() => setActiveSlide(1)}
               aria-label="View modern architecture"
-              className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
-                activeSlide === 1 ? 'w-6 bg-emerald-600' : 'w-2 bg-slate-300'
-              }`}
+              className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${activeSlide === 1 ? 'w-6 bg-emerald-600' : 'w-2 bg-slate-300'
+                }`}
             />
           </div>
 

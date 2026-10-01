@@ -116,11 +116,10 @@ export const AddBatteryRetrofitChoicesSection: React.FC = () => {
   const renderRetrofitCard = (sys: (typeof retrofitSystems)[0]) => (
     <div
       key={sys.id}
-      className={`bg-white rounded-xl border transition-all flex flex-col justify-between overflow-hidden shadow-sm hover:shadow-md h-full ${
-        sys.highlight
+      className={`bg-white rounded-xl border transition-all flex flex-col justify-between overflow-hidden shadow-sm hover:shadow-md h-full ${sys.highlight
           ? 'border-2 border-emerald-500 ring-1 ring-emerald-500/20'
           : 'border-slate-200/90 hover:border-slate-300'
-      }`}
+        }`}
     >
       <div>
         {/* Image Header with Gradient & Tags */}
@@ -131,7 +130,7 @@ export const AddBatteryRetrofitChoicesSection: React.FC = () => {
             className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500 opacity-90"
           />
           <div className="absolute inset-0 bg-linear-to-t from-slate-950/85 via-slate-950/20 to-transparent" />
-          
+
           {/* Overlaid Badges */}
           <div className="absolute top-3 left-3">
             <span
@@ -212,7 +211,7 @@ export const AddBatteryRetrofitChoicesSection: React.FC = () => {
           Proven Battery Storage for <br /> <span className="text-emerald-600">Your Existing Inverter</span>
         </h2>
         <p className="mt-2.5 sm:mt-3 text-xs sm:text-sm md:text-base text-slate-600 leading-relaxed px-1 sm:px-0">
-          Select from tier-one, AC-coupled systems tested for seamless communication with Queensland rooftop solar systems.
+          Select from tier-one, AC-coupled systems tested for seamless communication with Nationwide rooftop solar systems.
         </p>
       </div>
 
@@ -249,9 +248,8 @@ export const AddBatteryRetrofitChoicesSection: React.FC = () => {
                 type="button"
                 onClick={() => setActiveSlide(idx)}
                 aria-label={`View ${sys.name}`}
-                className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
-                  activeSlide === idx ? 'w-6 bg-emerald-600' : 'w-2 bg-slate-300'
-                }`}
+                className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${activeSlide === idx ? 'w-6 bg-emerald-600' : 'w-2 bg-slate-300'
+                  }`}
               />
             ))}
           </div>
