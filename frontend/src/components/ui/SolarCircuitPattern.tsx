@@ -40,7 +40,7 @@ export const SolarCircuitPattern: React.FC<SolarCircuitPatternProps> = ({
     >
       {/* â”€â”€ 1. Monocrystalline Silicon Wafer Array (Solid Chamfered Wafer Geometry - NO DOTS) â”€â”€ */}
       <svg
-        className="absolute inset-0 size-full [mask-image:radial-gradient(ellipse_90%_80%_at_50%_50%,#000_35%,transparent_95%)]"
+        className="absolute inset-0 size-full mask-[radial-gradient(ellipse_90%_80%_at_50%_50%,#000_35%,transparent_95%)]"
         xmlns="http://www.w3.org/2000/svg"
       >
         <defs>
@@ -289,7 +289,7 @@ export const SolarCircuitPattern: React.FC<SolarCircuitPatternProps> = ({
           ease: 'easeInOut',
           repeatDelay: 5,
         }}
-        className="absolute inset-y-0 w-2/5 bg-linear-to-r from-transparent via-[#2B3CB8]/5 via-[#EF680C]/4 to-transparent skew-x-12 pointer-events-none"
+        className="absolute inset-y-0 w-2/5 bg-linear-to-r from-transparent via-[#2B3CB8]/5 to-transparent skew-x-12 pointer-events-none"
       />
     </div>
   );

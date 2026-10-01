@@ -308,7 +308,7 @@ export const SolarStageAnimation: React.FC<SolarStageAnimationProps> = ({
           ease: 'easeInOut',
           repeatDelay: 3.5,
         }}
-        className="absolute inset-y-0 w-1/3 bg-linear-to-r from-transparent via-white/40 via-blue-100/25 to-transparent skew-x-15 pointer-events-none"
+        className="absolute inset-y-0 w-1/3 bg-linear-to-r from-transparent via-white/40 to-transparent skew-x-15 pointer-events-none"
       />
     </div>
   );
