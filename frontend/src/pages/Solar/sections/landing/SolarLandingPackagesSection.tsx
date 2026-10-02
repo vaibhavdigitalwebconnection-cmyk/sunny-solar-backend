@@ -1,567 +1,356 @@
-import React, { useState, useRef } from 'react';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { motion, AnimatePresence } from 'framer-motion';
 import {
-  Check,
   ArrowRight,
   Sparkles,
-  ChevronLeft,
-  ChevronRight,
   Sun,
   Cpu,
+  ShieldCheck,
+  Zap,
 } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Badge } from '../../../../components/ui/Badge';
-import { Button } from '../../../../components/ui/Button';
-import { BorderBeam } from '../../../../components/ui/BorderBeam';
+import { Button } from '@/components/ui/Button';
+import { ShimmerButton } from '@/components/ui/ShimmerButton';
+import { BlurFade } from '@/components/ui/BlurFade';
+import { NumberTicker } from '@/components/ui/NumberTicker';
+import { AnimatedGridPattern } from '@/components/ui/AnimatedGridPattern';
+import { LightRays } from '@/components/ui/LightRays';
+import { Floating3DParticles } from '@/components/ui/Floating3DParticles';
 
 interface PackageItem {
   id: string;
   name: string;
   shortName: string;
-  tagline: string;
-  capacity: string;
-  panels: string;
-  inverter: string;
+  capacityNum: number;
+  bestFor: string;
   dailyYield: string;
+  dailyYieldPct: number;
   typicalSavings: string;
   stcDiscount: string;
   popular: boolean;
-  features: string[];
+  panels: string;
+  inverter: string;
 }
 
 export const SolarLandingPackagesSection: React.FC = () => {
+  const navigate = useNavigate();
+
   const packages: PackageItem[] = [
     {
-      id: 'essential-6kw',
-      name: 'Essential Home 6.6kW',
-      shortName: '6.6kW Home',
-      tagline: 'Ideal for 2-3 bedroom homes with moderate daytime usage',
-      capacity: '6.6 kW DC',
-      panels: '15x 440W Tier-1 N-Type TOPCon Panels',
-      inverter: '5.0kW European Fronius Primo or Sungrow Inverter',
-      dailyYield: '24 - 28 kWh / day',
-      typicalSavings: '$1,800 - $2,400 / yr',
-      stcDiscount: 'Up to $2,400 STC Rebate',
+      id: 'essential-7kw',
+      name: 'Essential Home',
+      shortName: '7.1kW',
+      capacityNum: 7.1,
+      bestFor: '2-3 bedroom homes with moderate daytime energy use',
+      dailyYield: '26 - 30 kWh/day',
+      dailyYieldPct: 45,
+      typicalSavings: '$1,900 - $2,550 / yr',
+      stcDiscount: 'Up to $2,550 Rebate',
       popular: false,
-      features: [
-        'High-density N-Type bifacial dual-glass cells',
-        '25-year panel product & performance warranty',
-        'Smart consumption monitoring meter included',
-        'Direct roof waterproofing leak guarantee',
-        'Battery-upgrade ready hybrid architecture',
-      ],
+      panels: '15x 475W Tier-1 Panels',
+      inverter: '5.0kW European Inverter',
     },
     {
-      id: 'family-10kw',
-      name: 'Family High-Yield 10.0kW',
-      shortName: '10.0kW Family',
-      tagline: 'Our #1 best seller for ducted A/C, swimming pools & growing families',
-      capacity: '10.0 kW DC',
-      panels: '23x 440W All-Black AIKO Neostar or REC Alpha',
-      inverter: '8.2kW European Fronius Primo / Sungrow Hybrid',
-      dailyYield: '38 - 44 kWh / day',
-      typicalSavings: '$2,800 - $3,600 / yr',
-      stcDiscount: 'Up to $3,200 STC Rebate',
+      id: 'family-11kw',
+      name: 'Family High-Yield',
+      shortName: '10.9kW',
+      capacityNum: 10.9,
+      bestFor: 'Ducted A/C, swimming pools & active households',
+      dailyYield: '41 - 48 kWh/day',
+      dailyYieldPct: 75,
+      typicalSavings: '$3,000 - $3,900 / yr',
+      stcDiscount: 'Up to $3,450 Rebate',
       popular: true,
-      features: [
-        'Ultra-aesthetic all-black modules matching your roofline',
-        'Generates huge daytime surplus to eliminate power bills',
-        'Zero export clipping with smart dynamic phase injection',
-        '10-year comprehensive Master Electrician workmanship',
-        'Direct plug-in compatibility with Tesla Powerwall 3',
-      ],
+      panels: '23x 475W All-Black Panels',
+      inverter: '8.2kW Hybrid Smart Inverter',
     },
     {
-      id: 'maximum-13kw',
-      name: 'Maximum Power 13.2kW - 15kW',
-      shortName: '13.2kW Max',
-      tagline: 'Complete energy autonomy for large residences & electric vehicle owners',
-      capacity: '13.2 - 15.0 kW DC',
-      panels: '30-34x 440W REC Alpha Pure-R Heterojunction Panels',
-      inverter: '10kW Single or Three-Phase Smart Inverter Setup',
-      dailyYield: '52 - 64 kWh / day',
-      typicalSavings: '$3,800 - $5,200 / yr',
-      stcDiscount: 'Max Federal STC Rebate',
+      id: 'maximum-14kw',
+      name: 'Maximum Power',
+      shortName: '14.25kW',
+      capacityNum: 14.25,
+      bestFor: 'Large residences, home businesses & EV owners',
+      dailyYield: '56 - 68 kWh/day',
+      dailyYieldPct: 100,
+      typicalSavings: '$4,100 - $5,600 / yr',
+      stcDiscount: 'Max Federal Rebate',
       popular: false,
-      features: [
-        'Multi-string design optimizing east, west and north facets',
-        'Maximum allowable residential Energex grid capacity',
-        'Level 2 EV smart solar diversion charging support',
-        'Dedicated Master Electrician project manager',
-        'Commercial-grade Clenergy cyclone mounting hardware',
-      ],
+      panels: '30x 475W REC Pure Panels',
+      inverter: '10kW Three-Phase Inverter',
     },
   ];
 
-  // Default to index 1 (the popular 10kW package)
-  const [activeMobileIndex, setActiveMobileIndex] = useState(1);
-  const [direction, setDirection] = useState(1);
-  const touchStartX = useRef<number | null>(null);
-  const touchEndX = useRef<number | null>(null);
-
-  const selectPackage = (index: number) => {
-    setDirection(index > activeMobileIndex ? 1 : -1);
-    setActiveMobileIndex(index);
-  };
-
-  const nextPackage = () => {
-    setDirection(1);
-    setActiveMobileIndex((prev) => (prev + 1) % packages.length);
-  };
-
-  const prevPackage = () => {
-    setDirection(-1);
-    setActiveMobileIndex((prev) => (prev - 1 + packages.length) % packages.length);
-  };
-
-  const handleTouchStart = (e: React.TouchEvent) => {
-    touchStartX.current = e.targetTouches[0].clientX;
-  };
-
-  const handleTouchMove = (e: React.TouchEvent) => {
-    touchEndX.current = e.targetTouches[0].clientX;
-  };
-
-  const handleTouchEnd = () => {
-    if (touchStartX.current !== null && touchEndX.current !== null) {
-      const diff = touchStartX.current - touchEndX.current;
-      if (diff > 40) {
-        nextPackage();
-      } else if (diff < -40) {
-        prevPackage();
-      }
-    }
-    touchStartX.current = null;
-    touchEndX.current = null;
-  };
-
-  const currentPkg = packages[activeMobileIndex];
+  const [activeId, setActiveId] = useState<string>('family-11kw');
+  const activePkg = packages.find((p) => p.id === activeId) || packages[1];
 
   return (
-    <section className="py-10 xs:py-12 sm:py-16 lg:py-20 bg-slate-50 border-y border-slate-200/80">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header Block */}
-        <div className="flex flex-col items-center md:items-end md:flex-row justify-between mb-8 sm:mb-12 lg:mb-16 gap-5 sm:gap-6">
-          <div className="max-w-2xl text-center md:text-left flex flex-col items-center md:items-start mx-auto md:mx-0">
-            <Badge variant="amber" className="mb-2.5 sm:mb-3">
-              Signature Configurations
-            </Badge>
-            <h2 className="text-2xl xs:text-3xl sm:text-4xl font-serif font-bold text-slate-950 tracking-tight leading-[1.2] sm:leading-[1.12] text-center md:text-left">
-              Engineered Residential Solar Packages
-            </h2>
-            <p className="mt-2.5 sm:mt-4 text-slate-600 text-xs xs:text-sm sm:text-base leading-relaxed text-center md:text-left">
-              Transparent specifications with zero bait-and-switch hardware. Every package includes full STC paperwork management and local utility grid approval.
-            </p>
-          </div>
-          <Button
-            to="/solar/systems"
-            variant="outline"
-            size="md"
-            className="w-full sm:w-auto shrink-0 justify-center"
-            icon={<ArrowRight className="w-4 h-4" />}
-          >
-            Explore All System Packages
-          </Button>
-        </div>
+    <section className="relative py-12 xs:py-16 sm:py-20 lg:py-14 bg-slate-50/50 overflow-hidden">
+      {/* Background Animated Magic UI Pattern, Sunlight Beams & 3D Floating Photons */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden -z-10">
+        {/* Magic UI Light Rays: Sunbeams Streaming Down */}
+        <LightRays
+          count={activePkg.popular ? 8 : 6}
+          color={
+            activePkg.popular
+              ? 'rgba(245, 158, 11, 0.26)'
+              : activePkg.id === 'maximum-14kw'
+              ? 'rgba(234, 179, 8, 0.3)'
+              : 'rgba(245, 158, 11, 0.18)'
+          }
+          blur={activePkg.popular ? 40 : 34}
+          speed={activePkg.popular ? 11 : 14}
+          length="80vh"
+          className="opacity-75 transition-opacity duration-500"
+        />
 
-        {/* ======================================================== */}
-        {/* MOBILE VIEW (< lg): Interactive Tabbed Carousel          */}
-        {/* ======================================================== */}
-        <div className="block lg:hidden">
-          {/* Segmented Package Switcher */}
-          <div className="grid grid-cols-3 gap-1.5 p-1 bg-slate-200/70 rounded-xl mb-4">
-            {packages.map((pkg, idx) => {
-              const isActive = idx === activeMobileIndex;
+        {/* Magic UI 3D Perspective Floating Solar Photons */}
+        <Floating3DParticles
+          quantity={80}
+          color={activePkg.popular ? '#F59E0B' : '#3B82F6'}
+          size={4.2}
+          opacity={0.32}
+          drift={0.65}
+          depth={0.65}
+          className="absolute inset-0"
+        />
+
+        {/* Subtle SVG Grid Foundation */}
+        <AnimatedGridPattern
+          numSquares={30}
+          maxOpacity={0.10}
+          duration={3.5}
+          repeatDelay={0.8}
+          className="text-blue-600/20 mask-[radial-gradient(ellipse_at_center,white,transparent_80%)] inset-x-0 inset-y-[-20%] h-[160%] skew-y-3"
+        />
+
+        {/* Ambient Responsive Solar Halo */}
+        <div
+          className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full blur-3xl pointer-events-none transition-all duration-700 ${
+            activePkg.popular
+              ? 'w-187.5 h-105 bg-radial from-amber-400/20 via-orange-400/10 to-transparent'
+              : activePkg.id === 'maximum-14kw'
+              ? 'w-205 h-115 bg-radial from-amber-300/22 via-blue-500/10 to-transparent'
+              : 'w-170 h-90 bg-radial from-amber-400/14 via-blue-500/5 to-transparent'
+          }`}
+        />
+      </div>
+
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        {/* Section Header: Minimal & Meaningful */}
+        <BlurFade delay={0.08} direction="up" className="flex flex-col items-center mb-8 text-center">
+          <h2 className="text-2xl xs:text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-slate-950 tracking-tight leading-[1.2] max-w-2xl">
+            Choose Your Solar Package
+          </h2>
+
+          <p className="mt-2 text-slate-600 text-xs xs:text-sm sm:text-base leading-relaxed max-w-lg font-normal">
+            Tier-1 hardware pre-configured with full federal STC rebates and 25-year warranty.
+          </p>
+        </BlurFade>
+
+        {/* Dynamic Tier Switcher Bar with Fluid Spring Indicator */}
+        <BlurFade delay={0.12} direction="up" className="mb-8 max-w-4xl mx-auto">
+          <div className="grid grid-cols-3 gap-1.5 p-1.5 bg-slate-200/60 rounded-xl relative backdrop-blur-xs">
+            {packages.map((pkg) => {
+              const isSelected = pkg.id === activeId;
               return (
                 <button
                   key={pkg.id}
-                  onClick={() => selectPackage(idx)}
-                  className={`relative py-2 px-1.5 rounded-lg text-xs font-semibold transition-all duration-200 flex flex-col items-center justify-center gap-0.5 ${
-                    isActive
-                      ? pkg.popular
-                        ? 'bg-slate-950 text-white shadow-sm'
-                        : 'bg-white text-slate-950 shadow-sm'
-                      : 'text-slate-600 hover:text-slate-900'
-                  }`}
-                  aria-label={`Select ${pkg.name}`}
+                  type="button"
+                  onClick={() => setActiveId(pkg.id)}
+                  className="relative py-2.5 px-3 rounded-lg text-center transition-colors duration-200 cursor-pointer select-none"
                 >
-                  <span className="font-bold truncate text-[11px] xs:text-xs">
-                    {pkg.shortName}
-                  </span>
-                  {pkg.popular && (
-                    <span className="text-[9px] font-extrabold text-amber-500 uppercase tracking-wider flex items-center gap-0.5">
-                      <Sparkles className="w-2.5 h-2.5" /> Popular
-                    </span>
+                  {/* Fluid Spring Background Indicator */}
+                  {isSelected && (
+                    <motion.div
+                      layoutId="activeSystemTabPill"
+                      transition={{ type: 'spring', stiffness: 450, damping: 32 }}
+                      className={`absolute inset-0 rounded-lg ${
+                        pkg.popular
+                          ? 'bg-slate-950 shadow-md'
+                          : 'bg-white shadow-sm'
+                      }`}
+                    />
                   )}
+
+                  <div className="relative z-10">
+                    {pkg.popular && (
+                      <span className="absolute -top-4.5 left-1/2 -translate-x-1/2 bg-linear-to-r from-amber-500 to-amber-400 text-slate-950 text-[9px] font-black px-2 py-0.2 rounded-full uppercase tracking-wider shadow-xs whitespace-nowrap flex items-center gap-1">
+                        <Sparkles className="w-2.5 h-2.5 fill-slate-950" /> Popular
+                      </span>
+                    )}
+                    <div
+                      className={`text-xs sm:text-sm font-mono font-bold transition-colors ${
+                        isSelected
+                          ? pkg.popular
+                            ? 'text-amber-400'
+                            : 'text-[#2B3CB8]'
+                          : 'text-slate-700'
+                      }`}
+                    >
+                      {pkg.shortName}
+                    </div>
+                    <div
+                      className={`text-[11px] font-medium truncate transition-colors ${
+                        isSelected
+                          ? pkg.popular
+                            ? 'text-slate-300'
+                            : 'text-slate-600'
+                          : 'text-slate-500'
+                      }`}
+                    >
+                      {pkg.name}
+                    </div>
+                  </div>
                 </button>
               );
             })}
           </div>
+        </BlurFade>
 
-          {/* Swipeable Active Package Card */}
-          <div
-            className="relative"
-            onTouchStart={handleTouchStart}
-            onTouchMove={handleTouchMove}
-            onTouchEnd={handleTouchEnd}
-          >
-            <AnimatePresence mode="wait" custom={direction}>
+        {/* Dynamic System Presentation (Open Canvas - NO Box, NO Border) */}
+        <BlurFade delay={0.16} direction="up">
+          <div className="relative overflow-hidden py-4 sm:py-6">
+            <AnimatePresence mode="wait">
               <motion.div
-                key={currentPkg.id}
-                custom={direction}
-                initial={{ opacity: 0, x: direction * 30 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: direction * -30 }}
-                transition={{ duration: 0.25, ease: 'easeInOut' }}
-                className={`rounded-2xl p-5 xs:p-6 transition-all duration-300 relative flex flex-col justify-between ${
-                  currentPkg.popular
-                    ? 'bg-slate-950 text-white shadow-xl border-2 border-amber-500'
-                    : 'bg-white text-slate-900 border border-slate-200/90 shadow-md'
-                }`}
+                key={activePkg.id}
+                initial={{ opacity: 0, y: 10, filter: 'blur(4px)' }}
+                animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+                exit={{ opacity: 0, y: -10, filter: 'blur(4px)' }}
+                transition={{ duration: 0.25, ease: 'easeOut' }}
+                className="space-y-6"
               >
-                {/* Popular Floating Tag */}
-                {currentPkg.popular && (
-                  <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 z-10">
-                    <span className="bg-amber-500 text-slate-950 text-[10px] xs:text-xs font-extrabold px-3 py-0.5 rounded-full uppercase tracking-wider shadow-md inline-flex items-center gap-1">
-                      <Sparkles className="w-3 h-3" />
-                      Most Popular Choice
+                {/* Top Metrics Row: Large Animated Capacity Number + Big Annual Savings */}
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                  <div>
+                    <div className="flex items-baseline gap-2">
+                      <NumberTicker
+                        key={activePkg.id}
+                        value={activePkg.capacityNum}
+                        decimalPlaces={1}
+                        className="text-4xl sm:text-5xl lg:text-6xl font-serif font-black text-slate-950 tracking-tight"
+                      />
+                      <span className="text-xl sm:text-2xl font-bold text-[#2B3CB8]">kW DC</span>
+                      {activePkg.popular && (
+                        <span className="ml-2 inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-bold bg-amber-100 text-amber-900 border border-amber-300/80">
+                          <Sparkles className="w-3 h-3 fill-amber-500 text-amber-500" />
+                          #1 Best Seller
+                        </span>
+                      )}
+                    </div>
+                    <p className="text-xs sm:text-sm text-slate-600 mt-1 font-normal">
+                      {activePkg.bestFor}
+                    </p>
+                  </div>
+
+                  {/* Savings & Rebate Readout */}
+                  <div className="sm:text-right shrink-0">
+                    <span className="text-[11px] font-mono uppercase tracking-wider text-slate-400 block">
+                      Estimated Annual Savings
                     </span>
-                  </div>
-                )}
-
-                <div>
-                  {/* Top Capacity & Rebate Header */}
-                  <div className="flex items-center justify-between mb-2 pt-1">
-                    <span
-                      className={`text-xs font-bold font-mono uppercase tracking-wider ${
-                        currentPkg.popular ? 'text-amber-400' : 'text-amber-600'
-                      }`}
-                    >
-                      {currentPkg.capacity}
+                    <span className="text-2xl sm:text-3xl font-serif font-bold text-emerald-600 block">
+                      {activePkg.typicalSavings}
                     </span>
-                    <span
-                      className={`text-[10px] xs:text-[11px] font-semibold px-2 py-0.5 rounded-full ${
-                        currentPkg.popular
-                          ? 'bg-amber-500/20 text-amber-300'
-                          : 'bg-slate-100 text-slate-600'
-                      }`}
-                    >
-                      {currentPkg.stcDiscount}
+                    <span className="text-xs font-medium text-slate-500">
+                      {activePkg.stcDiscount} Included
                     </span>
-                  </div>
-
-                  <h3
-                    className={`text-xl xs:text-2xl font-serif font-bold mb-1.5 ${
-                      currentPkg.popular ? 'text-white' : 'text-slate-950'
-                    }`}
-                  >
-                    {currentPkg.name}
-                  </h3>
-                  <p
-                    className={`text-xs leading-relaxed mb-4 ${
-                      currentPkg.popular ? 'text-slate-300' : 'text-slate-600'
-                    }`}
-                  >
-                    {currentPkg.tagline}
-                  </p>
-
-                  {/* Hardware Specs Pills */}
-                  <div
-                    className={`p-3 rounded-xl mb-4 space-y-2 text-xs ${
-                      currentPkg.popular
-                        ? 'bg-slate-900/80 border border-slate-800'
-                        : 'bg-slate-50 border border-slate-200/60'
-                    }`}
-                  >
-                    <div className="flex items-start gap-2">
-                      <Sun className="w-3.5 h-3.5 text-amber-500 shrink-0 mt-0.5" />
-                      <div className="leading-snug">
-                        <span
-                          className={`font-semibold ${
-                            currentPkg.popular ? 'text-slate-200' : 'text-slate-800'
-                          }`}
-                        >
-                          Panels:{' '}
-                        </span>
-                        <span
-                          className={currentPkg.popular ? 'text-slate-400' : 'text-slate-600'}
-                        >
-                          {currentPkg.panels}
-                        </span>
-                      </div>
-                    </div>
-                    <div className="flex items-start gap-2">
-                      <Cpu className="w-3.5 h-3.5 text-amber-500 shrink-0 mt-0.5" />
-                      <div className="leading-snug">
-                        <span
-                          className={`font-semibold ${
-                            currentPkg.popular ? 'text-slate-200' : 'text-slate-800'
-                          }`}
-                        >
-                          Inverter:{' '}
-                        </span>
-                        <span
-                          className={currentPkg.popular ? 'text-slate-400' : 'text-slate-600'}
-                        >
-                          {currentPkg.inverter}
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Metrics Box */}
-                  <div
-                    className={`p-3.5 rounded-xl mb-4 grid grid-cols-2 gap-2 text-xs ${
-                      currentPkg.popular
-                        ? 'bg-slate-900 border border-slate-800'
-                        : 'bg-slate-50 border border-slate-200/60'
-                    }`}
-                  >
-                    <div>
-                      <div className={currentPkg.popular ? 'text-slate-400' : 'text-slate-500'}>
-                        Typical Savings
-                      </div>
-                      <div className="font-bold text-emerald-500 text-sm mt-0.5">
-                        {currentPkg.typicalSavings}
-                      </div>
-                    </div>
-                    <div>
-                      <div className={currentPkg.popular ? 'text-slate-400' : 'text-slate-500'}>
-                        Est. Daily Harvest
-                      </div>
-                      <div
-                        className={`font-bold text-sm mt-0.5 ${
-                          currentPkg.popular ? 'text-amber-400' : 'text-slate-900'
-                        }`}
-                      >
-                        {currentPkg.dailyYield}
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Features List */}
-                  <div className="space-y-2 pt-3 border-t border-slate-100/10">
-                    {currentPkg.features.map((feat, fIdx) => (
-                      <div key={fIdx} className="flex items-start gap-2 text-xs">
-                        <Check className="w-3.5 h-3.5 text-emerald-500 shrink-0 mt-0.5" />
-                        <span
-                          className={
-                            currentPkg.popular ? 'text-slate-200' : 'text-slate-700'
-                          }
-                        >
-                          {feat}
-                        </span>
-                      </div>
-                    ))}
                   </div>
                 </div>
 
-                {/* Bottom CTA & Carousel Navigation */}
-                <div className="mt-6 pt-4 border-t border-slate-100/10 space-y-3">
-                  <Button
-                    to="/get-started/free-assessment"
-                    variant={currentPkg.popular ? 'primary' : 'outline'}
-                    size="md"
-                    fullWidth
-                    icon={<ArrowRight className="w-4 h-4" />}
-                  >
-                    Request Package Quote
-                  </Button>
+                {/* Energy Harvest Meter with Animated Gradient Fill & Pulse */}
+                <div className="py-4 border-y border-slate-200/60">
+                  <div className="flex items-center justify-between text-xs mb-2 font-medium">
+                    <span className="text-slate-700 flex items-center gap-1.5">
+                      <Zap className="w-3.5 h-3.5 text-amber-500 fill-amber-500 animate-pulse" />
+                      Daily Energy Harvest:
+                    </span>
+                    <span className="font-mono font-bold text-slate-900">
+                      {activePkg.dailyYield}
+                    </span>
+                  </div>
+                  <div className="h-2 w-full bg-slate-200/70 rounded-full overflow-hidden">
+                    <motion.div
+                      className="h-full bg-linear-to-r from-amber-400 via-amber-500 to-[#2B3CB8] rounded-full"
+                      initial={{ width: 0 }}
+                      animate={{ width: `${activePkg.dailyYieldPct}%` }}
+                      transition={{ duration: 0.5, ease: 'easeOut' }}
+                    />
+                  </div>
+                </div>
 
-                  {/* Arrow controls & dots */}
-                  <div className="flex items-center justify-between pt-1">
-                    <div className="flex items-center gap-1.5">
-                      {packages.map((_, dotIdx) => (
-                        <button
-                          key={dotIdx}
-                          onClick={() => selectPackage(dotIdx)}
-                          className={`h-1.5 rounded-full transition-all duration-300 ${
-                            dotIdx === activeMobileIndex
-                              ? currentPkg.popular
-                                ? 'w-6 bg-amber-400'
-                                : 'w-6 bg-slate-900'
-                              : currentPkg.popular
-                              ? 'w-2 bg-slate-700'
-                              : 'w-2 bg-slate-300'
-                          }`}
-                          aria-label={`Go to package ${dotIdx + 1}`}
-                        />
-                      ))}
-                    </div>
+                {/* Hardware Specs & Primary Action Strip */}
+                <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 pt-1">
+                  {/* Hardware & Guarantee Badges (No Heavy Borders) */}
+                  <div className="flex flex-wrap items-center gap-2">
+                    <motion.div
+                      whileHover={{ y: -1 }}
+                      className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/80 shadow-2xs text-xs text-slate-700"
+                    >
+                      <Sun className="w-3.5 h-3.5 text-amber-500 shrink-0" />
+                      <span>{activePkg.panels}</span>
+                    </motion.div>
 
-                    <div className="flex items-center gap-1.5">
-                      <button
-                        onClick={prevPackage}
-                        className={`w-7 h-7 rounded-lg flex items-center justify-center transition-colors active:scale-95 ${
-                          currentPkg.popular
-                            ? 'bg-slate-800 text-slate-200 hover:bg-slate-700 border border-slate-700'
-                            : 'bg-slate-100 text-slate-700 hover:bg-slate-200 border border-slate-200'
-                        }`}
-                        aria-label="Previous package"
+                    <motion.div
+                      whileHover={{ y: -1 }}
+                      className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/80 shadow-2xs text-xs text-slate-700"
+                    >
+                      <Cpu className="w-3.5 h-3.5 text-blue-600 shrink-0" />
+                      <span>{activePkg.inverter}</span>
+                    </motion.div>
+
+                    <motion.div
+                      whileHover={{ y: -1 }}
+                      className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-emerald-50/90 text-xs text-emerald-800"
+                    >
+                      <ShieldCheck className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
+                      <span className="font-medium">25-Yr Triple Guarantee</span>
+                    </motion.div>
+                  </div>
+
+                  {/* Direct Action Button */}
+                  <div className="flex items-center gap-3 shrink-0">
+                    {activePkg.popular ? (
+                      <ShimmerButton
+                        onClick={() => navigate('/get-started/free-assessment')}
+                        shimmerColor="#ffffff"
+                        shimmerDuration="2.5s"
+                        borderRadius="12px"
+                        background="linear-gradient(135deg, #F59E0B 0%, #D97706 100%)"
+                        className="w-full sm:w-auto text-slate-950 font-bold text-xs sm:text-sm px-5 py-2.5 shadow-md shadow-amber-500/20 hover:shadow-lg cursor-pointer"
                       >
-                        <ChevronLeft className="w-4 h-4" />
-                      </button>
-                      <button
-                        onClick={nextPackage}
-                        className={`w-7 h-7 rounded-lg flex items-center justify-center transition-colors active:scale-95 ${
-                          currentPkg.popular
-                            ? 'bg-slate-800 text-slate-200 hover:bg-slate-700 border border-slate-700'
-                            : 'bg-slate-100 text-slate-700 hover:bg-slate-200 border border-slate-200'
-                        }`}
-                        aria-label="Next package"
+                        <span className="flex items-center justify-center gap-2">
+                          <span>Get {activePkg.shortName} Quote</span>
+                          <ArrowRight className="w-4 h-4" />
+                        </span>
+                      </ShimmerButton>
+                    ) : (
+                      <Button
+                        to="/get-started/free-assessment"
+                        variant="primary"
+                        size="md"
+                        className="w-full sm:w-auto text-xs sm:text-sm cursor-pointer shadow-sm"
+                        icon={<ArrowRight className="w-4 h-4" />}
                       >
-                        <ChevronRight className="w-4 h-4" />
-                      </button>
-                    </div>
+                        Get {activePkg.shortName} Quote
+                      </Button>
+                    )}
+
+                    <Button
+                      to="/solar/systems"
+                      variant="outline"
+                      size="md"
+                      className="hidden sm:inline-flex text-xs text-slate-600 hover:text-slate-950 border-slate-300/80 bg-white/60"
+                    >
+                      All Systems
+                    </Button>
                   </div>
                 </div>
               </motion.div>
             </AnimatePresence>
           </div>
-
-          <p className="text-center text-[10px] text-slate-400 mt-2.5 font-medium">
-            Swipe left or right or tap tabs above to compare systems
-          </p>
-        </div>
-
-        {/* ======================================================== */}
-        {/* DESKTOP VIEW (>= lg): 3-Column Comparative Grid          */}
-        {/* ======================================================== */}
-        <div className="hidden lg:grid lg:grid-cols-3 gap-8">
-          {packages.map((pkg, idx) => (
-            <div
-              key={idx}
-              className={`rounded-2xl p-6 sm:p-8 transition-all duration-300 relative flex flex-col justify-between ${
-                pkg.popular
-                  ? 'bg-slate-950 text-white shadow-2xl border-2 border-amber-500 scale-100 -translate-y-2'
-                  : 'bg-white text-slate-900 border border-slate-200/90 shadow-sm hover:shadow-xl'
-              }`}
-            >
-              {pkg.popular && (
-                <>
-                  <BorderBeam size={200} duration={8} colorFrom="#F59E0B" colorTo="#2B3CB8" borderWidth={2} />
-                  <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 z-20">
-                    <span className="bg-amber-500 w-52 text-slate-950 text-xs font-extrabold px-4 py-1 rounded-full uppercase tracking-wider shadow-md inline-flex items-center justify-center gap-1.5">
-                      <Sparkles className="w-3 h-3" />
-                      Most Popular Choice
-                    </span>
-                  </div>
-                </>
-              )}
-
-              <div>
-                <div className="flex items-center justify-between mb-2">
-                  <span
-                    className={`text-xs font-bold font-mono uppercase tracking-wider ${
-                      pkg.popular ? 'text-amber-400' : 'text-amber-600'
-                    }`}
-                  >
-                    {pkg.capacity}
-                  </span>
-                  <span
-                    className={`text-[11px] font-semibold px-2.5 py-0.5 rounded-full ${
-                      pkg.popular ? 'bg-amber-500/20 text-amber-300' : 'bg-slate-100 text-slate-600'
-                    }`}
-                  >
-                    {pkg.stcDiscount}
-                  </span>
-                </div>
-
-                <h3
-                  className={`text-2xl font-serif font-bold mb-2 ${
-                    pkg.popular ? 'text-white' : 'text-slate-950'
-                  }`}
-                >
-                  {pkg.name}
-                </h3>
-                <p
-                  className={`text-xs leading-relaxed mb-5 ${
-                    pkg.popular ? 'text-slate-300' : 'text-slate-600'
-                  }`}
-                >
-                  {pkg.tagline}
-                </p>
-
-                {/* Hardware Specs Strip */}
-                <div
-                  className={`p-3 rounded-xl mb-5 space-y-1.5 text-xs ${
-                    pkg.popular
-                      ? 'bg-slate-900/80 border border-slate-800'
-                      : 'bg-slate-50 border border-slate-200/60'
-                  }`}
-                >
-                  <div className="flex items-start gap-2">
-                    <Sun className="w-3.5 h-3.5 text-amber-500 shrink-0 mt-0.5" />
-                    <span className={pkg.popular ? 'text-slate-300' : 'text-slate-600'}>
-                      {pkg.panels}
-                    </span>
-                  </div>
-                  <div className="flex items-start gap-2">
-                    <Cpu className="w-3.5 h-3.5 text-amber-500 shrink-0 mt-0.5" />
-                    <span className={pkg.popular ? 'text-slate-300' : 'text-slate-600'}>
-                      {pkg.inverter}
-                    </span>
-                  </div>
-                </div>
-
-                {/* Metrics Box */}
-                <div
-                  className={`p-4 rounded-xl mb-6 grid grid-cols-2 gap-3 text-xs ${
-                    pkg.popular
-                      ? 'bg-slate-900 border border-slate-800'
-                      : 'bg-slate-50 border border-slate-200/60'
-                  }`}
-                >
-                  <div>
-                    <div className={pkg.popular ? 'text-slate-400' : 'text-slate-500'}>
-                      Typical Savings
-                    </div>
-                    <div className="font-bold text-emerald-500 text-sm mt-0.5">
-                      {pkg.typicalSavings}
-                    </div>
-                  </div>
-                  <div>
-                    <div className={pkg.popular ? 'text-slate-400' : 'text-slate-500'}>
-                      Est. Daily Harvest
-                    </div>
-                    <div
-                      className={`font-bold text-sm mt-0.5 ${
-                        pkg.popular ? 'text-amber-400' : 'text-slate-900'
-                      }`}
-                    >
-                      {pkg.dailyYield}
-                    </div>
-                  </div>
-                </div>
-
-                {/* Features List */}
-                <div className="space-y-3 pt-4 border-t border-slate-100/10">
-                  {pkg.features.map((feat, fIdx) => (
-                    <div key={fIdx} className="flex items-start gap-2.5 text-xs sm:text-sm">
-                      <Check className="w-4 h-4 text-emerald-500 shrink-0 mt-0.5" />
-                      <span className={pkg.popular ? 'text-slate-200' : 'text-slate-700'}>
-                        {feat}
-                      </span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              <div className="mt-8 pt-6 border-t border-slate-100/10">
-                <Button
-                  to="/get-started/free-assessment"
-                  variant={pkg.popular ? 'primary' : 'outline'}
-                  size="md"
-                  fullWidth
-                  icon={<ArrowRight className="w-4 h-4" />}
-                >
-                  Request Package Quote
-                </Button>
-              </div>
-            </div>
-          ))}
-        </div>
+        </BlurFade>
       </div>
     </section>
   );
 };
 
+export default SolarLandingPackagesSection;

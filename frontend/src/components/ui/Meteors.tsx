@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { cn } from '../../lib/utils';
+import './Meteors.css';
 
 interface MeteorsProps {
   number?: number;

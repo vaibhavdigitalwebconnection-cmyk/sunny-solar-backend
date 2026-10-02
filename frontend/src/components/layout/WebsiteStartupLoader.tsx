@@ -40,7 +40,7 @@ export const WebsiteStartupLoader: React.FC = () => {
             {/* Sunny Solar Official Logo */}
             <div className="flex items-center gap-2">
               <img
-                src="/logo.png"
+                src="/logo.webp"
                 alt="Sunny Solar"
                 className="h-40 w-auto object-contain"
               />

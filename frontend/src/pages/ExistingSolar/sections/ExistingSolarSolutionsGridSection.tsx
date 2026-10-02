@@ -21,7 +21,7 @@ export const ExistingSolarSolutionsGridSection: React.FC = () => {
     {
       title: 'Solar Health Check',
       slug: '/existing-solar/health-check',
-      image: '/hero-installer.jpg',
+      image: '/hero-installer.webp',
       badge: 'Safety & Audit',
       badgeVariant: 'amber',
       metric: '24-Point Thermal Scan',
@@ -36,7 +36,7 @@ export const ExistingSolarSolutionsGridSection: React.FC = () => {
     {
       title: 'How Much Have I Saved?',
       slug: '/existing-solar/savings',
-      image: '/images/solutions/net-metering.jpg',
+      image: '/images/solutions/net-metering.webp',
       badge: 'Savings Audit',
       badgeVariant: 'emerald',
       metric: 'Benchmark Lifetime ROI',
@@ -55,7 +55,7 @@ export const ExistingSolarSolutionsGridSection: React.FC = () => {
       badge: 'Capacity Boost',
       badgeVariant: 'navy',
       metric: 'Up to 4x More Daily Output',
-      desc: 'Outgrown your 3kW or 5kW system? Add high-efficiency N-Type panels to vacant roof facets or re-power with modern 440W modules.',
+      desc: 'Outgrown your 3kW or 5kW system? Add high-efficiency N-Type panels to vacant roof facets or re-power with modern 475W modules.',
       bullets: [
         'Double harvest in same roof footprint',
         'Swap aging inverters for Fronius units',

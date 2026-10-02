@@ -3,6 +3,7 @@ import { Helmet } from 'react-helmet-async';
 import { ScrollProgress } from '../../components/ui/ScrollProgress';
 import { ProjectsHeroSection } from './sections/ProjectsHeroSection';
 import { ProjectsGridSection } from './sections/ProjectsGridSection';
+import { ProjectsGallerySection } from './sections/ProjectsGallerySection';
 
 export const ProjectsPage: React.FC = () => {
   return (
@@ -17,6 +18,7 @@ export const ProjectsPage: React.FC = () => {
       </Helmet>
       <ProjectsHeroSection />
       <ProjectsGridSection />
+      <ProjectsGallerySection />
     </div>
   );
 };

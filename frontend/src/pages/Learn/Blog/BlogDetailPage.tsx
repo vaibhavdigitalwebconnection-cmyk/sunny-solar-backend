@@ -4,6 +4,7 @@ import { Helmet } from 'react-helmet-async';
 import { Breadcrumbs } from '../../../components/layout/Breadcrumbs';
 import { Badge } from '../../../components/ui/Badge';
 import { Button } from '../../../components/ui/Button';
+import './BlogContent.css';
 import {
   Clock,
   Calendar,
@@ -265,12 +266,12 @@ export const BlogDetailPage: React.FC = () => {
         {article.imageUrl && (
           <div className="my-8 rounded-2xl overflow-hidden shadow-lg border border-slate-200/70 aspect-video bg-slate-900">
             <img
-              src={article.imageUrl || '/images/blog/default.jpg'}
+              src={article.imageUrl || '/images/blog/default.webp'}
               alt={article.title}
               onError={(e) => {
                 const target = e.currentTarget;
-                if (!target.src.endsWith('/images/blog/default.jpg')) {
-                  target.src = '/images/blog/default.jpg';
+                if (!target.src.endsWith('/images/blog/default.webp')) {
+                  target.src = '/images/blog/default.webp';
                 }
               }}
               className="w-full h-full object-cover"

@@ -120,7 +120,7 @@ export const CalculatorsHeroSection: React.FC = () => {
           >
             <div className="relative rounded-xl overflow-hidden shadow-xl sm:shadow-2xl border-2 sm:border-4 border-white bg-slate-950 group aspect-16/10 xs:aspect-4/3 max-w-lg mx-auto lg:max-w-none">
               <img
-                src="/images/solutions/net-metering.jpg"
+                src="/images/solutions/net-metering.webp"
                 alt="Solar and battery smart energy generation telemetry"
                 className="w-full h-full object-cover group-hover:scale-103 transition-transform duration-500"
               />

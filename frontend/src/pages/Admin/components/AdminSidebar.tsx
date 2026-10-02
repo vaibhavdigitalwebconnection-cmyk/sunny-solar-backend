@@ -12,7 +12,7 @@ import {
   PanelLeftClose
 } from 'lucide-react';
 import { AdminTab, StatusFilter } from '../types';
-const logo = '/logo.png';
+const logo = '/logo.webp';
 
 interface AdminSidebarProps {
   sidebarOpen: boolean;

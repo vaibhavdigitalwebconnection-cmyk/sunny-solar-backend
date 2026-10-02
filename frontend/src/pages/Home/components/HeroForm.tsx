@@ -6,7 +6,7 @@ import {
   Sun,
   ArrowRight,
 } from 'lucide-react';
-import consultantAvatar from '../../../../src/assets/main-removebg.png';
+import consultantAvatar from '../../../../src/assets/main-removebg.webp';
 import { submitToWeb3Forms } from '../../../utils/web3forms';
 import { api } from '../../../services/api';
 import { useIsMobile } from '../useIsMobile';
@@ -127,7 +127,7 @@ export const HeroForm: React.FC<HeroFormProps> = ({ isLoaded = true }) => {
           initial={{ opacity: 0, y: 16, scale: 0.95 }}
           animate={isLoaded ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 16 }}
           transition={{ duration: 0.7, delay: 0.45, ease: [0.16, 1, 0.3, 1] }}
-          className="absolute top-2 sm:top-1 right-2 sm:right-6 pointer-events-none z-20 flex flex-col items-end"
+          className="absolute -top-5 sm:-top-10 right-2 sm:right-2 pointer-events-none z-20 flex flex-col items-end"
         >
           <div className="relative">
             {/* Subtle pulsing aura behind avatar */}
@@ -157,7 +157,7 @@ export const HeroForm: React.FC<HeroFormProps> = ({ isLoaded = true }) => {
               <img
                 src={consultantAvatar}
                 alt="Sunny Solar Energy Consultant"
-                className="w-36 md:w-40 h-auto object-contain drop-shadow-[0_14px_22px_rgba(0,0,0,0.32)] filter"
+                className="w-36 md:w-45 h-auto object-contain drop-shadow-[0_14px_22px_rgba(0,0,0,0.32)] filter"
               />
             </motion.div>
           </div>
@@ -320,7 +320,7 @@ export const HeroForm: React.FC<HeroFormProps> = ({ isLoaded = true }) => {
                   whileTap={{ scale: 0.985 }}
                   type="submit"
                   disabled={isSubmitting}
-                  className="relative overflow-hidden group w-full py-2.5 sm:py-3 px-4 rounded-lg font-bold text-xs sm:text-sm text-white bg-[#366A23] hover:bg-[#1D2984] shadow-md hover:shadow-lg hover:shadow-[#2B3CB8]/30 transition-all flex items-center justify-center gap-1.5 cursor-pointer disabled:opacity-75"
+                  className="relative overflow-hidden group w-full py-2.5 sm:py-3 px-4 rounded-lg font-bold text-xs sm:text-sm text-white bg-[#366A23]  shadow-md hover:shadow-lg hover:shadow-[#2B3CB8]/30 transition-all flex items-center justify-center gap-1.5 cursor-pointer disabled:opacity-75"
                 >
                   <span className="absolute inset-0 w-1/2 h-full bg-linear-to-r from-transparent via-white/20 to-transparent -skew-x-12 -translate-x-full group-hover:translate-x-[300%] transition-transform duration-1000 ease-out pointer-events-none" />
                   {isSubmitting ? (

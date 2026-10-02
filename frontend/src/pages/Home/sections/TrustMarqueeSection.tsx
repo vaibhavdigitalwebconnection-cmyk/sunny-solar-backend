@@ -1,4 +1,5 @@
 import React from 'react';
+import '../../../styles/running-belt.css';
 import {
   Sun,
   BatteryCharging,
@@ -53,7 +54,7 @@ export const TrustMarqueeSection: React.FC = () => {
       <div className="pointer-events-none absolute inset-y-0 left-0 w-12 sm:w-28 bg-linear-to-r from-[#2B3CB8] to-transparent z-10" />
       <div className="pointer-events-none absolute inset-y-0 right-0 w-12 sm:w-28 bg-linear-to-l from-[#2B3CB8] to-transparent z-10" />
 
-      {/* Infinite Marquee Track */}
+      {/* Infinite Marquee Track (Smooth, Calmer Speed) */}
       <div className="flex w-max animate-marquee">
         {/* Track 1 */}
         <div className="flex items-center shrink-0">

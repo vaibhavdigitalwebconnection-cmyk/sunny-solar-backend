@@ -32,14 +32,14 @@ const faqs: FAQ[] = [
     question: 'Will a home battery keep my power on during a blackout?',
     answer:
       'Yes. Systems equipped with backup capabilities (like Sungrow, Sigenergy or Enphase EPS) automatically disconnect from the grid during an outage within milliseconds, keeping your lights, refrigeration, Wi-Fi, and essential circuits running seamlessly.',
-    image: '/images/projects/clarity-existing-solar-battery.jpg',
+    image: '/images/projects/clarity-existing-solar-battery.webp',
     description: 'Instant millisecond blackout backup protection with smart hybrid battery storage.',
   },
   {
     question: 'How do Australian Federal STC solar rebates work?',
     answer:
       'Small-scale Technology Certificates (STCs) provide an immediate point-of-sale discount based on your system’s expected clean energy output. On a typical 10kW system, STCs reduce upfront costs by $2,800 to $3,600. We claim these directly on your behalf so you only pay the net price.',
-    image: '/images/projects/sunny-solar-residential-dusk.png',
+    image: '/images/projects/sunny-solar-residential-dusk.webp',
     description: 'Immediate point-of-sale government STC discounts applied to your quote.',
   },
 ];
@@ -206,7 +206,7 @@ export const FAQSection: React.FC = () => {
                 className="relative flex items-center justify-center"
               >
                 <img
-                  src="/images/home/faq-illustration.jpg"
+                  src="/images/home/faq-illustration.webp"
                   alt="Frequently Asked Questions - Sunny Solar Help & Advice"
                   className="w-full h-auto object-contain max-h-125 sm:max-h-147.5 transition-transform duration-500"
                   loading="lazy"

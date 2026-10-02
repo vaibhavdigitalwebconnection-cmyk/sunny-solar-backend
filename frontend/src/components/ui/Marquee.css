@@ -1,0 +1,53 @@
+/* Magic UI Multi-Clone Horizontal Marquee */
+@keyframes marquee-horizontal {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(calc(-100% - var(--gap, 1.5rem)));
+  }
+}
+
+.animate-marquee-horizontal {
+  display: flex;
+  width: max-content;
+  animation: marquee-horizontal var(--duration, 40s) linear infinite;
+  will-change: transform;
+}
+
+.animate-marquee-horizontal:hover,
+.group:hover .animate-marquee-horizontal {
+  animation-play-state: paused;
+}
+
+/* Magic UI Vertical Marquee (Bottom-to-Top Sliding) */
+@keyframes marquee-vertical {
+  from {
+    transform: translateY(0);
+  }
+
+  to {
+    transform: translateY(calc(-100% - var(--gap, 1.5rem)));
+  }
+}
+
+.animate-marquee-vertical {
+  display: flex;
+  flex-direction: column;
+  height: max-content;
+  animation: marquee-vertical var(--duration, 40s) linear infinite;
+  will-change: transform;
+}
+
+.animate-marquee-vertical:hover,
+.group:hover .animate-marquee-vertical {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-marquee-horizontal,
+  .animate-marquee-vertical {
+    animation: none !important;
+  }
+}

@@ -285,7 +285,7 @@ export const BlogModal: React.FC<BlogModalProps> = ({
                         alt="Article preview"
                         className="w-full h-44 object-cover"
                         onError={(e: any) => {
-                          e.target.src = '/images/blog/default.jpg';
+                          e.target.src = '/images/blog/default.webp';
                         }}
                       />
                       {uploadingBlogImage && (

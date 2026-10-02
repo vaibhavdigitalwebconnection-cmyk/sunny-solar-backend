@@ -1,11 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Phone, Mail, MapPin} from 'lucide-react';
-const logo = "/logo.png";
-import meaLogo from "../../../assets/mea-logo.png";
-import hiaLogo from "../../../assets/hia-logo.png";
-import necaLogo from "../../../assets/neca-logo.png";
-import netccLogo from "../../../assets/netcc-logo.svg";
+const logo = "/logo.webp";
+import meaLogo from "../../../assets/mea-logo.webp";
+import hiaLogo from "../../../assets/hia-logo.webp";
+import necaLogo from "../../../assets/neca-logo.webp";
+import netccLogo from "../../../assets/ASS.webp";
 
 const socialLinks = [
   {
@@ -49,6 +49,7 @@ export const Footer: React.FC = () => {
                 <li><Link to="/about" className="hover:text-[#2B3CB8] transition-colors py-0.5 inline-block">About Us</Link></li>
                 <li><Link to="/solar" className="hover:text-[#2B3CB8] transition-colors py-0.5 inline-block">Solar Solutions</Link></li>
                 <li><Link to="/batteries" className="hover:text-[#2B3CB8] transition-colors py-0.5 inline-block">Battery Storage</Link></li>
+                <li><Link to="/ev-charger" className="hover:text-[#2B3CB8] transition-colors py-0.5 inline-block font-medium text-[#2B3CB8]">Smart EV Chargers</Link></li>
                 <li><Link to="/existing-solar" className="hover:text-[#2B3CB8] transition-colors py-0.5 inline-block">Existing Solar Solutions</Link></li>
                 <li><Link to="/reviews" className="hover:text-[#2B3CB8] transition-colors py-0.5 inline-block">Customer Reviews</Link></li>
                 <li><Link to="/faq" className="hover:text-[#2B3CB8] transition-colors py-0.5 inline-block">FAQs</Link></li>
@@ -60,6 +61,7 @@ export const Footer: React.FC = () => {
             <div>
               <h4 className="text-base sm:text-lg font-bold text-[#18181b] font-serif mb-3 sm:mb-4">Our Services</h4>
               <ul className="space-y-2 text-xs sm:text-sm text-slate-600">
+                <li><Link to="/ev-charger" className="hover:text-[#2B3CB8] transition-colors py-0.5 inline-block font-medium text-[#2B3CB8]">Smart EV Charger Installation</Link></li>
                 <li><Link to="/solar/systems" className="hover:text-[#2B3CB8] transition-colors py-0.5 inline-block">Residential Solar Systems</Link></li>
                 <li><Link to="/solar/installation" className="hover:text-[#2B3CB8] transition-colors py-0.5 inline-block">Professional Solar Installation</Link></li>
                 <li><Link to="/batteries/solar-batteries" className="hover:text-[#2B3CB8] transition-colors py-0.5 inline-block">Tesla &amp; Sungrow Batteries</Link></li>
@@ -168,7 +170,7 @@ export const Footer: React.FC = () => {
                 />
               </a>
               <a
-                href="https://www.newenergytech.org.au"
+              
                 target="_blank"
                 rel="noopener noreferrer"
                 title="New Energy Tech Consumer Code - Approved Seller"

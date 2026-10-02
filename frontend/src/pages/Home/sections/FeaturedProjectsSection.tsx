@@ -29,7 +29,7 @@ const claritySlides: ClaritySlide[] = [
     description:
       'Your energy use, roof, lifestyle and future plans all matter. Sunny Solar helps you find a solar setup that makes sense for the way you use energy.',
     highlight: 'Solar • Battery • Energy Use',
-    image: '/images/projects/clarity-the-right-system.jpg',
+    image: '/images/projects/clarity-the-right-system.webp',
   },
   {
     id: '02',
@@ -40,7 +40,7 @@ const claritySlides: ClaritySlide[] = [
     description:
       'Panels, inverters, batteries, warranties and system size all affect the value of a solar quote. Know what’s included before you compare the price.',
     highlight: 'Compare • Understand • Decide',
-    image: '/images/projects/clarity-clear-choices.jpg',
+    image: '/images/projects/clarity-clear-choices.webp',
   },
   {
     id: '03',
@@ -51,7 +51,7 @@ const claritySlides: ClaritySlide[] = [
     description:
       'Your current system may still have plenty of potential. Explore performance checks, battery options, system upgrades and ways to get more from the solar you already have.',
     highlight: 'Check • Improve • Upgrade',
-    image: '/images/projects/clarity-existing-solar-battery.jpg',
+    image: '/images/projects/clarity-existing-solar-battery.webp',
   },
   {
     id: '04',
@@ -62,7 +62,7 @@ const claritySlides: ClaritySlide[] = [
     description:
       'How much solar do you need? Is a battery worth it? Why is your bill still high? Sunny Solar tackles the questions homeowners ask before and after installation.',
     highlight: 'Real Questions • Practical Answers',
-    image: '/images/projects/clarity-real-solar-expertise-consultation.jpg',
+    image: '/images/projects/clarity-real-solar-expertise-consultation.webp',
   },
   {
     id: '05',
@@ -73,7 +73,7 @@ const claritySlides: ClaritySlide[] = [
     description:
       'A new EV, higher electricity use or changing household needs can change what your system should do. Sunny Solar can help you explore what comes next.',
     highlight: 'Battery • Upgrade • Optimise',
-    image: '/images/projects/clarity-beyond-installation-ev.jpg',
+    image: '/images/projects/clarity-beyond-installation-ev.webp',
   },
 ];
 

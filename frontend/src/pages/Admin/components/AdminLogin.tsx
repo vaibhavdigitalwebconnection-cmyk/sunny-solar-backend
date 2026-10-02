@@ -1,7 +1,7 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Lock, Mail, AlertCircle } from 'lucide-react';
-const logo = '/logo.png';
+const logo = '/logo.webp';
 
 interface AdminLoginProps {
   email: string;

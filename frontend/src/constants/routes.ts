@@ -12,6 +12,7 @@ export const ROUTES = {
     SOLAR_PLUS_BATTERY: '/batteries/solar-plus-battery',
     BATTERY_BACKUP: '/batteries/battery-backup',
   },
+  EV_CHARGER: '/ev-charger',
   EXISTING_SOLAR: {
     ROOT: '/existing-solar',
     HEALTH_CHECK: '/existing-solar/health-check',

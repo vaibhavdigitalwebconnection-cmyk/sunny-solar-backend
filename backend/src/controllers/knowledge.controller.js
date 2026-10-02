@@ -13,7 +13,7 @@ const initialKnowledgeGuides = [
     publishDate: 'Jan 14, 2025',
     author: 'Trent Palmer',
     authorRole: 'Founder & Master Electrician',
-    imageUrl: '/images/blog/solar-system-size.jpg',
+    imageUrl: '/images/blog/solar-system-size.webp',
     keyTakeaways: [
       '6.6kW is now the entry-level baseline for single-phase Australian residences.',
       'Upsizing to 8.8kW to 10kW costs only 15-20% more but generates up to 40% more harvest on cloudy days.',
@@ -22,18 +22,18 @@ const initialKnowledgeGuides = [
     blueprintTitle: '2025 Residential Solar Sizing Decision Matrix',
     blueprintBadge: 'Engineering Sizing Guide',
     quickStats: [
-      { label: 'Baseline Sizing', value: '6.6 kW' },
-      { label: 'Modern Sweet Spot', value: '8.8 kW' },
-      { label: 'Avg Daily Output', value: '26 - 38 kWh' },
+      { label: 'Baseline Sizing', value: '7.1 kW' },
+      { label: 'Modern Sweet Spot', value: '9.5 kW' },
+      { label: 'Avg Daily Output', value: '28 - 42 kWh' },
       { label: 'Typical Payback', value: '2.8 - 3.4 Yrs' }
     ],
-    matrixHeaders: ['Metric / Requirement', 'Entry: 6.6 kW', 'Sweet Spot: 8.8 kW', 'Electrified: 10-13.2 kW'],
+    matrixHeaders: ['Metric / Requirement', 'Entry: 7.1 kW', 'Sweet Spot: 9.5 kW', 'Electrified: 11.4-14.25 kW'],
     matrixRows: [
       {
         feature: 'Number of Panels',
-        col1: '15 - 16 Panels (440W)',
-        col2: '20 - 22 Panels (440W)',
-        col3: '24 - 30 Panels (440W)'
+        col1: '15 - 16 Panels (475W)',
+        col2: '20 - 22 Panels (475W)',
+        col3: '24 - 30 Panels (475W)'
       },
       {
         feature: 'Inverter AC Capacity',
@@ -79,7 +79,7 @@ const initialKnowledgeGuides = [
     publishDate: 'Feb 02, 2025',
     author: 'Trent Palmer',
     authorRole: 'Founder & Master Electrician',
-    imageUrl: '/images/blog/battery-comparison.jpg',
+    imageUrl: '/images/blog/battery-comparison.webp',
     keyTakeaways: [
       'Tesla Powerwall 3 includes its own 11.5kW inverter; Sungrow pairs with a separate hybrid inverter.',
       'Sungrow offers modular capacity from 9.6kWh to 25.6kWh; Powerwall is fixed at 13.5kWh per unit.',
@@ -139,7 +139,7 @@ const initialKnowledgeGuides = [
     publishDate: 'Feb 18, 2025',
     author: 'Trent Palmer',
     authorRole: 'Founder & Master Electrician',
-    imageUrl: '/images/blog/solar-rebates.jpg',
+    imageUrl: '/images/blog/solar-rebates.webp',
     keyTakeaways: [
       'STC rebates decrease by roughly 7% every January 1st until phase-out in 2030.',
       'Feed-in tariffs of 4c-6c/kWh mean daytime exports earn modest returns compared to 36c/kWh retail rates.',
@@ -405,7 +405,7 @@ export const createKnowledge = async (req, res, next) => {
         }),
       author: author || 'Trent Palmer',
       authorRole: authorRole || 'Founder & Master Electrician',
-      imageUrl: imageUrl || '/images/blog/solar-system-size.jpg',
+      imageUrl: imageUrl || '/images/blog/solar-system-size.webp',
       content: content || 'Guide content coming soon.',
       keyTakeaways: keyTakeaways || [],
       blueprintTitle: blueprintTitle || '',

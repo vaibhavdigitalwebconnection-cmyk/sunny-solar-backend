@@ -31,7 +31,7 @@ const ACCORDION_ITEMS: AccordionItem[] = [
   {
     id: 'master-electrician',
     number: '01',
-    image: '/images/about/gallery/master-electrician-clean.jpg',
+    image: '/images/about/gallery/master-electrician-clean.webp',
     title: 'Licensed Master Electricians On Every Roof',
     shortTitle: 'Master Electricians',
     category: '100% In-House Crew',
@@ -43,7 +43,7 @@ const ACCORDION_ITEMS: AccordionItem[] = [
   {
     id: 'inverter-mounting',
     number: '02',
-    image: '/images/about/gallery/inverter-mounting-clean.jpg',
+    image: '/images/about/gallery/inverter-mounting-clean.webp',
     title: 'Laser-Leveled Inverter Architecture',
     shortTitle: 'Inverter Mounting',
     category: 'Clean Architecture',
@@ -55,7 +55,7 @@ const ACCORDION_ITEMS: AccordionItem[] = [
   {
     id: 'switchboard-wiring',
     number: '03',
-    image: '/images/about/gallery/switchboard-wiring-clean.jpg',
+    image: '/images/about/gallery/switchboard-wiring-clean.webp',
     title: 'Switchboard Isolation & Surge Protection',
     shortTitle: 'Switchboard Wiring',
     category: 'Electrical Safety',
@@ -67,7 +67,7 @@ const ACCORDION_ITEMS: AccordionItem[] = [
   {
     id: 'rooftop-drill',
     number: '04',
-    image: '/images/about/gallery/rooftop-drill-clean.jpg',
+    image: '/images/about/gallery/rooftop-drill-clean.webp',
     title: 'Cyclone-Rated Clamping & Torquing',
     shortTitle: 'Cyclone Fastening',
     category: 'Rooftop Engineering',
@@ -79,7 +79,7 @@ const ACCORDION_ITEMS: AccordionItem[] = [
   {
     id: 'carrying-panel',
     number: '05',
-    image: '/images/about/gallery/carrying-panel-clean.jpg',
+    image: '/images/about/gallery/carrying-panel-clean.webp',
     title: 'Zero Micro-Cracking Handling Protocol',
     shortTitle: 'Zero Micro-Cracks',
     category: 'Care & Integrity',

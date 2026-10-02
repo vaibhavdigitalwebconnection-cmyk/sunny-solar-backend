@@ -10,8 +10,13 @@ import {
   Flame,
 } from 'lucide-react';
 import { Button } from '../../../components/ui/Button';
-import xsolaar from '../../../assets/xsolar.png';
-import jinko from '../../../assets/jinkosolar.png';
+import goodweLogo from '../../../assets/brand/GOODWELOGO.webp';
+import growattLogo from '../../../assets/brand/Growatt-Logo.webp';
+import sigenergyLogo from '../../../assets/brand/Sigenergy.webp';
+import alphaessLogo from '../../../assets/brand/alphaess.webp';
+import foxLogo from '../../../assets/brand/fox.webp';
+import solisLogo from '../../../assets/brand/solis.webp';
+import sungrowLogo from '../../../assets/brand/sungrow-logo.webp';
 import { BorderBeam } from '../../../components/ui/BorderBeam';
 import { DotPattern } from '../../../components/ui/DotPattern';
 import { AnimatedShinyText } from '../../../components/ui/AnimatedShinyText';
@@ -22,9 +27,12 @@ import { Marquee } from '../../../components/ui/Marquee';
 
 interface Partner {
   name: string;
+  tagline: string;
+  category: string;
   logo: string;
   beamFrom: string;
   beamTo: string;
+  badge: string;
 }
 
 export const CollaborationSection: React.FC = () => {
@@ -33,16 +41,67 @@ export const CollaborationSection: React.FC = () => {
 
   const partners: Partner[] = [
     {
-      name: 'SolaX Power',
-      logo: xsolaar,
+      name: 'Sigenergy',
+      tagline: 'Next-Gen 5-in-1 AI Inverter & Energy Storage',
+      category: 'Smart Hybrid & EV Ready',
+      logo: sigenergyLogo,
       beamFrom: '#2B3CB8',
-      beamTo: '#6F8EE7',
+      beamTo: '#38BDF8',
+      badge: 'CEC Approved',
     },
     {
-      name: 'JinkoSolar',
-      logo: jinko,
-      beamFrom: '#1D2984',
-      beamTo: '#38BDF8',
+      name: 'GoodWe',
+      tagline: 'Smart PV Inverters & High-Voltage Storage',
+      category: 'Residential & Commercial',
+      logo: goodweLogo,
+      beamFrom: '#E11D48',
+      beamTo: '#FB7185',
+      badge: 'Tier-1 Hardware',
+    },
+    {
+      name: 'Sungrow',
+      tagline: 'Global Clean Power: High-Yield Inverters',
+      category: 'BloombergNEF Tier-1',
+      logo: sungrowLogo,
+      beamFrom: '#F59E0B',
+      beamTo: '#EA580C',
+      badge: 'Top Reliability',
+    },
+    {
+      name: 'Growatt',
+      tagline: 'Smart Energy Solutions & ARK Batteries',
+      category: 'Hybrid Solar & Battery',
+      logo: growattLogo,
+      beamFrom: '#059669',
+      beamTo: '#10B981',
+      badge: 'CEC Approved',
+    },
+    {
+      name: 'Solis',
+      tagline: 'Ultra-Reliable 5G/6G Solar Inverters',
+      category: 'High-Efficiency PV',
+      logo: solisLogo,
+      beamFrom: '#2563EB',
+      beamTo: '#60A5FA',
+      badge: 'Tier-1 Rated',
+    },
+    {
+      name: 'Fox ESS',
+      tagline: 'Advanced All-in-One Energy Storage',
+      category: 'Modular Lithium',
+      logo: foxLogo,
+      beamFrom: '#DC2626',
+      beamTo: '#F97316',
+      badge: 'AS/NZS Compliant',
+    },
+    {
+      name: 'AlphaESS',
+      tagline: 'Plug-and-Play Smart Home Battery Systems',
+      category: 'Residential Storage',
+      logo: alphaessLogo,
+      beamFrom: '#D97706',
+      beamTo: '#F59E0B',
+      badge: 'CEC Approved',
     },
   ];
 
@@ -97,17 +156,7 @@ export const CollaborationSection: React.FC = () => {
             animate={isVisible ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
           >
-            {/* Eyebrow Badge with Magic UI AnimatedShinyText & Pulsing Radar */}
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-[11px] sm:text-xs font-bold uppercase tracking-wider text-[#2B3CB8] bg-linear-to-r from-[#F5F7FD] via-white to-[#F5F7FD] border border-[#D1DCF8] shadow-2xs mb-4 backdrop-blur-xs w-fit hover:border-[#2B3CB8]/40 transition-colors">
-              <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#2B3CB8] opacity-75" />
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-[#2B3CB8]" />
-              </span>
-              <ShieldCheck className="w-3.5 h-3.5 text-[#2B3CB8]" />
-              <AnimatedShinyText shimmerWidth={140} className="font-bold">
-                Tier-1 Manufacturing Partnerships
-              </AnimatedShinyText>
-            </div>
+           
 
             {/* Main Heading with Magic UI SparklesText & AnimatedGradientText */}
             <h2 className="text-2xl xs:text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-slate-950 tracking-tight leading-[1.2] sm:leading-[1.14] lg:leading-[1.08] text-center lg:text-left">
@@ -135,14 +184,14 @@ export const CollaborationSection: React.FC = () => {
               transition={{ duration: 0.6, delay: 0.15 }}
               className="mt-4 sm:mt-5 text-sm sm:text-base lg:text-lg text-slate-700 leading-relaxed font-normal text-center lg:text-left max-w-2xl lg:max-w-none"
             >
-              We reject cheap clearance hardware. Sunny Solar collaborates directly with global Tier-1 pioneers like{' '}
-              <strong className="text-slate-950 font-semibold bg-linear-to-r from-blue-50 to-indigo-50/80 px-1.5 py-0.5 rounded border border-blue-100/80 inline-block shadow-2xs">SolaX Power</strong> and{' '}
-              <strong className="text-slate-950 font-semibold bg-linear-to-r from-sky-50 to-blue-50/80 px-1.5 py-0.5 rounded border border-sky-100/80 inline-block shadow-2xs">JinkoSolar</strong> to deliver high-yield N-Type TOPCon
-              solar modules and smart hybrid inverters engineered to endure Australia&apos;s extreme summer heat,
+              We reject cheap clearance hardware. Sunny Solar collaborates directly with certified Tier-1 innovators like{' '}
+              <strong className="text-slate-950 font-semibold bg-linear-to-r from-blue-50 to-indigo-50/80 px-1.5 py-0.5 rounded border border-blue-100/80 inline-block shadow-2xs">Sigenergy</strong>,{' '}
+              <strong className="text-slate-950 font-semibold bg-linear-to-r from-rose-50 to-red-50/80 px-1.5 py-0.5 rounded border border-rose-100/80 inline-block shadow-2xs">GoodWe</strong>,{' '}
+              <strong className="text-slate-950 font-semibold bg-linear-to-r from-amber-50 to-orange-50/80 px-1.5 py-0.5 rounded border border-amber-100/80 inline-block shadow-2xs">Sungrow</strong>, and{' '}
+              <strong className="text-slate-950 font-semibold bg-linear-to-r from-emerald-50 to-green-50/80 px-1.5 py-0.5 rounded border border-emerald-100/80 inline-block shadow-2xs">Growatt</strong> to deliver high-yield solar modules,
+              smart hybrid inverters, and modular battery systems engineered to endure Australia&apos;s extreme summer heat,
               cyclonic winds, and coastal salt mist.
             </motion.p>
-
-
 
             {/* CTAs */}
             <motion.div
@@ -171,7 +220,7 @@ export const CollaborationSection: React.FC = () => {
             </motion.div>
           </motion.div>
 
-          {/* Right Column — Pure Tier-1 Brand Logos with Magic UI BorderBeam & Stage Illumination */}
+          {/* Right Column — Pure Tier-1 Brand Logos with Bottom-to-Top Infinite Sliding Animation */}
           <motion.div
             className="lg:col-span-5 flex flex-col justify-center"
             initial={{ opacity: 0, x: 35 }}
@@ -179,10 +228,8 @@ export const CollaborationSection: React.FC = () => {
             transition={{ duration: 0.7, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
           >
             {/* Magic UI Stage Container */}
-            <div className="relative p-5  overflow-hidden">
-              {/* Radiant Ambient Flares */}
-              <div className="absolute -top-16 -right-16 w-52 h-52 bg-[#2B3CB8]/12 rounded-full blur-3xl pointer-events-none" />
-              <div className="absolute -bottom-16 -left-16 w-52 h-52 bg-sky-400/15 rounded-full blur-3xl pointer-events-none" />
+            <div className="relativeoverflow-hidden">
+             
 
               {/* Inner Subtle Dot Pattern */}
               <DotPattern
@@ -195,37 +242,41 @@ export const CollaborationSection: React.FC = () => {
                 className="text-[#2B3CB8]/10 mask-[radial-gradient(ellipse_at_center,#000_40%,transparent_100%)]"
               />
 
-              {/* Logo Cards Stack */}
-              <div className="relative z-10 flex flex-col gap-4 sm:gap-5">
-                {partners.map((partner, idx) => (
-                  <div
-                    key={partner.name}
-                    className="group relative flex items-center justify-center p-6 sm:p-8 rounded-xl bg-white/95 border border-[#D1DCF8]/80 shadow-xs hover:shadow-xl  hover:border-[#2B3CB8]/40 transition-all duration-400 overflow-hidden cursor-default"
-                  >
-                    {/* Magic UI BorderBeam Animated Orbiting Light */}
-                    <BorderBeam
-                      size={150}
-                      duration={idx === 0 ? 8 : 10}
-                      reverse={idx === 1}
-                      colorFrom={partner.beamFrom}
-                      colorTo={partner.beamTo}
-                      borderWidth={1.5}
-                    />
+              
 
-                    {/* Radial Spotlight on Hover */}
-                    <div className="pointer-events-none absolute inset-0 bg-radial from-[#2B3CB8]/8 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              {/* Vertical Marquee Track with Top/Bottom Fade Masks (Bottom-to-Top Sliding) */}
+              <div className="relative h-110 sm:h-120 overflow-hidden rounded-xl mask-[linear-gradient(to_bottom,transparent,black_10%,black_90%,transparent)]">
+                <Marquee
+                  vertical={true}
+                  pauseOnHover={true}
+                  repeat={3}
+                  className="py-1 [--duration:28s] [--gap:0.875rem]"
+                >
+                  {partners.map((partner, idx) => (
+                    <div
+                      key={`${partner.name}-${idx}`}
+                      className="group relative flex items-center justify-between gap-6 sm:gap-4 p-3 transition-all duration-300 overflow-hidden cursor-default w-full"
+                    >
+                      
 
-                    {/* Partner Logo Only */}
-                    <div className="relative z-10 h-16 sm:h-20 flex items-center justify-center w-full px-4">
-                      <img
-                        src={partner.logo}
-                        alt={partner.name}
-                        className="max-h-12 sm:max-h-25 max-w-57.5 sm:max-w-65 w-auto h-auto object-contain mix-blend-multiply transition-transform duration-500 ease-out group-hover:scale-108"
-                      />
+                      {/* Radial Spotlight on Hover */}
+                      <div className="pointer-events-none absolute inset-0 bg-radial from-[#2B3CB8]/6 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-400" />
+
+                      {/* Partner Logo */}
+                      <div className="relative z-10 h-12 sm:h-20 flex p-1 items-center  justify-center max-w-37.5 sm:max-w-60 mx-auto w-auto">
+                        <img
+                          src={partner.logo}
+                          alt={partner.name}
+                          className="max-h-20 sm:max-h-50 max-w-35 sm:max-w-60 w-auto h-auto object-contain mix-blend-multiply transition-transform duration-400 ease-out group-hover:scale-108"
+                        />
+                      </div>
+
                     </div>
-                  </div>
-                ))}
+                  ))}
+                </Marquee>
               </div>
+
+              
             </div>
           </motion.div>
         </div>

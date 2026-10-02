@@ -21,24 +21,24 @@ export const SystemSizeCalcSection: React.FC = () => {
   const neededKw = Math.ceil((dailyKwh / 4.2) * 10) / 10;
 
   // Recommend nearest standard array
-  let recommendedSystem = '6.6 kW';
+  let recommendedSystem = '7.1 kW';
   let panelCount = 15;
   let roofArea = '30 m²';
   if (neededKw > 7.0 && neededKw <= 9.5) {
-    recommendedSystem = '8.8 kW';
+    recommendedSystem = '9.5 kW';
     panelCount = 20;
     roofArea = '40 m²';
   } else if (neededKw > 9.5 && neededKw <= 12.0) {
-    recommendedSystem = '10.0 kW';
+    recommendedSystem = '10.9 kW';
     panelCount = 23;
     roofArea = '46 m²';
   } else if (neededKw > 12.0) {
-    recommendedSystem = '13.2 kW';
+    recommendedSystem = '14.25 kW';
     panelCount = 30;
     roofArea = '60 m²';
   }
 
-  const dailyProduction = Math.round(panelCount * 0.44 * 4.2);
+  const dailyProduction = Math.round(panelCount * 0.475 * 4.2);
 
   const resetDefaults = () => {
     setOccupants(4);
@@ -245,7 +245,7 @@ export const SystemSizeCalcSection: React.FC = () => {
                 <span className="text-base sm:text-lg font-bold text-slate-900 mt-0.5 block">
                   {panelCount} Panels
                 </span>
-                <span className="text-[10px] text-slate-400">440W N-Type TOPCon</span>
+                <span className="text-[10px] text-slate-400">475W N-Type TOPCon</span>
               </div>
 
               <div className="p-2.5 sm:p-3 bg-white rounded-lg border border-slate-200">

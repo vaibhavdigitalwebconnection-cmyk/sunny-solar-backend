@@ -75,7 +75,7 @@ export const SolarInstallationHeroSection: React.FC = () => {
           <div className="order-1 lg:order-2 lg:col-span-5 w-full">
             <div className="relative rounded-xl sm:rounded-2xl overflow-hidden shadow-xl sm:shadow-2xl border-2 sm:border-4 border-white bg-slate-900 aspect-16/10 xs:aspect-4/3 max-w-lg mx-auto lg:max-w-none group">
               <img
-                src="/images/solar/solar-installation-trade.jpg"
+                src="/images/solar/solar-installation-trade.webp"
                 alt="Electrician installing solar panels"
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
               />

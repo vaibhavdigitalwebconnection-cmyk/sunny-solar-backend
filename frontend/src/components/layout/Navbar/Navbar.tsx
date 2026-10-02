@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-const logo = '/logo.png';
+const logo = '/logo.webp';
 import {
   Menu,
   Phone,
@@ -115,7 +115,7 @@ export const Navbar: React.FC = () => {
             : 'bg-white/95 backdrop-blur-md py-2 sm:py-1 text-black shadow-xs'
           }`}
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-4 flex items-center justify-between">
+        <div className="max-w-7xl mx-auto px-4 sm:px-2 lg:px-2 flex items-center justify-between">
           {/* Logo */}
           <Link to="/" className="flex items-center gap-3 group shrink-0">
             <div className="flex items-center justify-center">
@@ -128,7 +128,7 @@ export const Navbar: React.FC = () => {
           </Link>
 
           {/* Desktop Nav Links (Clean, bold, uppercase with Logo colors) */}
-          <div className="hidden lg:flex items-center gap-1 xl:gap-2">
+          <div className="hidden lg:flex items-center gap-1 xl:gap-1">
             {navigationData.map((section) => {
               const hasChildren = Boolean(section.children?.items?.length);
               const isActive =
@@ -177,7 +177,7 @@ export const Navbar: React.FC = () => {
           </div>
 
           {/* Right Action Buttons */}
-          <div className="flex items-center gap-2 sm:gap-3">
+          <div className="flex items-center gap-2 sm:gap-2">
             {/* Desktop CTA Button with Proper 3D Tactile Depth */}
             <div className="hidden lg:block relative group/cta">
               <Link

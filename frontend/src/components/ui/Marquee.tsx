@@ -1,5 +1,6 @@
 import React, { type ComponentPropsWithoutRef } from 'react';
 import { cn } from '../../lib/utils';
+import './Marquee.css';
 
 export interface MarqueeProps extends ComponentPropsWithoutRef<'div'> {
   className?: string;
@@ -23,7 +24,7 @@ export const Marquee: React.FC<MarqueeProps> = ({
     <div
       {...props}
       className={cn(
-        'group flex overflow-hidden p-2 [--duration:35s] [--gap:1.5rem]',
+        'group flex overflow-hidden p-2 [--duration:35s] [--gap:1.5rem] gap-(--gap)',
         {
           'flex-row': !vertical,
           'flex-col': vertical,
@@ -37,8 +38,8 @@ export const Marquee: React.FC<MarqueeProps> = ({
           <div
             key={i}
             className={cn('flex shrink-0 justify-around gap-(--gap)', {
-              'animate-marquee flex-row': !vertical,
-              'animate-marquee-vertical flex-col': vertical,
+              'animate-marquee-horizontal flex-row': !vertical,
+              'animate-marquee-vertical flex-col w-full': vertical,
               'group-hover:[animation-play-state:paused]': pauseOnHover,
               '[animation-direction:reverse]': reverse,
             })}

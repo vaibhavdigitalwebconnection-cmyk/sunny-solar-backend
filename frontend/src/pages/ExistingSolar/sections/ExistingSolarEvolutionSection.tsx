@@ -27,7 +27,7 @@ export const ExistingSolarEvolutionSection: React.FC = () => {
       aspect: 'Panel Technology',
       icon: Cpu,
       legacy: '200W – 250W Polycrystalline (14%–16% efficiency)',
-      modern: '440W+ N-Type TOPCon Dual-Glass (22.8% efficiency)',
+      modern: '475W+ N-Type TOPCon Dual-Glass (22.8% efficiency)',
       advantage: 'Double generation in the exact same roof footprint',
     },
     {

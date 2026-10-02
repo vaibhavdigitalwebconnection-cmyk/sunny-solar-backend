@@ -1,20 +1,21 @@
 import React from 'react';
+import '../../../styles/running-belt.css';
 import { ShieldCheck } from 'lucide-react';
 import { Reveal } from '../components/Reveal';
 
 // Brand logos from assets/logo-brands
-import foxLogo from '@/assets/logo-brands/fox.png';
-import bydLogo from '@/assets/logo-brands/byd.png';
-import alphaLogo from '@/assets/logo-brands/alpha.png';
-import canadianSolarLogo from '@/assets/logo-brands/canadian-solar-australia.png';
-import jinkoLogo from '@/assets/logo-brands/jinko-solar.jpg';
-import solaxLogo from '@/assets/logo-brands/solax.png';
-import growattLogo from '@/assets/logo-brands/growatt.jpg';
-import sigenergyLogo from '@/assets/logo-brands/sigenergy.png';
-import teslaLogo from '@/assets/logo-brands/tesla.png';
-import dasolarLogo from '@/assets/logo-brands/dasolar.png';
-import longiLogo from '@/assets/logo-brands/longi.jpg';
-import suntechLogo from '@/assets/logo-brands/suntech.png';
+import foxLogo from '@/assets/logo-brands/fox.webp';
+import bydLogo from '@/assets/logo-brands/byd.webp';
+import alphaLogo from '@/assets/logo-brands/alpha.webp';
+import canadianSolarLogo from '@/assets/logo-brands/canadian-solar-australia.webp';
+import jinkoLogo from '@/assets/logo-brands/jinko-solar.webp';
+import solaxLogo from '@/assets/logo-brands/solax.webp';
+import growattLogo from '@/assets/logo-brands/growatt.webp';
+import sigenergyLogo from '@/assets/logo-brands/sigenergy.webp';
+import teslaLogo from '@/assets/logo-brands/tesla.webp';
+import dasolarLogo from '@/assets/logo-brands/dasolar.webp';
+import longiLogo from '@/assets/logo-brands/longi.webp';
+import suntechLogo from '@/assets/logo-brands/suntech.webp';
 
 interface BrandItem {
   name: string;
@@ -52,9 +53,9 @@ export const ApprovedBrandsSection: React.FC = () => {
         {/* Main Heading (from BOTTOM) */}
         <Reveal direction="up">
           <h2 className="text-xl sm:text-3xl lg:text-[40px] font-serif font-extrabold text-slate-950 tracking-tight leading-[1.2]">
-            We Install SAA Approved <br className="hidden sm:inline" />
+            SAA-Approved Solar Components.  <br className="hidden sm:inline" />
             <span className="text-[#2B3CB8]">
-              Panels, Inverters &amp; Batteries
+            Professionally  Installed For Australian Homes.
             </span>
           </h2>
         </Reveal>

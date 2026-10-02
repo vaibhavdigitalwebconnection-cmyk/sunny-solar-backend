@@ -37,7 +37,7 @@ export const AdminHeader: React.FC<AdminHeaderProps> = ({
           className="lg:hidden flex items-center gap-2 -ml-1 p-1 rounded-lg hover:bg-neutral-100 transition-colors cursor-pointer"
           title="Open Admin Navigation"
         >
-          <img src="/logo.png" alt="Sunny Solar" className="h-8 w-auto object-contain" />
+          <img src="/logo.webp" alt="Sunny Solar" className="h-8 w-auto object-contain" />
         </button>
 
         {/* Desktop Tab Title */}

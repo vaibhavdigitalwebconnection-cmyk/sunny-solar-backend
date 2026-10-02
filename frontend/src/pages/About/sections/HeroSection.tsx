@@ -29,7 +29,7 @@ export const HeroSection: React.FC = () => {
         <div className="lg:hidden px-4 sm:px-8 pt-24 pb-2">
           <div className="relative rounded-2xl overflow-hidden shadow-lg shadow-slate-900/10 border border-slate-200/80 aspect-16/10 xs:aspect-16/9 max-w-lg mx-auto">
             <img
-              src="/images/about/gallery/hero about.jpeg"
+              src="/images/about/gallery/hero-about.webp"
               alt="Sunny Solar installation crew on a rooftop"
               className="w-full h-full object-cover"
             />
@@ -117,7 +117,7 @@ export const HeroSection: React.FC = () => {
             style={{ clipPath: 'polygon(15% 0, 100% 0, 100% 100%, 0% 100%)' }}
           >
             <img
-              src="/images/about/gallery/hero about.jpeg"
+              src="/images/about/gallery/hero-about.webp"
               alt="Sunny Solar installation crew on a rooftop"
               className="w-full h-full object-fill"
             />

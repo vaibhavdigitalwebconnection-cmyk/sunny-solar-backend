@@ -261,10 +261,11 @@ export const FreeAssessmentFormSection: React.FC = () => {
   };
 
   return (
-    <section className="relative py-12 sm:py-20 bg-linear-to-b from-[#F6F9FD] via-white to-slate-50 border-b border-slate-200/80 overflow-hidden">
+    <section id="assessment-form" className="relative py-12 sm:py-20 bg-linear-to-b from-[#F6F9FD] via-white to-slate-50 border-b border-slate-200/80 overflow-hidden">
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-16 bg-linear-to-b from-white via-white/70 to-transparent z-20" />
       {/* ── MAGIC UI ANIMATED BACKGROUND ── */}
       {/* 1. Magic UI Meteors: Diagonal shooting solar light streaks */}
-      <Meteors number={20} angle={215} />
+      <Meteors number={50} angle={205} />
 
       {/* 2. Magic UI AnimatedGridPattern: Pulsing SVG solar grid cells with radial fade mask */}
       <AnimatedGridPattern
@@ -301,7 +302,9 @@ export const FreeAssessmentFormSection: React.FC = () => {
         type="success"
       />
 
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Split Card: Left Form, Right Image */}
         <div className="bg-white rounded-3xl border border-slate-200/90 shadow-xl overflow-hidden relative">
           <BorderBeam size={220} duration={12} colorFrom="#2B3CB8" colorTo="#ED4F11" borderWidth={2} />
@@ -364,10 +367,7 @@ export const FreeAssessmentFormSection: React.FC = () => {
                 /* Normal Form */
                 <div>
                   <div className="mb-6">
-                    <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider text-[#2B3CB8] bg-blue-50 border border-blue-100 mb-2">
-                      <Sparkles className="w-3 h-3 text-[#ED4F11]" />
-                      <span>Free Engineering Quote • SAA Lic #38192</span>
-                    </div>
+                    
                     <h2 className="text-2xl sm:text-3xl font-serif font-bold text-slate-900 tracking-tight">
                       Request Your Free Assessment
                     </h2>
@@ -537,11 +537,11 @@ export const FreeAssessmentFormSection: React.FC = () => {
                     <div className="pt-1">
                       <button
                         type="button"
-                        onClick={() => setShowExtras(!showExtras)}
+                        
                         className="text-[11px] font-semibold text-[#2B3CB8] hover:text-[#1D2984] flex items-center gap-1 cursor-pointer transition-colors"
                       >
                         <Paperclip className="w-3 h-3" />
-                        <span>{showExtras ? 'Hide optional bill upload & message' : '+ Attach power bill or add message (optional)'}</span>
+                        <span>{'+ Attach power bill or add message (optional)'}</span>
                       </button>
 
                       <AnimatePresence>
@@ -617,10 +617,7 @@ export const FreeAssessmentFormSection: React.FC = () => {
                       </button>
                     </div>
 
-                    <p className="text-[11px] text-center text-slate-400 flex items-center justify-center gap-1.5 pt-0.5">
-                      <ShieldCheck className="w-3.5 h-3.5 text-emerald-600" />
-                      <span>100% Free & Obligation-Free • Zero Spam • Privacy Protected</span>
-                    </p>
+                  
                   </form>
                 </div>
               )}
@@ -630,41 +627,19 @@ export const FreeAssessmentFormSection: React.FC = () => {
             <div className="lg:col-span-5 bg-linear-to-b from-[#F6F9FD] via-blue-50/40 to-slate-50  flex flex-col justify-between items-center border-t lg:border-t-0 lg:border-l border-slate-200/80">
               <div className="w-full flex flex-col items-center">
                 {/* Illustration with modern frame */}
-                <div className="w-full max-w-xl rounded-tr-2xl overflow-hidden bg-white  shadow-md border border-slate-200/80">
+                <div className="w-full max-w-2xl rounded-tr-2xl overflow-hidden bg-white  shadow-md border border-slate-200/80">
                   <img
-                    src="/images/contact-advisor.jpg"
+                    src="/images/contact-advisor.webp"
                     alt="Sunny Solar Consultant Assistance"
                     className="w-full h-auto object-contain rounded-xl"
                     loading="lazy"
                   />
                 </div>
 
-                {/* Micro consultation points below image */}
-                <div className="mt-5 p-2 w-full space-y-2">
-                  <div className="flex items-center gap-2.5 text-xs text-slate-700 bg-white/80 backdrop-blur-xs p-2.5 rounded-xl border border-slate-200/60 shadow-2xs">
-                    <div className="w-7 h-7 rounded-lg bg-emerald-100 text-emerald-700 flex items-center justify-center shrink-0 font-bold text-xs">
-                      ✓
-                    </div>
-                    <div>
-                      <p className="font-bold text-slate-900 leading-tight">Master Electrician Designed</p>
-                      <p className="text-[10px] text-slate-500">Engineered by Trent Palmer, not sales reps</p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-center gap-2.5 text-xs text-slate-700 bg-white/80 backdrop-blur-xs p-2.5 rounded-xl border border-slate-200/60 shadow-2xs">
-                    <div className="w-7 h-7 rounded-lg bg-[#2B3CB8]/10 text-[#2B3CB8] flex items-center justify-center shrink-0 font-bold text-xs">
-                      <Clock className="w-3.5 h-3.5 text-[#2B3CB8]" />
-                    </div>
-                    <div>
-                      <p className="font-bold text-slate-900 leading-tight">Fast 24-Hour Turnaround</p>
-                      <p className="text-[10px] text-slate-500">Detailed 3D satellite roof model & quote</p>
-                    </div>
-                  </div>
-                </div>
               </div>
 
               {/* Direct Call Hotline Card */}
-              <div className="mt-6 w-full p-4 rounded-br-2xl bg-linear-to-r from-[#0C123E] to-[#1D2984] text-white shadow-md flex items-center justify-between gap-3">
+              <div className=" w-full p-4 rounded-br-2xl bg-linear-to-r from-[#0C123E] to-[#1D2984] text-white shadow-md flex items-center justify-between gap-3">
                 <div>
                   <span className="text-[10px] font-bold uppercase tracking-wider text-amber-400 block">
                     Prefer To Talk Now?

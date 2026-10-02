@@ -20,14 +20,14 @@ export const ArticleCard: React.FC<ArticleCardProps> = ({
     >
       <div className="relative aspect-video lg:aspect-auto lg:h-48 overflow-hidden bg-slate-100">
         <img
-          src={article.imageUrl || '/images/blog/default.jpg'}
+          src={article.imageUrl || '/images/blog/default.webp'}
           alt={article.title}
           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
           loading="lazy"
           onError={(e) => {
             const target = e.currentTarget;
-            if (!target.src.endsWith('/images/blog/default.jpg')) {
-              target.src = '/images/blog/default.jpg';
+            if (!target.src.endsWith('/images/blog/default.webp')) {
+              target.src = '/images/blog/default.webp';
             }
           }}
         />

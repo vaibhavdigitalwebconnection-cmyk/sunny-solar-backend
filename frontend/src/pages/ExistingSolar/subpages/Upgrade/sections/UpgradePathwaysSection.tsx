@@ -58,7 +58,7 @@ export const UpgradePathwaysSection: React.FC = () => {
       categoryTheme: 'text-amber-900 bg-amber-100 border-amber-300',
       title: 'Rooftop Panel String Expansion (3.5 kW – 6.6 kW Boost)',
       desc: 'Keep your current operational panels and add 8 to 16 ultra-efficient N-type monocrystalline modules to East or West roof facets. Powered by a dual-MPPT controller, morning and afternoon sun now powers pool pumps and EV charging directly.',
-      image: '/images/solutions/adani-polycab.jpg',
+      image: '/images/solutions/adani-polycab.webp',
       imageAlt: 'High efficiency Tier-1 monocrystalline solar panels for string expansion',
       imageBadgeTop: 'Added Capacity',
       imageBadgeTopColor: 'text-amber-400',
@@ -91,8 +91,8 @@ export const UpgradePathwaysSection: React.FC = () => {
       age: 'For 10+ Year Old Arrays',
       categoryTheme: 'text-emerald-700 bg-emerald-50 border-emerald-200',
       title: 'Full Rooftop Re-Powering (3.5× Energy Density Upgrade)',
-      desc: 'Decommission obsolete 200W–250W panels from early feed-in booms and install cutting-edge 440W+ high-density modules in the exact same physical roof dimensions. Includes certified equipment recycling and 25-year performance warranties.',
-      image: '/images/solutions/solar-kit.jpg',
+      desc: 'Decommission obsolete 200W–250W panels from early feed-in booms and install cutting-edge 475W+ high-density modules in the exact same physical roof dimensions. Includes certified equipment recycling and 25-year performance warranties.',
+      image: '/images/solutions/solar-kit.webp',
       imageAlt: 'Complete modern high-yield solar kit for full rooftop re-powering',
       imageBadgeTop: 'Max Density Upgrade',
       imageBadgeTopColor: 'text-emerald-300',
@@ -485,7 +485,7 @@ export const UpgradePathwaysSection: React.FC = () => {
             {/* Image Side (Right) */}
             <div className="lg:col-span-5 relative min-h-65 sm:min-h-75 overflow-hidden bg-slate-900 order-1 lg:order-2">
               <img
-                src="/images/solutions/adani-polycab.jpg"
+                src="/images/solutions/adani-polycab.webp"
                 alt="High efficiency Tier-1 monocrystalline solar panels for string expansion"
                 className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
               />
@@ -504,7 +504,7 @@ export const UpgradePathwaysSection: React.FC = () => {
             {/* Image Side */}
             <div className="lg:col-span-5 relative min-h-65 sm:min-h-75 overflow-hidden bg-slate-900">
               <img
-                src="/images/solutions/solar-kit.jpg"
+                src="/images/solutions/solar-kit.webp"
                 alt="Complete modern high-yield solar kit for full rooftop re-powering"
                 className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
               />
@@ -534,7 +534,7 @@ export const UpgradePathwaysSection: React.FC = () => {
                   Full Rooftop Re-Powering (3.5× Energy Density Upgrade)
                 </h3>
                 <p className="mt-2 text-xs sm:text-sm text-slate-600 leading-relaxed">
-                  Decommission obsolete 200W–250W panels from early feed-in booms and install cutting-edge 440W+ high-density modules in the exact same physical roof dimensions. Includes certified equipment recycling and 25-year performance warranties.
+                  Decommission obsolete 200W–250W panels from early feed-in booms and install cutting-edge 475W+ high-density modules in the exact same physical roof dimensions. Includes certified equipment recycling and 25-year performance warranties.
                 </p>
 
                 {/* 4 Small Spec Pills */}

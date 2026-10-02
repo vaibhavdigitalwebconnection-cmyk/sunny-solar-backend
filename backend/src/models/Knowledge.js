@@ -73,7 +73,7 @@ const knowledgeSchema = new mongoose.Schema(
     },
     imageUrl: {
       type: String,
-      default: '/images/blog/solar-system-size.jpg'
+      default: '/images/blog/solar-system-size.webp'
     },
     content: {
       type: mongoose.Schema.Types.Mixed,

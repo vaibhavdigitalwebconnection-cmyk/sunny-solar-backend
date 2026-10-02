@@ -4,7 +4,6 @@ import { ScrollProgress } from '../../components/ui/ScrollProgress';
 import {
   FreeAssessmentHeroSection,
   FreeAssessmentFormSection,
-  FreeAssessmentFaqSection,
 } from './sections';
 
 export const FreeAssessmentPage: React.FC = () => {
@@ -24,8 +23,7 @@ export const FreeAssessmentPage: React.FC = () => {
       {/* 2. Main Contact Channels + Interactive Assessment Form */}
       <FreeAssessmentFormSection />
 
-      {/* 3. Quick FAQ Accordion */}
-      <FreeAssessmentFaqSection />
+
     </div>
   );
 };

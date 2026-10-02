@@ -223,40 +223,7 @@ export const ProjectsGridSection: React.FC = () => {
             </div>
           )}
 
-          {/* Bottom CTA Banner */}
-          <div className="mt-16 bg-slate-900 text-white rounded-3xl p-8 sm:p-12 text-center relative overflow-hidden border border-slate-800 shadow-xl">
-            <BorderBeam size={180} duration={9} colorFrom="#2B3CB8" colorTo="#6F8EE7" borderWidth={1.5} />
-            <div className="absolute top-0 right-0 w-80 h-80 bg-amber-500/10 rounded-full blur-3xl pointer-events-none" />
-            <div className="absolute bottom-0 left-0 w-80 h-80 bg-blue-500/10 rounded-full blur-3xl pointer-events-none" />
-
-            <div className="relative z-10 max-w-2xl mx-auto space-y-4">
-              <h3 className="text-2xl sm:text-3xl font-serif font-bold tracking-tight">
-                Ready for Similar Results On Your Roof?
-              </h3>
-              <p className="text-sm sm:text-base text-slate-300 leading-relaxed">
-                Every home is unique. Get a custom 3D roof simulation, shading analysis, and exact quarterly ROI model designed by Master Electrician Trent Palmer.
-              </p>
-              <div className="pt-4 flex flex-col sm:flex-row items-center justify-center gap-4">
-                <Button
-                  to="/get-started/free-assessment"
-                  variant="primary"
-                  size="md"
-                  icon={<ArrowRight className="w-4 h-4" />}
-                  className="w-full sm:w-auto shadow-md"
-                >
-                  Request Free 3D Roof Proposal
-                </Button>
-                <Button
-                  to="/calculators/solar-savings"
-                  variant="outline"
-                  size="md"
-                  className="w-full sm:w-auto text-white border-slate-600 hover:bg-white/10"
-                >
-                  Run Savings Calculator
-                </Button>
-              </div>
-            </div>
-          </div>
+    
         </div>
       </section>
     </>

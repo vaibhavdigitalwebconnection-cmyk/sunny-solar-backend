@@ -28,7 +28,7 @@ export const TrentBioPage: React.FC = () => {
           <div className="md:col-span-5">
             <div className="rounded-3xl overflow-hidden shadow-xl aspect-3/4 bg-slate-900 relative">
               <img
-                src="/images/about/trent-portrait.jpg"
+                src="/images/about/trent-portrait.webp"
                 alt="Trent Palmer, Founder of Sunny Solar"
                 className="w-full h-full object-cover"
                 loading="lazy"

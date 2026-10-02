@@ -1,5 +1,6 @@
 import React, { type ComponentPropsWithoutRef, type FC } from 'react';
 import { cn } from '../../lib/utils';
+import './AnimatedShinyText.css';
 
 export interface AnimatedShinyTextProps extends ComponentPropsWithoutRef<'span'> {
   shimmerWidth?: number;

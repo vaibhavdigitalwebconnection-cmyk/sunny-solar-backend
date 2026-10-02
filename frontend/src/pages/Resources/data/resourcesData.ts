@@ -76,7 +76,7 @@ export const resourcesPageData: Record<string, ResourcePageData> = {
     },
     battery: {
       image: {
-        src: '/images/solutions/net-metering.jpg',
+        src: '/images/solutions/net-metering.webp',
         alt: 'Solar and battery smart energy management',
         bottomTag: {
           headline: 'Self-Consumption Rate',
@@ -284,7 +284,7 @@ export const resourcesPageData: Record<string, ResourcePageData> = {
     },
     battery: {
       image: {
-        src: '/images/solutions/solar-kit.jpg',
+        src: '/images/solutions/solar-kit.webp',
         alt: 'Electricity bill reduction with solar and battery pairing',
         bottomTag: {
           headline: 'Peak Tariff Spread',
@@ -352,7 +352,7 @@ export const resourcesPageData: Record<string, ResourcePageData> = {
     },
     battery: {
       image: {
-        src: '/images/solutions/engineers.jpg',
+        src: '/images/solutions/engineers.webp',
         alt: 'Solar engineers checking battery and electrical switchboard',
         bottomTag: {
           headline: 'Battery Line-Item Audit',

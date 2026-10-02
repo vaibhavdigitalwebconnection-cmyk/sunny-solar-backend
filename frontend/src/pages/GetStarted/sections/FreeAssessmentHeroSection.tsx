@@ -1,70 +1,126 @@
 import React from 'react';
-import { ShieldCheck } from 'lucide-react';
+import { ShieldCheck,  ArrowRight } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { Particles } from '../../../components/ui/Particles';
-import { DotPattern } from '../../../components/ui/DotPattern';
 import { AnimatedShinyText } from '../../../components/ui/AnimatedShinyText';
 import { SparklesText } from '../../../components/ui/SparklesText';
+import { ThreeDMarquee } from '../../../components/ui/3d-marquee';
+
+// 100% verified, local high-resolution solar imagery
+const SOLAR_IMAGES = [
+  '/images/projects/project-rooftop-array.webp',
+  '/images/projects/clarity-existing-solar-battery.webp',
+  '/images/projects/clarity-the-right-system.webp',
+  '/images/projects/clarity-clear-choices.webp',
+  '/images/projects/clarity-real-solar-expertise-consultation.webp',
+  '/images/projects/clarity-beyond-installation-ev.webp',
+  '/images/projects/home-solar-brisbane.webp',
+  '/images/projects/homestead-overview.webp',
+  '/images/projects/queensland-coastal-solar-home.webp',
+  '/images/projects/dji-aerial-solar.webp',
+  '/images/projects/bifacial-rows.webp',
+  '/images/projects/tesla-solar-roof.webp',
+  '/images/projects/sunny-solar-residential-dusk.webp',
+  '/images/projects/ground-framework.webp',
+  '/images/projects/ground-mount-array.webp',
+  '/images/projects/panel-engineering.webp',
+  '/images/projects/precision-torquing.webp',
+  '/images/projects/project-aerial-perspective.webp',
+  '/images/projects/project-cyclone-clamping.webp',
+  '/images/projects/sunny-boy-inverter.webp',
+  '/images/projects/3phase-gateway.webp',
+  '/images/projects/photovoltaik-nk.webp',
+  '/images/projects/pv-solar-thermal.webp',
+  '/images/solutions/solar-kit.webp',
+  '/images/solutions/net-metering.webp',
+  '/images/solutions/battery-storage.jpg',
+  '/images/solutions/engineers.webp',
+];
 
 export const FreeAssessmentHeroSection: React.FC = () => {
   return (
-    <section className="relative bg-linear-to-b from-[#2B3CB8]/10 via-[#2B3CB8]/5 to-white pt-24 pb-14 border-b border-slate-200/80 overflow-hidden">
+    <section className="relative bg-linear-to-b from-white  to-white pt-8  sm:pt-10 overflow-hidden">
       {/* Magic UI Ambient Background Particles */}
       <Particles
-        className="absolute inset-0 z-0 opacity-55"
-        quantity={35}
+        className="absolute inset-0 z-0 opacity-35 pointer-events-none"
+        quantity={24}
         color="#2B3CB8"
         size={0.6}
       />
-      {/* Magic UI DotPattern with Radial Mask */}
-      <DotPattern
-        width={24}
-        height={24}
-        cx={1}
-        cy={1}
-        cr={1.2}
-        glow={true}
-        className="text-[#2B3CB8]/10 mask-[radial-gradient(ellipse_75%_65%_at_50%_45%,#000_25%,transparent_100%)]"
-      />
-      {/* Subtle ambient solar blue glow */}
-      <div className="absolute top-10 right-1/4 w-96 h-96 bg-[#2B3CB8]/10 rounded-full blur-3xl pointer-events-none" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-6 relative z-10">
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-          className="max-w-6xl mx-auto text-center"
-        >
-          {/* Eyebrow Badge */}
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider text-[#2B3CB8] bg-linear-to-r from-blue-50 via-white to-blue-50 border border-[#D1DCF8] shadow-2xs mb-4">
-            <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#2B3CB8] opacity-75" />
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-[#2B3CB8]" />
-            </span>
-            <ShieldCheck className="w-3.5 h-3.5 text-[#2B3CB8]" />
-            <AnimatedShinyText shimmerWidth={130} className="font-bold text-[#2B3CB8]">
-              100% Free Consultation • Zero Sales Pressure
-            </AnimatedShinyText>
-          </div>
 
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-slate-950 tracking-tight leading-tight">
-            Get Your Free Solar Assessment{' '} <br />
-            <SparklesText
-              sparklesCount={5}
-              colors={{ first: '#2B3CB8', second: '#4658D9' }}
-              className="inline text-3xl sm:text-4xl lg:text-5xl font-serif font-bold"
-            >
-              <span className="bg-linear-to-r from-[#2B3CB8] to-[#4658D9] bg-clip-text text-transparent">
-                & Engineering Quote
-              </span>
-            </SparklesText>
-          </h1>
+      <div className="max-w-full mx-auto pl-4 sm:pl-6 lg:pl-8 relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-4 items-center">
+          {/* ── LEFT COLUMN: Reduced, Attractive, High-Impact Content ── */}
+          <motion.div
+            initial={{ opacity: 0, y: 18 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+            className="lg:col-span-5 xl:col-span-5 text-center pl-0 md:pl-10 lg:text-left"
+          >
 
-          <p className="mt-4 text-base sm:text-lg text-slate-900 leading-relaxed">
-            Honest energy advice, high-resolution 3D roof analysis, and guaranteed fixed pricing. Speak directly with licensed solar electricians with zero sales pressure.
-          </p>
-        </motion.div>
+
+            {/* Headline */}
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-slate-950 tracking-tight leading-[1.28]">
+              Get Your Free Solar Assessment{' '}
+              <br className="hidden sm:inline" />
+              <SparklesText
+                sparklesCount={4}
+                colors={{ first: '#2B3CB8', second: '#4658D9' }}
+                className="inline text-3xl sm:text-4xl lg:text-[2.65rem] font-serif font-bold"
+              >
+                <span className="bg-linear-to-r from-[#2B3CB8] to-[#4658D9] bg-clip-text text-transparent">
+                  & Engineering Quote
+                </span>
+              </SparklesText>
+            </h1>
+
+            {/* Concise Supporting Description */}
+            <p className="mt-3 text-base text-slate-600 leading-relaxed font-normal max-w-xl">
+              Honest energy advice, high-resolution 3D LiDAR roof modeling, and guaranteed fixed pricing directly from licensed CEC solar electricians.
+            </p>
+
+           
+
+            {/* Action CTA + Social Proof */}
+            <div className="mt-16 flex flex-col sm:flex-row items-center gap-3.5 justify-center lg:justify-start">
+              <a
+                href="#assessment-form"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-[#2B3CB8] hover:bg-[#2433A1] text-white font-semibold text-sm shadow-md shadow-blue-900/20 transition-all hover:scale-[1.02] active:scale-[0.98]"
+              >
+                <span>Start Free Assessment Below</span>
+                <ArrowRight className="w-4 h-4 animate-bounce" />
+              </a>
+            
+            </div>
+          </motion.div>
+
+          {/* ── RIGHT COLUMN: Full Width, h-150 Continuous 3D Marquee ── */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.96 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.7, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+            className="lg:col-span-7 xl:col-span-7 w-full relative"
+          >
+            {/* Full-width container using h-150 with zero outer/inner padding waste */}
+            <div className="relative h-150 w-full overflow-hidden">
+              {/* Subtle edge fades for seamless blending */}
+              <div className="pointer-events-none absolute inset-x-0 top-0 h-16 bg-linear-to-b from-white via-white/70 to-transparent z-20" />
+              <div className="pointer-events-none absolute inset-x-0 bottom-0 h-16 bg-linear-to-t from-white via-white/70 to-transparent z-20" />
+              <div className="pointer-events-none absolute inset-y-0 left-0 w-25 bg-linear-to-r from-white via-white/80 to-transparent z-20" />
+              <div className="pointer-events-none absolute inset-y-0 right-0 w-16 bg-linear-to-l from-white via-white/40 to-transparent z-20" />
+
+              {/* Seamless, Continuously Running 3D Isometric Solar Marquee */}
+              <ThreeDMarquee
+                images={SOLAR_IMAGES}
+                className="h-full w-full"
+                scaleClassName="scale-[0.52] sm:scale-[0.68] lg:scale-[0.84] xl:scale-[0.94]"
+              />
+
+             
+            </div>
+          </motion.div>
+        </div>
       </div>
     </section>
   );

@@ -1,0 +1,31 @@
+/* Magic UI: Animated Shiny Text */
+@keyframes shiny-text {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+.animate-shiny-text {
+  background: linear-gradient(
+    90deg,
+    #2B3CB8 0%,
+    #2B3CB8 35%,
+    #8BA2EC 50%,
+    #2B3CB8 65%,
+    #2B3CB8 100%
+  );
+  background-size: 200% auto;
+  color: transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+  animation: shiny-text 4s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-shiny-text {
+    animation: none !important;
+  }
+}

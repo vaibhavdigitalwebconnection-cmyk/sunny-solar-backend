@@ -52,7 +52,7 @@ export const faqData: FAQItem[] = [
     id: 'faq-existing-2',
     category: 'Existing Solar',
     question: 'Can I upgrade my old 3kW or 5kW solar system to a larger one?',
-    answer: 'Yes. Depending on your roof layout and distribution network limits (e.g., Energex or Ausgrid), we can either add a second string on an available roof facet or replace older low-efficiency 250W panels with modern 440W N-type panels to more than double your production in the same footprint.'
+    answer: 'Yes. Depending on your roof layout and distribution network limits (e.g., Energex or Ausgrid), we can either add a second string on an available roof facet or replace older low-efficiency 250W panels with modern 475W N-type panels to more than double your production in the same footprint.'
   },
   {
     id: 'faq-buying-1',

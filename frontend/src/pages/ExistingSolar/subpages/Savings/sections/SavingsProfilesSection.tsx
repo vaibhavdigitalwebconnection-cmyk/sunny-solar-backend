@@ -41,7 +41,7 @@ export const SavingsProfilesSection: React.FC = () => {
     {
       id: 2,
       tabLabel: '02. Pool & EV (10kW)',
-      image: '/images/solutions/solar-kit.jpg',
+      image: '/images/solutions/solar-kit.webp',
       imageAlt: 'Gold Coast high consumption solar setup',
       locationBadge: 'Gold Coast • Pool & EV',
       badgeTheme: 'bg-emerald-500/90 text-slate-950',

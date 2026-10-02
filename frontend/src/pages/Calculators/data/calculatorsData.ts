@@ -138,7 +138,7 @@ export const calculatorsPageData: Record<string, CalculatorPageData> = {
         bottomLeft: 'bg-emerald-400/5'
       },
       image: {
-        src: '/images/solutions/solar-kit.jpg',
+        src: '/images/solutions/solar-kit.webp',
         alt: 'Solar and battery matched sizing hardware',
         topBadge: {
           icon: 'Sun',
@@ -260,7 +260,7 @@ export const calculatorsPageData: Record<string, CalculatorPageData> = {
         bottomLeft: 'bg-amber-500/10'
       },
       image: {
-        src: '/images/solutions/net-metering.jpg',
+        src: '/images/solutions/net-metering.webp',
         alt: 'Solar plus battery financial net metering payback',
         topBadge: {
           icon: 'TrendingUp',

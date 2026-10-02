@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { X, ChevronDown, Phone, ArrowRight } from 'lucide-react';
 import { navigationData, NavSection } from '../../../data/navigationData';
 
-const logo = '/logo.png';
+const logo = '/logo.webp';
 
 export interface MobileMenuProps {
   isOpen: boolean;

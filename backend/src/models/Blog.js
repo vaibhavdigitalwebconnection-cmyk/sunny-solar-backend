@@ -47,7 +47,7 @@ const blogSchema = new mongoose.Schema(
     },
     imageUrl: {
       type: String,
-      default: '/images/blog/default.jpg'
+      default: '/images/blog/default.webp'
     },
     content: {
       type: mongoose.Schema.Types.Mixed,

@@ -1,0 +1,24 @@
+/* Magic UI: Meteors */
+@keyframes meteor {
+  0% {
+    transform: rotate(var(--angle)) translateX(0);
+    opacity: 1;
+  }
+  70% {
+    opacity: 1;
+  }
+  100% {
+    transform: rotate(var(--angle)) translateX(-600px);
+    opacity: 0;
+  }
+}
+
+.animate-meteor {
+  animation: meteor 5s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-meteor {
+    animation: none !important;
+  }
+}

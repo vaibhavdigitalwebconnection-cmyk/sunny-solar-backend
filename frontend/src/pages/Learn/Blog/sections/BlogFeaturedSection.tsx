@@ -73,12 +73,12 @@ export const BlogFeaturedSection: React.FC<BlogFeaturedSectionProps> = ({ featur
           {/* Image Side */}
           <div className="lg:col-span-7 relative min-h-70 sm:min-h-90 bg-slate-900">
             <img
-              src={featured.imageUrl || '/images/blog/default.jpg'}
+              src={featured.imageUrl || '/images/blog/default.webp'}
               alt={featured.title}
               onError={(e) => {
                 const target = e.currentTarget;
-                if (!target.src.endsWith('/images/blog/default.jpg')) {
-                  target.src = '/images/blog/default.jpg';
+                if (!target.src.endsWith('/images/blog/default.webp')) {
+                  target.src = '/images/blog/default.webp';
                 }
               }}
               className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500 opacity-90"

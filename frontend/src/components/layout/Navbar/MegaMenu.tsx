@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import './MegaMenu.css';
 import {
   Sun,
   Wrench,
@@ -62,19 +63,21 @@ const iconMap: Record<string, LucideIcon> = {
 const getFeaturedImage = (sectionTitle: string): string => {
   switch (sectionTitle.toLowerCase()) {
     case 'solar':
-      return '/images/navbar/navbar-feature.jpg';
+      return '/images/navbar/navbar-feature.webp';
     case 'batteries':
-      return '/images/navbar/navbar-battery.jpg';
+      return '/images/navbar/navbar-battery.webp';
+    case 'ev charger':
+      return '/images/ev-charger/ev-smart-charger-wall.webp';
     case 'existing solar':
-      return '/images/navbar/navbar-tech.jpg';
+      return '/images/navbar/navbar-tech.webp';
     case 'calculators':
-      return '/images/navbar/navbar-calculators.jpg';
+      return '/images/navbar/navbar-calculators.webp';
     case 'resources':
-      return '/images/navbar/navbar-resources.jpg';
+      return '/images/navbar/navbar-resources.webp';
     case 'learn':
-      return '/images/navbar/navbar-tech.jpg';
+      return '/images/navbar/navbar-tech.webp';
     default:
-      return '/images/navbar/navbar-feature.jpg';
+      return '/images/navbar/navbar-feature.webp';
   }
 };
 

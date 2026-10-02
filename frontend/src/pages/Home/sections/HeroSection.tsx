@@ -6,7 +6,7 @@ import { HeroForm } from '../components/HeroForm';
 import { useIsMobile } from '../useIsMobile';
 import { ANIMATION_CONFIG } from '../animationConfig';
 
-const heroBgImage = '/hero-installer.jpg';
+const heroBgImage = '/hero-installer.webp';
 
 export interface HeroSectionProps {
   /**
@@ -217,7 +217,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ isLoaded = true }) => 
                 whileHover={{ scale: 1.025, boxShadow: '0 12px 25px -4px rgba(43, 60, 184, 0.45)' }}
                 whileTap={{ scale: 0.98 }}
                 href="#hero-quote-form"
-                className="relative overflow-hidden group inline-flex items-center justify-center gap-2 font-bold px-5 sm:px-6 py-2.5 rounded-lg bg-[#366A23] hover:bg-[#1D2984] text-white shadow-md transition-all text-xs sm:text-sm cursor-pointer w-full sm:w-auto"
+                className="relative overflow-hidden group inline-flex items-center justify-center gap-2 font-bold px-5 sm:px-6 py-2.5 rounded-lg bg-[#366A23]  text-white shadow-md transition-all text-xs sm:text-sm cursor-pointer w-full sm:w-auto"
               >
                 <span className="absolute inset-0 w-1/2 h-full bg-linear-to-r from-transparent via-white/20 to-transparent -skew-x-12 -translate-x-full group-hover:translate-x-[300%] transition-transform duration-1000 ease-out pointer-events-none" />
                 <span className="relative z-10">Explore Solar & Battery →</span>

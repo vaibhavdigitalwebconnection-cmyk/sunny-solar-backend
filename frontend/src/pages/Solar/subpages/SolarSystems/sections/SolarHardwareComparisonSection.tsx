@@ -43,7 +43,7 @@ export const SolarHardwareComparisonSection: React.FC = () => {
       tag: 'Component 02 • Power Conversion & Storage',
       name: 'Active-Cooled & DC Hybrid Inverters',
       leadBrand: 'Fronius Primo/Symo & Sungrow Hybrid',
-      image: '/images/solutions/solar-kit.jpg',
+      image: '/images/solutions/solar-kit.webp',
       statPrimary: '98.4%',
       statPrimaryLabel: 'Peak Conversion Yield',
       statSecondary: '<20ms',

@@ -4,6 +4,7 @@ import { Helmet } from 'react-helmet-async';
 import { Breadcrumbs } from '../../../components/layout/Breadcrumbs';
 import { Badge } from '../../../components/ui/Badge';
 import { Button } from '../../../components/ui/Button';
+import '../Blog/BlogContent.css';
 import { api } from '../../../services/api';
 import LatticeLoadingBlock from '../../../components/ui/LatticeLoadingBlock';
 import { ScrollProgress } from '../../../components/ui/ScrollProgress';

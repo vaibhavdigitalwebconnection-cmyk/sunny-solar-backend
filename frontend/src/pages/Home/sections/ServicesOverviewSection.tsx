@@ -35,7 +35,7 @@ const SLIDES: SlideItem[] = [
       'We believe clean energy should empower every home without compromise. From custom rooftop arrays to smart battery storage, Sunny Solar bridges performance and savings to power your future.',
     buttonText: 'About Sunny Solar',
     buttonLink: '/about',
-    image: '/images/about/sunny-solar-director-consultation.png',
+    image: '/images/about/sunny-solar-director-consultation.webp',
     metric: {
       label: 'Leadership & Vision',
       value: '100% QLD Owned',
@@ -50,7 +50,7 @@ const SLIDES: SlideItem[] = [
       'Tier-1 bifacial panels, high-efficiency hybrid inverters, and cyclone-rated mounting hardware installed by licensed SAA master electricians with zero roof-leak guarantee.',
     buttonText: 'View Our Systems',
     buttonLink: '/solar/systems',
-    image: '/images/projects/sunny-solar-residential-dusk.png',
+    image: '/images/projects/sunny-solar-residential-dusk.webp',
     metric: {
       label: 'Performance Guarantee',
       value: '25-Year Warranty',
@@ -134,9 +134,9 @@ export const ServicesOverviewSection: React.FC = () => {
             {/* Main Headline (from LEFT) */}
             <Reveal direction="left" delay={0.1}>
               <h2 className="text-2xl sm:text-4xl lg:text-4xl text-center md:text-left font-serif font-bold text-[#18181b] tracking-tight leading-[1.15]">
-                Solar Is More Than Panels. <br />
+                Built on Electrical Expertise. <br />
                 <span className="text-[#2B3CB8]">
-                  It’s About Making the Right Energy Decision.
+                  Driven by Better Energy Solutions.
                 </span>
               </h2>
             </Reveal>
@@ -145,10 +145,9 @@ export const ServicesOverviewSection: React.FC = () => {
             <Reveal direction="right" delay={0.2}>
               <div className="space-y-2 text-slate-600 text-justify text-base leading-relaxed">
                 <p>
-                  Solar is a major investment. Sunny Solar believes you should understand your options before you commit.
-                </p>
+               Trent Packer brings an electrical-first approach to solar, helping homeowners make informed decisions about their energy future. </p>
                 <p className="text-justify">
-                  From choosing the right solar system and battery to understanding your savings and existing system performance, we give you practical advice built around your energy needs.
+                  Every project starts with understanding your property, energy usage and goals before recommending the right solution.
                 </p>
               </div>
             </Reveal>
@@ -164,8 +163,8 @@ export const ServicesOverviewSection: React.FC = () => {
                   <ShieldCheck className="w-4 h-4" />
                 </div>
                 <div>
-                  <h4 className="text-xs font-bold text-slate-900">25-Year Warranty</h4>
-                  <p className="text-[11px] text-slate-500">Tier-1 certified panels & SAA master installers</p>
+                  <h4 className="text-xs font-bold text-slate-900">Practical Energy Advice</h4>
+                  <p className="text-[11px] text-slate-500">Clear guidance based on how your home actually uses energy.</p>
                 </div>
               </AnimatedCard>
 
@@ -178,8 +177,8 @@ export const ServicesOverviewSection: React.FC = () => {
                   <Sparkles className="w-4 h-4" />
                 </div>
                 <div>
-                  <h4 className="text-xs font-bold text-[#0C123E]">Tailored Solar Engineering</h4>
-                  <p className="text-[11px] text-slate-600">3D roof modeling for peak Nationwide generation</p>
+                  <h4 className="text-xs font-bold text-[#0C123E]">Designed for Your Future</h4>
+                  <p className="text-[11px] text-slate-600">Solar and battery solutions planned around your changing energy needs.</p>
                 </div>
               </AnimatedCard>
             </div>

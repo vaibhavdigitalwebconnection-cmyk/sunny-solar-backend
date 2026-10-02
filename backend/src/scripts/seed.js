@@ -16,7 +16,7 @@ const initialArticles = [
     publishDate: 'Jan 14, 2025',
     author: 'Trent Palmer',
     authorRole: 'Founder & Master Electrician',
-    imageUrl: '/images/blog/solar-system-size.jpg',
+    imageUrl: '/images/blog/solar-system-size.webp',
     keyTakeaways: [
       '6.6kW is now the entry-level baseline for single-phase Australian residences.',
       'Upsizing to 8.8kW to 10kW costs only 15-20% more but generates up to 40% more harvest on cloudy days.',
@@ -38,7 +38,7 @@ const initialArticles = [
     publishDate: 'Feb 02, 2025',
     author: 'Trent Palmer',
     authorRole: 'Founder & Master Electrician',
-    imageUrl: '/images/blog/battery-comparison.jpg',
+    imageUrl: '/images/blog/battery-comparison.webp',
     keyTakeaways: [
       'Tesla Powerwall 3 includes its own 11.5kW inverter; Sungrow pairs with a separate hybrid inverter.',
       'Sungrow offers modular capacity from 9.6kWh to 25.6kWh; Powerwall is fixed at 13.5kWh per unit.',
@@ -60,7 +60,7 @@ const initialArticles = [
     publishDate: 'Feb 18, 2025',
     author: 'Elena Vance',
     authorRole: 'Technical Energy Analyst',
-    imageUrl: '/images/blog/solar-rebates.jpg',
+    imageUrl: '/images/blog/solar-rebates.webp',
     keyTakeaways: [
       'STCs are an upfront point-of-sale discount, already deducted by certified installers on your quote.',
       'Exporting power to the grid for pennies is no longer the main driver of solar ROI.',
@@ -81,7 +81,7 @@ const initialArticles = [
     publishDate: 'Feb 26, 2025',
     author: 'Trent Palmer',
     authorRole: 'Founder & Master Electrician',
-    imageUrl: '/images/blog/solar-maintenance.jpg',
+    imageUrl: '/images/blog/solar-maintenance.webp',
     keyTakeaways: [
       'Inverter status lights (red or flashing amber) indicate isolation or earth faults.',
       'A gradual 30% drop in quarterly generation usually indicates panel degradation or heavy lichen buildup.',
@@ -103,7 +103,7 @@ const initialArticles = [
     publishDate: 'Mar 01, 2025',
     author: 'Elena Vance',
     authorRole: 'Technical Energy Analyst',
-    imageUrl: '/images/blog/solar-panel-tech.jpg',
+    imageUrl: '/images/blog/solar-panel-tech.webp',
     keyTakeaways: [
       'N-type silicon cells exhibit zero Light-Induced Degradation (LID).',
       'Better temperature coefficients ensure panels lose less power when roof temperatures hit 65°C in midsummer.',

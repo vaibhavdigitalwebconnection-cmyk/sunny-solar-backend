@@ -7,38 +7,38 @@ export const SolarPackagesGridSection: React.FC = () => {
 
   const packages = [
     {
-      name: 'Essential Home 6.6kW',
+      name: 'Essential Home 7.1kW',
       tagline: 'Ideal for 2-3 bedroom homes with moderate daytime usage',
-      capacity: '6.6 kW DC Array • 5.0kW Inverter',
-      panels: '15x 440W N-Type TOPCon Dual-Glass Panels',
+      capacity: '7.1 kW DC Array • 5.0kW Inverter',
+      panels: '15x 475W N-Type TOPCon Dual-Glass Panels',
       inverter:
         selectedPhase === 'single'
           ? '5.0kW Single-Phase Fronius Primo or Sungrow'
           : '5.0kW Three-Phase Fronius Symo Inverter',
-      dailyOutput: '24 - 28 kWh / day',
-      typicalSavings: '$1,800 - $2,400 / yr',
+      dailyOutput: '26 - 30 kWh / day',
+      typicalSavings: '$1,900 - $2,550 / yr',
       bestFor: 'Quarterly power bills of $450 - $700',
       popular: false,
       features: [
         'Tier-1 N-Type TOPCon 22.5%+ efficiency panels',
         '25-year panel product & performance guarantee',
         'Smart consumption monitoring meter included',
-        'Eligible for up to $2,400 Federal STC discount',
+        'Eligible for up to $2,550 Federal STC discount',
         'Battery-ready hybrid or AC-coupled architecture',
         '10-year in-house Master Electrician roof warranty',
       ],
     },
     {
-      name: 'Family High-Yield 10.0kW',
+      name: 'Family High-Yield 10.9kW',
       tagline: 'Our #1 best-selling setup for ducted air conditioning & pools',
-      capacity: '10.0 kW DC Array • 8.2kW Inverter',
-      panels: '23x 440W All-Black AIKO Neostar or REC Alpha',
+      capacity: '10.9 kW DC Array • 8.2kW Inverter',
+      panels: '23x 475W All-Black AIKO Neostar or REC Alpha',
       inverter:
         selectedPhase === 'single'
           ? '8.2kW Fronius Primo with 5kW Export Limiter'
           : '8.2kW / 10kW Three-Phase Fronius Symo / Sungrow Hybrid',
-      dailyOutput: '38 - 44 kWh / day',
-      typicalSavings: '$2,800 - $3,600 / yr',
+      dailyOutput: '41 - 48 kWh / day',
+      typicalSavings: '$3,000 - $3,900 / yr',
       bestFor: 'Quarterly power bills of $700 - $1,300',
       popular: true,
       features: [
@@ -46,18 +46,18 @@ export const SolarPackagesGridSection: React.FC = () => {
         'Generates huge daytime surplus to power future battery or EV',
         'Smart export management pre-approved with Energex',
         '10-year comprehensive workmanship & roof guarantee',
-        'Up to $3,200 instant Federal STC rebate deducted',
+        'Up to $3,450 instant Federal STC rebate deducted',
         'Direct plug-in compatibility with Tesla Powerwall 3',
       ],
     },
     {
-      name: selectedPhase === 'single' ? 'Maximum Single-Phase 13.2kW' : 'Commercial-Grade 15.0kW - 20kW',
+      name: selectedPhase === 'single' ? 'Maximum Single-Phase 14.25kW' : 'Commercial-Grade 16.0kW - 21.4kW',
       tagline:
         selectedPhase === 'single'
           ? 'Maximum allowable residential solar array on a single-phase supply'
           : 'Ultimate power output for large luxury homes, 3-phase workshops & acreages',
-      capacity: selectedPhase === 'single' ? '13.2 kW DC Array • 10kW Dual Inverter' : '15.0 - 20.0 kW DC Array • 15kW 3-Phase',
-      panels: selectedPhase === 'single' ? '30x 440W REC Alpha Pure-R Panels' : '34-45x 440W Dual-Glass Bifacial Panels',
+      capacity: selectedPhase === 'single' ? '14.25 kW DC Array • 10kW Dual Inverter' : '16.0 - 21.4 kW DC Array • 15kW 3-Phase',
+      panels: selectedPhase === 'single' ? '30x 475W REC Alpha Pure-R Panels' : '34-45x 475W Dual-Glass Bifacial Panels',
       inverter:
         selectedPhase === 'single'
           ? '10kW Dual Single-Phase Inverters with Export Throttling'

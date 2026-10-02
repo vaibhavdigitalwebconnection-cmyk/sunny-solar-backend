@@ -13,6 +13,8 @@ const SolarBatteriesPage = lazy(() => import('../pages/Batteries/subpages/SolarB
 const SolarPlusBatteryPage = lazy(() => import('../pages/Batteries/subpages/SolarPlusBattery'));
 const BatteryBackupPage = lazy(() => import('../pages/Batteries/subpages/BatteryBackup'));
 
+const EVChargerPage = lazy(() => import('../pages/EVCharger/EVChargerPage'));
+
 const ExistingSolarLandingPage = lazy(() => import('../pages/ExistingSolar'));
 const HealthCheckPage = lazy(() => import('../pages/ExistingSolar/subpages/HealthCheck'));
 const SavingsPage = lazy(() => import('../pages/ExistingSolar/subpages/Savings'));
@@ -98,6 +100,9 @@ export const preloadRoute = (path: string) => {
       break;
     case '/batteries/battery-backup':
       import('../pages/Batteries/subpages/BatteryBackup');
+      break;
+    case '/ev-charger':
+      import('../pages/EVCharger/EVChargerPage');
       break;
     case '/existing-solar':
       import('../pages/ExistingSolar');
@@ -217,6 +222,10 @@ export const AppRoutes: React.FC = () => {
             <Route path="/batteries/solar-batteries" element={<SolarBatteriesPage />} />
             <Route path="/batteries/solar-plus-battery" element={<SolarPlusBatteryPage />} />
             <Route path="/batteries/battery-backup" element={<BatteryBackupPage />} />
+
+            {/* EV Charger */}
+            <Route path="/ev-charger" element={<EVChargerPage />} />
+            <Route path="/ev-charging" element={<Navigate to="/ev-charger" replace />} />
 
             {/* 4. Existing Solar */}
             <Route path="/existing-solar" element={<ExistingSolarLandingPage />} />

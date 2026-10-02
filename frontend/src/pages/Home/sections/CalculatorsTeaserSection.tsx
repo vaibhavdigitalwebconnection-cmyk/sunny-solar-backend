@@ -10,7 +10,7 @@ import {
   Calculator,
   Sparkles,
 } from 'lucide-react';
-import advisorAvatar from '@/assets/main.png';
+import advisorAvatar from '@/assets/main.webp';
 import { Reveal } from '../components/Reveal';
 import { AnimatedCard } from '../components/AnimatedCard';
 

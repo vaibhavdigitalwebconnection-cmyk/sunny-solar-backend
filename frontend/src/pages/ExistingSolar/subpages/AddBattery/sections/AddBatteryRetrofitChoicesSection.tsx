@@ -43,7 +43,7 @@ export const AddBatteryRetrofitChoicesSection: React.FC = () => {
       badgeColor: 'bg-amber-100 text-amber-800 border-amber-300',
       capacity: '9.6 – 19.2 kWh',
       backupPower: '5.0 – 10.0 kW Output',
-      image: '/images/solutions/solar-kit.jpg',
+      image: '/images/solutions/solar-kit.webp',
       description: 'Modular high-voltage storage that can be sized to your exact household budget. Expand your storage in 3.2kWh blocks anytime as your family grows.',
       features: [
         'Safe, cobalt-free Lithium Iron Phosphate (LiFePO4)',
@@ -66,7 +66,7 @@ export const AddBatteryRetrofitChoicesSection: React.FC = () => {
       badgeColor: 'bg-sky-100 text-sky-800 border-sky-300',
       capacity: '8.0 – 48.0 kWh',
       backupPower: '6.0 – 25.0 kW Output',
-      image: '/images/solutions/net-metering.jpg',
+      image: '/images/solutions/net-metering.webp',
       description: 'Next-generation AI energy storage with true 0ms uninterruptible power supply (UPS) switchover. Zero computer reboots or digital clock resets during grid dropouts.',
       features: [
         'True 0-millisecond UPS blackout protection',

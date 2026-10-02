@@ -76,7 +76,7 @@ export const SolutionsSection: React.FC = () => {
       title: 'Adani & Polycab Partner',
       description:
         'Authorized partner delivering Tier-1 PV modules and world-class on-grid solar inverters.',
-      bgImage: '/images/solutions/adani-polycab.jpg',
+      bgImage: '/images/solutions/adani-polycab.webp',
     },
     {
       icon: <Building2 className="stroke-[1.8]" />,
@@ -84,7 +84,7 @@ export const SolutionsSection: React.FC = () => {
       title: '1-Box Solar KIT (1-25 kW)',
       description:
         'Complete turnkey box with all components ready for fast rooftop solar PV installation.',
-      bgImage: '/images/solutions/solar-kit.jpg',
+      bgImage: '/images/solutions/solar-kit.webp',
     },
     {
       icon: <Award className="stroke-[1.8]" />,
@@ -92,7 +92,7 @@ export const SolutionsSection: React.FC = () => {
       title: 'Trained In-House Engineers',
       description:
         'Dedicated team of certified engineers supporting solar installers and system integrators.',
-      bgImage: '/images/solutions/engineers.jpg',
+      bgImage: '/images/solutions/engineers.webp',
     },
     {
       icon: <TrendingUp className="stroke-[1.8]" />,
@@ -100,7 +100,7 @@ export const SolutionsSection: React.FC = () => {
       title: 'DISCOM Net-Metering',
       description:
         'Sanctioned net-metering & generation meters (Secure & L&T DLMS Class 0.5S) with CTs.',
-      bgImage: '/images/solutions/net-metering.jpg',
+      bgImage: '/images/solutions/net-metering.webp',
     },
   ];
 

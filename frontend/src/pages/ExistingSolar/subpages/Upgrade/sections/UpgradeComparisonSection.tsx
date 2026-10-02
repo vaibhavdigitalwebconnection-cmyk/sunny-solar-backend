@@ -123,7 +123,7 @@ export const UpgradeComparisonSection: React.FC = () => {
           <div className="bg-emerald-50/50 p-3 rounded-xl border border-emerald-100 flex items-start gap-2.5 text-xs text-slate-700">
             <ArrowUpRight className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
             <div>
-              <span className="font-bold text-slate-900">440W – 475W N-Type TOPCon:</span>
+              <span className="font-bold text-slate-900">475W – 500W N-Type TOPCon:</span>
               <p className="text-slate-500 text-[11px] mt-0.5">Ultra-high 22.5%+ efficiency with superior heat coefficient and early morning generation.</p>
             </div>
           </div>

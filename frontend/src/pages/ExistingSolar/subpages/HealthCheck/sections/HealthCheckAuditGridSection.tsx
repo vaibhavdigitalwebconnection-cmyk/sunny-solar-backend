@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useState, useRef, useEffect, useCallback } from 'react';
 import {
   CheckCircle2,
@@ -7,16 +9,30 @@ import {
   AlertCircle,
   ChevronLeft,
   ChevronRight,
+  ShieldCheck,
+  Flame,
+  Zap,
 } from 'lucide-react';
+import { BlurFade } from '@/components/ui/BlurFade';
+import { BorderBeam } from '@/components/ui/BorderBeam';
+import { AnimatedGradientText } from '@/components/ui/AnimatedGradientText';
+import { DotPattern } from '@/components/ui/DotPattern';
 
 export interface AuditPillar {
   pillar: string;
   title: string;
   subtitle: string;
   icon: React.ReactNode;
-  iconBg: string;
-  badgeBg: string;
+  gradientBorder: string;
+  gradientHeader: string;
+  gradientIcon: string;
+  gradientBadge: string;
+  gradientProgress: string;
+  accentColor: string;
+  isHero?: boolean;
+  heroTag?: string;
   silentRisk: string;
+  riskTitle: string;
   checks: string[];
 }
 
@@ -26,10 +42,16 @@ export const HealthCheckAuditGridSection: React.FC = () => {
       pillar: 'Pillar 01',
       title: 'Roof & Photovoltaic Panels',
       subtitle: 'Thermal cell integrity & structural security',
-      icon: <Sun className="w-5 h-5 text-amber-600" />,
-      iconBg: 'bg-amber-500/10',
-      badgeBg: 'bg-amber-100 text-amber-900 border-amber-200',
-      silentRisk: 'Micro-cracks, diode burnouts, and delamination silently destroy 20% to 40% of generation while panels appear completely normal from ground level.',
+      icon: <Sun className="w-5 h-5 text-white" />,
+      gradientBorder: 'from-amber-500/40 via-orange-500/20 to-transparent',
+      gradientHeader: 'from-amber-500/15 via-orange-500/5 to-transparent',
+      gradientIcon: 'bg-gradient-to-br from-amber-500 to-orange-600 shadow-amber-500/30',
+      gradientBadge: 'bg-gradient-to-r from-amber-500/15 to-orange-500/15 text-amber-900 border-amber-300/70',
+      gradientProgress: 'from-amber-500 to-orange-500',
+      accentColor: '#F59E0B',
+      riskTitle: 'Silent Cell & Diode Failure Risk',
+      silentRisk:
+        'Micro-cracks, diode burnouts, and delamination silently destroy 20% to 40% of generation while panels appear completely normal from ground level.',
       checks: [
         'Infrared thermal camera scan for cell micro-cracks & diode hot spots',
         'Visual examination for snail trails, browning, and glass delamination',
@@ -45,10 +67,18 @@ export const HealthCheckAuditGridSection: React.FC = () => {
       pillar: 'Pillar 02',
       title: 'Electrical Safety & Isolators',
       subtitle: 'Fire prevention & Australian Standard compliance',
-      icon: <ShieldAlert className="w-5 h-5 text-red-600" />,
-      iconBg: 'bg-red-500/10',
-      badgeBg: 'bg-red-100 text-red-900 border-red-200',
-      silentRisk: 'Degraded or recalled rooftop DC isolators are Australia\'s #1 cause of solar house fires. Moisture ingress creates internal arcing that switchboards cannot detect.',
+      icon: <Flame className="w-5 h-5 text-white" />,
+      gradientBorder: 'from-red-500/50 via-[#2B3CB8]/40 to-transparent',
+      gradientHeader: 'from-red-500/20 via-[#2B3CB8]/10 to-transparent',
+      gradientIcon: 'bg-gradient-to-br from-red-500 via-rose-600 to-[#2B3CB8] shadow-red-500/35',
+      gradientBadge: 'bg-gradient-to-r from-red-500/20 to-rose-500/20 text-red-950 border-red-300/80',
+      gradientProgress: 'from-red-500 via-rose-500 to-[#2B3CB8]',
+      accentColor: '#EF4444',
+      isHero: true, // "one to up" elevated middle card with BorderBeam & featured tag
+      heroTag: "Australia's #1 Fire Risk Category",
+      riskTitle: 'Recalled DC Isolator Fire Hazard',
+      silentRisk:
+        "Degraded or recalled rooftop DC isolators are Australia's #1 cause of solar house fires. Moisture ingress creates internal arcing that switchboards cannot detect.",
       checks: [
         'Rooftop high-voltage DC isolator weather seal & recall audit',
         'Earth continuity and insulation resistance (Megger) testing',
@@ -64,10 +94,16 @@ export const HealthCheckAuditGridSection: React.FC = () => {
       pillar: 'Pillar 03',
       title: 'Inverter Performance & Output',
       subtitle: 'DC-to-AC conversion & cloud telemetry',
-      icon: <Cpu className="w-5 h-5 text-blue-600" />,
-      iconBg: 'bg-blue-500/10',
-      badgeBg: 'bg-blue-100 text-blue-900 border-blue-200',
-      silentRisk: 'Inverters frequently throttle output due to dust buildup or enter silent standby mode after grid surges, costing you hundreds on each electricity bill.',
+      icon: <Zap className="w-5 h-5 text-white" />,
+      gradientBorder: 'from-blue-500/40 via-sky-500/20 to-transparent',
+      gradientHeader: 'from-[#2B3CB8]/15 via-sky-500/5 to-transparent',
+      gradientIcon: 'bg-gradient-to-br from-[#2B3CB8] to-sky-500 shadow-blue-500/30',
+      gradientBadge: 'bg-gradient-to-r from-blue-500/15 to-sky-500/15 text-blue-950 border-blue-300/70',
+      gradientProgress: 'from-[#2B3CB8] to-sky-500',
+      accentColor: '#2B3CB8',
+      riskTitle: 'Silent Inverter Throttling & Faults',
+      silentRisk:
+        'Inverters frequently throttle output due to dust buildup or enter silent standby mode after grid surges, costing you hundreds on each electricity bill.',
       checks: [
         'DC string input vs AC grid feed power conversion calibration',
         'Internal inverter error code log & historical fault review',
@@ -117,7 +153,6 @@ export const HealthCheckAuditGridSection: React.FC = () => {
     return () => clearInterval(timer);
   }, [isPaused, nextSlide]);
 
-  // Clean up timer on unmount
   useEffect(() => {
     return () => {
       if (resumeTimerRef.current) clearTimeout(resumeTimerRef.current);
@@ -147,19 +182,34 @@ export const HealthCheckAuditGridSection: React.FC = () => {
   };
 
   return (
-    <section id="audit-checklist" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      {/* Section Header */}
-      <div className="text-center max-w-3xl mx-auto mb-6 sm:mb-10">
+    <section id="audit-checklist" className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6">
+      {/* Background Gradient & Subtle DotPattern */}
+      <div className="absolute inset-0 -z-10 pointer-events-none overflow-hidden rounded-3xl">
+        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-175 h-87.5 bg-linear-to-r from-[#2B3CB8]/10 via-sky-400/10 to-amber-500/10 blur-3xl opacity-70" />
+        <DotPattern
+          width={28}
+          height={28}
+          cx={1}
+          cy={1}
+          cr={1}
+          className="opacity-25 mask-[radial-gradient(ellipse_at_center,white,transparent_75%)]"
+        />
+      </div>
+
+      {/* Section Header with Magic UI AnimatedGradientText */}
+      <BlurFade delay={0.1} direction="up" className="text-center max-w-3xl mx-auto mb-10 sm:mb-14">
+
+
         <h2 className="text-2xl sm:text-3xl lg:text-4xl font-serif font-bold text-slate-950 tracking-tight leading-tight">
           The 24-Point Solar Health & Safety Audit
         </h2>
-        <p className="mt-2 sm:mt-2.5 text-xs sm:text-sm text-slate-600 leading-relaxed px-1 sm:px-0">
-          Every check is physically tested and certified by a SAA-accredited Master Electrician on your roof and switchboard — in full compliance with AS/NZS 5033 and AS/NZS 4777.
+        <p className="mt-2.5 sm:mt-3 text-xs sm:text-sm text-slate-600 leading-relaxed px-1 sm:px-0">
+          Every check is physically tested and certified by a SAA-accredited Master Electrician on your roof and switchboard — in full compliance with <span className="font-semibold text-slate-800">AS/NZS 5033</span> and <span className="font-semibold text-slate-800">AS/NZS 4777</span>.
         </p>
-      </div>
+      </BlurFade>
 
-      {/* Mobile Sliding Carousel (< md: Cards Slide One-by-One with Autoplay & Touch Swipe) */}
-      <div className="block md:hidden">
+      {/* Mobile Sliding Carousel (< lg: Cards Slide One-by-One with Touch Swipe) */}
+      <div className="block lg:hidden">
         <div
           className="relative overflow-hidden rounded-2xl"
           onTouchStart={handleTouchStart}
@@ -175,19 +225,27 @@ export const HealthCheckAuditGridSection: React.FC = () => {
             }}
           >
             {pillars.map((pillar, idx) => (
-              <div key={idx} className="w-full shrink-0 px-0.5 flex flex-col">
-                <div className="bg-white rounded-2xl border border-slate-200/90 shadow-sm flex flex-col justify-between h-full overflow-hidden">
-                  {/* Top Column: Pillar Identity & Critical Risk */}
-                  <div className="p-4 sm:p-5 bg-slate-50/80 border-b border-slate-200/80">
-                    <div className="flex items-center justify-between gap-2 mb-2.5">
-                      <span className={`text-[11px] font-bold px-2.5 py-0.5 rounded-md border ${pillar.badgeBg} font-mono`}>
+              <div key={idx} className="w-full shrink-0 px-1 flex flex-col">
+                <div className="relative bg-white rounded-2xl border border-slate-200/90 shadow-md flex flex-col justify-between h-full overflow-hidden">
+                  {/* Top Gradient Header Accent */}
+                  <div className={`h-1.5 w-full bg-linear-to-r ${pillar.gradientProgress}`} />
+
+                  {/* Top Column: Identity & Risk */}
+                  <div className={`p-4 sm:p-5 bg-linear-to-b ${pillar.gradientHeader} border-b border-slate-200/80`}>
+                    <div className="flex items-center justify-between gap-2 mb-3">
+                      <span className={`text-[11px] font-bold px-2.5 py-0.5 rounded-md border ${pillar.gradientBadge} font-mono shadow-2xs`}>
                         {pillar.pillar}
                       </span>
+                      {pillar.isHero && (
+                        <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-linear-to-r from-red-600 to-[#2B3CB8] text-white shadow-xs">
+                          Critical Safety
+                        </span>
+                      )}
                       <span className="text-[11px] text-slate-500 font-medium">8 Certified Checks</span>
                     </div>
 
-                    <div className="flex items-center gap-2.5 mb-1.5">
-                      <div className={`w-8 h-8 rounded-lg ${pillar.iconBg} flex items-center justify-center shrink-0`}>
+                    <div className="flex items-center gap-3 mb-2">
+                      <div className={`w-9 h-9 rounded-xl ${pillar.gradientIcon} flex items-center justify-center shrink-0 shadow-md`}>
                         {pillar.icon}
                       </div>
                       <h3 className="text-base font-serif font-bold text-slate-950 leading-snug">
@@ -195,16 +253,17 @@ export const HealthCheckAuditGridSection: React.FC = () => {
                       </h3>
                     </div>
 
-                    <p className="text-xs text-slate-500 font-medium mb-3">
+                    <p className="text-xs text-slate-600 font-medium mb-3">
                       {pillar.subtitle}
                     </p>
 
-                    <div className="bg-white rounded-lg p-3 border border-slate-200 text-xs leading-relaxed text-slate-700">
+                    {/* Gradient Risk Callout */}
+                    <div className="bg-white/95 backdrop-blur-xs rounded-xl p-3.5 border border-slate-200/90 text-xs leading-relaxed text-slate-700 shadow-2xs">
                       <div className="flex items-center gap-1.5 font-bold text-slate-900 mb-1">
                         <AlertCircle className="w-3.5 h-3.5 text-amber-600 shrink-0" />
-                        <span>Why This Matters:</span>
+                        <span>{pillar.riskTitle}:</span>
                       </div>
-                      <p className="text-[11px] text-slate-600">
+                      <p className="text-[11px] text-slate-600 leading-relaxed">
                         {pillar.silentRisk}
                       </p>
                     </div>
@@ -212,14 +271,20 @@ export const HealthCheckAuditGridSection: React.FC = () => {
 
                   {/* Diagnostic Checks in Slide */}
                   <div className="p-4 sm:p-5 flex flex-col justify-center">
-                    <div className="space-y-2">
+                    <div className="space-y-2.5">
                       {pillar.checks.map((check, cIdx) => (
-                        <div key={cIdx} className="flex items-start gap-2 text-xs text-slate-700 py-0.5">
+                        <div key={cIdx} className="flex items-start gap-2.5 text-xs text-slate-700 py-0.5">
                           <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5 stroke-[2.2]" />
                           <span className="leading-snug">{check}</span>
                         </div>
                       ))}
                     </div>
+                  </div>
+
+                  {/* Bottom Verification Status */}
+                  <div className="p-3 bg-slate-50/90 border-t border-slate-100 flex items-center justify-between text-[11px] text-slate-500">
+                    <span className="font-semibold text-slate-700">8 of 24 Points Verified</span>
+                    <ShieldCheck className="w-4 h-4 text-emerald-600" />
                   </div>
                 </div>
               </div>
@@ -227,7 +292,7 @@ export const HealthCheckAuditGridSection: React.FC = () => {
           </div>
         </div>
 
-        {/* Mobile Slider Controls (Dots + Counter + Prev/Next Buttons) */}
+        {/* Mobile Slider Controls */}
         <div className="flex items-center justify-between mt-4 px-1">
           <div className="flex items-center gap-1.5">
             {pillars.map((_, dotIdx) => (
@@ -237,7 +302,7 @@ export const HealthCheckAuditGridSection: React.FC = () => {
                 onClick={() => goToSlide(dotIdx)}
                 aria-label={`Go to slide ${dotIdx + 1}`}
                 className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${activeSlide === dotIdx
-                    ? 'w-6 bg-[#2B3CB8]'
+                    ? 'w-6 bg-linear-to-r from-[#2B3CB8] to-sky-500 shadow-xs'
                     : 'w-2 bg-slate-300 hover:bg-slate-400'
                   }`}
               />
@@ -276,64 +341,105 @@ export const HealthCheckAuditGridSection: React.FC = () => {
         </div>
       </div>
 
-      {/* Desktop Full-Width Pillar Rows */}
-      <div className="hidden md:block space-y-6">
-        {pillars.map((pillar, idx) => (
-          <div
-            key={idx}
-            className="bg-white rounded-xl border border-slate-200/90 shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden"
-          >
-            <div className="grid grid-cols-1 lg:grid-cols-12 items-stretch">
-              {/* Left Column: Pillar Identity & Critical Risk Insight (4 cols) */}
-              <div className="p-6 sm:p-7 lg:col-span-4 bg-slate-50/70 border-b lg:border-b-0 lg:border-r border-slate-200/80 flex flex-col justify-between">
-                <div>
-                  <div className="flex items-center justify-between sm:justify-start gap-2 mb-3">
-                    <span className={`text-[11px] font-bold px-2.5 py-0.5 rounded-md border ${pillar.badgeBg} font-mono`}>
+      {/* Desktop Staggered 3-Card Grid ("One to Up, One Set" Alternating Elevation Layout) */}
+      <div className="hidden lg:grid lg:grid-cols-3 gap-6 lg:gap-8 items-start pt-6">
+        {pillars.map((pillar, idx) => {
+          // Staggered vertical positioning: Pillar 2 (the fire safety pillar) is set higher ("one to up")
+          const offsetClass = pillar.isHero ? 'lg:-translate-y-5 shadow-xl' : 'lg:translate-y-3 shadow-md';
+          const delayTime = 0.15 * (idx + 1);
+
+          return (
+            <BlurFade
+              key={idx}
+              delay={delayTime}
+              direction="up"
+              className="h-full flex flex-col"
+            >
+              <div
+                className={`relative group bg-white rounded-2xl border ${pillar.isHero ? 'border-red-400/60 ring-2 ring-red-500/20' : 'border-slate-200/90'
+                  } ${offsetClass} hover:shadow-2xl transition-all duration-500 flex flex-col justify-between h-full overflow-hidden`}
+              >
+                {/* Magic UI BorderBeam on the elevated Hero card (Pillar 02) */}
+                {pillar.isHero && (
+                  <BorderBeam
+                    size={220}
+                    duration={8}
+                    borderWidth={2}
+                    colorFrom="#EF4444"
+                    colorTo="#2B3CB8"
+                  />
+                )}
+
+                {/* Top Glowing Gradient Accent Bar */}
+                <div className={`h-2 w-full bg-linear-to-r ${pillar.gradientProgress}`} />
+
+                {/* Card Header & Risk Insight */}
+                <div className={`p-6 bg-linear-to-b ${pillar.gradientHeader} border-b border-slate-200/80`}>
+                  <div className="flex items-center justify-between gap-2 mb-3">
+                    <span className={`text-[11px] font-bold px-2.5 py-0.5 rounded-md border ${pillar.gradientBadge} font-mono shadow-2xs`}>
                       {pillar.pillar}
                     </span>
-                    <span className="text-xs text-slate-500 font-medium">8 Certified Checks</span>
+                    {pillar.isHero ? (
+                      <span className="text-[10px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-linear-to-r from-red-600 via-rose-600 to-[#2B3CB8] text-white shadow-xs animate-pulse">
+                        {pillar.heroTag}
+                      </span>
+                    ) : (
+                      <span className="text-xs text-slate-500 font-medium">8 Certified Checks</span>
+                    )}
                   </div>
 
-                  <div className="flex items-center gap-3 mb-2">
-                    <div className={`w-9 h-9 rounded-lg ${pillar.iconBg} flex items-center justify-center shrink-0`}>
+                  <div className="flex items-center gap-3.5 mb-2.5">
+                    <div className={`w-10 h-10 rounded-xl ${pillar.gradientIcon} flex items-center justify-center shrink-0 shadow-md transform group-hover:scale-110 transition-transform duration-300`}>
                       {pillar.icon}
                     </div>
-                    <h3 className="text-lg sm:text-xl font-serif font-bold text-slate-950">
-                      {pillar.title}
-                    </h3>
-                  </div>
-
-                  <p className="text-xs text-slate-500 font-medium mb-4">
-                    {pillar.subtitle}
-                  </p>
-                </div>
-
-                {/* Integrated Risk Advisory for this Pillar */}
-                <div className="bg-white rounded-lg p-3.5 border border-slate-200 text-xs leading-relaxed text-slate-700">
-                  <div className="flex items-center gap-1.5 font-bold text-slate-900 mb-1">
-                    <AlertCircle className="w-3.5 h-3.5 text-amber-600 shrink-0" />
-                    <span>Why This Matters:</span>
-                  </div>
-                  <p className="text-[11px] text-slate-600">
-                    {pillar.silentRisk}
-                  </p>
-                </div>
-              </div>
-
-              {/* Right Column: 8 Itemized Diagnostic Checks in 2 Columns (8 cols) */}
-              <div className="p-6 sm:p-7 lg:col-span-8 flex flex-col justify-center">
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-3.5">
-                  {pillar.checks.map((check, cIdx) => (
-                    <div key={cIdx} className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-700">
-                      <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5 stroke-[2.2]" />
-                      <span className="leading-snug">{check}</span>
+                    <div>
+                      <h3 className="text-lg font-serif font-bold text-slate-950 leading-snug">
+                        {pillar.title}
+                      </h3>
+                      <p className="text-xs text-slate-500 font-medium mt-0.5">
+                        {pillar.subtitle}
+                      </p>
                     </div>
-                  ))}
+                  </div>
+
+                  {/* Why This Matters Gradient Risk Advisory */}
+                  <div className="mt-4 bg-white/95 backdrop-blur-xs rounded-xl p-3.5 border border-slate-200/90 text-xs leading-relaxed text-slate-700 shadow-2xs">
+                    <div className="flex items-center gap-1.5 font-bold text-slate-900 mb-1">
+                      <AlertCircle className={`w-4 h-4 ${pillar.isHero ? 'text-red-600' : 'text-amber-600'} shrink-0`} />
+                      <span className="text-[11px] uppercase tracking-wide font-extrabold">{pillar.riskTitle}:</span>
+                    </div>
+                    <p className="text-[11px] text-slate-600 leading-relaxed">
+                      {pillar.silentRisk}
+                    </p>
+                  </div>
+                </div>
+
+                {/* 8 Itemized Checks */}
+                <div className="p-6 flex-1 flex flex-col justify-between">
+                  <div className="space-y-3">
+                    {pillar.checks.map((check, cIdx) => (
+                      <div key={cIdx} className="flex items-start gap-2.5 text-xs text-slate-700">
+                        <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5 stroke-[2.2]" />
+                        <span className="leading-snug">{check}</span>
+                      </div>
+                    ))}
+                  </div>
+
+                  {/* Card Bottom Progress / Status */}
+                  <div className="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between">
+                    <div className="flex items-center gap-1.5">
+                      <ShieldCheck className="w-4 h-4 text-emerald-600" />
+                      <span className="text-xs font-semibold text-slate-700">8 Checks Certified</span>
+                    </div>
+                    <span className="text-[11px] font-mono font-medium text-slate-400">
+                      100% AS/NZS 5033
+                    </span>
+                  </div>
                 </div>
               </div>
-            </div>
-          </div>
-        ))}
+            </BlurFade>
+          );
+        })}
       </div>
     </section>
   );

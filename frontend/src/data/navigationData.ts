@@ -92,6 +92,11 @@ export const navigationData: NavSection[] = [
     },
   },
   {
+    title: 'EV Charger',
+    href: '/ev-charger',
+   
+  },
+  {
     title: 'Existing Solar',
     href: '/existing-solar',
     children: {
