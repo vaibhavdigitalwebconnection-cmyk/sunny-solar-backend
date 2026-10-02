@@ -16,7 +16,8 @@ import { TestimonialsSliderSection } from './sections/TestimonialsSliderSection'
 import { FAQSection } from './sections/FAQSection';
 
 // Track if initial startup loader finished in current session so page transitions don't delay
-let hasWebsiteStartupFinished = false;
+let hasWebsiteStartupFinished =
+  typeof window !== 'undefined' ? Boolean(sessionStorage.getItem('sunny_startup_loaded')) : false;
 
 export const HomePage: React.FC = () => {
   // Hero animations trigger when isLoaded is true.
@@ -40,7 +41,7 @@ export const HomePage: React.FC = () => {
     // Fallback: If startup loader already passed or isn't active, activate animations promptly
     const fallbackTimer = setTimeout(() => {
       handleStartupFinish();
-    }, 1500);
+    }, 450);
 
     return () => {
       window.removeEventListener('website-startup-loader-finish', handleStartupFinish);

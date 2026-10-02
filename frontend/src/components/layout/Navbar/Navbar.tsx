@@ -182,6 +182,8 @@ export const Navbar: React.FC = () => {
             <div className="hidden lg:block relative group/cta">
               <Link
                 to="/get-started/free-assessment"
+                onMouseEnter={() => preloadRoute('/get-started/free-assessment')}
+                onPointerDown={() => preloadRoute('/get-started/free-assessment')}
                 className="relative inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-lg text-xs font-black tracking-wider uppercase text-white bg-linear-to-b from-[#FF5C1C] via-[#ED4F11] to-[#D84107] border-t border-b border-[#B83404] shadow-[inset_0_1px_0_rgba(255,255,255,0.5),0_3px_0_#B83404,0_6px_14px_-2px_rgba(237,79,17,0.32),0_2px_4px_rgba(0,0,0,0.08)] hover:-translate-y-0.5 hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.65),0_4px_0_#A02B02,0_10px_18px_-2px_rgba(237,79,17,0.4),0_3px_6px_rgba(0,0,0,0.08)] active:translate-y-0  .75 active:shadow-[inset_0_1px_0_rgba(255,255,255,0.3),0_1px_0_#A02B02,0_2px_4px_rgba(0,0,0,0.12)] transition-all duration-150 cursor-pointer overflow-hidden "
               >
                 {/* 3D Curved Glass Specular Highlight on top half */}

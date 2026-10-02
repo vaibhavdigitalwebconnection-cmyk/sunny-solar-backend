@@ -66,11 +66,20 @@ const NotFoundPage = lazy(() => import('../pages/NotFound/NotFoundPage'));
 
 import LatticeLoadingBlock from '../components/ui/LatticeLoadingBlock';
 
-// Sleek Lattice fallback loader while dynamic chunk is loading
+// Sleek top progress loader & non-disruptive fallback while dynamic chunk loads
 const RouteFallback: React.FC = () => (
-  <div className="min-h-[50vh] flex flex-col items-center justify-center py-24">
-    <LatticeLoadingBlock label="Loading page" containerClassName="flex flex-col items-center justify-center" />
-  </div>
+  <>
+    {/* Fixed top progress bar */}
+    <div className="fixed top-0 left-0 right-0 h-[3px] z-[9999] overflow-hidden bg-transparent pointer-events-none">
+      <div className="h-full bg-gradient-to-r from-amber-500 via-[#ED4F11] to-blue-600 animate-pulse w-full shadow-xs" />
+    </div>
+    <div className="min-h-[30vh] flex items-center justify-center py-16">
+      <div className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-white/95 border border-slate-200/90 shadow-xs text-slate-700 text-xs font-semibold backdrop-blur-xs">
+        <span className="w-2 h-2 rounded-full bg-[#ED4F11] animate-ping" />
+        <span>Loading page...</span>
+      </div>
+    </div>
+  </>
 );
 
 // Route preloader helper to warm lazy bundles on hover
@@ -205,9 +214,35 @@ export const preloadRoute = (path: string) => {
 export const AppRoutes: React.FC = () => {
   const location = useLocation();
 
+  // Background-warm core pages during idle time so user clicks are instantaneous
+  React.useEffect(() => {
+    if (typeof window === 'undefined') return;
+
+    const warmCommonRoutes = () => {
+      import('../pages/Solar/SolarLandingPage');
+      import('../pages/Batteries/BatteriesLandingPage');
+      import('../pages/EVCharger/EVChargerPage');
+      import('../pages/ExistingSolar');
+      import('../pages/Calculators');
+      import('../pages/GetStarted/FreeAssessmentPage');
+      import('../pages/About/AboutPage');
+      import('../pages/Projects/ProjectsPage');
+      import('../pages/Reviews/ReviewsPage');
+      import('../pages/FAQ/FAQPage');
+    };
+
+    if ('requestIdleCallback' in window) {
+      const handle = (window as any).requestIdleCallback(warmCommonRoutes, { timeout: 2000 });
+      return () => (window as any).cancelIdleCallback(handle);
+    } else {
+      const timer = setTimeout(warmCommonRoutes, 1000);
+      return () => clearTimeout(timer);
+    }
+  }, []);
+
   return (
     <Suspense fallback={<RouteFallback />}>
-      <Routes location={location} key={location.pathname}>
+      <Routes location={location}>
             {/* 1. Home */}
             <Route path="/" element={<HomePage />} />
 

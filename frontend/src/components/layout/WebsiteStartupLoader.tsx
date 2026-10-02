@@ -3,19 +3,41 @@ import { AnimatePresence, motion } from 'framer-motion';
 import KineticTextLoader from '../ui/KineticTextLoader';
 
 export const WebsiteStartupLoader: React.FC = () => {
-  const [isVisible, setIsVisible] = useState(true);
+  const [isVisible, setIsVisible] = useState(() => {
+    if (typeof window !== 'undefined') {
+      try {
+        return !sessionStorage.getItem('sunny_startup_loaded');
+      } catch {
+        return false;
+      }
+    }
+    return false;
+  });
 
   useEffect(() => {
-    // Keep startup loader visible briefly for smooth initial mount and kinetic animation cycle
+    if (!isVisible) {
+      if (typeof window !== 'undefined') {
+        window.dispatchEvent(new CustomEvent('website-startup-loader-finish'));
+        window.dispatchEvent(new CustomEvent('website-startup-loader-complete'));
+      }
+      return;
+    }
+
+    // Keep startup loader ultra-brief (350ms) on very first visit only
     const timer = setTimeout(() => {
       setIsVisible(false);
       if (typeof window !== 'undefined') {
+        try {
+          sessionStorage.setItem('sunny_startup_loaded', 'true');
+        } catch {
+          // ignore
+        }
         window.dispatchEvent(new CustomEvent('website-startup-loader-finish'));
       }
-    }, 1500);
+    }, 350);
 
     return () => clearTimeout(timer);
-  }, []);
+  }, [isVisible]);
 
   return (
     <AnimatePresence>
@@ -23,7 +45,7 @@ export const WebsiteStartupLoader: React.FC = () => {
         <motion.div
           key="website-startup-loader"
           initial={{ opacity: 1 }}
-          exit={{ opacity: 0, transition: { duration: 0.4, ease: 'easeOut' } }}
+          exit={{ opacity: 0, transition: { duration: 0.25, ease: 'easeOut' } }}
           onAnimationComplete={(definition) => {
             if (definition === 'exit' || !isVisible) {
               if (typeof window !== 'undefined') {

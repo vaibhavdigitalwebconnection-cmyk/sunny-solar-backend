@@ -4,11 +4,9 @@ import { ScrollProgress } from '../../components/ui/ScrollProgress';
 import { EVHeroSection } from './sections/EVHeroSection';
 import { EVSolarFlowSimulatorSection } from './sections/EVSolarFlowSimulatorSection';
 import { EVBentoFeaturesSection } from './sections/EVBentoFeaturesSection';
-import { EVChargingLevelsSection } from './sections/EVChargingLevelsSection';
-import { EVInteractiveCalculatorSection } from './sections/EVInteractiveCalculatorSection';
 import { EVInstallationProcessSection } from './sections/EVInstallationProcessSection';
 import { EVFAQSection } from './sections/EVFAQSection';
-import { EVCTASection } from './sections/EVCTASection';
+
 
 export const EVChargerPage: React.FC = () => {
   return (

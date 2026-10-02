@@ -137,7 +137,7 @@ export const EVSolarFlowSimulatorSection: React.FC = () => {
               transition={{ duration: 0.2 }}
               className={`relative p-4 rounded-2xl border text-center transition-all duration-300 flex flex-col items-center justify-center overflow-hidden ${
                 current.solarKw > 0
-                  ? 'bg-gradient-to-b from-amber-50/90 via-white to-amber-50/40 border-amber-300 shadow-sm shadow-amber-500/10'
+                  ? 'bg-linear-to-b from-amber-50/90 via-white to-amber-50/40 border-amber-300 shadow-sm shadow-amber-500/10'
                   : 'bg-white border-slate-200 opacity-60'
               }`}
             >
@@ -203,7 +203,7 @@ export const EVSolarFlowSimulatorSection: React.FC = () => {
               ref={inverterRef}
               whileHover={{ y: -4, scale: 1.02 }}
               transition={{ duration: 0.2 }}
-              className="relative p-4 rounded-2xl bg-gradient-to-b from-blue-50/70 via-white to-white border border-[#2B3CB8]/30 text-center shadow-sm flex flex-col items-center justify-center overflow-hidden"
+              className="relative p-4 rounded-2xl bg-linear-to-b from-blue-50/70 via-white to-white border border-[#2B3CB8]/30 text-center shadow-sm flex flex-col items-center justify-center overflow-hidden"
             >
               {/* Animated Radar Pulse */}
               <div className="relative mb-2">
@@ -245,7 +245,7 @@ export const EVSolarFlowSimulatorSection: React.FC = () => {
               transition={{ duration: 0.2 }}
               className={`relative p-4 rounded-2xl border text-center transition-all duration-300 flex flex-col items-center justify-center overflow-hidden ${
                 current.batteryKw > 0
-                  ? 'bg-gradient-to-b from-blue-50/90 via-white to-blue-50/40 border-blue-400 shadow-sm shadow-blue-500/10'
+                  ? 'bg-linear-to-b from-blue-50/90 via-white to-blue-50/40 border-blue-400 shadow-sm shadow-blue-500/10'
                   : 'bg-white border-slate-200 opacity-60'
               }`}
             >
@@ -302,7 +302,7 @@ export const EVSolarFlowSimulatorSection: React.FC = () => {
               ref={chargerRef}
               whileHover={{ y: -4, scale: 1.02 }}
               transition={{ duration: 0.2 }}
-              className="relative p-4 rounded-2xl bg-gradient-to-b from-emerald-50/80 via-white to-white border border-emerald-400 text-center shadow-sm flex flex-col items-center justify-center overflow-hidden"
+              className="relative p-4 rounded-2xl bg-linear-to-b from-emerald-50/80 via-white to-white border border-emerald-400 text-center shadow-sm flex flex-col items-center justify-center overflow-hidden"
             >
               {/* Circular Glowing Charging Status Halo */}
               <div className="relative mb-2">
@@ -338,7 +338,7 @@ export const EVSolarFlowSimulatorSection: React.FC = () => {
               ref={carRef}
               whileHover={{ y: -4, scale: 1.02 }}
               transition={{ duration: 0.2 }}
-              className="col-span-2 md:col-span-1 relative p-4 rounded-2xl bg-gradient-to-b from-slate-50 via-white to-slate-50 border border-slate-200 text-center flex flex-col items-center justify-center shadow-xs overflow-hidden"
+              className="col-span-2 md:col-span-1 relative p-4 rounded-2xl bg-linear-to-b from-slate-50 via-white to-slate-50 border border-slate-200 text-center flex flex-col items-center justify-center shadow-xs overflow-hidden"
             >
               {/* Car Icon with Charging Vibration */}
               <div className="relative mb-2">
@@ -363,7 +363,7 @@ export const EVSolarFlowSimulatorSection: React.FC = () => {
               </div>
 
               {/* Animated Progress Charge Bar */}
-              <div className="w-full max-w-[80px] h-1.5 bg-slate-200 rounded-full mt-2.5 overflow-hidden">
+              <div className="w-full max-w-20 h-1.5 bg-slate-200 rounded-full mt-2.5 overflow-hidden">
                 <motion.div
                   className="h-full bg-linear-to-r from-emerald-400 to-[#2B3CB8] rounded-full"
                   animate={{ width: ['20%', '85%', '20%'] }}

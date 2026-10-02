@@ -221,7 +221,7 @@ export const EVBentoFeaturesSection: React.FC = () => {
           </div>
 
           {/* Right Column: Dynamic Circular Ecosystem with Ripple & Orbiting Satellites */}
-          <div className="lg:col-span-6 relative flex items-center justify-center min-h-[380px] sm:min-h-[440px] order-1 lg:order-2">
+          <div className="lg:col-span-6 relative flex items-center justify-center min-h-95 sm:min-h-110 order-1 lg:order-2">
             
             {/* Magic UI Ripple expanding wave circles */}
             <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
@@ -234,7 +234,7 @@ export const EVBentoFeaturesSection: React.FC = () => {
             </div>
 
             {/* Orbiting Feature Satellites */}
-            <div className="relative w-[340px] h-[340px] sm:w-[400px] sm:h-[400px] flex items-center justify-center">
+            <div className="relative w-85 h-85 sm:w-100 sm:h-100 flex items-center justify-center">
               
               {/* Inner Orbit Circle (Radius 100) */}
               <OrbitingCircles radius={100} duration={26} iconSize={40}>

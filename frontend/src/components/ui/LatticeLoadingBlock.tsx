@@ -23,10 +23,10 @@ export const LatticeLoadingBlock: React.FC<LatticeLoadingBlockProps> = ({
   idleOpacity = 0.15,
   glow = false,
   glowColor = '',
-  showTimer = true,
+  showTimer = false,
   color = '#f5f5f5',
   className = '',
-  containerClassName = 'py-16 flex flex-col items-center justify-center',
+  containerClassName = 'py-12 flex flex-col items-center justify-center',
   ...rest
 }) => {
   return (
