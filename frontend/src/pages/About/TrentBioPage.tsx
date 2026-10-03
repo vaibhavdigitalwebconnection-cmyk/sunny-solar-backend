@@ -3,7 +3,8 @@ import { Helmet } from 'react-helmet-async';
 import { PageHeader } from '../../components/layout/PageHeader';
 import { Badge } from '../../components/ui/Badge';
 import { Button } from '../../components/ui/Button';
-import { ShieldCheck, Award, Zap, Phone, Mail, ArrowRight, CheckCircle2 } from 'lucide-react';
+import { ArrowRight, CheckCircle2 } from 'lucide-react';
+import img from "../../assets/main.webp"
 
 export const TrentBioPage: React.FC = () => {
   return (
@@ -23,12 +24,12 @@ export const TrentBioPage: React.FC = () => {
       />
 
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 mt-12 space-y-12">
-        <div className="bg-white rounded-3xl border border-slate-200/80 p-5 sm:p-12 shadow-sm grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
+        <div className=" grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
           {/* Photo */}
           <div className="md:col-span-5">
-            <div className="rounded-3xl overflow-hidden shadow-xl aspect-3/4 bg-slate-900 relative">
+            <div className=" overflow-hidden shadow-xl aspect-3/4 bg-slate-900 relative">
               <img
-                src="/images/about/trent-portrait.webp"
+                src={img}
                 alt="Trent Palmer, Founder of Sunny Solar"
                 className="w-full h-full object-cover"
                 loading="lazy"
@@ -81,14 +82,7 @@ export const TrentBioPage: React.FC = () => {
               >
                 Request a Design Consultation
               </Button>
-              <Button
-                to="/projects"
-                variant="outline"
-                size="md"
-                className="w-full sm:w-auto justify-center"
-              >
-                View Completed Projects
-              </Button>
+              
               <Button
                 to="/reviews"
                 variant="outline"
