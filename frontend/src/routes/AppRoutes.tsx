@@ -70,8 +70,8 @@ import LatticeLoadingBlock from '../components/ui/LatticeLoadingBlock';
 const RouteFallback: React.FC = () => (
   <>
     {/* Fixed top progress bar */}
-    <div className="fixed top-0 left-0 right-0 h-[3px] z-[9999] overflow-hidden bg-transparent pointer-events-none">
-      <div className="h-full bg-gradient-to-r from-amber-500 via-[#ED4F11] to-blue-600 animate-pulse w-full shadow-xs" />
+    <div className="fixed top-0 left-0 right-0 h-0.75 z-9999 overflow-hidden bg-transparent pointer-events-none">
+      <div className="h-full bg-linear-to-r from-amber-500 via-[#ED4F11] to-blue-600 animate-pulse w-full shadow-xs" />
     </div>
     <div className="min-h-[30vh] flex items-center justify-center py-16">
       <div className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-white/95 border border-slate-200/90 shadow-xs text-slate-700 text-xs font-semibold backdrop-blur-xs">
