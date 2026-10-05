@@ -18,6 +18,8 @@ import {
   MatrixRow,
   categories
 } from '../types';
+import RichTextEditor from './RichTextEditor';
+import { api } from '../../../services/api';
 
 interface KnowledgeModalProps {
   isOpen: boolean;
@@ -30,13 +32,13 @@ interface KnowledgeModalProps {
   knowledgeFormLoading: boolean;
   uploadingKnowledgeImage: boolean;
   handleKnowledgeImageUpload: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  showContentPreview: boolean;
-  setShowContentPreview: (show: boolean) => void;
+  showContentPreview?: boolean;
+  setShowContentPreview?: (show: boolean) => void;
   handleKnowledgeFormSubmit: (e: React.FormEvent) => void;
-  applyKnowledgeFormatting: (tagStart: string, tagEnd?: string) => void;
-  handleInsertKnowledgeLink: () => void;
-  handleClearKnowledgeFormatting: () => void;
-  knowledgeContentRef: React.RefObject<HTMLTextAreaElement | null>;
+  applyKnowledgeFormatting?: (tagStart: string, tagEnd?: string) => void;
+  handleInsertKnowledgeLink?: () => void;
+  handleClearKnowledgeFormatting?: () => void;
+  knowledgeContentRef?: React.RefObject<HTMLTextAreaElement | null>;
   handleAddQuickStat: () => void;
   handleRemoveQuickStat: (index: number) => void;
   handleUpdateQuickStat: (index: number, field: 'label' | 'value', val: string) => void;
@@ -79,6 +81,36 @@ export const KnowledgeModal: React.FC<KnowledgeModalProps> = ({
   handleUpdateFaq
 }) => {
   const scrollBodyRef = useRef<HTMLDivElement>(null);
+
+  const uploadKnowledgeImage = async (file: File): Promise<string> => {
+    return new Promise((resolve, reject) => {
+      if (file.size > 10 * 1024 * 1024) {
+        reject(new Error('Image size should be less than 10MB'));
+        return;
+      }
+      const reader = new FileReader();
+      reader.onload = async () => {
+        if (typeof reader.result === 'string') {
+          const base64Data = reader.result;
+          try {
+            const res = await api.uploadImage(base64Data, 'sunny-solar/knowledge');
+            if (res?.url) {
+              resolve(res.url);
+            } else {
+              resolve(base64Data);
+            }
+          } catch {
+            // Fallback to inline base64 data so the editor keeps the image
+            resolve(base64Data);
+          }
+        } else {
+          reject(new Error('Failed to read image file'));
+        }
+      };
+      reader.onerror = () => reject(new Error('Failed to read image file'));
+      reader.readAsDataURL(file);
+    });
+  };
 
   useEffect(() => {
     if (!isOpen) return;
@@ -467,124 +499,15 @@ export const KnowledgeModal: React.FC<KnowledgeModalProps> = ({
             {/* TAB 2: CONTENT */}
             {knowledgeModalTab === 'content' && (
               <div className="border border-slate-200 rounded-2xl p-6 bg-white space-y-4">
-                <div className="flex items-center justify-between">
-                  <div>
-                    <label className="block text-xs font-bold text-slate-800">Guide Technical Content</label>
-                    <p className="text-[11px] text-slate-400">Supports rich HTML headings, paragraphs, and lists</p>
-                  </div>
-                  <button
-                    type="button"
-                    onClick={() => setShowContentPreview(!showContentPreview)}
-                    className="text-xs font-bold text-amber-600 hover:text-amber-700 bg-amber-50 px-3 py-1 rounded-lg border border-amber-200/60 cursor-pointer"
-                  >
-                    {showContentPreview ? 'Edit Raw Content' : 'Preview Formatted Output'}
-                  </button>
-                </div>
-
-                {showContentPreview ? (
-                  <div className="border border-slate-200 rounded-2xl p-6 bg-slate-50 min-h-62.5 prose max-w-none text-slate-800 text-sm">
-                    <div
-                      dangerouslySetInnerHTML={{
-                        __html:
-                          knowledgeFormData.content ||
-                          '<p class="text-slate-400 italic">No content written yet.</p>'
-                      }}
-                    />
-                  </div>
-                ) : (
-                  <div className="rounded-2xl overflow-hidden border border-slate-300 bg-[#0C123E]">
-                    {/* Formatting toolbar */}
-                    <div className="flex flex-wrap items-center gap-1 sm:gap-2 px-3.5 py-2 bg-[#070A24] border-b border-slate-700/80 text-xs text-slate-300  ">
-                      <button
-                        type="button"
-                        onClick={() => applyKnowledgeFormatting('<strong>', '</strong>')}
-                        className="px-2 py-1 hover:bg-slate-700/70 rounded font-black hover:text-white transition-colors cursor-pointer"
-                        title="Bold"
-                      >
-                        B
-                      </button>
-                      <button
-                        type="button"
-                        onClick={() => applyKnowledgeFormatting('<em>', '</em>')}
-                        className="px-2 py-1 hover:bg-slate-700/70 rounded italic hover:text-white transition-colors cursor-pointer"
-                        title="Italic"
-                      >
-                        I
-                      </button>
-                      <button
-                        type="button"
-                        onClick={() => applyKnowledgeFormatting('<u>', '</u>')}
-                        className="px-2 py-1 hover:bg-slate-700/70 rounded underline hover:text-white transition-colors cursor-pointer"
-                        title="Underline"
-                      >
-                        <u>U</u>
-                      </button>
-
-                      <span className="h-4 w-px bg-slate-700 mx-1" />
-
-                      {['h2', 'h3', 'h4'].map((h) => (
-                        <button
-                          key={h}
-                          type="button"
-                          onClick={() => applyKnowledgeFormatting(`<${h}>`, `</${h}>`)}
-                          className="px-1.5 py-1 hover:bg-slate-700/70 rounded font-bold uppercase text-[11px] hover:text-white transition-colors cursor-pointer"
-                          title={`Heading ${h.toUpperCase()}`}
-                        >
-                          {h.toUpperCase()}
-                        </button>
-                      ))}
-
-                      <span className="h-4 w-px bg-slate-700 mx-1" />
-
-                      <button
-                        type="button"
-                        onClick={() => applyKnowledgeFormatting('<p>', '</p>')}
-                        className="px-2 py-1 hover:bg-slate-700/70 rounded hover:text-white transition-colors text-[11px] cursor-pointer"
-                        title="Paragraph"
-                      >
-                        P
-                      </button>
-
-                      <button
-                        type="button"
-                        onClick={() => applyKnowledgeFormatting('<ul>\n  <li>', '</li>\n</ul>')}
-                        className="px-2 py-1 hover:bg-slate-700/70 rounded hover:text-white transition-colors text-[11px] cursor-pointer"
-                        title="Unordered List"
-                      >
-                        • List
-                      </button>
-
-                      <button
-                        type="button"
-                        onClick={handleInsertKnowledgeLink}
-                        className="px-2 py-1 hover:bg-slate-700/70 rounded hover:text-white transition-colors text-[11px] flex items-center gap-1 cursor-pointer"
-                        title="Insert Link"
-                      >
-                        <span>🔗</span> Link
-                      </button>
-
-                      <button
-                        type="button"
-                        onClick={handleClearKnowledgeFormatting}
-                        className="px-2 py-1 hover:bg-slate-700/70 rounded text-slate-400 hover:text-rose-400 transition-colors text-[11px] cursor-pointer"
-                        title="Clear Formatting"
-                      >
-                        Clear
-                      </button>
-                    </div>
-
-                    <textarea
-                      ref={knowledgeContentRef}
-                      rows={14}
-                      value={knowledgeFormData.content}
-                      onChange={(e) =>
-                        setKnowledgeFormData({ ...knowledgeFormData, content: e.target.value })
-                      }
-                      placeholder="Write detailed technical content here. HTML tags such as <h2>, <p>, <ul>, <li>, and <strong> are fully supported."
-                      className="w-full bg-[#0C123E] text-slate-100 p-4 font-mono text-xs focus:outline-none resize-y min-h-62.5"
-                    />
-                  </div>
-                )}
+                <RichTextEditor
+                  label="Guide Technical Content"
+                  placeholder="Write detailed technical content here. Rich formatting, headings, lists, links, and images are fully supported..."
+                  value={knowledgeFormData.content}
+                  onChange={(html) =>
+                    setKnowledgeFormData((prev) => ({ ...prev, content: html }))
+                  }
+                  onUploadImage={uploadKnowledgeImage}
+                />
               </div>
             )}
 

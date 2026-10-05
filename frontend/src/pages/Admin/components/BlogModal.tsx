@@ -1,6 +1,8 @@
 import React, { useEffect, useRef } from 'react';
 import { FileText, X, Image as ImageIcon, Upload, Trash2 } from 'lucide-react';
 import { BlogFormData, BlogItem, BlogModalTab, categories } from '../types';
+import RichTextEditor from './RichTextEditor';
+import { api } from '../../../services/api';
 
 interface BlogModalProps {
   isOpen: boolean;
@@ -14,10 +16,10 @@ interface BlogModalProps {
   uploadingBlogImage: boolean;
   handleBlogImageUpload: (e: React.ChangeEvent<HTMLInputElement>) => void;
   handleFormSubmit: (e: React.FormEvent) => void;
-  applyFormatting: (field: 'content' | 'longContent', tagStart: string, tagEnd?: string) => void;
-  handleInsertLink: (field: 'content' | 'longContent') => void;
-  handleClearFormatting: (field: 'content' | 'longContent') => void;
-  contentRef: React.RefObject<HTMLTextAreaElement | null>;
+  applyFormatting?: (field: 'content' | 'longContent', tagStart: string, tagEnd?: string) => void;
+  handleInsertLink?: (field: 'content' | 'longContent') => void;
+  handleClearFormatting?: (field: 'content' | 'longContent') => void;
+  contentRef?: React.RefObject<HTMLTextAreaElement | null>;
 }
 
 export const BlogModal: React.FC<BlogModalProps> = ({
@@ -38,6 +40,36 @@ export const BlogModal: React.FC<BlogModalProps> = ({
   contentRef
 }) => {
   const scrollBodyRef = useRef<HTMLDivElement>(null);
+
+  const uploadBlogImage = async (file: File): Promise<string> => {
+    return new Promise((resolve, reject) => {
+      if (file.size > 10 * 1024 * 1024) {
+        reject(new Error('Image size should be less than 10MB'));
+        return;
+      }
+      const reader = new FileReader();
+      reader.onload = async () => {
+        if (typeof reader.result === 'string') {
+          const base64Data = reader.result;
+          try {
+            const res = await api.uploadImage(base64Data, 'sunny-solar/blogs');
+            if (res?.url) {
+              resolve(res.url);
+            } else {
+              resolve(base64Data);
+            }
+          } catch {
+            // Fallback to inline base64 data so the editor keeps the image
+            resolve(base64Data);
+          }
+        } else {
+          reject(new Error('Failed to read image file'));
+        }
+      };
+      reader.onerror = () => reject(new Error('Failed to read image file'));
+      reader.readAsDataURL(file);
+    });
+  };
 
   useEffect(() => {
     if (!isOpen) return;
@@ -388,91 +420,13 @@ export const BlogModal: React.FC<BlogModalProps> = ({
             {/* TAB 2: CONTENT */}
             {modalTab === 'content' && (
               <div className="border border-slate-200 rounded-2xl p-6 bg-white space-y-4">
-                <div className="flex items-center justify-between">
-                  <label className="block text-xs font-bold text-slate-800">Article Body Content</label>
-                  <span className="text-[11px] text-slate-400">Supports HTML formatting</span>
-                </div>
-
-                <div className="rounded-2xl overflow-hidden border border-slate-300 bg-[#0C123E]">
-                  <div className="flex items-center gap-1 sm:gap-2 px-3 py-2 bg-[#070A24] border-b border-slate-700/80 text-xs text-slate-300 overflow-x-auto">
-                    <button
-                      type="button"
-                      onClick={() => applyFormatting('content', '<strong>', '</strong>')}
-                      className="px-2 py-1 hover:bg-slate-700/70 rounded font-black hover:text-white transition-colors cursor-pointer"
-                      title="Bold"
-                    >
-                      B
-                    </button>
-                    <button
-                      type="button"
-                      onClick={() => applyFormatting('content', '<em>', '</em>')}
-                      className="px-2 py-1 hover:bg-slate-700/70 rounded italic hover:text-white transition-colors cursor-pointer"
-                      title="Italic"
-                    >
-                      I
-                    </button>
-                    <button
-                      type="button"
-                      onClick={() => applyFormatting('content', '<u>', '</u>')}
-                      className="px-2 py-1 hover:bg-slate-700/70 rounded underline hover:text-white transition-colors cursor-pointer"
-                      title="Underline"
-                    >
-                      <u>U</u>
-                    </button>
-
-                    <span className="h-4 w-px bg-slate-700 mx-1" />
-
-                    {['h2', 'h3', 'h4'].map((h) => (
-                      <button
-                        key={h}
-                        type="button"
-                        onClick={() => applyFormatting('content', `<${h}>`, `</${h}>`)}
-                        className="px-1.5 py-1 hover:bg-slate-700/70 rounded font-bold uppercase text-[11px] hover:text-white transition-colors cursor-pointer"
-                        title={`Heading ${h.toUpperCase()}`}
-                      >
-                        {h.toUpperCase()}
-                      </button>
-                    ))}
-
-                    <span className="h-4 w-px bg-slate-700 mx-1" />
-
-                    <button
-                      type="button"
-                      onClick={() => applyFormatting('content', '<p>', '</p>')}
-                      className="px-2 py-1 hover:bg-slate-700/70 rounded hover:text-white transition-colors text-[11px] cursor-pointer"
-                      title="Paragraph"
-                    >
-                      P
-                    </button>
-
-                    <button
-                      type="button"
-                      onClick={() => handleInsertLink('content')}
-                      className="px-2 py-1 hover:bg-slate-700/70 rounded hover:text-white transition-colors text-[11px] flex items-center gap-1 cursor-pointer"
-                      title="Insert Link"
-                    >
-                      <span>🔗</span> Link
-                    </button>
-
-                    <button
-                      type="button"
-                      onClick={() => handleClearFormatting('content')}
-                      className="px-2 py-1 hover:bg-slate-700/70 rounded text-slate-400 hover:text-rose-400 transition-colors text-[11px] cursor-pointer"
-                      title="Clear Formatting"
-                    >
-                      Clear
-                    </button>
-                  </div>
-
-                  <textarea
-                    ref={contentRef}
-                    rows={12}
-                    value={formData.content}
-                    onChange={(e) => setFormData({ ...formData, content: e.target.value })}
-                    placeholder="Write your article body here. You can use standard HTML or formatted text..."
-                    className="w-full bg-[#0C123E] text-slate-100 p-4 font-mono text-xs focus:outline-none resize-y min-h-55"
-                  />
-                </div>
+                <RichTextEditor
+                  label="Article Body Content"
+                  placeholder="Write your article body here with rich formatting, headings, lists, links, and images..."
+                  value={formData.content}
+                  onChange={(html) => setFormData((prev) => ({ ...prev, content: html }))}
+                  onUploadImage={uploadBlogImage}
+                />
               </div>
             )}
 
