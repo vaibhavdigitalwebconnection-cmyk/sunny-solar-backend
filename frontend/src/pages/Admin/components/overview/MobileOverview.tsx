@@ -141,22 +141,28 @@ export const MobileOverview: React.FC<MobileOverviewProps> = ({
           </span>
         </div>
         <div className="mt-2.5 space-y-1.5">
-          {realCountriesData.slice(0, 4).map((item) => (
-            <div
-              key={item.name}
-              className="flex items-center justify-between px-2 py-1.5 rounded-lg text-xs hover:bg-neutral-50"
-            >
-              <div className="flex items-center gap-2 truncate">
-                <span className="text-xs font-bold text-neutral-900 w-5 shrink-0">
-                  {item.code}
-                </span>
-                <span className="truncate text-neutral-700">{item.name}</span>
-              </div>
-              <span className="font-bold text-neutral-900 ml-2 shrink-0">
-                {item.chats}
-              </span>
+          {realCountriesData.length === 0 ? (
+            <div className="py-4 text-center text-xs text-neutral-400">
+              No visitor traffic recorded yet
             </div>
-          ))}
+          ) : (
+            realCountriesData.slice(0, 4).map((item) => (
+              <div
+                key={item.name}
+                className="flex items-center justify-between px-2 py-1.5 rounded-lg text-xs hover:bg-neutral-50"
+              >
+                <div className="flex items-center gap-2 truncate">
+                  <span className="text-xs font-bold text-neutral-900 w-5 shrink-0">
+                    {item.code}
+                  </span>
+                  <span className="truncate text-neutral-700">{item.name}</span>
+                </div>
+                <span className="font-bold text-neutral-900 ml-2 shrink-0">
+                  {item.chats}
+                </span>
+              </div>
+            ))
+          )}
         </div>
       </div>
     </div>

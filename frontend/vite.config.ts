@@ -14,6 +14,21 @@ export default defineConfig({
       '@': fileURLToPath(new URL('./src', import.meta.url)),
     },
   },
+  optimizeDeps: {
+    include: [
+      'react',
+      'react-dom',
+      'react-router',
+      'react-router-dom',
+      'lucide-react',
+      'react-helmet-async',
+      '@tiptap/react',
+      '@tiptap/starter-kit',
+      '@tiptap/extension-underline',
+      '@tiptap/extension-image',
+      '@tiptap/extension-link',
+    ],
+  },
   build: {
     target: 'esnext',
     minify: 'oxc',

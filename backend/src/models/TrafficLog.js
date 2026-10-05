@@ -5,18 +5,18 @@ const trafficLogSchema = new mongoose.Schema(
     country: {
       type: String,
       required: true,
-      default: 'India',
+      default: 'Unknown',
       index: true
     },
     countryCode: {
       type: String,
       required: true,
-      default: 'IN',
+      default: 'UN',
       uppercase: true
     },
     flag: {
       type: String,
-      default: '🇮🇳'
+      default: '🌐'
     },
     region: {
       type: String,

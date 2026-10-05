@@ -1,6 +1,7 @@
 import Knowledge from '../models/Knowledge.js';
 import { shouldTrackView, recordTrafficEvent } from '../utils/viewTracker.js';
 import { uploadToCloudinary } from '../config/cloudinary.js';
+import { invalidateStatsCache } from './admin.controller.js';
 
 /**
  * @desc    Get all published Knowledge Hub guides
@@ -108,7 +109,7 @@ export const getKnowledgeBySlug = async (req, res, next) => {
  */
 export const getAllKnowledgeAdmin = async (req, res, next) => {
   try {
-    const guides = await Knowledge.find().sort({ createdAt: -1 });
+    const guides = await Knowledge.find().sort({ createdAt: -1 }).lean();
 
     res.status(200).json({
       success: true,
@@ -225,6 +226,7 @@ export const createKnowledge = async (req, res, next) => {
       isPublished: isPublished !== undefined ? isPublished : true
     });
 
+    invalidateStatsCache();
     res.status(201).json({
       success: true,
       message: 'Knowledge guide created successfully',
@@ -292,6 +294,7 @@ export const updateKnowledge = async (req, res, next) => {
       });
     }
 
+    invalidateStatsCache();
     res.status(200).json({
       success: true,
       message: 'Knowledge guide updated successfully',
@@ -325,6 +328,7 @@ export const togglePublishKnowledge = async (req, res, next) => {
       { returnDocument: 'after' }
     );
 
+    invalidateStatsCache();
     res.status(200).json({
       success: true,
       message: `Guide ${updatedGuide.isPublished ? 'published' : 'unpublished'} successfully`,
@@ -359,6 +363,7 @@ export const deleteKnowledge = async (req, res, next) => {
       });
     }
 
+    invalidateStatsCache();
     res.status(200).json({
       success: true,
       message: 'Guide removed from website and admin view (safely preserved in database)',
@@ -391,6 +396,7 @@ export const restoreKnowledge = async (req, res, next) => {
       });
     }
 
+    invalidateStatsCache();
     res.status(200).json({
       success: true,
       message: 'Knowledge guide restored successfully',

@@ -56,7 +56,7 @@ export const AdminSidebar: React.FC<AdminSidebarProps> = ({
           <div className="flex items-center gap-2.5 min-w-0">
             <img src={logo} alt="Sunny Solar" className="w-12 shrink-0 object-contain" />
             <h1 className="text-lg font-bold font-serif text-neutral-900 tracking-tight truncate">
-              Admin penal
+              Admin 
             </h1>
           </div>
           <button

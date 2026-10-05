@@ -61,91 +61,112 @@ export const AdminOverview: React.FC<AdminOverviewProps> = ({
     return { startDateStr: format(start), endDateStr: format(end) };
   }, []);
 
-  // 5. REAL SPARKLINE 1: Total Reads distribution over 28 segments
+  // 5. REAL SPARKLINE 1: Total Reads daily timeline over 28 days (starting from 0)
   const sparklineBars1 = useMemo(() => {
-    if (displayTotalReads === 0) {
-      return Array(28).fill(0);
-    }
-    const base = [
-      8, 14, 22, 38, 30, 18, 28, 20, 42, 35, 26, 22, 30, 44, 20, 14, 26, 48, 36,
-      92, 60, 26, 16, 22, 40, 32, 62, 45
-    ];
-    const scale = Math.min(1.5, Math.max(0.3, displayTotalReads / 50));
-    return base.map((h) => Math.min(100, Math.round(h * scale)));
-  }, [displayTotalReads]);
-
-  // 6. REAL SPARKLINE 2: Draft / Staging Content distribution (sparse bars)
-  const sparklineBars2 = useMemo(() => {
-    if (totalDraftCount === 0) {
-      return Array(28).fill(0);
-    }
     const bars = Array(28).fill(0);
-    bars[14] = Math.min(100, totalDraftCount * 25);
-    bars[16] = Math.min(100, totalDraftCount * 35);
-    bars[20] = Math.min(100, totalDraftCount * 45);
+    if (!stats?.dailyTraffic || stats.dailyTraffic.length === 0) {
+      if (displayTotalReads > 0) {
+        bars[27] = Math.min(100, Math.max(20, displayTotalReads * 8));
+      }
+      return bars;
+    }
+
+    const today = new Date();
+    const dateKeys: string[] = [];
+    for (let i = 27; i >= 0; i--) {
+      const d = new Date(today);
+      d.setDate(today.getDate() - i);
+      dateKeys.push(d.toISOString().split('T')[0]);
+    }
+
+    const counts = dateKeys.map((k) => {
+      const match = stats.dailyTraffic?.find((item: any) => item.date === k);
+      return match ? match.count : 0;
+    });
+
+    const max = Math.max(...counts, 1);
+    return counts.map((c) => (c > 0 ? Math.min(100, Math.max(20, Math.round((c / max) * 100))) : 0));
+  }, [stats?.dailyTraffic, displayTotalReads]);
+
+  // 6. REAL SPARKLINE 2: Draft / Staging Content timeline (starting from 0)
+  const sparklineBars2 = useMemo(() => {
+    const bars = Array(28).fill(0);
+    if (totalDraftCount > 0) {
+      bars[27] = Math.min(100, totalDraftCount * 25);
+    }
     return bars;
   }, [totalDraftCount]);
 
-  // 7. REAL SPARKLINE 3: Blog volume
+  // 7. REAL SPARKLINE 3: Blog creation timeline (starting from 0)
   const sparklineBars3 = useMemo(() => {
-    if (realActiveBlogCount === 0) return Array(28).fill(0);
-    const base = [
-      42, 58, 80, 72, 38, 52, 68, 62, 28, 48, 72, 78, 58, 42, 62, 52, 68, 38, 58,
-      68, 72, 82, 62, 68, 78, 48, 58, 42
-    ];
-    return base.map((h) => Math.min(100, Math.round(h * (realActiveBlogCount / 4))));
-  }, [realActiveBlogCount]);
+    const bars = Array(28).fill(0);
+    if (activeBlogs.length === 0) return bars;
 
-  // 8. REAL SPARKLINE 4: Knowledge Hub & Live Published volume
-  const sparklineBars4 = useMemo(() => {
-    if (realActiveKnowledgeCount === 0) return Array(28).fill(0);
-    const base = [
-      12, 16, 32, 18, 22, 42, 20, 16, 28, 22, 18, 16, 20, 14, 28, 38, 32, 22, 16,
-      28, 32, 92, 42, 28, 22, 32, 18, 14
-    ];
-    return base.map((h) => Math.min(100, Math.round(h * (realActiveKnowledgeCount / 3))));
-  }, [realActiveKnowledgeCount]);
-
-  // 9. REAL GEOGRAPHIC BREAKDOWN: Live Server & Database Visitor Tracking
-  const realCountriesData = useMemo<CountryStatItem[]>(() => {
-    if (stats?.countryStats && stats.countryStats.length > 0) {
-      const list: CountryStatItem[] = stats.countryStats.map((item: any) => ({
-        code: item.countryCode || 'IN',
-        name: item.country,
-        flag: item.flag || '🇮🇳',
-        chats: item.count || 0
-      }));
-
-      // Fallback regions to ensure 5 rows matching the template design
-      const fallbackList: CountryStatItem[] = [
-        { code: 'AU', name: 'Australia', flag: '🇦🇺', chats: 0 },
-        { code: 'US', name: 'United States', flag: '🇺🇸', chats: 0 },
-        { code: 'GB', name: 'United Kingdom', flag: '🇬🇧', chats: 0 },
-        { code: 'NZ', name: 'New Zealand', flag: '🇳🇿', chats: 0 }
-      ];
-
-      for (const fb of fallbackList) {
-        if (
-          !list.some(
-            (existing: CountryStatItem) =>
-              existing.code === fb.code || existing.name === fb.name
-          )
-        ) {
-          list.push(fb);
-        }
-      }
-      return list.slice(0, 5);
+    const today = new Date();
+    const dateKeys: string[] = [];
+    for (let i = 27; i >= 0; i--) {
+      const d = new Date(today);
+      d.setDate(today.getDate() - i);
+      dateKeys.push(d.toISOString().split('T')[0]);
     }
 
-    const reads = displayTotalReads > 0 ? displayTotalReads : 0;
-    return [
-      { code: 'IN', name: 'India', flag: '🇮🇳', chats: reads },
-      { code: 'AU', name: 'Australia', flag: '🇦🇺', chats: 0 },
-      { code: 'US', name: 'United States', flag: '🇺🇸', chats: 0 },
-      { code: 'GB', name: 'United Kingdom', flag: '🇬🇧', chats: 0 },
-      { code: 'NZ', name: 'New Zealand', flag: '🇳🇿', chats: 0 }
-    ];
-  }, [stats?.countryStats, displayTotalReads]);
+    activeBlogs.forEach((blog) => {
+      const createdStr = (blog as any).createdAt
+        ? new Date((blog as any).createdAt).toISOString().split('T')[0]
+        : '';
+      const idx = dateKeys.indexOf(createdStr);
+      if (idx !== -1) {
+        bars[idx] += 1;
+      } else {
+        bars[27] += 1;
+      }
+    });
+
+    const max = Math.max(...bars, 1);
+    return bars.map((b) => (b > 0 ? Math.min(100, Math.max(25, Math.round((b / max) * 100))) : 0));
+  }, [activeBlogs]);
+
+  // 8. REAL SPARKLINE 4: Knowledge Hub creation timeline (starting from 0)
+  const sparklineBars4 = useMemo(() => {
+    const bars = Array(28).fill(0);
+    if (activeKnowledge.length === 0) return bars;
+
+    const today = new Date();
+    const dateKeys: string[] = [];
+    for (let i = 27; i >= 0; i--) {
+      const d = new Date(today);
+      d.setDate(today.getDate() - i);
+      dateKeys.push(d.toISOString().split('T')[0]);
+    }
+
+    activeKnowledge.forEach((item) => {
+      const createdStr = (item as any).createdAt
+        ? new Date((item as any).createdAt).toISOString().split('T')[0]
+        : '';
+      const idx = dateKeys.indexOf(createdStr);
+      if (idx !== -1) {
+        bars[idx] += 1;
+      } else {
+        bars[27] += 1;
+      }
+    });
+
+    const max = Math.max(...bars, 1);
+    return bars.map((b) => (b > 0 ? Math.min(100, Math.max(25, Math.round((b / max) * 100))) : 0));
+  }, [activeKnowledge]);
+
+  // 9. REAL GEOGRAPHIC BREAKDOWN: Live Database Visitor Tracking Only
+  const realCountriesData = useMemo<CountryStatItem[]>(() => {
+    if (stats?.countryStats && stats.countryStats.length > 0) {
+      return stats.countryStats.map((item: any) => ({
+        code: item.countryCode || '',
+        name: item.country || 'Unknown',
+        flag: item.flag || '🌐',
+        chats: item.count || 0
+      }));
+    }
+    return [];
+  }, [stats?.countryStats]);
 
   // Real Heatmap Matrix computed from Server Traffic
   const heatmapMatrix = useMemo(() => {
@@ -164,15 +185,6 @@ export const AdminOverview: React.FC<AdminOverviewProps> = ({
           countsMatrix[dayIdx][hourIdx] += entry.count;
         }
       });
-    } else if (displayTotalReads > 0) {
-      const now = new Date();
-      const dayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
-      const todayName = dayNames[now.getDay()];
-      const dayIdx = DAYS.indexOf(todayName);
-      const hourIdx = now.getHours();
-      if (dayIdx !== -1) {
-        countsMatrix[dayIdx][hourIdx] = displayTotalReads;
-      }
     }
 
     let max = 0;
@@ -218,15 +230,9 @@ export const AdminOverview: React.FC<AdminOverviewProps> = ({
     const totalCount = entries.reduce((sum, [, d]) => sum + d.count, 0);
 
     if (totalCount === 0) {
-      const fallback = [
-        { name: 'Solar Basics', percent: 40, color: SUBJECT_COLORS[0], count: 0, views: 0 },
-        { name: 'Technical', percent: 30, color: SUBJECT_COLORS[1], count: 0, views: 0 },
-        { name: 'Buying Solar', percent: 20, color: SUBJECT_COLORS[2], count: 0, views: 0 },
-        { name: 'Batteries', percent: 10, color: SUBJECT_COLORS[3], count: 0, views: 0 }
-      ];
       return {
-        allCategoriesData: fallback,
-        top3Categories: fallback.slice(0, 3),
+        allCategoriesData: [],
+        top3Categories: [],
         totalCategorizedItems: 0
       };
     }
@@ -250,21 +256,7 @@ export const AdminOverview: React.FC<AdminOverviewProps> = ({
       allCategories[0].percent += diff;
     }
 
-    // Top 3 categories for the legend list in this section
     const top3 = allCategories.slice(0, 3);
-    const defaultCategories = ['Solar Basics', 'Technical', 'Buying Solar'];
-    for (const defCat of defaultCategories) {
-      if (top3.length >= 3) break;
-      if (!top3.some((s) => s.name.toLowerCase() === defCat.toLowerCase())) {
-        top3.push({
-          name: defCat,
-          count: 0,
-          views: 0,
-          percent: 0,
-          color: SUBJECT_COLORS[top3.length]
-        });
-      }
-    }
 
     return {
       allCategoriesData: allCategories,

@@ -122,8 +122,8 @@ export const detectCountryFromRequest = (req) => {
     };
   }
 
-  // Default to India (local developer / active user location)
-  return { country: 'India', countryCode: 'IN', flag: '🇮🇳', region: 'India' };
+  // Default to Unknown if no geolocation headers or locale found
+  return { country: 'Unknown', countryCode: 'UN', flag: '🌐', region: '' };
 };
 
 /**

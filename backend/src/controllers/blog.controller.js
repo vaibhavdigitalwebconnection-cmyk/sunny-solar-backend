@@ -1,6 +1,7 @@
 import Blog from '../models/Blog.js';
 import { shouldTrackView, recordTrafficEvent } from '../utils/viewTracker.js';
 import { uploadToCloudinary } from '../config/cloudinary.js';
+import { invalidateStatsCache } from './admin.controller.js';
 
 /**
  * @desc    Get all published blogs (with category filtering, search, pagination)
@@ -109,7 +110,7 @@ export const getBlogBySlug = async (req, res, next) => {
  */
 export const getAllBlogsAdmin = async (req, res, next) => {
   try {
-    const blogs = await Blog.find().sort({ createdAt: -1 });
+    const blogs = await Blog.find().sort({ createdAt: -1 }).lean();
 
     res.status(200).json({
       success: true,
@@ -218,6 +219,7 @@ export const createBlog = async (req, res, next) => {
       isPublished: isPublished !== undefined ? isPublished : true
     });
 
+    invalidateStatsCache();
     res.status(201).json({
       success: true,
       message: 'Blog created successfully',
@@ -288,6 +290,7 @@ export const updateBlog = async (req, res, next) => {
       });
     }
 
+    invalidateStatsCache();
     res.status(200).json({
       success: true,
       message: 'Blog updated successfully',
@@ -321,6 +324,7 @@ export const togglePublishBlog = async (req, res, next) => {
       { returnDocument: 'after' }
     );
 
+    invalidateStatsCache();
     res.status(200).json({
       success: true,
       message: `Blog ${updatedBlog.isPublished ? 'published' : 'unpublished'} successfully`,
@@ -355,6 +359,7 @@ export const deleteBlog = async (req, res, next) => {
       });
     }
 
+    invalidateStatsCache();
     res.status(200).json({
       success: true,
       message: 'Article removed from website and admin view (safely preserved in database)',
@@ -387,6 +392,7 @@ export const restoreBlog = async (req, res, next) => {
       });
     }
 
+    invalidateStatsCache();
     res.status(200).json({
       success: true,
       message: 'Article restored successfully',

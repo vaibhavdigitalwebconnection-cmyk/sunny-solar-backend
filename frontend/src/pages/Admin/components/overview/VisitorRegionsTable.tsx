@@ -30,39 +30,45 @@ export const VisitorRegionsTable: React.FC<VisitorRegionsTableProps> = ({
 
         {/* Real Regional Distribution List */}
         <div className="mt-3 space-y-2">
-          {realCountriesData.map((item: CountryStatItem, idx: number) => {
-            const isSelected =
-              selectedCountry === item.name || (selectedCountry === '' && idx === 0);
-            return (
-              <div
-                key={item.name}
-                onClick={() => setSelectedCountry(item.name)}
-                className={`flex items-center justify-between px-2.5 py-2 rounded-xl text-xs cursor-pointer transition-all ${
-                  isSelected
-                    ? 'bg-[#ede9fe]/90 text-[#3730a3] font-semibold border-l-3 border-[#6366f1]'
-                    : 'text-neutral-700 hover:bg-neutral-50'
-                }`}
-              >
-                <div className="flex items-center gap-2.5 truncate">
+          {realCountriesData.length === 0 ? (
+            <div className="py-8 text-center text-xs text-neutral-400">
+              No visitor traffic recorded yet
+            </div>
+          ) : (
+            realCountriesData.map((item: CountryStatItem, idx: number) => {
+              const isSelected =
+                selectedCountry === item.name || (selectedCountry === '' && idx === 0);
+              return (
+                <div
+                  key={item.name}
+                  onClick={() => setSelectedCountry(item.name)}
+                  className={`flex items-center justify-between px-2.5 py-2 rounded-xl text-xs cursor-pointer transition-all ${
+                    isSelected
+                      ? 'bg-[#ede9fe]/90 text-[#3730a3] font-semibold border-l-3 border-[#6366f1]'
+                      : 'text-neutral-700 hover:bg-neutral-50'
+                  }`}
+                >
+                  <div className="flex items-center gap-2.5 truncate">
+                    <span
+                      className={`text-xs font-bold w-5 shrink-0 ${
+                        isSelected ? 'text-[#3730a3]' : 'text-neutral-900'
+                      }`}
+                    >
+                      {item.code}
+                    </span>
+                    <span className="truncate">{item.name}</span>
+                  </div>
                   <span
-                    className={`text-xs font-bold w-5 shrink-0 ${
+                    className={`font-bold shrink-0 ml-2 ${
                       isSelected ? 'text-[#3730a3]' : 'text-neutral-900'
                     }`}
                   >
-                    {item.code}
+                    {item.chats}
                   </span>
-                  <span className="truncate">{item.name}</span>
                 </div>
-                <span
-                  className={`font-bold shrink-0 ml-2 ${
-                    isSelected ? 'text-[#3730a3]' : 'text-neutral-900'
-                  }`}
-                >
-                  {item.chats}
-                </span>
-              </div>
-            );
-          })}
+              );
+            })
+          )}
         </div>
       </div>
     </div>

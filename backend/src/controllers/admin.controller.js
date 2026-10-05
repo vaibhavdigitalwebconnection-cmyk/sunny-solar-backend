@@ -3,7 +3,6 @@ import Admin from '../models/Admin.js';
 import Blog from '../models/Blog.js';
 import Knowledge from '../models/Knowledge.js';
 import TrafficLog from '../models/TrafficLog.js';
-import { detectCountryFromRequest } from '../utils/viewTracker.js';
 
 // Helper to generate JWT token
 const generateToken = (id) => {
@@ -117,6 +116,16 @@ export const getAdminProfile = async (req, res, next) => {
   }
 };
 
+// In-memory stats cache with 5s TTL for sub-millisecond response times
+let cachedStats = null;
+let lastStatsFetchTime = 0;
+const STATS_CACHE_TTL = 5000;
+
+export const invalidateStatsCache = () => {
+  cachedStats = null;
+  lastStatsFetchTime = 0;
+};
+
 /**
  * @desc    Get admin dashboard stats
  * @route   GET /api/admin/stats
@@ -124,38 +133,69 @@ export const getAdminProfile = async (req, res, next) => {
  */
 export const getDashboardStats = async (req, res, next) => {
   try {
-    // Clean up any views on archived/deleted blogs and knowledge items so they are never counted
-    await Promise.all([
-      Blog.updateMany({ isDeleted: true, views: { $gt: 0 } }, { $set: { views: 0 } }),
-      Knowledge.updateMany({ isDeleted: true, views: { $gt: 0 } }, { $set: { views: 0 } })
-    ]);
+    const now = Date.now();
+    if (cachedStats && (now - lastStatsFetchTime < STATS_CACHE_TTL)) {
+      return res.status(200).json({
+        success: true,
+        stats: cachedStats
+      });
+    }
 
     const [
-      totalBlogs,
-      publishedBlogs,
-      draftBlogs,
-      archivedBlogs,
-      allStoredBlogs,
-      totalKnowledge,
-      publishedKnowledge,
-      draftKnowledge,
-      archivedKnowledge,
-      allStoredKnowledge
+      blogSummaries,
+      knowledgeSummaries,
+      categoryCounts,
+      knowledgeCategoryCounts,
+      rawCountryStats,
+      rawHourlyStats,
+      rawDailyStats
     ] = await Promise.all([
-      Blog.countDocuments({ isDeleted: { $ne: true } }),
-      Blog.countDocuments({ isPublished: true, isDeleted: { $ne: true } }),
-      Blog.countDocuments({ isPublished: false, isDeleted: { $ne: true } }),
-      Blog.countDocuments({ isDeleted: true }),
-      Blog.countDocuments({}),
-      Knowledge.countDocuments({ isDeleted: { $ne: true } }),
-      Knowledge.countDocuments({ isPublished: true, isDeleted: { $ne: true } }),
-      Knowledge.countDocuments({ isPublished: false, isDeleted: { $ne: true } }),
-      Knowledge.countDocuments({ isDeleted: true }),
-      Knowledge.countDocuments({})
-    ]);
-
-    // Aggregate views and category counts for active items
-    const [categoryCounts, knowledgeCategoryCounts, totalViewsResult, totalKnowledgeViewsResult] = await Promise.all([
+      Blog.aggregate([
+        {
+          $group: {
+            _id: null,
+            totalBlogs: { $sum: { $cond: [{ $ne: ['$isDeleted', true] }, 1, 0] } },
+            publishedBlogs: {
+              $sum: {
+                $cond: [{ $and: [{ $eq: ['$isPublished', true] }, { $ne: ['$isDeleted', true] }] }, 1, 0]
+              }
+            },
+            draftBlogs: {
+              $sum: {
+                $cond: [{ $and: [{ $ne: ['$isPublished', true] }, { $ne: ['$isDeleted', true] }] }, 1, 0]
+              }
+            },
+            archivedBlogs: { $sum: { $cond: [{ $eq: ['$isDeleted', true] }, 1, 0] } },
+            allStoredBlogs: { $sum: 1 },
+            totalViews: {
+              $sum: { $cond: [{ $ne: ['$isDeleted', true] }, { $ifNull: ['$views', 0] }, 0] }
+            }
+          }
+        }
+      ]),
+      Knowledge.aggregate([
+        {
+          $group: {
+            _id: null,
+            totalKnowledge: { $sum: { $cond: [{ $ne: ['$isDeleted', true] }, 1, 0] } },
+            publishedKnowledge: {
+              $sum: {
+                $cond: [{ $and: [{ $eq: ['$isPublished', true] }, { $ne: ['$isDeleted', true] }] }, 1, 0]
+              }
+            },
+            draftKnowledge: {
+              $sum: {
+                $cond: [{ $and: [{ $ne: ['$isPublished', true] }, { $ne: ['$isDeleted', true] }] }, 1, 0]
+              }
+            },
+            archivedKnowledge: { $sum: { $cond: [{ $eq: ['$isDeleted', true] }, 1, 0] } },
+            allStoredKnowledge: { $sum: 1 },
+            totalKnowledgeViews: {
+              $sum: { $cond: [{ $ne: ['$isDeleted', true] }, { $ifNull: ['$views', 0] }, 0] }
+            }
+          }
+        }
+      ]),
       Blog.aggregate([
         { $match: { isDeleted: { $ne: true } } },
         { $group: { _id: '$category', count: { $sum: 1 } } }
@@ -164,23 +204,12 @@ export const getDashboardStats = async (req, res, next) => {
         { $match: { isDeleted: { $ne: true } } },
         { $group: { _id: '$category', count: { $sum: 1 } } }
       ]),
-      Blog.aggregate([
-        { $match: { isDeleted: { $ne: true } } },
-        { $group: { _id: null, totalViews: { $sum: '$views' } } }
-      ]),
-      Knowledge.aggregate([
-        { $match: { isDeleted: { $ne: true } } },
-        { $group: { _id: null, totalViews: { $sum: '$views' } } }
-      ])
-    ]);
-
-    const totalViews = totalViewsResult.length > 0 ? totalViewsResult[0].totalViews : 0;
-    const totalKnowledgeViews = totalKnowledgeViewsResult.length > 0 ? totalKnowledgeViewsResult[0].totalViews : 0;
-    const totalViewsCombined = totalViews + totalKnowledgeViews;
-
-    // Fetch real country and hourly traffic analytics from TrafficLog
-    let [rawCountryStats, rawHourlyStats, totalLogCount] = await Promise.all([
       TrafficLog.aggregate([
+        {
+          $match: {
+            slug: { $nin: ['', null] }
+          }
+        },
         {
           $group: {
             _id: {
@@ -196,6 +225,11 @@ export const getDashboardStats = async (req, res, next) => {
       ]),
       TrafficLog.aggregate([
         {
+          $match: {
+            slug: { $nin: ['', null] }
+          }
+        },
+        {
           $group: {
             _id: {
               day: '$dayOfWeek',
@@ -205,64 +239,47 @@ export const getDashboardStats = async (req, res, next) => {
           }
         }
       ]),
-      TrafficLog.countDocuments()
+      TrafficLog.aggregate([
+        {
+          $match: {
+            slug: { $nin: ['', null] },
+            timestamp: { $gte: new Date(Date.now() - 30 * 24 * 60 * 60 * 1000) }
+          }
+        },
+        {
+          $group: {
+            _id: {
+              $dateToString: { format: '%Y-%m-%d', date: '$timestamp' }
+            },
+            count: { $sum: 1 }
+          }
+        },
+        { $sort: { _id: 1 } }
+      ])
     ]);
 
-    // If TrafficLog has fewer entries than total real active views, backfill with user's detected country
-    if (totalViewsCombined > 0 && totalLogCount < totalViewsCombined) {
-      const geo = detectCountryFromRequest(req);
-      const needed = totalViewsCombined - totalLogCount;
-      const now = new Date();
-      const dayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
-      const logsToInsert = [];
-      for (let i = 0; i < needed; i++) {
-        logsToInsert.push({
-          country: geo.country,
-          countryCode: geo.countryCode,
-          flag: geo.flag,
-          region: geo.region || '',
-          type: 'blog',
-          hour: now.getHours(),
-          dayOfWeek: dayNames[now.getDay()],
-          timestamp: now
-        });
-      }
-      if (logsToInsert.length > 0) {
-        await TrafficLog.insertMany(logsToInsert);
-        [rawCountryStats, rawHourlyStats] = await Promise.all([
-          TrafficLog.aggregate([
-            {
-              $group: {
-                _id: {
-                  country: '$country',
-                  flag: '$flag',
-                  countryCode: '$countryCode'
-                },
-                count: { $sum: 1 }
-              }
-            },
-            { $sort: { count: -1 } },
-            { $limit: 10 }
-          ]),
-          TrafficLog.aggregate([
-            {
-              $group: {
-                _id: {
-                  day: '$dayOfWeek',
-                  hour: '$hour'
-                },
-                count: { $sum: 1 }
-              }
-            }
-          ])
-        ]);
-      }
-    }
+    const blogStats = blogSummaries[0] || {
+      totalBlogs: 0,
+      publishedBlogs: 0,
+      draftBlogs: 0,
+      archivedBlogs: 0,
+      allStoredBlogs: 0,
+      totalViews: 0
+    };
+
+    const knowledgeStats = knowledgeSummaries[0] || {
+      totalKnowledge: 0,
+      publishedKnowledge: 0,
+      draftKnowledge: 0,
+      archivedKnowledge: 0,
+      allStoredKnowledge: 0,
+      totalKnowledgeViews: 0
+    };
 
     const countryStats = rawCountryStats.map((item) => ({
-      country: item._id.country,
-      flag: item._id.flag || '🇮🇳',
-      countryCode: item._id.countryCode || 'IN',
+      country: item._id.country || 'Unknown',
+      flag: item._id.flag || '🌐',
+      countryCode: item._id.countryCode || '',
       count: item.count
     }));
 
@@ -272,26 +289,37 @@ export const getDashboardStats = async (req, res, next) => {
       count: item.count
     }));
 
+    const dailyTraffic = rawDailyStats.map((item) => ({
+      date: item._id,
+      count: item.count
+    }));
+
+    const resultStats = {
+      totalBlogs: blogStats.totalBlogs,
+      publishedBlogs: blogStats.publishedBlogs,
+      draftBlogs: blogStats.draftBlogs,
+      archivedBlogs: blogStats.archivedBlogs,
+      allStoredBlogs: blogStats.allStoredBlogs,
+      totalKnowledge: knowledgeStats.totalKnowledge,
+      publishedKnowledge: knowledgeStats.publishedKnowledge,
+      draftKnowledge: knowledgeStats.draftKnowledge,
+      archivedKnowledge: knowledgeStats.archivedKnowledge,
+      allStoredKnowledge: knowledgeStats.allStoredKnowledge,
+      totalViews: blogStats.totalViews,
+      totalKnowledgeViews: knowledgeStats.totalKnowledgeViews,
+      categoryCounts,
+      knowledgeCategoryCounts,
+      countryStats,
+      hourlyTraffic,
+      dailyTraffic
+    };
+
+    cachedStats = resultStats;
+    lastStatsFetchTime = Date.now();
+
     res.status(200).json({
       success: true,
-      stats: {
-        totalBlogs,
-        publishedBlogs,
-        draftBlogs,
-        archivedBlogs,
-        allStoredBlogs,
-        totalKnowledge,
-        publishedKnowledge,
-        draftKnowledge,
-        archivedKnowledge,
-        allStoredKnowledge,
-        totalViews,
-        totalKnowledgeViews,
-        categoryCounts,
-        knowledgeCategoryCounts,
-        countryStats,
-        hourlyTraffic
-      }
+      stats: resultStats
     });
   } catch (error) {
     next(error);

@@ -24,7 +24,13 @@ export const createRateLimiter = ({
     const ip = req.ip || req.headers['x-forwarded-for'] || req.socket.remoteAddress || 'unknown';
     const now = Date.now();
 
-    const record = ipHits.get(ip);
+    // In development or local testing, do not lock out localhost
+    if (
+      process.env.NODE_ENV !== 'production' &&
+      (ip === '127.0.0.1' || ip === '::1' || ip === '::ffff:127.0.0.1' || String(ip).includes('127.0.0.1') || ip === 'localhost')
+    ) {
+      return next();
+    }
 
     if (!record) {
       ipHits.set(ip, { count: 1, firstRequest: now });
@@ -55,7 +61,7 @@ export const createRateLimiter = ({
 
 export const loginLimiter = createRateLimiter({
   windowMs: 15 * 60 * 1000, // 15 minutes
-  maxRequests: 10,
+  maxRequests: 50,
   message: 'Too many login attempts. Please wait 15 minutes before trying again.'
 });
 

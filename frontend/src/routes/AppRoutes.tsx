@@ -65,22 +65,35 @@ const AdminPage = lazy(() => import('../pages/Admin/AdminPage'));
 const NotFoundPage = lazy(() => import('../pages/NotFound/NotFoundPage'));
 
 // Sleek top progress loader & non-disruptive fallback while dynamic chunk loads
-// min-h-[80vh] reserves enough space so the footer doesn't paint at the wrong
-// position and then jump when real content loads (CLS fix: 0.596 from footer)
-const RouteFallback: React.FC = () => (
-  <>
-    {/* Fixed top progress bar */}
-    <div className="fixed top-0 left-0 right-0 h-0.75 z-9999 overflow-hidden bg-transparent pointer-events-none">
-      <div className="h-full bg-linear-to-r from-amber-500 via-[#ED4F11] to-blue-600 animate-pulse w-full shadow-xs" />
-    </div>
-    <div className="min-h-[80vh] flex items-center justify-center py-16">
-      <div className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-white/95 border border-slate-200/90 shadow-xs text-slate-700 text-xs font-semibold backdrop-blur-xs">
-        <span className="w-2 h-2 rounded-full bg-[#ED4F11] animate-ping" />
-        <span>Loading page...</span>
+// For public pages, min-h-[80vh] reserves enough space so the footer doesn't jump
+// For admin pages, provides an instant zero-delay subtle top progress line
+const RouteFallback: React.FC = () => {
+  const location = useLocation();
+  const isAdmin = location.pathname.startsWith('/admin');
+
+  if (isAdmin) {
+    return (
+      <div className="fixed top-0 left-0 right-0 h-0.75 z-9999 overflow-hidden bg-transparent pointer-events-none">
+        <div className="h-full bg-linear-to-r from-amber-500 via-[#ED4F11] to-blue-600 animate-pulse w-full shadow-xs" />
       </div>
-    </div>
-  </>
-);
+    );
+  }
+
+  return (
+    <>
+      {/* Fixed top progress bar */}
+      <div className="fixed top-0 left-0 right-0 h-0.75 z-9999 overflow-hidden bg-transparent pointer-events-none">
+        <div className="h-full bg-linear-to-r from-amber-500 via-[#ED4F11] to-blue-600 animate-pulse w-full shadow-xs" />
+      </div>
+      <div className="min-h-[80vh] flex items-center justify-center py-16">
+        <div className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-white/95 border border-slate-200/90 shadow-xs text-slate-700 text-xs font-semibold backdrop-blur-xs">
+          <span className="w-2 h-2 rounded-full bg-[#ED4F11] animate-ping" />
+          <span>Loading page...</span>
+        </div>
+      </div>
+    </>
+  );
+};
 
 // Route preloader helper to warm lazy bundles on hover
 export const preloadRoute = (path: string) => {

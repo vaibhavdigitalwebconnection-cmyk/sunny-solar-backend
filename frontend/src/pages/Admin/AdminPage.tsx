@@ -49,9 +49,29 @@ export const AdminPage: React.FC = () => {
   const [loginLoading, setLoginLoading] = useState(false);
   const [loginError, setLoginError] = useState<string | null>(null);
 
-  // Dashboard Data states
-  const [stats, setStats] = useState<any>(null);
-  const [blogs, setBlogs] = useState<BlogItem[]>([]);
+  // Dashboard Data states (hydrated from localStorage for instant 0ms initial render)
+  const [stats, setStats] = useState<any>(() => {
+    try {
+      const saved = localStorage.getItem('sunny_admin_stats_v2');
+      if (saved) return JSON.parse(saved);
+      // Purge any stale legacy cached stats containing old backfilled 11 count
+      localStorage.removeItem('sunny_admin_stats');
+      return null;
+    } catch {
+      return null;
+    }
+  });
+  const [blogs, setBlogs] = useState<BlogItem[]>(() => {
+    try {
+      const saved = localStorage.getItem('sunny_admin_blogs_v2');
+      if (saved) return JSON.parse(saved);
+      // Purge any stale legacy cached blogs containing old 11 views
+      localStorage.removeItem('sunny_admin_blogs');
+      return [];
+    } catch {
+      return [];
+    }
+  });
   const [loadingBlogs, setLoadingBlogs] = useState(false);
   const [toast, setToast] = useState<ToastInfo | null>(null);
 
@@ -112,8 +132,15 @@ export const AdminPage: React.FC = () => {
     )
   );
 
-  // Knowledge Hub states
-  const [knowledgeItems, setKnowledgeItems] = useState<KnowledgeItem[]>([]);
+  // Knowledge Hub states (hydrated from localStorage for instant 0ms initial render)
+  const [knowledgeItems, setKnowledgeItems] = useState<KnowledgeItem[]>(() => {
+    try {
+      const saved = localStorage.getItem('sunny_admin_knowledge');
+      return saved ? JSON.parse(saved) : [];
+    } catch {
+      return [];
+    }
+  });
   const [loadingKnowledge, setLoadingKnowledge] = useState(false);
   const [searchKnowledge, setSearchKnowledge] = useState('');
   const [statusFilterKnowledge, setStatusFilterKnowledge] = useState<StatusFilter>('all');
@@ -166,7 +193,7 @@ export const AdminPage: React.FC = () => {
     };
   }, []);
 
-  // Data Loading & Auto-refresh
+  // Data Loading & Auto-refresh (Stale-While-Revalidate)
   const loadDashboardData = async (silent: boolean = false) => {
     if (!getAdminToken()) {
       setIsAuthenticated(false);
@@ -194,9 +221,32 @@ export const AdminPage: React.FC = () => {
         })
       ]);
 
-      if (statsRes?.stats) setStats(statsRes.stats);
-      if (blogsRes?.data) setBlogs(blogsRes.data);
-      if (knowledgeRes?.data) setKnowledgeItems(knowledgeRes.data);
+      if (statsRes?.stats) {
+        setStats(statsRes.stats);
+        try {
+          localStorage.setItem('sunny_admin_stats_v2', JSON.stringify(statsRes.stats));
+        } catch {
+          // ignore storage quota error
+        }
+      }
+
+      if (blogsRes?.data) {
+        setBlogs(blogsRes.data);
+        try {
+          localStorage.setItem('sunny_admin_blogs_v2', JSON.stringify(blogsRes.data));
+        } catch {
+          // ignore storage quota error
+        }
+      }
+
+      if (knowledgeRes?.data) {
+        setKnowledgeItems(knowledgeRes.data);
+        try {
+          localStorage.setItem('sunny_admin_knowledge', JSON.stringify(knowledgeRes.data));
+        } catch {
+          // ignore storage quota error
+        }
+      }
     } catch (err: any) {
       if (err?.status === 401 || err?.message?.includes('authorized') || err?.message?.includes('token')) {
         api.logout();
@@ -226,16 +276,21 @@ export const AdminPage: React.FC = () => {
       return;
     }
 
-    loadDashboardData(false);
+    // If cache is already present, fetch silently without showing blocking spinners
+    const hasCachedContent = (blogs && blogs.length > 0) || (knowledgeItems && knowledgeItems.length > 0) || !!stats;
+    loadDashboardData(hasCachedContent);
 
     const intervalId = setInterval(() => {
       if (!isModalOpen && !isKnowledgeModalOpen) {
         loadDashboardData(true);
       }
-    }, 8000);
+    }, 25000);
 
+    let lastFocusTime = Date.now();
     const handleFocus = () => {
-      if (!isModalOpen && !isKnowledgeModalOpen) {
+      const now = Date.now();
+      if (now - lastFocusTime > 15000 && !isModalOpen && !isKnowledgeModalOpen) {
+        lastFocusTime = now;
         loadDashboardData(true);
       }
     };
@@ -578,6 +633,13 @@ export const AdminPage: React.FC = () => {
     api.logout();
     setIsAuthenticated(false);
     setAdminUser(null);
+    try {
+      localStorage.removeItem('sunny_admin_stats');
+      localStorage.removeItem('sunny_admin_blogs');
+      localStorage.removeItem('sunny_admin_knowledge');
+    } catch {
+      // ignore
+    }
   };
 
   // Blog CRUD Actions
