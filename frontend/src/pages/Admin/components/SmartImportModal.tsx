@@ -199,7 +199,7 @@ export const SmartImportModal: React.FC<SmartImportModalProps> = ({
 
           {/* Editor or Preview */}
           {activeView === 'preview' && inputText.trim() ? (
-            <div className="border border-slate-200 rounded-xl p-4 bg-white max-h-[340px] overflow-y-auto space-y-3 prose prose-sm max-w-none shadow-inner leading-relaxed">
+            <div className="border border-slate-200 rounded-xl p-4 bg-white max-h-85 overflow-y-auto space-y-3 prose prose-sm max-w-none shadow-inner leading-relaxed">
               <div
                 dangerouslySetInnerHTML={{
                   __html: metadata.contentHtml

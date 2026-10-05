@@ -624,7 +624,7 @@ export default function RichTextEditor({
                 onChange(e.target.value);
               }}
               rows={12}
-              className="w-full min-h-[280px] max-h-[52vh] p-4 font-mono text-xs text-slate-200 bg-slate-900 border-0 outline-none resize-y selection:bg-amber-500/30 whitespace-pre-wrap break-words overflow-x-auto"
+              className="w-full min-h-70 max-h-[52vh] p-4 font-mono text-xs text-slate-200 bg-slate-900 border-0 outline-none resize-y selection:bg-amber-500/30 whitespace-pre-wrap wrap-break-word overflow-x-auto"
               placeholder="<p>Paste or write HTML code here...</p>"
             />
           </div>
@@ -716,7 +716,7 @@ export default function RichTextEditor({
 
               {pasteModalMode === "preview" && pasteModalText.trim() ? (
                 <div
-                  className="w-full bg-white border border-slate-200 rounded-xl p-4 text-xs text-slate-900 max-h-[300px] overflow-y-auto space-y-2.5 leading-relaxed prose prose-sm max-w-none shadow-inner"
+                  className="w-full bg-white border border-slate-200 rounded-xl p-4 text-xs text-slate-900 max-h-75 overflow-y-auto space-y-2.5 leading-relaxed prose prose-sm max-w-none shadow-inner"
                   dangerouslySetInnerHTML={{
                     __html: extractDocumentMetadata(pasteModalText).contentHtml,
                   }}

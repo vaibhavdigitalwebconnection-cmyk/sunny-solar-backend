@@ -64,13 +64,7 @@ export const KnowledgeModal: React.FC<KnowledgeModalProps> = ({
   knowledgeFormLoading,
   uploadingKnowledgeImage,
   handleKnowledgeImageUpload,
-  showContentPreview,
-  setShowContentPreview,
   handleKnowledgeFormSubmit,
-  applyKnowledgeFormatting,
-  handleInsertKnowledgeLink,
-  handleClearKnowledgeFormatting,
-  knowledgeContentRef,
   handleAddQuickStat,
   handleRemoveQuickStat,
   handleUpdateQuickStat,
@@ -668,7 +662,7 @@ export const KnowledgeModal: React.FC<KnowledgeModalProps> = ({
 
                   {/* Column Headers & Rows Container with horizontal scroll safety */}
                   <div className="overflow-x-auto pb-1 -mx-1 px-1">
-                    <div className="min-w-[520px] space-y-3">
+                    <div className="min-w-130 space-y-3">
                       {/* Column Headers Config */}
                       <div className="p-3 bg-slate-100 rounded-xl space-y-2">
                         <span className="text-[11px] font-bold text-slate-600 uppercase tracking-wider block">
