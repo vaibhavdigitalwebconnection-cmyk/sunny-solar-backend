@@ -2,108 +2,6 @@ import Blog from '../models/Blog.js';
 import { shouldTrackView, recordTrafficEvent } from '../utils/viewTracker.js';
 import { uploadToCloudinary } from '../config/cloudinary.js';
 
-const initialArticles = [
-  {
-    slug: 'what-size-solar-system-do-i-need',
-    title: 'What Size Solar System Do You Actually Need in 2025?',
-    excerpt: 'Forget the outdated 5kW rule. With electric vehicles, ducted heat pumps, and dropping panel costs, here is how to calculate your true sweet spot.',
-    category: 'Solar Basics',
-    readTime: '6 min read',
-    publishDate: 'Jan 14, 2025',
-    author: 'Trent Palmer',
-    authorRole: 'Founder & Master Electrician',
-    imageUrl: '/images/blog/solar-system-size.webp',
-    keyTakeaways: [
-      '6.6kW is now the entry-level baseline for single-phase Australian residences.',
-      'Upsizing to 8.8kW to 10kW costs only 15-20% more but generates up to 40% more harvest on cloudy days.',
-      'If you plan to add a battery or EV within 3 years, maximize your roof footprint immediately.'
-    ],
-    content: [
-      'Five years ago, a 5kW solar system was considered standard for an Australian 3-bedroom home. Today, that recommendation is thoroughly obsolete.',
-      'Between high-efficiency ducted air conditioning, induction cooktops, swimming pool pumps, and the rapid arrival of home electric vehicle chargers, modern households consume between 22 and 35 kWh per day.',
-      'Because STC government rebates heavily subsidize the first 100kW of panel capacity, the incremental cost of adding an extra 3kW of panels during initial installation is exceptionally low — typically under $1,200 to $1,800. Sizing up covers your winter dip and ensures your future battery will have enough daytime surplus to charge fully.'
-    ],
-    isPublished: true
-  },
-  {
-    slug: 'tesla-powerwall-3-vs-sungrow-sbr',
-    title: 'Tesla Powerwall 3 vs Sungrow SBR: Which Battery Wins in 2025?',
-    excerpt: 'A comprehensive technical comparison of integrated inverters, LFP vs NMC chemistry, round-trip efficiency, and blackout emergency power supply.',
-    category: 'Batteries',
-    readTime: '8 min read',
-    publishDate: 'Feb 02, 2025',
-    author: 'Trent Palmer',
-    authorRole: 'Founder & Master Electrician',
-    imageUrl: '/images/blog/battery-comparison.webp',
-    keyTakeaways: [
-      'Tesla Powerwall 3 includes its own 11.5kW inverter; Sungrow pairs with a separate hybrid inverter.',
-      'Sungrow offers modular capacity from 9.6kWh to 25.6kWh; Powerwall is fixed at 13.5kWh per unit.',
-      'Powerwall 3 features unmatched continuous surge power, capable of starting large ducted A/C units in a blackout.'
-    ],
-    content: [
-      'The home battery market has shifted dramatically from luxury novelty to essential energy resilience. Two models dominate Australian quote requests: the newly released Tesla Powerwall 3 and the proven Sungrow SBR modular battery system.',
-      'While Tesla Powerwall 3 integrates solar DC-coupled string inputs directly into its chassis, Sungrow offers modular high-voltage stackable units with cobalt-free Lithium Iron Phosphate (LiFePO4) chemistry.',
-      'If whole-home backup and single-app convenience are your highest priorities, Tesla Powerwall 3 is hard to beat. If modular expansion or three-phase symmetry at an accessible entry price is paramount, Sungrow represents extraordinary value.'
-    ],
-    isPublished: true
-  },
-  {
-    slug: 'solar-rebates-and-feed-in-tariffs-explained',
-    title: 'Australian Solar Rebates & Feed-in Tariffs: The Unfiltered Truth',
-    excerpt: 'How STCs reduce your upfront invoice, why feed-in tariffs have dropped to 5c/kWh, and how smart self-consumption flips the economics back in your favor.',
-    category: 'Buying Solar',
-    readTime: '5 min read',
-    publishDate: 'Feb 18, 2025',
-    author: 'Elena Vance',
-    authorRole: 'Technical Energy Analyst',
-    imageUrl: '/images/blog/solar-rebates.webp',
-    keyTakeaways: [
-      'Federal STC rebates shave $2,200 to $3,400 off standard residential installations.',
-      'Feed-in tariffs have dropped to 4-8c/kWh because daytime wholesale electricity prices often turn negative.',
-      'Self-consumption is 6-7x more valuable than exporting: prioritize running heavy appliances between 10am and 2pm.'
-    ],
-    content: [
-      'With electricity bills continuing to rise across Nationwide and New South Wales, understanding how solar economics actually work in 2025 is critical.',
-      'The biggest misconception homeowners have is expecting a massive feed-in tariff credit on their power bill. The golden era of 44c/kWh feed-in tariffs is long gone. Today, the real financial return of solar comes from avoided grid consumption: every kilowatt-hour you produce and use directly behind your own meter avoids paying 32c to 42c to your energy retailer.',
-      'Furthermore, the Small-scale Renewable Energy Scheme (SRES) which provides upfront STC discounts drops by one year every January 1st until it concludes in 2030. Locking in your installation sooner maximizes this federal subsidy.'
-    ],
-    isPublished: true
-  },
-  {
-    slug: 'n-type-topcon-vs-perc-solar-panels',
-    title: 'N-Type TOPCon vs P-Type PERC Panels: Is the Upgrade Worth It?',
-    excerpt: 'Explore the technical physics behind modern N-Type panels, lower temperature degradation coefficients, and why they outperform in Australian summer heat.',
-    category: 'Technical',
-    readTime: '9 min read',
-    publishDate: 'Mar 01, 2025',
-    author: 'Elena Vance',
-    authorRole: 'Technical Energy Analyst',
-    imageUrl: '/images/blog/solar-panel-tech.webp',
-    keyTakeaways: [
-      'N-type silicon cells exhibit zero Light-Induced Degradation (LID).',
-      'Better temperature coefficients ensure panels lose less power when roof temperatures hit 65°C in midsummer.',
-      'Dual-glass encapsulation protects internal silver busbars against salt mist in coastal regions.'
-    ],
-    content: [
-      'For the last decade, P-type PERC panels ruled the residential market. However, recent manufacturing breakthroughs have made N-Type TOPCon (Tunnel Oxide Passivated Contact) and ABC (All-Back-Contact) technology the new gold standard.',
-      'In Australia’s intense climate, roof temperatures frequently exceed 65°C on 35°C ambient summer afternoons. While older panels lose up to 0.40% of rated output for every degree above 25°C, high-grade N-type cells lose as little as 0.26%. This difference equates to an additional 800-1,200 kWh of harvest over the course of a hot year.'
-    ],
-    isPublished: true
-  }
-];
-
-const autoSeedIfEmpty = async () => {
-  try {
-    const count = await Blog.countDocuments();
-    if (count === 0) {
-      await Blog.insertMany(initialArticles);
-      console.log('✅ Auto-seeded initial blogs into MongoDB');
-    }
-  } catch (err) {
-    console.error('Auto-seed Blog error:', err.message);
-  }
-};
-
 /**
  * @desc    Get all published blogs (with category filtering, search, pagination)
  * @route   GET /api/blogs
@@ -111,7 +9,6 @@ const autoSeedIfEmpty = async () => {
  */
 export const getPublishedBlogs = async (req, res, next) => {
   try {
-    await autoSeedIfEmpty();
     const { category, search, page = 1, limit = 50 } = req.query;
 
     const query = { isPublished: true, isDeleted: { $ne: true } };
@@ -163,7 +60,6 @@ export const getPublishedBlogs = async (req, res, next) => {
  */
 export const getBlogBySlug = async (req, res, next) => {
   try {
-    await autoSeedIfEmpty();
     const { slug } = req.params;
     const isPreview = req.query.preview === 'true';
     const cleanSlug = slug.toLowerCase().trim();
