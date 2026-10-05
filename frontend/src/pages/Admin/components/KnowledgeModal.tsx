@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import {
   BookOpen,
   X,
@@ -9,7 +9,8 @@ import {
   Sliders,
   Plus,
   Table,
-  HelpCircle
+  HelpCircle,
+  Sparkles
 } from 'lucide-react';
 import {
   KnowledgeFormData,
@@ -19,6 +20,7 @@ import {
   categories
 } from '../types';
 import RichTextEditor from './RichTextEditor';
+import { SmartImportModal } from './SmartImportModal';
 import { api } from '../../../services/api';
 
 interface KnowledgeModalProps {
@@ -81,6 +83,29 @@ export const KnowledgeModal: React.FC<KnowledgeModalProps> = ({
   handleUpdateFaq
 }) => {
   const scrollBodyRef = useRef<HTMLDivElement>(null);
+  const [showSmartImport, setShowSmartImport] = useState(false);
+
+  const handleSmartImportApply = (
+    data: { title: string; excerpt: string; contentHtml: string },
+    autoFillAll: boolean
+  ) => {
+    setKnowledgeFormData((prev) => ({
+      ...prev,
+      content: data.contentHtml,
+      ...(autoFillAll && data.title
+        ? {
+            title: data.title,
+            slug: data.title
+              .toLowerCase()
+              .replace(/[^a-z0-9]+/g, '-')
+              .replace(/(^-|-$)+/g, '')
+          }
+        : {}),
+      ...(autoFillAll && data.excerpt ? { excerpt: data.excerpt } : {})
+    }));
+    // Switch to content tab to immediately view the formatted content
+    setKnowledgeModalTab('content');
+  };
 
   const uploadKnowledgeImage = async (file: File): Promise<string> => {
     return new Promise((resolve, reject) => {
@@ -156,14 +181,27 @@ export const KnowledgeModal: React.FC<KnowledgeModalProps> = ({
             </div>
           </div>
 
-          <button
-            type="button"
-            onClick={onClose}
-            className="w-8 h-8 rounded-lg text-neutral-400 hover:text-neutral-900 hover:bg-neutral-100 flex items-center justify-center transition-colors cursor-pointer"
-            title="Close"
-          >
-            <X className="w-4 h-4" />
-          </button>
+          <div className="flex items-center gap-2">
+            <button
+              type="button"
+              onClick={() => setShowSmartImport(true)}
+              className="text-xs bg-amber-50 hover:bg-amber-100/90 text-amber-900 border border-amber-200/90 font-bold px-3 py-1.5 rounded-xl flex items-center gap-1.5 transition-colors cursor-pointer shadow-xs"
+              title="Auto-detect & import technical guide from Word, Google Docs, or ChatGPT"
+            >
+              <Sparkles className="w-3.5 h-3.5 text-amber-600" />
+              <span className="hidden sm:inline">⚡ Auto-Detect &amp; Import</span>
+              <span className="sm:hidden">⚡ Import</span>
+            </button>
+
+            <button
+              type="button"
+              onClick={onClose}
+              className="w-8 h-8 rounded-lg text-neutral-400 hover:text-neutral-900 hover:bg-neutral-100 flex items-center justify-center transition-colors cursor-pointer"
+              title="Close"
+            >
+              <X className="w-4 h-4" />
+            </button>
+          </div>
         </div>
 
         {/* Four Tabs: Guide Info | Content | Blueprint & Specs | Meta Tags (Fixed at top) */}
@@ -875,6 +913,13 @@ export const KnowledgeModal: React.FC<KnowledgeModalProps> = ({
           </div>
         </form>
       </div>
+
+      <SmartImportModal
+        isOpen={showSmartImport}
+        onClose={() => setShowSmartImport(false)}
+        onApply={handleSmartImportApply}
+        entityName="Technical Field Guide"
+      />
     </div>
   );
 };

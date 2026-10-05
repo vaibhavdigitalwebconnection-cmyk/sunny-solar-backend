@@ -12,9 +12,14 @@ import {
   Code as CodeIcon,
   Copy as CopyIcon,
   Check as CheckIcon,
-  Sparkles
+  Sparkles,
+  ClipboardPaste
 } from "lucide-react";
-import { processClipboardPaste } from "./pasteDetector";
+import {
+  processClipboardPaste,
+  processClipboardData,
+  extractDocumentMetadata,
+} from "./pasteDetector";
 
 export interface RichTextEditorProps {
   value: string;
@@ -34,12 +39,16 @@ export default function RichTextEditor({
   const [linkUrl, setLinkUrl] = useState("");
   const [showLinkInput, setShowLinkInput] = useState(false);
   const [showHtmlCode, setShowHtmlCode] = useState(false);
+  const [showPasteModal, setShowPasteModal] = useState(false);
+  const [pasteModalText, setPasteModalText] = useState("");
+  const [pasteModalMode, setPasteModalMode] = useState<"edit" | "preview">("edit");
   const [copiedCode, setCopiedCode] = useState(false);
   const [pasteNotification, setPasteNotification] = useState<string | null>(null);
   const [isUploadingImg, setIsUploadingImg] = useState(false);
   const [, setTick] = useState(0);
   const forceUpdate = useCallback(() => setTick((t) => (t + 1) % 1000000), []);
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const editorRef = useRef<any>(null);
 
   const editor = useEditor({
     shouldRerenderOnTransaction: true,
@@ -83,8 +92,26 @@ export default function RichTextEditor({
         class: "rte-editor",
         ...(placeholder ? { "data-placeholder": placeholder } : {}),
       },
+      handlePaste(_view, event) {
+        const result = processClipboardPaste(event);
+        if (result.handled && result.html) {
+          event.preventDefault();
+          if (editorRef.current) {
+            editorRef.current.chain().focus().insertContent(result.html).run();
+            setPasteNotification("⚡ Document formatting auto-detected: Headings, bold text & lists applied!");
+            setTimeout(() => setPasteNotification(null), 4000);
+          }
+          return true;
+        }
+        return false;
+      },
     },
   });
+
+  // Keep ref synchronized
+  useEffect(() => {
+    editorRef.current = editor;
+  }, [editor]);
 
   // Sync external value on first load or when changed from outside
   useEffect(() => {
@@ -92,29 +119,6 @@ export default function RichTextEditor({
       editor.commands.setContent(value || "", { emitUpdate: false });
     }
   }, [value, editor]);
-
-  // Smart Paste Handler: Automatically detects headings, subheadings, bold, lists, links,
-  // and formats text from Google Docs, MS Word, ChatGPT, Markdown, and raw HTML.
-  useEffect(() => {
-    if (!editor) return;
-
-    const handlePasteEvent = (event: ClipboardEvent) => {
-      const result = processClipboardPaste(event);
-      if (result.handled && result.html) {
-        event.preventDefault();
-        event.stopPropagation();
-        editor.commands.insertContent(result.html);
-        setPasteNotification("⚡ Document formatting detected: Headings, bold text & structure applied!");
-        setTimeout(() => setPasteNotification(null), 4000);
-      }
-    };
-
-    const element = editor.view.dom;
-    element.addEventListener("paste", handlePasteEvent, true);
-    return () => {
-      element.removeEventListener("paste", handlePasteEvent, true);
-    };
-  }, [editor]);
 
   const applyLink = useCallback(() => {
     if (!editor) return;
@@ -138,6 +142,63 @@ export default function RichTextEditor({
     setShowLinkInput(false);
   }, [editor]);
 
+  // 1-Click Smart Paste from clipboard
+  const handleSmartPasteClick = async () => {
+    try {
+      if (navigator.clipboard?.read) {
+        const items = await navigator.clipboard.read();
+        let rawHtml = "";
+        let rawText = "";
+        for (const item of items) {
+          if (item.types.includes("text/html")) {
+            const blob = await item.getType("text/html");
+            rawHtml = await blob.text();
+          }
+          if (item.types.includes("text/plain")) {
+            const blob = await item.getType("text/plain");
+            rawText = await blob.text();
+          }
+        }
+        if (rawHtml || rawText) {
+          const result = processClipboardData(rawHtml, rawText);
+          if (result.html) {
+            editor?.commands.insertContent(result.html);
+            setPasteNotification("⚡ Smart Paste: Headings, bold & lists auto-detected from clipboard!");
+            setTimeout(() => setPasteNotification(null), 4000);
+            return;
+          }
+        }
+      }
+      if (navigator.clipboard?.readText) {
+        const text = await navigator.clipboard.readText();
+        if (text) {
+          const result = processClipboardData("", text);
+          if (result.html) {
+            editor?.commands.insertContent(result.html);
+            setPasteNotification("⚡ Smart Paste: Headings, bold & lists auto-detected from clipboard!");
+            setTimeout(() => setPasteNotification(null), 4000);
+            return;
+          }
+        }
+      }
+      setShowPasteModal(true);
+    } catch {
+      setShowPasteModal(true);
+    }
+  };
+
+  const handleApplyPasteModal = () => {
+    if (!pasteModalText.trim() || !editor) return;
+    const isHtml = /<[a-z][\s\S]*>/i.test(pasteModalText);
+    const result = processClipboardData(isHtml ? pasteModalText : "", pasteModalText);
+    const contentToInsert = result.html || `<p>${pasteModalText}</p>`;
+    editor.chain().focus().insertContent(contentToInsert).run();
+    setPasteModalText("");
+    setShowPasteModal(false);
+    setPasteNotification("⚡ Document formatting auto-detected: Headings, bold text & lists applied!");
+    setTimeout(() => setPasteNotification(null), 4000);
+  };
+
   const handleCopyCode = async () => {
     if (!editor) return;
     const html = editor.getHTML();
@@ -146,7 +207,6 @@ export default function RichTextEditor({
       setCopiedCode(true);
       setTimeout(() => setCopiedCode(false), 2200);
     } catch {
-      // Fallback using textarea execCommand
       const textArea = document.createElement("textarea");
       textArea.value = html;
       document.body.appendChild(textArea);
@@ -194,7 +254,7 @@ export default function RichTextEditor({
 
   return (
     <div className="flex flex-col flex-1">
-      {/* Editor Styles — Clean White Theme with #155DFC Accents */}
+      {/* Editor Styles */}
       <style>{`
         .rte-editor {
           min-height: 280px;
@@ -281,10 +341,15 @@ export default function RichTextEditor({
         ) : (
           <span />
         )}
-        <span className="text-[11px] text-emerald-700 font-semibold flex items-center gap-1 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200/60">
-          <Sparkles className="w-3 h-3 text-emerald-500" />
-          Auto-Detects Headings &amp; Bold on Paste
-        </span>
+        <button
+          type="button"
+          onClick={() => setShowPasteModal(true)}
+          className="text-[11.5px] text-amber-800 font-bold flex items-center gap-1.5 bg-amber-50 hover:bg-amber-100/80 px-2.5 py-1 rounded border border-amber-200/80 transition-colors cursor-pointer"
+          title="Click to paste text from any doc and auto-detect headings, subheadings & bold"
+        >
+          <Sparkles className="w-3.5 h-3.5 text-amber-600" />
+          <span>Paste Any Doc → Auto-Detect Formatting</span>
+        </button>
       </div>
 
       {/* Main Editor Card Container */}
@@ -390,6 +455,17 @@ export default function RichTextEditor({
               </button>
             )}
 
+            {/* Smart Paste Button */}
+            <button
+              type="button"
+              title="Paste from clipboard with auto-detected headings, bold text, lists & links"
+              onClick={handleSmartPasteClick}
+              className="px-2.5 py-1 rounded-sm text-xs font-bold bg-amber-500/10 text-amber-700 hover:bg-amber-500/20 border border-amber-300 transition cursor-pointer inline-flex items-center gap-1 shadow-2xs"
+            >
+              <ClipboardPaste className="w-3.5 h-3.5 text-amber-600" />
+              <span>⚡ Smart Paste</span>
+            </button>
+
             {/* Device Image Upload Button */}
             {onUploadImage && (
               <>
@@ -469,7 +545,7 @@ export default function RichTextEditor({
           </div>
         </div>
 
-        {/* Link URL input panel — White Theme */}
+        {/* Link URL input panel */}
         {showLinkInput && (
           <div className="flex gap-2 items-center bg-[#155DFC]/5 border-b border-slate-200 px-3.5 py-2.5 animate-in fade-in duration-100">
             <span className="text-slate-600 text-xs shrink-0 font-bold">Link URL:</span>
@@ -530,7 +606,7 @@ export default function RichTextEditor({
             <div className="flex items-center justify-between px-3 py-1.5 bg-slate-950/80 border-b border-slate-800 text-[11px] text-slate-400">
               <span className="font-mono text-amber-400 flex items-center gap-1">
                 <CodeIcon className="w-3.5 h-3.5" />
-                Raw HTML Source Mode — edits here will reflect in visual mode
+                Raw HTML Source Mode — edits here reflect in visual view
               </span>
               <button
                 type="button"
@@ -559,9 +635,132 @@ export default function RichTextEditor({
         )}
       </div>
 
+      {/* Manual Smart Paste Modal Dialog */}
+      {showPasteModal && (
+        <div className="fixed inset-0 z-60 bg-slate-950/70 backdrop-blur-xs flex items-center justify-center p-4">
+          <div className="bg-white rounded-2xl w-full max-w-xl shadow-2xl overflow-hidden border border-slate-200 flex flex-col animate-in zoom-in-95 duration-150">
+            <div className="px-5 py-4 border-b border-slate-200 flex items-center justify-between bg-slate-50">
+              <div className="flex items-center gap-2">
+                <Sparkles className="w-4 h-4 text-amber-600" />
+                <h4 className="text-sm font-bold text-slate-900">
+                  Smart Paste: Auto-Detect Headings &amp; Bold
+                </h4>
+              </div>
+              <button
+                type="button"
+                onClick={() => {
+                  setShowPasteModal(false);
+                  setPasteModalText("");
+                }}
+                className="w-7 h-7 text-slate-400 hover:text-slate-700 flex items-center justify-center rounded-lg hover:bg-slate-200 transition-colors cursor-pointer"
+              >
+                <CloseIcon className="w-4 h-4" />
+              </button>
+            </div>
+
+            {/* Modal Body */}
+            <div className="p-5 space-y-3">
+              <div className="flex items-center justify-between">
+                <p className="text-xs text-slate-600 leading-relaxed">
+                  Paste content from <strong>Word, Google Docs, ChatGPT, PDF, or HTML</strong>:
+                </p>
+                {pasteModalText.trim() && (
+                  <div className="flex items-center bg-slate-100 p-0.5 rounded-lg border border-slate-200 text-[11px] font-semibold">
+                    <button
+                      type="button"
+                      onClick={() => setPasteModalMode("edit")}
+                      className={`px-2.5 py-1 rounded-md transition-colors cursor-pointer ${
+                        pasteModalMode === "edit"
+                          ? "bg-white text-slate-900 shadow-xs"
+                          : "text-slate-500 hover:text-slate-800"
+                      }`}
+                    >
+                      Input Text
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => setPasteModalMode("preview")}
+                      className={`px-2.5 py-1 rounded-md transition-colors cursor-pointer ${
+                        pasteModalMode === "preview"
+                          ? "bg-white text-amber-700 shadow-xs"
+                          : "text-slate-500 hover:text-slate-800"
+                      }`}
+                    >
+                      Live Preview
+                    </button>
+                  </div>
+                )}
+              </div>
+
+              {/* Detected Metrics Badges */}
+              {pasteModalText.trim() && (() => {
+                const meta = extractDocumentMetadata(pasteModalText);
+                return (
+                  <div className="flex flex-wrap items-center gap-2 p-2 bg-amber-50/70 border border-amber-200/80 rounded-xl text-[11px]">
+                    <span className="font-bold text-amber-900 flex items-center gap-1">
+                      <Sparkles className="w-3 h-3 text-amber-600" />
+                      Auto-detected:
+                    </span>
+                    <span className="bg-white border border-amber-200 px-2 py-0.5 rounded-md font-semibold text-slate-800">
+                      🏷️ {meta.stats.headingsCount} Headings
+                    </span>
+                    <span className="bg-white border border-amber-200 px-2 py-0.5 rounded-md font-semibold text-slate-800">
+                      🔤 {meta.stats.boldCount} Bold Items
+                    </span>
+                    <span className="bg-white border border-amber-200 px-2 py-0.5 rounded-md font-semibold text-slate-800">
+                      📋 {meta.stats.listCount} List Items
+                    </span>
+                  </div>
+                );
+              })()}
+
+              {pasteModalMode === "preview" && pasteModalText.trim() ? (
+                <div
+                  className="w-full bg-white border border-slate-200 rounded-xl p-4 text-xs text-slate-900 max-h-[300px] overflow-y-auto space-y-2.5 leading-relaxed prose prose-sm max-w-none shadow-inner"
+                  dangerouslySetInnerHTML={{
+                    __html: extractDocumentMetadata(pasteModalText).contentHtml,
+                  }}
+                />
+              ) : (
+                <textarea
+                  autoFocus
+                  rows={9}
+                  value={pasteModalText}
+                  onChange={(e) => setPasteModalText(e.target.value)}
+                  placeholder="Paste your text or code here...&#10;e.g.&#10;Solar Sizing Guide&#10;&#10;Key Benefits:&#10;- Lower bills&#10;- Battery storage&#10;&#10;Step 1: Inverter Selection&#10;Choose high efficiency inverters..."
+                  className="w-full bg-slate-50 border border-slate-300 rounded-xl p-3.5 text-xs text-slate-900 focus:bg-white focus:outline-none focus:border-amber-500 font-sans resize-y leading-relaxed"
+                />
+              )}
+            </div>
+
+            <div className="px-5 py-3.5 bg-slate-50 border-t border-slate-200 flex items-center justify-end gap-2.5">
+              <button
+                type="button"
+                onClick={() => {
+                  setShowPasteModal(false);
+                  setPasteModalText("");
+                }}
+                className="px-4 py-2 text-xs font-semibold text-slate-700 hover:bg-slate-200 rounded-xl transition-colors cursor-pointer"
+              >
+                Cancel
+              </button>
+              <button
+                type="button"
+                disabled={!pasteModalText.trim()}
+                onClick={handleApplyPasteModal}
+                className="px-4 py-2 text-xs font-bold bg-neutral-900 hover:bg-black text-white rounded-xl transition-colors disabled:opacity-40 cursor-pointer flex items-center gap-1.5 shadow-sm"
+              >
+                <Sparkles className="w-3.5 h-3.5 text-amber-400" />
+                <span>Apply Smart Formatting &amp; Insert</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Helper hint */}
       <p className="text-slate-500 text-[11.5px] mt-1.5 leading-relaxed">
-        📋 <strong className="text-slate-700 font-semibold">Copy &amp; Paste Support:</strong> Paste directly from <strong className="text-slate-700">Google Docs, Word, ChatGPT, or Markdown</strong> — Headings (H1–H6), subheadings, bold (<strong className="text-slate-700">**text**</strong>), bullet/number lists, and links are automatically detected and formatted! Click <strong className="text-slate-700">&lt;/&gt; HTML Code</strong> to view or edit raw code, or <strong className="text-slate-700">Copy Code</strong> to transfer to another doc.
+        📋 <strong className="text-slate-700 font-semibold">Copy &amp; Paste Support:</strong> Paste directly (Ctrl+V) from <strong className="text-slate-700">Google Docs, Word, ChatGPT, or Markdown</strong> — Headings (H1–H6), subheadings, bold (<strong className="text-slate-700">**text**</strong>), bullet/number lists, and links are automatically detected! Or click <strong className="text-slate-700">⚡ Smart Paste</strong>.
       </p>
     </div>
   );
