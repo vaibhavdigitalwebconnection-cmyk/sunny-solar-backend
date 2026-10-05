@@ -231,10 +231,10 @@ export const TrustBarSection: React.FC = () => {
 
                   {/* Animated accent bar */}
                   <motion.div
-                    className="h-1 rounded-full mt-1"
+                    className="h-1 rounded-full mt-1 origin-left"
                     style={{ backgroundColor: active.accentColor }}
-                    initial={{ width: 0 }}
-                    animate={{ width: '100%' }}
+                    initial={{ scaleX: 0 }}
+                    animate={{ scaleX: 1 }}
                     transition={{ duration: 3.8, ease: 'linear' }}
                   />
                 </motion.div>

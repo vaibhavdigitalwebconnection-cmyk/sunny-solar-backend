@@ -267,9 +267,9 @@ export const CalculatorsTeaserSection: React.FC = () => {
                 <AnimatePresence mode="wait">
                   <motion.div
                     key={active.id}
-                    initial={{ opacity: 0, y: 14, filter: 'blur(2px)' }}
-                    animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-                    exit={{ opacity: 0, y: -14, filter: 'blur(2px)' }}
+                    initial={{ opacity: 0, y: 14 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -14 }}
                     transition={{ duration: 0.28, ease: 'easeOut' }}
                     className="flex flex-col justify-between gap-3 sm:gap-4 flex-1 min-h-75 sm:min-h-72.5"
                   >
@@ -374,9 +374,9 @@ export const CalculatorsTeaserSection: React.FC = () => {
           <div className="h-1.5 w-full bg-slate-100 relative overflow-hidden">
             <motion.div
               key={`${activeIndex}-${isPaused}`}
-              className="h-full bg-[#EF680C] relative"
-              initial={{ width: '0%' }}
-              animate={{ width: isPaused ? '0%' : '100%' }}
+              className="h-full w-full bg-[#EF680C] relative origin-left"
+              initial={{ scaleX: 0 }}
+              animate={{ scaleX: isPaused ? 0 : 1 }}
               transition={{ duration: 5, ease: 'linear' }}
             >
               {/* Luminous glow at leading edge */}

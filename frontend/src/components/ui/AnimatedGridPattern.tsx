@@ -50,6 +50,8 @@ export function AnimatedGridPattern({
     }));
   });
 
+  const dimensionsRef = useRef<{ w: number; h: number }>({ w: 800, h: 600 });
+
   const getPos = useCallback(
     (w: number, h: number): [number, number] => {
       return [
@@ -62,8 +64,7 @@ export function AnimatedGridPattern({
 
   const updateSquarePosition = useCallback(
     (squareId: number) => {
-      if (!containerRef.current) return;
-      const { width: w, height: h } = containerRef.current.getBoundingClientRect();
+      const { w, h } = dimensionsRef.current;
 
       setSquares((currentSquares) => {
         const current = currentSquares[squareId];
@@ -90,6 +91,7 @@ export function AnimatedGridPattern({
       for (const entry of entries) {
         const { width: w, height: h } = entry.contentRect;
         if (w > 0 && h > 0) {
+          dimensionsRef.current = { w, h };
           setSquares((prev) =>
             prev.map((sq) => ({
               ...sq,

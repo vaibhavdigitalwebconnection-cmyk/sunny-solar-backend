@@ -65,6 +65,8 @@ export const WebsiteStartupLoader: React.FC = () => {
                 src="/logo.webp"
                 alt="Sunny Solar"
                 className="h-40 w-auto object-contain"
+                width="160"
+                height="160"
               />
             </div>
 

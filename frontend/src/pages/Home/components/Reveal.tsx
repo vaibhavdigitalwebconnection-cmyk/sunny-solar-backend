@@ -74,7 +74,6 @@ export const Reveal: React.FC<RevealProps> = ({
         amount: viewportAmount,
       }}
       variants={variants}
-      style={{ willChange: 'transform, opacity' }}
       className={className}
     >
       {children}

@@ -96,13 +96,19 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ isLoaded = true }) => 
     <section className="relative min-h-145 lg:min-h-auto flex items-center overflow-hidden">
       {/* Full-width Responsive Background Image */}
       <div className="absolute inset-0 z-0 overflow-hidden">
-        <motion.img
-          initial={{ scale: 1.05, opacity: 0.8 }}
-          animate={isLoaded ? { scale: 1, opacity: 1 } : { scale: 1.05, opacity: 0.8 }}
-          transition={{ duration: 2.5, ease: 'easeOut' }}
+        <img
           src={heroBgImage}
           alt="Sunny Solar Installation"
-          className="w-full h-full object-cover object-center"
+          className="w-full h-full object-cover object-center transition-transform duration-[2500ms] ease-out"
+          style={{
+            transform: isLoaded ? 'scale(1)' : 'scale(1.05)',
+            opacity: isLoaded ? 1 : 0.8,
+            transition: 'transform 2.5s ease-out, opacity 2.5s ease-out',
+          }}
+          width="1920"
+          height="1080"
+          fetchPriority="high"
+          decoding="async"
         />
 
         {/* Ambient Contrast Overlay */}
@@ -131,7 +137,6 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ isLoaded = true }) => 
               initial="hidden"
               animate={isLoaded ? 'visible' : 'hidden'}
               variants={badgeVariants}
-              style={{ willChange: 'transform, opacity' }}
               className="relative overflow-hidden inline-flex items-center gap-1.5 sm:gap-2 px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-full text-[11px] sm:text-xs font-semibold text-white bg-slate-900/80 border border-white/20 backdrop-blur-md shadow-lg"
             >
               <span className="w-2 h-2 rounded-full bg-[#ED4F11] animate-pulse shrink-0" />
@@ -149,7 +154,6 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ isLoaded = true }) => 
               initial="hidden"
               animate={isLoaded ? 'visible' : 'hidden'}
               variants={headlineVariants}
-              style={{ willChange: 'transform, opacity' }}
               className="space-y-2.5"
             >
               <h1 className="text-2xl sm:text-4xl lg:text-5xl font-serif font-bold text-white tracking-tight leading-[1.2] drop-shadow-md">
@@ -188,7 +192,6 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ isLoaded = true }) => 
               initial="hidden"
               animate={isLoaded ? 'visible' : 'hidden'}
               variants={subtextVariants}
-              style={{ willChange: 'transform, opacity' }}
               className="text-xs sm:text-base text-justify text-slate-100 sm:text-white leading-relaxed max-w-lg drop-shadow-sm"
             >
               Your home, your energy use, your solar system. Understand what you need, compare your options, and get a solar solution designed around how you actually use electricity.
@@ -199,7 +202,6 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ isLoaded = true }) => 
               initial="hidden"
               animate={isLoaded ? 'visible' : 'hidden'}
               variants={ctaVariants}
-              style={{ willChange: 'transform, opacity' }}
               className="pt-1 flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4"
             >
               <motion.a

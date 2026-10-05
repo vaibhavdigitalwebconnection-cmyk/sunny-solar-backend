@@ -123,6 +123,9 @@ export const Navbar: React.FC = () => {
                 src={logo}
                 alt="Sunny Solar"
                 className="h-10 sm:h-14 lg:h-18 w-auto object-contain transition-all duration-200"
+                width="224"
+                height="72"
+                fetchPriority="high"
               />
             </div>
           </Link>

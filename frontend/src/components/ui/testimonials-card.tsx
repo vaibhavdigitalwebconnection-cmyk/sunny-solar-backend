@@ -188,6 +188,10 @@ export function TestimonialsCard({
                                         alt={item.title}
                                         className="w-full h-full object-cover pointer-events-none"
                                         draggable={false}
+                                        loading="lazy"
+                                        decoding="async"
+                                        width={width}
+                                        height={Math.round(width * 0.7)}
                                     />
                                 </motion.div>
                             );

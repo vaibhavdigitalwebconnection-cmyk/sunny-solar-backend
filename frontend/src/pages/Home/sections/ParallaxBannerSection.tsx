@@ -486,6 +486,9 @@ export const ParallaxBannerSection: React.FC = () => {
                         src={card.userImage}
                         alt={card.reviewerName}
                         loading="lazy"
+                        decoding="async"
+                        width="44"
+                        height="44"
                         className="w-10 h-10 sm:w-11 sm:h-11 rounded-full object-cover ring-2 ring-[#EF680C]/80 border border-white shadow-sm"
                         onError={(e) => {
                           const target = e.currentTarget;
@@ -567,6 +570,10 @@ export const ParallaxBannerSection: React.FC = () => {
                 <img
                   src={selectedCard.userImage}
                   alt={selectedCard.reviewerName}
+                  loading="lazy"
+                  decoding="async"
+                  width="56"
+                  height="56"
                   className="w-14 h-14 rounded-full object-cover ring-2 ring-[#EF680C]/50 border border-white/20 shadow-lg"
                   onError={(e) => {
                     const target = e.currentTarget;

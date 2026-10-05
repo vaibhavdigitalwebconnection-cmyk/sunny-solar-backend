@@ -239,6 +239,10 @@ export const ServicesOverviewSection: React.FC = () => {
                       opacity: { duration: 0.5 },
                     }}
                     className="w-full h-full object-cover object-center"
+                    loading="lazy"
+                    decoding="async"
+                    width="600"
+                    height="500"
                   />
                 </AnimatePresence>
 

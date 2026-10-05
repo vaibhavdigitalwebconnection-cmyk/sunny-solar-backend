@@ -386,6 +386,9 @@ export const TestimonialsSliderSection: React.FC = () => {
                         alt={activeProject.title}
                         className="w-full h-full object-cover object-center group-hover/img:scale-105 transition-transform duration-500"
                         loading="lazy"
+                        decoding="async"
+                        width="400"
+                        height="360"
                       />
                       <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/20 to-transparent pointer-events-none" />
 

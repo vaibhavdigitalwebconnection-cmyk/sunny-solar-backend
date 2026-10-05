@@ -37,7 +37,7 @@ export const Footer: React.FC = () => {
             {/* Brand */}
             <div>
               <Link to="/" className="inline-flex items-center">
-                <img src={logo} alt="Sunny Solar" className="w-40 sm:w-52 max-w-full" />
+                <img src={logo} alt="Sunny Solar" className="w-40 sm:w-52 max-w-full" width="208" height="80" loading="lazy" decoding="async" />
               </Link>
               
             </div>
@@ -141,6 +141,10 @@ export const Footer: React.FC = () => {
                   src={meaLogo}
                   alt="Master Electricians Australia"
                   className="h-8 sm:h-10 object-contain rounded-md"
+                  width="120"
+                  height="40"
+                  loading="lazy"
+                  decoding="async"
                 />
               </a>
               <a
@@ -154,6 +158,10 @@ export const Footer: React.FC = () => {
                   src={hiaLogo}
                   alt="HIA Member"
                   className="h-7 sm:h-9 object-contain"
+                  width="100"
+                  height="36"
+                  loading="lazy"
+                  decoding="async"
                 />
               </a>
               <a
@@ -167,6 +175,10 @@ export const Footer: React.FC = () => {
                   src={necaLogo}
                   alt="NECA - National Electrical and Communications Association"
                   className="h-7 sm:h-9 object-contain rounded-md"
+                  width="100"
+                  height="36"
+                  loading="lazy"
+                  decoding="async"
                 />
               </a>
               <a
@@ -180,6 +192,10 @@ export const Footer: React.FC = () => {
                   src={netccLogo}
                   alt="New Energy Tech Consumer Code - Approved Seller"
                   className="h-9 sm:h-11 object-contain"
+                  width="120"
+                  height="44"
+                  loading="lazy"
+                  decoding="async"
                 />
               </a>
             </div>

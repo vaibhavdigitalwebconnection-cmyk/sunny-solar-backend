@@ -15,6 +15,8 @@ import { SolarScatterSection } from './sections/SolarScatterSection';
 import { TestimonialsSliderSection } from './sections/TestimonialsSliderSection';
 import { FAQSection } from './sections/FAQSection';
 
+import { LazyMountSection } from './components/LazyMountSection';
+
 // Track if initial startup loader finished in current session so page transitions don't delay
 let hasWebsiteStartupFinished =
   typeof window !== 'undefined' ? Boolean(sessionStorage.getItem('sunny_startup_loaded')) : false;
@@ -83,29 +85,43 @@ export const HomePage: React.FC = () => {
         <ApprovedBrandsSection />
 
         {/* 7. Testimonials Slider Section */}
-        <Reveal direction="up">
-          <TestimonialsSliderSection />
-        </Reveal>
+        <LazyMountSection minHeight={720}>
+          <Reveal direction="up">
+            <TestimonialsSliderSection />
+          </Reveal>
+        </LazyMountSection>
 
         {/* 8. Authority Awards Badges */}
-        <PreferSunnySolarSection />
+        <LazyMountSection minHeight={700}>
+          <PreferSunnySolarSection />
+        </LazyMountSection>
 
         {/* 9. Real Numbers / Trust Bar Section (Left from Left, Right card from Right) */}
-        <TrustBarSection />
+        <LazyMountSection minHeight={520}>
+          <TrustBarSection />
+        </LazyMountSection>
 
         {/* 10. Solar Scatter Animation Section */}
-        <Reveal direction="up">
-          <SolarScatterSection />
-        </Reveal>
+        <LazyMountSection minHeight={660}>
+          <Reveal direction="up">
+            <SolarScatterSection />
+          </Reveal>
+        </LazyMountSection>
 
         {/* 11. Service Areas Teaser Section */}
-        <ServiceAreasTeaserSection />
+        <LazyMountSection minHeight={850}>
+          <ServiceAreasTeaserSection />
+        </LazyMountSection>
 
         {/* 12. Parallax Banner Section */}
-        <ParallaxBannerSection />
+        <LazyMountSection minHeight={800}>
+          <ParallaxBannerSection />
+        </LazyMountSection>
 
         {/* 13. FAQ Section (Eyebrow from Top, Heading from Left) */}
-        <FAQSection />
+        <LazyMountSection minHeight={820}>
+          <FAQSection />
+        </LazyMountSection>
       </div>
     </>
   );

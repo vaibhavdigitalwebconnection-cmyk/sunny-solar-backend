@@ -102,7 +102,6 @@ export const AnimatedCard: React.FC<AnimatedCardProps> = ({
         amount: viewportAmount,
       }}
       variants={variants}
-      style={{ willChange: 'transform, opacity' }}
       className={`transition-shadow duration-300 ${className}`}
     >
       {children}

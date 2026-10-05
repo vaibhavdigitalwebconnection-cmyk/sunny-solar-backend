@@ -8,6 +8,7 @@ import { Footer } from './components/layout/Footer/Footer';
 import { MobileStickyActionBar } from './components/layout/MobileStickyActionBar';
 import { WebsiteStartupLoader } from './components/layout/WebsiteStartupLoader';
 import { AppRoutes } from './routes/AppRoutes';
+import { LazyMotionProvider } from './components/common/LazyMotionProvider';
 import { api } from './services/api';
 
 function AppLayout() {
@@ -47,7 +48,7 @@ function AppLayout() {
       <WebsiteStartupLoader />
       <div className="flex flex-col min-h-screen selection:bg-[#2B3CB8] selection:text-white relative">
         <Navbar />
-        <main className="grow">
+        <main className="grow min-h-screen">
           <AppRoutes />
         </main>
         <Footer />
@@ -61,9 +62,11 @@ export function App() {
   return (
     <HelmetProvider>
       <BrowserRouter>
-        <SmoothScroll>
-          <AppLayout />
-        </SmoothScroll>
+        <LazyMotionProvider>
+          <SmoothScroll>
+            <AppLayout />
+          </SmoothScroll>
+        </LazyMotionProvider>
       </BrowserRouter>
     </HelmetProvider>
   );

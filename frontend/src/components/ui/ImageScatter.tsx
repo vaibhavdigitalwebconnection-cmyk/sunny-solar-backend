@@ -136,7 +136,10 @@ export function ImageScatter({
         img.src = src;
         img.alt = sectionData.heading || "Sunny Solar Project";
         img.loading = "lazy";
-        img.className = "w-full h-full object-cover rounded-lg pointer-events-none  ";
+        img.decoding = "async";
+        img.width = cWidth;
+        img.height = cHeight;
+        img.className = "w-full h-full object-cover rounded-lg pointer-events-none";
         card.appendChild(img);
 
         // Glass reflection sheen
@@ -200,7 +203,10 @@ export function ImageScatter({
         img.src = src;
         img.alt = sectionData.heading || "Sunny Solar Project";
         img.loading = "lazy";
-        img.className = "w-full h-full object-cover rounded-lg pointer-events-none  ";
+        img.decoding = "async";
+        img.width = cWidth;
+        img.height = cHeight;
+        img.className = "w-full h-full object-cover rounded-lg pointer-events-none";
         card.appendChild(img);
 
         const sheen = document.createElement("div");

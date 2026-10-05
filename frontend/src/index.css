@@ -1,6 +1,23 @@
 @import "tailwindcss";
 
+/* Size-adjusted fallback fonts to prevent CLS during Google Fonts swap */
+@font-face {
+  font-family: 'Plus Jakarta Sans Fallback';
+  src: local('Segoe UI'), local('Roboto'), local('Helvetica Neue'), local('Arial');
+  size-adjust: 102%;
+  ascent-override: 95%;
+  descent-override: 22%;
+  line-gap-override: 0%;
+}
 
+@font-face {
+  font-family: 'Outfit Fallback';
+  src: local('Segoe UI'), local('Roboto'), local('Helvetica Neue'), local('Arial');
+  size-adjust: 100%;
+  ascent-override: 100%;
+  descent-override: 22%;
+  line-gap-override: 0%;
+}
 
 :root {
   --color-brand-blue: #2B3CB8;
@@ -22,7 +39,7 @@
 
 @layer base {
   body {
-    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-family: 'Plus Jakarta Sans', 'Plus Jakarta Sans Fallback', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     color: #0C123E;
     background-color: #FFFFFF;
     overflow-x: hidden;
@@ -34,7 +51,7 @@
   h4,
   h5,
   h6 {
-    font-family: 'Outfit', 'Plus Jakarta Sans', -apple-system, sans-serif;
+    font-family: 'Outfit', 'Outfit Fallback', 'Plus Jakarta Sans', -apple-system, sans-serif;
     letter-spacing: -0.02em;
   }
 }
