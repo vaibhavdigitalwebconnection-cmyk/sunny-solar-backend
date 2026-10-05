@@ -4,7 +4,17 @@ import StarterKit from "@tiptap/starter-kit";
 import Underline from "@tiptap/extension-underline";
 import Image from "@tiptap/extension-image";
 import Link from "@tiptap/extension-link";
-import { UploadCloud, Loader2, Link as LinkIcon, X as CloseIcon } from "lucide-react";
+import {
+  UploadCloud,
+  Loader2,
+  Link as LinkIcon,
+  X as CloseIcon,
+  Code as CodeIcon,
+  Copy as CopyIcon,
+  Check as CheckIcon,
+  Sparkles
+} from "lucide-react";
+import { processClipboardPaste } from "./pasteDetector";
 
 export interface RichTextEditorProps {
   value: string;
@@ -23,6 +33,9 @@ export default function RichTextEditor({
 }: RichTextEditorProps) {
   const [linkUrl, setLinkUrl] = useState("");
   const [showLinkInput, setShowLinkInput] = useState(false);
+  const [showHtmlCode, setShowHtmlCode] = useState(false);
+  const [copiedCode, setCopiedCode] = useState(false);
+  const [pasteNotification, setPasteNotification] = useState<string | null>(null);
   const [isUploadingImg, setIsUploadingImg] = useState(false);
   const [, setTick] = useState(0);
   const forceUpdate = useCallback(() => setTick((t) => (t + 1) % 1000000), []);
@@ -80,33 +93,22 @@ export default function RichTextEditor({
     }
   }, [value, editor]);
 
-  // Intercept paste to format 'name: message' patterns (bolding only the label before the colon)
+  // Smart Paste Handler: Automatically detects headings, subheadings, bold, lists, links,
+  // and formats text from Google Docs, MS Word, ChatGPT, Markdown, and raw HTML.
   useEffect(() => {
     if (!editor) return;
+
     const handlePasteEvent = (event: ClipboardEvent) => {
-      const text = event.clipboardData?.getData("text/plain");
-      if (!text || !text.includes(":")) return;
-      const lines = text.split("\n");
-      let hasPattern = false;
-      const htmlParts = lines.map((line) => {
-        const match = line.match(/^([^:]{1,30}):(.*)$/);
-        if (match) {
-          hasPattern = true;
-          return `<strong>${match[1]}:</strong>${match[2]}`;
-        }
-        // HTML escape non-matching text to prevent layout breaks
-        return line
-          .replace(/&/g, "&amp;")
-          .replace(/</g, "&lt;")
-          .replace(/>/g, "&gt;");
-      });
-      if (hasPattern) {
+      const result = processClipboardPaste(event);
+      if (result.handled && result.html) {
         event.preventDefault();
         event.stopPropagation();
-        const htmlContent = htmlParts.map((p) => `<p>${p}</p>`).join("");
-        editor.commands.insertContent(htmlContent);
+        editor.commands.insertContent(result.html);
+        setPasteNotification("⚡ Document formatting detected: Headings, bold text & structure applied!");
+        setTimeout(() => setPasteNotification(null), 4000);
       }
     };
+
     const element = editor.view.dom;
     element.addEventListener("paste", handlePasteEvent, true);
     return () => {
@@ -136,6 +138,26 @@ export default function RichTextEditor({
     setShowLinkInput(false);
   }, [editor]);
 
+  const handleCopyCode = async () => {
+    if (!editor) return;
+    const html = editor.getHTML();
+    try {
+      await navigator.clipboard.writeText(html);
+      setCopiedCode(true);
+      setTimeout(() => setCopiedCode(false), 2200);
+    } catch {
+      // Fallback using textarea execCommand
+      const textArea = document.createElement("textarea");
+      textArea.value = html;
+      document.body.appendChild(textArea);
+      textArea.select();
+      document.execCommand("copy");
+      document.body.removeChild(textArea);
+      setCopiedCode(true);
+      setTimeout(() => setCopiedCode(false), 2200);
+    }
+  };
+
   const handleFileSelect = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file || !editor || !onUploadImage) return;
@@ -147,7 +169,7 @@ export default function RichTextEditor({
     try {
       const url = await onUploadImage(file);
       if (url) {
-        editor.chain().focus().setImage({ src: url, alt: file.name || "Blog image" }).run();
+        editor.chain().focus().setImage({ src: url, alt: file.name || "Uploaded image" }).run();
       }
     } catch (err: any) {
       alert(err.message || "Failed to upload image.");
@@ -175,52 +197,66 @@ export default function RichTextEditor({
       {/* Editor Styles — Clean White Theme with #155DFC Accents */}
       <style>{`
         .rte-editor {
-          min-height: 260px;
-          max-height: 48vh;
+          min-height: 280px;
+          max-height: 52vh;
           overflow-y: auto;
+          overflow-x: hidden;
+          word-break: break-word;
+          overflow-wrap: break-word;
           outline: none;
           color: #0f172a;
-          font-size: 0.925rem;
-          line-height: 1.7;
-          padding: 16px 18px;
+          font-size: 0.935rem;
+          line-height: 1.75;
+          padding: 18px 20px;
           background-color: #ffffff;
         }
-        .rte-editor p { margin: 0 0 0.75rem 0; color: #1e293b; }
+        .rte-editor p { margin: 0 0 0.85rem 0; color: #1e293b; }
         .rte-editor strong { font-weight: 700; color: #0f172a; }
         .rte-editor em { font-style: italic; }
         .rte-editor u { text-decoration: underline; }
+        .rte-editor s { text-decoration: line-through; color: #64748b; }
+        .rte-editor code {
+          background-color: #f1f5f9;
+          color: #0f172a;
+          padding: 2px 6px;
+          border-radius: 4px;
+          font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+          font-size: 0.85em;
+        }
         .rte-editor a { color: #155DFC; text-decoration: underline; cursor: pointer; font-weight: 600; }
         .rte-editor a:hover { color: #1048c7; }
-        .rte-editor ul { list-style: disc; padding-left: 1.35rem; margin: 0.5rem 0; color: #1e293b; }
-        .rte-editor ol { list-style: decimal; padding-left: 1.35rem; margin: 0.5rem 0; color: #1e293b; }
-        .rte-editor li { margin-bottom: 0.35rem; }
+        .rte-editor ul { list-style: disc; padding-left: 1.5rem; margin: 0.65rem 0; color: #1e293b; }
+        .rte-editor ol { list-style: decimal; padding-left: 1.5rem; margin: 0.65rem 0; color: #1e293b; }
+        .rte-editor li { margin-bottom: 0.4rem; }
         .rte-editor h1, .rte-editor h2, .rte-editor h3, .rte-editor h4, .rte-editor h5, .rte-editor h6 {
-          font-weight: 700;
+          font-weight: 800;
           color: #0f172a;
-          margin: 1.15rem 0 0.4rem;
+          margin: 1.35rem 0 0.5rem;
+          line-height: 1.3;
         }
-        .rte-editor h1 { font-size: 1.65rem; }
-        .rte-editor h2 { font-size: 1.4rem; }
-        .rte-editor h3 { font-size: 1.2rem; }
-        .rte-editor h4 { font-size: 1.05rem; }
-        .rte-editor h5 { font-size: 0.95rem; }
-        .rte-editor h6 { font-size: 0.875rem; color: #64748b; }
+        .rte-editor h1 { font-size: 1.75rem; border-bottom: 1px solid #f1f5f9; padding-bottom: 0.35rem; }
+        .rte-editor h2 { font-size: 1.45rem; border-bottom: 1px solid #f8fafc; padding-bottom: 0.25rem; }
+        .rte-editor h3 { font-size: 1.25rem; }
+        .rte-editor h4 { font-size: 1.1rem; }
+        .rte-editor h5 { font-size: 0.98rem; }
+        .rte-editor h6 { font-size: 0.88rem; color: #64748b; }
         .rte-editor blockquote {
-          border-left: 3px solid #155DFC;
-          padding: 8px 14px;
-          background-color: #edf2fe;
-          color: #155DFC;
-          margin: 0.85rem 0;
-          border-radius: 0 4px 4px 0;
+          border-left: 4px solid #155DFC;
+          padding: 10px 16px;
+          background-color: #f0f4ff;
+          color: #1e3a8a;
+          margin: 1rem 0;
+          border-radius: 0 6px 6px 0;
           font-style: italic;
         }
         .rte-editor img {
           max-width: 100%;
           height: auto;
-          border-radius: 6px;
-          margin: 1rem 0;
+          border-radius: 8px;
+          margin: 1.25rem 0;
           display: block;
           border: 1px solid #e2e8f0;
+          box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05);
         }
         .rte-editor[data-placeholder]:empty::before {
           content: attr(data-placeholder);
@@ -236,20 +272,30 @@ export default function RichTextEditor({
         }
       `}</style>
 
-      {label && (
-        <label className="block text-xs font-black text-slate-600 uppercase tracking-wider mb-1.5">
-          {label}
-        </label>
-      )}
+      {/* Label and Smart Indicator */}
+      <div className="flex items-center justify-between mb-1.5">
+        {label ? (
+          <label className="block text-xs font-black text-slate-700 uppercase tracking-wider">
+            {label}
+          </label>
+        ) : (
+          <span />
+        )}
+        <span className="text-[11px] text-emerald-700 font-semibold flex items-center gap-1 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200/60">
+          <Sparkles className="w-3 h-3 text-emerald-500" />
+          Auto-Detects Headings &amp; Bold on Paste
+        </span>
+      </div>
 
-      {/* Main Editor Card Container — Light / White Theme */}
+      {/* Main Editor Card Container */}
       <div className="border border-slate-200 rounded-sm overflow-hidden bg-white shadow-xs focus-within:border-[#155DFC] focus-within:ring-1 focus-within:ring-[#155DFC]/20 transition-all">
         {/* Toolbar */}
         <div className="flex flex-wrap items-center justify-between gap-1.5 bg-slate-50/90 border-b border-slate-200 px-3 py-2 shrink-0">
           <div className="flex flex-wrap items-center gap-1">
+            {/* Formatting */}
             <button
               type="button"
-              title="Bold"
+              title="Bold (Ctrl+B)"
               onMouseDown={(e) => e.preventDefault()}
               onClick={() => editor.chain().focus().toggleBold().run()}
               className={btn(editor.isActive("bold"), "font-bold")}
@@ -258,7 +304,7 @@ export default function RichTextEditor({
             </button>
             <button
               type="button"
-              title="Italic"
+              title="Italic (Ctrl+I)"
               onMouseDown={(e) => e.preventDefault()}
               onClick={() => editor.chain().focus().toggleItalic().run()}
               className={btn(editor.isActive("italic"), "italic")}
@@ -267,7 +313,7 @@ export default function RichTextEditor({
             </button>
             <button
               type="button"
-              title="Underline"
+              title="Underline (Ctrl+U)"
               onMouseDown={(e) => e.preventDefault()}
               onClick={() => editor.chain().focus().toggleUnderline().run()}
               className={btn(editor.isActive("underline"), "underline")}
@@ -282,7 +328,7 @@ export default function RichTextEditor({
               <button
                 key={level}
                 type="button"
-                title={`Heading ${level}`}
+                title={`Heading ${level} (or subheading)`}
                 onMouseDown={(e) => e.preventDefault()}
                 onClick={() =>
                   editor
@@ -313,7 +359,7 @@ export default function RichTextEditor({
             </button>
             <button
               type="button"
-              title="Ordered List"
+              title="Numbered List"
               onMouseDown={(e) => e.preventDefault()}
               onClick={() => editor.chain().focus().toggleOrderedList().run()}
               className={btn(editor.isActive("orderedList"))}
@@ -374,6 +420,39 @@ export default function RichTextEditor({
 
             <span className="w-px h-4 bg-slate-300 mx-1" />
 
+            {/* HTML / Code View Toggle */}
+            <button
+              type="button"
+              title="Toggle between Visual WYSIWYG editor and raw HTML code view"
+              onClick={() => setShowHtmlCode((prev) => !prev)}
+              className={btn(showHtmlCode, "inline-flex items-center gap-1 font-mono text-[11px]")}
+            >
+              <CodeIcon className="w-3.5 h-3.5" />
+              <span>{showHtmlCode ? "Visual View" : "</> HTML Code"}</span>
+            </button>
+
+            {/* Copy HTML Code Button */}
+            <button
+              type="button"
+              title="Copy formatted HTML code to clipboard to paste into any doc"
+              onClick={handleCopyCode}
+              className="px-2.5 py-1 rounded-sm text-xs font-semibold bg-white text-slate-700 hover:text-slate-900 hover:bg-slate-100 border border-slate-200 shadow-2xs transition cursor-pointer inline-flex items-center gap-1"
+            >
+              {copiedCode ? (
+                <>
+                  <CheckIcon className="w-3.5 h-3.5 text-emerald-600" />
+                  <span className="text-emerald-600 font-bold">Copied!</span>
+                </>
+              ) : (
+                <>
+                  <CopyIcon className="w-3.5 h-3.5 text-slate-500" />
+                  <span>Copy Code</span>
+                </>
+              )}
+            </button>
+
+            <span className="w-px h-4 bg-slate-300 mx-1" />
+
             <button
               type="button"
               title="Clear all formatting"
@@ -428,15 +507,61 @@ export default function RichTextEditor({
           </div>
         )}
 
-        {/* Editor content area — Pure White Background */}
-        <div className="bg-white">
-          <EditorContent editor={editor} />
-        </div>
+        {/* Smart Paste Feedback Banner */}
+        {pasteNotification && (
+          <div className="bg-emerald-50 border-b border-emerald-200 px-3 py-1.5 text-xs font-semibold text-emerald-800 flex items-center justify-between">
+            <span className="flex items-center gap-1.5">
+              <Sparkles className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
+              {pasteNotification}
+            </span>
+            <button
+              type="button"
+              onClick={() => setPasteNotification(null)}
+              className="text-emerald-700 hover:text-emerald-900 text-xs font-bold ml-2 cursor-pointer"
+            >
+              ✕
+            </button>
+          </div>
+        )}
+
+        {/* Editor Content Area vs Raw HTML Code Area */}
+        {showHtmlCode ? (
+          <div className="bg-slate-900 text-slate-100 flex flex-col">
+            <div className="flex items-center justify-between px-3 py-1.5 bg-slate-950/80 border-b border-slate-800 text-[11px] text-slate-400">
+              <span className="font-mono text-amber-400 flex items-center gap-1">
+                <CodeIcon className="w-3.5 h-3.5" />
+                Raw HTML Source Mode — edits here will reflect in visual mode
+              </span>
+              <button
+                type="button"
+                onClick={handleCopyCode}
+                className="text-xs text-white hover:text-amber-300 bg-slate-800 hover:bg-slate-700 px-2.5 py-1 rounded transition cursor-pointer flex items-center gap-1 font-sans"
+              >
+                {copiedCode ? <CheckIcon className="w-3 h-3 text-emerald-400" /> : <CopyIcon className="w-3 h-3" />}
+                <span>{copiedCode ? "Copied!" : "Copy HTML"}</span>
+              </button>
+            </div>
+            <textarea
+              value={editor.getHTML()}
+              onChange={(e) => {
+                editor.commands.setContent(e.target.value, { emitUpdate: true });
+                onChange(e.target.value);
+              }}
+              rows={12}
+              className="w-full min-h-[280px] max-h-[52vh] p-4 font-mono text-xs text-slate-200 bg-slate-900 border-0 outline-none resize-y selection:bg-amber-500/30 whitespace-pre-wrap break-words overflow-x-auto"
+              placeholder="<p>Paste or write HTML code here...</p>"
+            />
+          </div>
+        ) : (
+          <div className="bg-white">
+            <EditorContent editor={editor} />
+          </div>
+        )}
       </div>
 
       {/* Helper hint */}
-      <p className="text-slate-400 text-[11.5px] mt-1.5">
-        💡 To add a link: <strong className="text-slate-600 font-semibold">select text</strong> → click Link → enter URL → Apply. To insert an image from your device, click <strong className="text-slate-600 font-semibold">+ Insert Image</strong>.
+      <p className="text-slate-500 text-[11.5px] mt-1.5 leading-relaxed">
+        📋 <strong className="text-slate-700 font-semibold">Copy &amp; Paste Support:</strong> Paste directly from <strong className="text-slate-700">Google Docs, Word, ChatGPT, or Markdown</strong> — Headings (H1–H6), subheadings, bold (<strong className="text-slate-700">**text**</strong>), bullet/number lists, and links are automatically detected and formatted! Click <strong className="text-slate-700">&lt;/&gt; HTML Code</strong> to view or edit raw code, or <strong className="text-slate-700">Copy Code</strong> to transfer to another doc.
       </p>
     </div>
   );

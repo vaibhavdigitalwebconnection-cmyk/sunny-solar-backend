@@ -97,7 +97,7 @@ export const BlogModal: React.FC<BlogModalProps> = ({
       <div
         data-lenis-prevent
         onWheel={handleModalWheel}
-        className="bg-white rounded-none sm:rounded-2xl w-full max-w-3xl h-full sm:h-auto max-h-dvh sm:max-h-[92vh] flex flex-col shadow-2xl overflow-hidden border-0 sm:border sm:border-slate-200"
+        className="bg-white rounded-none sm:rounded-2xl w-full max-w-full sm:max-w-3xl lg:max-w-5xl h-full sm:h-auto max-h-dvh sm:max-h-[92vh] flex flex-col shadow-2xl overflow-hidden border-0 sm:border sm:border-slate-200"
       >
         {/* Modal Header (Fixed at top) */}
         <div className="px-4 py-3 sm:px-6 sm:py-4 border-b border-neutral-200 flex items-center justify-between bg-white shrink-0">
@@ -126,7 +126,7 @@ export const BlogModal: React.FC<BlogModalProps> = ({
         </div>
 
         {/* Three Tabs: Blog Info | Content | Meta Tags (Fixed at top) */}
-        <div className="px-3 sm:px-6 pt-2 sm:pt-3 border-b border-neutral-200 flex items-center justify-around sm:justify-start gap-2 sm:gap-6 bg-slate-50/70 shrink-0">
+        <div className="px-3 sm:px-6 pt-2 sm:pt-3 border-b border-neutral-200 flex items-center justify-around sm:justify-start gap-2 sm:gap-6 bg-slate-50/70 shrink-0 overflow-x-auto">
           <button
             type="button"
             onClick={() => setModalTab('info')}
@@ -170,7 +170,7 @@ export const BlogModal: React.FC<BlogModalProps> = ({
           <div
             ref={scrollBodyRef}
             data-lenis-prevent
-            className="flex-1 min-h-0 overflow-y-auto p-5 sm:p-6 space-y-6 overscroll-contain"
+            className="flex-1 min-h-0 overflow-y-auto overflow-x-hidden p-5 sm:p-6 space-y-6 overscroll-contain"
           >
             {/* TAB 1: BLOG INFO */}
             {modalTab === 'info' && (

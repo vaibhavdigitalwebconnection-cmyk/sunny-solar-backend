@@ -138,7 +138,7 @@ export const KnowledgeModal: React.FC<KnowledgeModalProps> = ({
       <div
         data-lenis-prevent
         onWheel={handleModalWheel}
-        className="bg-white rounded-none sm:rounded-2xl w-full max-w-4xl h-full sm:h-auto max-h-dvh sm:max-h-[92vh] flex flex-col shadow-2xl overflow-hidden border-0 sm:border sm:border-neutral-200"
+        className="bg-white rounded-none sm:rounded-2xl w-full max-w-full sm:max-w-4xl lg:max-w-5xl h-full sm:h-auto max-h-dvh sm:max-h-[92vh] flex flex-col shadow-2xl overflow-hidden border-0 sm:border sm:border-neutral-200"
       >
         {/* Modal Header (Fixed at top) */}
         <div className="px-4 py-3 sm:px-6 sm:py-4 border-b border-neutral-200 flex items-center justify-between bg-white shrink-0">
@@ -231,7 +231,7 @@ export const KnowledgeModal: React.FC<KnowledgeModalProps> = ({
           <div
             ref={scrollBodyRef}
             data-lenis-prevent
-            className="flex-1 min-h-0 overflow-y-auto p-5 sm:p-6 space-y-6 overscroll-contain"
+            className="flex-1 min-h-0 overflow-y-auto overflow-x-hidden p-5 sm:p-6 space-y-6 overscroll-contain"
           >
             {/* TAB 1: GUIDE INFO */}
             {knowledgeModalTab === 'info' && (
@@ -628,73 +628,78 @@ export const KnowledgeModal: React.FC<KnowledgeModalProps> = ({
                     </button>
                   </div>
 
-                  {/* Column Headers Config */}
-                  <div className="p-3 bg-slate-100 rounded-xl space-y-2">
-                    <span className="text-[11px] font-bold text-slate-600 uppercase tracking-wider block">
-                      Table Column Headers (4 Columns)
-                    </span>
-                    <div className="grid grid-cols-4 gap-2">
-                      {knowledgeFormData.matrixHeaders.map((header, idx) => (
-                        <input
-                          key={idx}
-                          type="text"
-                          value={header}
-                          onChange={(e) => handleUpdateMatrixHeader(idx, e.target.value)}
-                          placeholder={`Col ${idx + 1}`}
-                          className="bg-white border border-slate-300 rounded-lg px-2.5 py-1.5 text-xs text-slate-900 font-bold focus:outline-none focus:border-amber-500"
-                        />
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* Matrix Rows */}
-                  <div className="space-y-2.5">
-                    {knowledgeFormData.matrixRows.length === 0 ? (
-                      <div className="p-4 bg-slate-50 rounded-xl text-center text-xs text-slate-400">
-                        No matrix rows configured. Click &quot;Add Row&quot; to build comparison data.
-                      </div>
-                    ) : (
-                      knowledgeFormData.matrixRows.map((row, idx) => (
-                        <div key={idx} className="flex items-center gap-2 p-2.5 bg-slate-50 rounded-xl border border-slate-200/70">
-                          <input
-                            type="text"
-                            value={row.feature}
-                            onChange={(e) => handleUpdateMatrixRow(idx, 'feature', e.target.value)}
-                            placeholder="Feature (e.g. Cell Type)"
-                            className="w-1/4 bg-white border border-slate-300 rounded-lg px-2.5 py-1.5 text-xs text-slate-900 font-bold focus:outline-none focus:border-amber-500"
-                          />
-                          <input
-                            type="text"
-                            value={row.col1}
-                            onChange={(e) => handleUpdateMatrixRow(idx, 'col1', e.target.value)}
-                            placeholder="Col 1 Value"
-                            className="w-1/4 bg-white border border-slate-300 rounded-lg px-2.5 py-1.5 text-xs text-slate-800 focus:outline-none focus:border-amber-500"
-                          />
-                          <input
-                            type="text"
-                            value={row.col2}
-                            onChange={(e) => handleUpdateMatrixRow(idx, 'col2', e.target.value)}
-                            placeholder="Col 2 Value"
-                            className="w-1/4 bg-white border border-slate-300 rounded-lg px-2.5 py-1.5 text-xs text-slate-800 focus:outline-none focus:border-amber-500"
-                          />
-                          <input
-                            type="text"
-                            value={row.col3}
-                            onChange={(e) => handleUpdateMatrixRow(idx, 'col3', e.target.value)}
-                            placeholder="Col 3 Value"
-                            className="w-1/4 bg-white border border-slate-300 rounded-lg px-2.5 py-1.5 text-xs text-slate-800 focus:outline-none focus:border-amber-500"
-                          />
-                          <button
-                            type="button"
-                            onClick={() => handleRemoveMatrixRow(idx)}
-                            className="p-1.5 text-slate-400 hover:text-rose-600 hover:bg-rose-50 rounded-lg cursor-pointer transition-colors"
-                            title="Delete row"
-                          >
-                            <Trash2 className="w-3.5 h-3.5" />
-                          </button>
+                  {/* Column Headers & Rows Container with horizontal scroll safety */}
+                  <div className="overflow-x-auto pb-1 -mx-1 px-1">
+                    <div className="min-w-[520px] space-y-3">
+                      {/* Column Headers Config */}
+                      <div className="p-3 bg-slate-100 rounded-xl space-y-2">
+                        <span className="text-[11px] font-bold text-slate-600 uppercase tracking-wider block">
+                          Table Column Headers (4 Columns)
+                        </span>
+                        <div className="grid grid-cols-4 gap-2">
+                          {knowledgeFormData.matrixHeaders.map((header, idx) => (
+                            <input
+                              key={idx}
+                              type="text"
+                              value={header}
+                              onChange={(e) => handleUpdateMatrixHeader(idx, e.target.value)}
+                              placeholder={`Col ${idx + 1}`}
+                              className="bg-white border border-slate-300 rounded-lg px-2.5 py-1.5 text-xs text-slate-900 font-bold focus:outline-none focus:border-amber-500"
+                            />
+                          ))}
                         </div>
-                      ))
-                    )}
+                      </div>
+
+                      {/* Matrix Rows */}
+                      <div className="space-y-2.5">
+                        {knowledgeFormData.matrixRows.length === 0 ? (
+                          <div className="p-4 bg-slate-50 rounded-xl text-center text-xs text-slate-400">
+                            No matrix rows configured. Click &quot;Add Row&quot; to build comparison data.
+                          </div>
+                        ) : (
+                          knowledgeFormData.matrixRows.map((row, idx) => (
+                            <div key={idx} className="flex items-center gap-2 p-2.5 bg-slate-50 rounded-xl border border-slate-200/70">
+                              <input
+                                type="text"
+                                value={row.feature}
+                                onChange={(e) => handleUpdateMatrixRow(idx, 'feature', e.target.value)}
+                                placeholder="Feature (e.g. Cell Type)"
+                                className="w-1/4 bg-white border border-slate-300 rounded-lg px-2.5 py-1.5 text-xs text-slate-900 font-bold focus:outline-none focus:border-amber-500"
+                              />
+                              <input
+                                type="text"
+                                value={row.col1}
+                                onChange={(e) => handleUpdateMatrixRow(idx, 'col1', e.target.value)}
+                                placeholder="Col 1 Value"
+                                className="w-1/4 bg-white border border-slate-300 rounded-lg px-2.5 py-1.5 text-xs text-slate-800 focus:outline-none focus:border-amber-500"
+                              />
+                              <input
+                                type="text"
+                                value={row.col2}
+                                onChange={(e) => handleUpdateMatrixRow(idx, 'col2', e.target.value)}
+                                placeholder="Col 2 Value"
+                                className="w-1/4 bg-white border border-slate-300 rounded-lg px-2.5 py-1.5 text-xs text-slate-800 focus:outline-none focus:border-amber-500"
+                              />
+                              <input
+                                type="text"
+                                value={row.col3}
+                                onChange={(e) => handleUpdateMatrixRow(idx, 'col3', e.target.value)}
+                                placeholder="Col 3 Value"
+                                className="w-1/4 bg-white border border-slate-300 rounded-lg px-2.5 py-1.5 text-xs text-slate-800 focus:outline-none focus:border-amber-500"
+                              />
+                              <button
+                                type="button"
+                                onClick={() => handleRemoveMatrixRow(idx)}
+                                className="p-1.5 text-slate-400 hover:text-rose-600 hover:bg-rose-50 rounded-lg cursor-pointer transition-colors"
+                                title="Delete row"
+                              >
+                                <Trash2 className="w-3.5 h-3.5" />
+                              </button>
+                            </div>
+                          ))
+                        )}
+                      </div>
+                    </div>
                   </div>
                 </div>
 
