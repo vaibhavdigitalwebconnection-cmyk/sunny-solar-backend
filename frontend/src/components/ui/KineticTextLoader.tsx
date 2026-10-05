@@ -51,16 +51,16 @@ export function KineticTextLoader({
       <div className="relative scale-75 md:scale-90 lg:scale-100">
         {/* The moving dot */}
         <div 
-          className="absolute z-10 top-10 left-21.25 w-1.5 h-1.5 bg-neutral-900 rounded-full"
+          className="absolute z-10 top-10 left-21.25 w-1.5 h-1.5 bg-neutral-800  rounded-full"
           style={{ 
             animation: "ktl-dotMove 1800ms cubic-bezier(0.25,0.25,0.75,0.75) infinite",
-            backgroundColor: dotColor,
+            ...(dotColor ? { backgroundColor: dotColor } : {})
           }}
         />
         
         <p 
-          className="relative m-0 whitespace-nowrap font-semibold text-[6.75rem] text-neutral-900" 
-          style={{ color: textColor }}
+          className="relative m-0 whitespace-nowrap text-[3.75rem] text-neutral-800 " 
+          style={textColor ? { color: textColor } : undefined}
           aria-label={text}
         >
           {letters.map((char, index) => {

@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import { motion, useScroll, useSpring } from 'framer-motion';
+import { m, useScroll, useSpring } from 'framer-motion';
 import { Zap, Sun, ShieldCheck, Trophy, BatteryCharging, Award } from 'lucide-react';
 import { DotPattern } from '../../../components/ui/DotPattern';
 import { AnimatedShinyText } from '../../../components/ui/AnimatedShinyText';
@@ -96,7 +96,7 @@ export const StorySection: React.FC = () => {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section header */}
-        <motion.div
+        <m.div
           className="text-center mb-12 sm:mb-16"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -133,7 +133,7 @@ export const StorySection: React.FC = () => {
               </AnimatedGradientText>
             </SparklesText>
           </h2>
-        </motion.div>
+        </m.div>
 
         {/* Timeline Container */}
         <div ref={containerRef} className="relative">
@@ -141,7 +141,7 @@ export const StorySection: React.FC = () => {
           <div className="hidden md:block absolute left-1/2 top-4 bottom-8 w-0.5 -translate-x-1/2 bg-slate-200/90" />
 
           {/* Active progressive line (Desktop) */}
-          <motion.div
+          <m.div
             className="hidden md:block absolute left-1/2 top-4 bottom-8 w-1 -translate-x-1/2 bg-linear-to-b from-amber-400 via-orange-400 to-amber-500 rounded-full shadow-sm shadow-amber-400/50 origin-top"
             style={{ scaleY }}
           />
@@ -150,16 +150,16 @@ export const StorySection: React.FC = () => {
           <div className="md:hidden absolute left-6.5 -translate-x-1/2 top-4 bottom-8 w-0.5 bg-slate-200/90" />
 
           {/* Active progressive line (Mobile) */}
-          <motion.div
+          <m.div
             className="md:hidden absolute left-6.5 -translate-x-1/2 top-4 bottom-8 w-1 bg-linear-to-b from-amber-400 via-orange-400 to-amber-500 rounded-full shadow-sm shadow-amber-400/50 origin-top"
             style={{ scaleY }}
           />
 
           {/* Milestones List */}
           <div className="space-y-7 sm:space-y-9 md:space-y-8">
-            {milestones.map((m, idx) => {
+            {milestones.map((milestone, idx) => {
               const isLeft = idx % 2 === 0;
-              const Icon = m.icon;
+              const Icon = milestone.icon;
 
               return (
                 <div key={idx} className="relative">
@@ -168,7 +168,7 @@ export const StorySection: React.FC = () => {
                     {/* Left side */}
                     <div className="flex justify-end">
                       {isLeft && (
-                        <motion.div
+                        <m.div
                           className="w-full max-w-xl group relative"
                           initial={{ opacity: 0, x: -60, scale: 0.97 }}
                           whileInView={{ opacity: 1, x: 0, scale: 1 }}
@@ -180,7 +180,7 @@ export const StorySection: React.FC = () => {
                           whileHover={{ y: -4, transition: { duration: 0.25 } }}
                         >
                           {/* Sliding connector line to center node */}
-                          <motion.div
+                          <m.div
                             className="hidden md:block absolute -right-14 top-1/2 -translate-y-1/2 w-14 h-0.5 bg-linear-to-r from-slate-200 via-amber-300 to-amber-500 origin-left"
                             initial={{ scaleX: 0 }}
                             whileInView={{ scaleX: 1 }}
@@ -204,21 +204,21 @@ export const StorySection: React.FC = () => {
 
                             <span className="relative z-10 inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-black uppercase tracking-[0.2em] bg-linear-to-r from-amber-50 to-orange-50 text-amber-700 border border-amber-200/80 mb-3 shadow-2xs">
                               <span className="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse" />
-                              {m.year}
+                              {milestone.year}
                             </span>
                             <h4 className="relative z-10 text-lg sm:text-xl font-extrabold text-slate-900 group-hover/card:text-amber-600 transition-colors duration-300">
-                              {m.title}
+                              {milestone.title}
                             </h4>
                             <p className="relative z-10 mt-2 text-sm text-slate-600 leading-relaxed font-normal">
-                              {m.description}
+                              {milestone.description}
                             </p>
                           </div>
-                        </motion.div>
+                        </m.div>
                       )}
                     </div>
 
                     {/* Central Icon Node on the spine */}
-                    <motion.div
+                    <m.div
                       className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-20"
                       initial={{ scale: 0, opacity: 0, rotate: -15 }}
                       whileInView={{ scale: 1, opacity: 1, rotate: 0 }}
@@ -240,12 +240,12 @@ export const StorySection: React.FC = () => {
                           <Icon className="w-5 h-5 stroke-[2.2] group-hover/node:rotate-6 transition-transform duration-300" />
                         </div>
                       </div>
-                    </motion.div>
+                    </m.div>
 
                     {/* Right side */}
                     <div className="flex justify-start">
                       {!isLeft && (
-                        <motion.div
+                        <m.div
                           className="w-full max-w-xl group relative"
                           initial={{ opacity: 0, x: 60, scale: 0.97 }}
                           whileInView={{ opacity: 1, x: 0, scale: 1 }}
@@ -257,7 +257,7 @@ export const StorySection: React.FC = () => {
                           whileHover={{ y: -4, transition: { duration: 0.25 } }}
                         >
                           {/* Sliding connector line to center node */}
-                          <motion.div
+                          <m.div
                             className="hidden md:block absolute -left-14 top-1/2 -translate-y-1/2 w-14 h-0.5 bg-linear-to-l from-slate-200 via-amber-300 to-amber-500 origin-right"
                             initial={{ scaleX: 0 }}
                             whileInView={{ scaleX: 1 }}
@@ -281,16 +281,16 @@ export const StorySection: React.FC = () => {
 
                             <span className="relative z-10 inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-black uppercase tracking-[0.2em] bg-linear-to-r from-amber-50 to-orange-50 text-amber-700 border border-amber-200/80 mb-3 shadow-2xs">
                               <span className="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse" />
-                              {m.year}
+                              {milestone.year}
                             </span>
                             <h4 className="relative z-10 text-lg sm:text-xl font-extrabold text-slate-900 group-hover/card:text-amber-600 transition-colors duration-300">
-                              {m.title}
+                              {milestone.title}
                             </h4>
                             <p className="relative z-10 mt-2 text-sm text-slate-600 leading-relaxed font-normal">
-                              {m.description}
+                              {milestone.description}
                             </p>
                           </div>
-                        </motion.div>
+                        </m.div>
                       )}
                     </div>
                   </div>
@@ -298,7 +298,7 @@ export const StorySection: React.FC = () => {
                   {/* Mobile Layout (< md) */}
                   <div className="md:hidden flex items-start gap-3.5 xs:gap-4.5 pl-2">
                     {/* Node on mobile spine */}
-                    <motion.div
+                    <m.div
                       className="relative z-10 shrink-0 mt-3"
                       initial={{ scale: 0, opacity: 0 }}
                       whileInView={{ scale: 1, opacity: 1 }}
@@ -313,10 +313,10 @@ export const StorySection: React.FC = () => {
                       <div className="w-9 h-9 rounded-xl bg-white border-2 border-amber-400 text-amber-600 flex items-center justify-center shadow-xs">
                         <Icon className="w-4 h-4 stroke-[2.2]" />
                       </div>
-                    </motion.div>
+                    </m.div>
 
                     {/* Mobile Content Card */}
-                    <motion.div
+                    <m.div
                       className="flex-1 min-w-0"
                       initial={{ opacity: 0, y: 16 }}
                       whileInView={{ opacity: 1, y: 0 }}
@@ -338,16 +338,16 @@ export const StorySection: React.FC = () => {
 
                         <span className="relative z-10 inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[10px] xs:text-xs font-bold uppercase tracking-[0.16em] bg-linear-to-r from-amber-50 to-orange-50 text-amber-700 border border-amber-200/80 mb-2">
                           <span className="w-1 h-1 rounded-full bg-amber-500 animate-pulse" />
-                          {m.year}
+                          {milestone.year}
                         </span>
                         <h4 className="relative z-10 text-base xs:text-lg font-bold text-slate-900 leading-snug">
-                          {m.title}
+                          {milestone.title}
                         </h4>
                         <p className="relative z-10 mt-1.5 text-xs xs:text-sm text-slate-600 leading-relaxed font-normal">
-                          {m.description}
+                          {milestone.description}
                         </p>
                       </div>
-                    </motion.div>
+                    </m.div>
                   </div>
                 </div>
               );

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { m, AnimatePresence } from 'framer-motion';
 import {
   Sun,
   Sliders,
@@ -141,7 +141,7 @@ export const EVBentoFeaturesSection: React.FC = () => {
                 >
                   {/* Left Active Glow Indicator Line */}
                   {isSelected && (
-                    <motion.div
+                    <m.div
                       layoutId="activeFeatureBar"
                       className="absolute left-0 top-3 bottom-3 w-1 rounded-full"
                       style={{ backgroundColor: item.color }}
@@ -187,7 +187,7 @@ export const EVBentoFeaturesSection: React.FC = () => {
                       {/* Smooth Expanding Description */}
                       <AnimatePresence initial={false}>
                         {isSelected && (
-                          <motion.div
+                          <m.div
                             initial={{ height: 0, opacity: 0 }}
                             animate={{ height: 'auto', opacity: 1 }}
                             exit={{ height: 0, opacity: 0 }}
@@ -210,7 +210,7 @@ export const EVBentoFeaturesSection: React.FC = () => {
                                 </span>
                               ))}
                             </div>
-                          </motion.div>
+                          </m.div>
                         )}
                       </AnimatePresence>
                     </div>
@@ -287,7 +287,7 @@ export const EVBentoFeaturesSection: React.FC = () => {
               </OrbitingCircles>
 
               {/* Central Core: Active Focus Hub */}
-              <motion.div
+              <m.div
                 key={activeFeature.id}
                 initial={{ scale: 0.9, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
@@ -296,7 +296,7 @@ export const EVBentoFeaturesSection: React.FC = () => {
                 style={{ borderColor: activeFeature.color }}
               >
                 {/* Center Glowing Status Halo */}
-                <motion.div
+                <m.div
                   className="absolute -inset-2 rounded-full blur-md opacity-40 pointer-events-none"
                   style={{ backgroundColor: activeFeature.color }}
                   animate={{ scale: [1, 1.15, 1], opacity: [0.25, 0.5, 0.25] }}
@@ -318,7 +318,7 @@ export const EVBentoFeaturesSection: React.FC = () => {
                 <div className="text-[10px] sm:text-[11px] font-semibold text-slate-500 uppercase tracking-wider line-clamp-1">
                   {activeFeature.statLabel}
                 </div>
-              </motion.div>
+              </m.div>
 
             </div>
 

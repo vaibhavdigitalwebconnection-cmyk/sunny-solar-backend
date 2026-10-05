@@ -1,5 +1,5 @@
 import React, { useEffect, useId, useRef, useState } from 'react';
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import { cn } from '../../lib/utils';
 
 export interface DotPatternProps extends React.SVGProps<SVGSVGElement> {
@@ -75,7 +75,7 @@ export const DotPattern: React.FC<DotPatternProps> = ({
         </radialGradient>
       </defs>
       {dots.map((dot, idx) => (
-        <motion.circle
+        <m.circle
           key={idx}
           cx={dot.x}
           cy={dot.y}

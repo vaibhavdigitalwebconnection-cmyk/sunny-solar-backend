@@ -17,7 +17,7 @@ import {
   Paperclip,
   Zap,
 } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { m, AnimatePresence } from 'framer-motion';
 import { BorderBeam } from '../../../components/ui/BorderBeam';
 import { AnimatedGridPattern } from '../../../components/ui/AnimatedGridPattern';
 import { Particles } from '../../../components/ui/Particles';
@@ -314,7 +314,7 @@ export const FreeAssessmentFormSection: React.FC = () => {
             <div className="lg:col-span-7 p-6 sm:p-8 lg:p-10 flex flex-col justify-center">
               {submitted ? (
                 /* Success View */
-                <motion.div
+                <m.div
                   initial={{ opacity: 0, scale: 0.95 }}
                   animate={{ opacity: 1, scale: 1 }}
                   className="py-6 text-center space-y-4"
@@ -362,7 +362,7 @@ export const FreeAssessmentFormSection: React.FC = () => {
                       Submit Another Request
                     </button>
                   </div>
-                </motion.div>
+                </m.div>
               ) : (
                 /* Normal Form */
                 <div>
@@ -546,7 +546,7 @@ export const FreeAssessmentFormSection: React.FC = () => {
 
                       <AnimatePresence>
                         {showExtras && (
-                          <motion.div
+                          <m.div
                             initial={{ opacity: 0, height: 0 }}
                             animate={{ opacity: 1, height: 'auto' }}
                             exit={{ opacity: 0, height: 0 }}
@@ -591,7 +591,7 @@ export const FreeAssessmentFormSection: React.FC = () => {
                               placeholder="Any specific questions? (e.g. tile roof, 3-phase, EV charger)..."
                               className="w-full px-3 py-2 text-xs rounded-xl border border-slate-200 bg-slate-50/50 focus:bg-white focus:border-[#2B3CB8] focus:ring-1 focus:ring-[#2B3CB8] focus:outline-hidden"
                             />
-                          </motion.div>
+                          </m.div>
                         )}
                       </AnimatePresence>
                     </div>

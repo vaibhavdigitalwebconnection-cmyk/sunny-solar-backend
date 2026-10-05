@@ -1,6 +1,6 @@
 "use client";
 import { cn } from "@/lib/utils";
-import { motion, AnimatePresence } from "framer-motion";
+import { m, AnimatePresence } from "framer-motion";
 import React, { useEffect, useState, useCallback } from "react";
 
 export interface ImagesSliderProps {
@@ -124,7 +124,7 @@ export const ImagesSlider: React.FC<ImagesSliderProps> = ({
     >
       {areImagesLoaded && (
         <AnimatePresence mode="popLayout">
-          <motion.img
+          <m.img
             key={currentIndex}
             src={loadedImages[currentIndex]}
             initial="initial"

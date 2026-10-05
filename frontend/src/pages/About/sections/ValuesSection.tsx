@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect, useCallback } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { m, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import {
   ShieldCheck,
@@ -183,7 +183,7 @@ export const ValuesSection: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Header section with top-tier copy */}
         <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8 mb-8 xs:mb-10 sm:mb-14">
-          <motion.div
+          <m.div
             className="max-w-5xl mx-auto text-center flex flex-col items-center"
             initial={{ opacity: 0, y: 25 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -202,7 +202,7 @@ export const ValuesSection: React.FC = () => {
                 Zero Subcontractors.
               </span>
             </h2>
-          </motion.div>
+          </m.div>
         </div>
 
         {/* ============================================================ */}
@@ -329,7 +329,7 @@ export const ValuesSection: React.FC = () => {
             {/* Image Container with Ambient Gradient (Fixed Height) */}
             <div className="relative h-48 xs:h-52 sm:h-56 w-full overflow-hidden bg-slate-900 shrink-0">
               <AnimatePresence mode="wait">
-                <motion.img
+                <m.img
                   key={ACCORDION_ITEMS[activeIndex].id}
                   src={ACCORDION_ITEMS[activeIndex].image}
                   alt={ACCORDION_ITEMS[activeIndex].title}
@@ -353,7 +353,7 @@ export const ValuesSection: React.FC = () => {
 
               {/* Auto-Hover Progress Bar */}
               <div className="absolute bottom-0 inset-x-0 h-1 bg-white/20 overflow-hidden">
-                <motion.div
+                <m.div
                   key={`${activeIndex}-${isPaused ? 'paused' : 'running'}`}
                   className="h-full bg-amber-400"
                   initial={{ width: '0%' }}
@@ -442,7 +442,7 @@ export const ValuesSection: React.FC = () => {
       {/* Fullscreen Interactive Lightbox Modal */}
       <AnimatePresence>
         {lightboxIndex !== null && ACCORDION_ITEMS[lightboxIndex] && (
-          <motion.div
+          <m.div
             className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 lg:p-10 bg-slate-950/92 backdrop-blur-xl"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -497,7 +497,7 @@ export const ValuesSection: React.FC = () => {
             </button>
 
             {/* Modal Inner Container */}
-            <motion.div
+            <m.div
               className="relative max-w-5xl w-full max-h-[90vh] flex flex-col items-center justify-center"
               initial={{ scale: 0.95, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
@@ -533,8 +533,8 @@ export const ValuesSection: React.FC = () => {
                   {ACCORDION_ITEMS[lightboxIndex].specs}
                 </div>
               </div>
-            </motion.div>
-          </motion.div>
+            </m.div>
+          </m.div>
         )}
       </AnimatePresence>
     </section>

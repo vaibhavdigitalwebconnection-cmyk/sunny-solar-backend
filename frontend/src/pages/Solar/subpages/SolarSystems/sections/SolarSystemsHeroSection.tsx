@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import { Calculator, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/Button';
 
@@ -52,7 +52,7 @@ export const SolarSystemsHeroSection: React.FC = () => {
         </div>
 
         {/* Main Title */}
-        <motion.h1
+        <m.h1
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.1 }}
@@ -62,20 +62,20 @@ export const SolarSystemsHeroSection: React.FC = () => {
           <span className="bg-linear-to-r from-[#2B3CB8] via-[#4658D9] to-[#6F8EE7] bg-clip-text text-transparent">
             Built for Peak Yield.
           </span>
-        </motion.h1>
+        </m.h1>
 
         {/* Narrative Subtitle */}
-        <motion.p
+        <m.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
           className="mt-5 text-base sm:text-lg text-slate-900 max-w-6xl mx-auto leading-relaxed"
         >
           Every roof has unique pitch, orientation, and shading. Explore our signature residential kilowatt packages, head-to-head Tier-1 hardware comparisons, and live savings estimates.
-        </motion.p>
+        </m.p>
 
         {/* Action Buttons */}
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.4 }}
@@ -97,7 +97,7 @@ export const SolarSystemsHeroSection: React.FC = () => {
           >
             Get Free 3D Roof Simulation
           </Button>
-        </motion.div>
+        </m.div>
       </div>
     </section>
   );

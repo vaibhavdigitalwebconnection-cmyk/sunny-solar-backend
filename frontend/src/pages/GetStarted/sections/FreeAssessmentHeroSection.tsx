@@ -1,6 +1,6 @@
 import React from 'react';
 import { ShieldCheck,  ArrowRight } from 'lucide-react';
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import { Particles } from '../../../components/ui/Particles';
 import { AnimatedShinyText } from '../../../components/ui/AnimatedShinyText';
 import { SparklesText } from '../../../components/ui/SparklesText';
@@ -52,7 +52,7 @@ export const FreeAssessmentHeroSection: React.FC = () => {
       <div className="max-w-full mx-auto pl-4 sm:pl-6 lg:pl-8 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-4 items-center">
           {/* ── LEFT COLUMN: Reduced, Attractive, High-Impact Content ── */}
-          <motion.div
+          <m.div
             initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
@@ -93,10 +93,10 @@ export const FreeAssessmentHeroSection: React.FC = () => {
               </a>
             
             </div>
-          </motion.div>
+          </m.div>
 
           {/* ── RIGHT COLUMN: Full Width, h-150 Continuous 3D Marquee ── */}
-          <motion.div
+          <m.div
             initial={{ opacity: 0, scale: 0.96 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.7, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
@@ -119,7 +119,7 @@ export const FreeAssessmentHeroSection: React.FC = () => {
 
              
             </div>
-          </motion.div>
+          </m.div>
         </div>
       </div>
     </section>

@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { m, AnimatePresence } from 'framer-motion';
 import { Search, X, ArrowRight } from 'lucide-react';
 import { projectsData, Project } from '../../../data/projectsData';
 import { ProjectCard } from '../../../components/cards/ProjectCard';
@@ -182,13 +182,13 @@ export const ProjectsGridSection: React.FC = () => {
 
           {/* Grid of Cards */}
           {filteredProjects.length > 0 ? (
-            <motion.div
+            <m.div
               layout
               className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
             >
               <AnimatePresence>
                 {filteredProjects.map((project) => (
-                  <motion.div
+                  <m.div
                     layout
                     key={project.slug}
                     initial={{ opacity: 0, scale: 0.95 }}
@@ -197,10 +197,10 @@ export const ProjectsGridSection: React.FC = () => {
                     transition={{ duration: 0.35 }}
                   >
                     <ProjectCard project={project} />
-                  </motion.div>
+                  </m.div>
                 ))}
               </AnimatePresence>
-            </motion.div>
+            </m.div>
           ) : (
             /* Empty state */
             <div className="text-center py-20 bg-white rounded-xl border border-slate-200/80 p-8 max-w-xl mx-auto shadow-sm">

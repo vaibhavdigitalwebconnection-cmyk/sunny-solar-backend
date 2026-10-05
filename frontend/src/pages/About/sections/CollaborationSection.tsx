@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import {
   ShieldCheck,
   CheckCircle2,
@@ -150,7 +150,7 @@ export const CollaborationSection: React.FC = () => {
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 sm:gap-12 lg:gap-16 items-center">
           {/* Left Column — Narrative, Badges & Technical Value */}
-          <motion.div
+          <m.div
             className="lg:col-span-7 flex flex-col justify-center items-center lg:items-start text-center lg:text-left"
             initial={{ opacity: 0, x: -35 }}
             animate={isVisible ? { opacity: 1, x: 0 } : {}}
@@ -178,7 +178,7 @@ export const CollaborationSection: React.FC = () => {
             </h2>
 
             {/* Narrative Copy with Elevated Brand Badges */}
-            <motion.p
+            <m.p
               initial={{ opacity: 0, y: 12 }}
               animate={isVisible ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.15 }}
@@ -191,10 +191,10 @@ export const CollaborationSection: React.FC = () => {
               <strong className="text-slate-950 font-semibold bg-linear-to-r from-emerald-50 to-green-50/80 px-1.5 py-0.5 rounded border border-emerald-100/80 inline-block shadow-2xs">Growatt</strong> to deliver high-yield solar modules,
               smart hybrid inverters, and modular battery systems engineered to endure Australia&apos;s extreme summer heat,
               cyclonic winds, and coastal salt mist.
-            </motion.p>
+            </m.p>
 
             {/* CTAs */}
-            <motion.div
+            <m.div
               initial={{ opacity: 0, y: 15 }}
               animate={isVisible ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.35 }}
@@ -217,11 +217,11 @@ export const CollaborationSection: React.FC = () => {
               >
                 View Quality Checklist
               </Button>
-            </motion.div>
-          </motion.div>
+            </m.div>
+          </m.div>
 
           {/* Right Column — Pure Tier-1 Brand Logos with Bottom-to-Top Infinite Sliding Animation */}
-          <motion.div
+          <m.div
             className="lg:col-span-5 flex flex-col justify-center"
             initial={{ opacity: 0, x: 35 }}
             animate={isVisible ? { opacity: 1, x: 0 } : {}}
@@ -278,11 +278,11 @@ export const CollaborationSection: React.FC = () => {
 
               
             </div>
-          </motion.div>
+          </m.div>
         </div>
 
         {/* Bottom Industry Accreditations: Infinite Smooth Scrolling Marquee (Magic UI) */}
-        <motion.div
+        <m.div
           className="mt-14 sm:mt-18 pt-6 border-t border-slate-200/70"
           initial={{ opacity: 0, y: 20 }}
           animate={isVisible ? { opacity: 1, y: 0 } : {}}
@@ -313,7 +313,7 @@ export const CollaborationSection: React.FC = () => {
               })}
             </Marquee>
           </div>
-        </motion.div>
+        </m.div>
       </div>
     </section>
   );

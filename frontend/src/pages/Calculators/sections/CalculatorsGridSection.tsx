@@ -1,5 +1,5 @@
 import React, { useState, useRef, useCallback, useEffect } from 'react';
-import { motion, type Variants } from 'framer-motion';
+import { m, type Variants } from 'framer-motion';
 import { calculatorsList } from '../../../data/calculatorsData';
 import { CalculatorCard } from '../../../components/calculators/CalculatorCard';
 import { Sparkles, SlidersHorizontal, ChevronLeft, ChevronRight } from 'lucide-react';
@@ -95,7 +95,7 @@ export const CalculatorsGridSection: React.FC = () => {
   return (
     <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-8 sm:mt-12 lg:mt-16">
       {/* Centered Section Header */}
-      <motion.div
+      <m.div
         initial={{ opacity: 0, y: 15 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: '-50px' }}
@@ -119,7 +119,7 @@ export const CalculatorsGridSection: React.FC = () => {
           <SlidersHorizontal className="w-3.5 h-3.5 text-amber-500" />
           <span>8 Verified Engineering Models</span>
         </div>
-      </motion.div>
+      </m.div>
 
       {/* 1. Mobile Experience (< md): 2x2 Card Grid with Auto-Sliding & Touch Swipe */}
       <div className="block md:hidden">
@@ -241,7 +241,7 @@ export const CalculatorsGridSection: React.FC = () => {
       </div>
 
       {/* 2. Desktop & Tablet Grid (>= md): Animated 4-Column Card Grid */}
-      <motion.div
+      <m.div
         variants={containerVariants}
         initial="hidden"
         whileInView="show"
@@ -249,11 +249,11 @@ export const CalculatorsGridSection: React.FC = () => {
         className="hidden md:grid md:grid-cols-2 lg:grid-cols-4 gap-3.5 sm:gap-5 lg:gap-6"
       >
         {calculatorsList.map((calc, index) => (
-          <motion.div key={calc.id} variants={itemVariants}>
+          <m.div key={calc.id} variants={itemVariants}>
             <CalculatorCard calculator={calc} index={index} />
-          </motion.div>
+          </m.div>
         ))}
-      </motion.div>
+      </m.div>
     </section>
   );
 };

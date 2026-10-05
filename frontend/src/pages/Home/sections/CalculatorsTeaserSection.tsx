@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { motion, AnimatePresence } from 'framer-motion';
+import { m, AnimatePresence } from 'framer-motion';
 import {
   DollarSign,
   Layers,
@@ -117,7 +117,7 @@ export const CalculatorsTeaserSection: React.FC = () => {
   return (
     <section className="py-14 sm:py-10 lg:py-14 bg-white relative overflow-hidden border-t border-slate-200/70">
       {/* Subtle ambient light accents with smooth floating animation */}
-      <motion.div
+      <m.div
         animate={{
           scale: [1, 1.25, 1],
           x: [0, 25, 0],
@@ -127,7 +127,7 @@ export const CalculatorsTeaserSection: React.FC = () => {
         transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut' }}
         className="absolute top-1/4 -left-20 w-80 h-80 bg-[#2B3CB8]/5 rounded-full blur-3xl pointer-events-none"
       />
-      <motion.div
+      <m.div
         animate={{
           scale: [1, 1.3, 1],
           x: [0, -30, 0],
@@ -137,7 +137,7 @@ export const CalculatorsTeaserSection: React.FC = () => {
         transition={{ duration: 12, repeat: Infinity, ease: 'easeInOut', delay: 1 }}
         className="absolute bottom-10 -right-20 w-80 h-80 bg-[#2B3CB8]/5 rounded-full blur-3xl pointer-events-none"
       />
-      <motion.div
+      <m.div
         animate={{
           scale: [1, 1.2, 1],
           opacity: [0.25, 0.5, 0.25],
@@ -178,12 +178,12 @@ export const CalculatorsTeaserSection: React.FC = () => {
 
             {/* ── LEFT SIDE: AVATAR ── */}
             <div className="lg:col-span-4 relative bg-linear-to-b from-[#2B3CB8] via-[#1D2984] to-[#0C123E] overflow-hidden flex flex-col justify-end h-64 sm:h-80 lg:h-full min-h-64 lg:min-h-full group/avatar">
-              <motion.div
+              <m.div
                 animate={{ scale: [1, 1.25, 1], opacity: [0.15, 0.35, 0.15] }}
                 transition={{ repeat: Infinity, duration: 6, ease: 'easeInOut' }}
                 className="absolute top-0 right-0 w-64 h-64 bg-white/20 rounded-full blur-2xl pointer-events-none"
               />
-              <motion.div
+              <m.div
                 animate={{ scale: [1, 1.3, 1], opacity: [0.2, 0.4, 0.2] }}
                 transition={{ repeat: Infinity, duration: 7, ease: 'easeInOut', delay: 1 }}
                 className="absolute bottom-0 left-0 w-64 h-64 bg-[#2B3CB8]/30 rounded-full blur-2xl pointer-events-none"
@@ -220,7 +220,7 @@ export const CalculatorsTeaserSection: React.FC = () => {
                   {calculators.map((calc, idx) => {
                     const isActive = idx === activeIndex;
                     return (
-                      <motion.button
+                      <m.button
                         key={calc.id}
                         type="button"
                         onClick={() => handleSelect(idx)}
@@ -231,7 +231,7 @@ export const CalculatorsTeaserSection: React.FC = () => {
                           }`}
                       >
                         {/* Circular Number Badge with animated pop */}
-                        <motion.span
+                        <m.span
                           animate={isActive ? { scale: [1, 1.08, 1] } : { scale: 1 }}
                           transition={{ duration: 0.3 }}
                           className={`shrink-0 w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center text-[11px] sm:text-xs font-extrabold transition-all duration-300 ${isActive
@@ -240,7 +240,7 @@ export const CalculatorsTeaserSection: React.FC = () => {
                             }`}
                         >
                           {calc.number}
-                        </motion.span>
+                        </m.span>
 
                         {/* Title */}
                         <span
@@ -252,20 +252,20 @@ export const CalculatorsTeaserSection: React.FC = () => {
 
                         {/* Active bottom accent bar */}
                         {isActive && (
-                          <motion.div
+                          <m.div
                             layoutId="active-calc-tab-bar"
                             className="absolute bottom-0 left-0 right-0 h-0.75 bg-[#EF680C]"
                             transition={{ type: 'spring', stiffness: 380, damping: 30 }}
                           />
                         )}
-                      </motion.button>
+                      </m.button>
                     );
                   })}
                 </div>
 
                 {/* ── Active Calculator Content with Smooth Animated Transitions ── */}
                 <AnimatePresence mode="wait">
-                  <motion.div
+                  <m.div
                     key={active.id}
                     initial={{ opacity: 0, y: 14 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -275,7 +275,7 @@ export const CalculatorsTeaserSection: React.FC = () => {
                   >
                     {/* Number / Icon Badge in Brand Blue + Title Row */}
                     <div className="flex items-center gap-3 sm:gap-4 min-h-11">
-                      <motion.div
+                      <m.div
                         initial={{ scale: 0.8, rotate: -8 }}
                         animate={{ scale: 1, rotate: 0 }}
                         transition={{ type: 'spring', damping: 14, stiffness: 220 }}
@@ -285,7 +285,7 @@ export const CalculatorsTeaserSection: React.FC = () => {
                           className:
                             'w-9 h-9 sm:w-11 sm:h-11 p-2 sm:p-2.5 rounded-xl bg-gradient-to-br from-[#2B3CB8] to-[#1D2984] text-white shadow-md shadow-[#2B3CB8]/25',
                         })}
-                      </motion.div>
+                      </m.div>
                       <h3 className="text-xl sm:text-2xl lg:text-3xl font-extrabold text-slate-900 font-serif tracking-tight leading-snug">
                         {active.title}
                       </h3>
@@ -297,7 +297,7 @@ export const CalculatorsTeaserSection: React.FC = () => {
                     </p>
 
                     {/* Key Projected Outcome Box */}
-                    <motion.div
+                    <m.div
                       initial={{ scale: 0.98, opacity: 0 }}
                       animate={{ scale: 1, opacity: 1 }}
                       transition={{ duration: 0.25, delay: 0.05 }}
@@ -310,14 +310,14 @@ export const CalculatorsTeaserSection: React.FC = () => {
                       />
 
                       {/* Continuous subtle animated shimmer sheen */}
-                      <motion.div
+                      <m.div
                         animate={{ x: ['-100%', '200%'] }}
                         transition={{ repeat: Infinity, duration: 5, ease: 'linear', repeatDelay: 3 }}
                         className="absolute inset-0 w-1/2 bg-linear-to-r from-transparent via-white/40 to-transparent skew-x-12 pointer-events-none"
                       />
 
                       <div className="relative z-10">
-                        <motion.div
+                        <m.div
                           key={active.highlight}
                           initial={{ scale: 0.92, opacity: 0 }}
                           animate={{ scale: 1, opacity: 1 }}
@@ -326,7 +326,7 @@ export const CalculatorsTeaserSection: React.FC = () => {
                           style={{ color: BRAND.green }}
                         >
                           {active.highlight}
-                        </motion.div>
+                        </m.div>
                       </div>
 
                       <div className="relative z-10 shrink-0 self-start sm:self-auto">
@@ -334,20 +334,20 @@ export const CalculatorsTeaserSection: React.FC = () => {
                           className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white border text-xs font-bold shadow-xs"
                           style={{ borderColor: '#EF680C', color: BRAND.green }}
                         >
-                          <motion.div
+                          <m.div
                             animate={{ rotate: [0, 18, -18, 0], scale: [1, 1.15, 1] }}
                             transition={{ repeat: Infinity, duration: 3, ease: 'easeInOut' }}
                           >
                             <Sparkles className="w-3.5 h-3.5 text-[#EF680C]" />
-                          </motion.div>
+                          </m.div>
                           <span>Instant Results</span>
                         </div>
                       </div>
-                    </motion.div>
+                    </m.div>
 
                     {/* Launch Button in Brand Blue */}
                     <div className="pt-1 flex flex-col sm:flex-row sm:items-center gap-3">
-                      <motion.div
+                      <m.div
                         whileHover={{ scale: 1.02 }}
                         whileTap={{ scale: 0.98 }}
                         className="w-full sm:w-auto"
@@ -362,9 +362,9 @@ export const CalculatorsTeaserSection: React.FC = () => {
                           <span>{active.ctaText}</span>
                           <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1.5" />
                         </Link>
-                      </motion.div>
+                      </m.div>
                     </div>
-                  </motion.div>
+                  </m.div>
                 </AnimatePresence>
               </div>
             </div>
@@ -372,7 +372,7 @@ export const CalculatorsTeaserSection: React.FC = () => {
 
           {/* Progress Bar */}
           <div className="h-1.5 w-full bg-slate-100 relative overflow-hidden">
-            <motion.div
+            <m.div
               key={`${activeIndex}-${isPaused}`}
               className="h-full w-full bg-[#EF680C] relative origin-left"
               initial={{ scaleX: 0 }}
@@ -381,7 +381,7 @@ export const CalculatorsTeaserSection: React.FC = () => {
             >
               {/* Luminous glow at leading edge */}
               <div className="absolute right-0 top-0 bottom-0 w-3 bg-white/70 blur-xs" />
-            </motion.div>
+            </m.div>
           </div>
         </AnimatedCard>
       </div>

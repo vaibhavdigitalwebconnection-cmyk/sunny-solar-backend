@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import {
   AnimatePresence,
-  motion,
+  m,
   useInView,
   type MotionProps,
   type UseInViewOptions,
@@ -71,7 +71,7 @@ export function BlurFade({
 
   return (
     <AnimatePresence>
-      <motion.div
+      <m.div
         ref={ref}
         initial="hidden"
         animate={isInView ? 'visible' : 'hidden'}
@@ -87,7 +87,7 @@ export function BlurFade({
         {...props}
       >
         {children}
-      </motion.div>
+      </m.div>
     </AnimatePresence>
   );
 }

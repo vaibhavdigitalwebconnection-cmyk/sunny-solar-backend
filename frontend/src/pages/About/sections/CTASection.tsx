@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState, useCallback } from 'react';
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import { Button } from '../../../components/ui/Button';
 import {
   ArrowRight,
@@ -178,7 +178,7 @@ export const CTASection: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Header Row with Title, Badge, and Navigation Controls */}
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-5 sm:gap-6 mb-8 sm:mb-12">
-            <motion.div
+            <m.div
               initial={{ opacity: 0, y: 25 }}
               animate={isVisible ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6 }}
@@ -196,7 +196,7 @@ export const CTASection: React.FC = () => {
                   Real Families.
                 </span>
               </h2>
-            </motion.div>
+            </m.div>
 
             {/* Slider Navigation Buttons */}
             <div className="flex items-center justify-between md:justify-end w-full md:w-auto gap-3 shrink-0">
@@ -339,7 +339,7 @@ export const CTASection: React.FC = () => {
 
         <div className="relative z-10 py-12 xs:py-16 sm:py-20 lg:py-14">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center flex flex-col items-center">
-            <motion.div
+            <m.div
               initial={{ opacity: 0, y: 30 }}
               animate={isVisible ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.2 }}
@@ -400,7 +400,7 @@ export const CTASection: React.FC = () => {
                   <span>No Sales Commission</span>
                 </div>
               </div>
-            </motion.div>
+            </m.div>
           </div>
         </div>
       </div>

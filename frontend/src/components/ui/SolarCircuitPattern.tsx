@@ -1,5 +1,5 @@
 import React, { useId } from 'react';
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import { cn } from '@/lib/utils';
 
 export interface SolarCircuitPatternProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -87,7 +87,7 @@ export const SolarCircuitPattern: React.FC<SolarCircuitPatternProps> = ({
       >
         <defs>
           {/* Beam 1: Solar Arrays DC String Feed (Cobalt Blue Surge) */}
-          <motion.linearGradient
+          <m.linearGradient
             id={beam1Id}
             gradientUnits="userSpaceOnUse"
             initial={{ x1: '-25%', x2: '0%', y1: '0%', y2: '0%' }}
@@ -103,10 +103,10 @@ export const SolarCircuitPattern: React.FC<SolarCircuitPatternProps> = ({
             <stop offset="35%" stopColor="#2B3CB8" stopOpacity="0.8" />
             <stop offset="65%" stopColor="#6F8EE7" stopOpacity="1" />
             <stop offset="100%" stopColor="#A4B9F1" stopOpacity="0" />
-          </motion.linearGradient>
+          </m.linearGradient>
 
           {/* Beam 2: Smart Inverter DC/AC Telemetry (Solar Amber Pulse) */}
-          <motion.linearGradient
+          <m.linearGradient
             id={beam2Id}
             gradientUnits="userSpaceOnUse"
             initial={{ x1: '-30%', x2: '-10%', y1: '0%', y2: '0%' }}
@@ -123,10 +123,10 @@ export const SolarCircuitPattern: React.FC<SolarCircuitPatternProps> = ({
             <stop offset="40%" stopColor="#EF680C" stopOpacity="0.85" />
             <stop offset="65%" stopColor="#FFA000" stopOpacity="1" />
             <stop offset="100%" stopColor="#FFD54F" stopOpacity="0" />
-          </motion.linearGradient>
+          </m.linearGradient>
 
           {/* Beam 3: Battery Storage Reverse Charge Flow */}
-          <motion.linearGradient
+          <m.linearGradient
             id={beam3Id}
             gradientUnits="userSpaceOnUse"
             initial={{ x1: '125%', x2: '145%', y1: '0%', y2: '0%' }}
@@ -142,10 +142,10 @@ export const SolarCircuitPattern: React.FC<SolarCircuitPatternProps> = ({
             <stop offset="0%" stopColor="#2B3CB8" stopOpacity="0" />
             <stop offset="50%" stopColor="#6F8EE7" stopOpacity="0.9" />
             <stop offset="100%" stopColor="#2B3CB8" stopOpacity="0" />
-          </motion.linearGradient>
+          </m.linearGradient>
 
           {/* Beam 4: Master Electrician Submain Conduit */}
-          <motion.linearGradient
+          <m.linearGradient
             id={beam4Id}
             gradientUnits="userSpaceOnUse"
             initial={{ x1: '-20%', x2: '0%', y1: '0%', y2: '0%' }}
@@ -162,7 +162,7 @@ export const SolarCircuitPattern: React.FC<SolarCircuitPatternProps> = ({
             <stop offset="45%" stopColor="#2B3CB8" stopOpacity="0.8" />
             <stop offset="70%" stopColor="#EF680C" stopOpacity="0.9" />
             <stop offset="100%" stopColor="#2B3CB8" stopOpacity="0" />
-          </motion.linearGradient>
+          </m.linearGradient>
 
           {/* Angled Sun Ray Sweep Gradient */}
           <linearGradient id={rayGradientId} x1="0%" y1="0%" x2="100%" y2="100%">
@@ -279,7 +279,7 @@ export const SolarCircuitPattern: React.FC<SolarCircuitPatternProps> = ({
 
 
       {/* â”€â”€ 4. Solar Glass Anti-Reflective Reflection Sweep â”€â”€ */}
-      <motion.div
+      <m.div
         animate={{
           x: ['-120%', '220%'],
         }}

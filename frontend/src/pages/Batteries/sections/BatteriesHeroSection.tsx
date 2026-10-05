@@ -1,5 +1,5 @@
 import React from 'react';
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import {
   ArrowRight,
   BatteryCharging,
@@ -47,7 +47,7 @@ export const BatteriesHeroSection: React.FC = () => {
             </div>
 
             {/* Headline */}
-            <motion.h1
+            <m.h1
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4, delay: 0.1 }}
@@ -58,20 +58,20 @@ export const BatteriesHeroSection: React.FC = () => {
               <span className="bg-linear-to-r from-[#2B3CB8] via-[#4658D9] to-[#6F8EE7] bg-clip-text text-transparent">
                 Power Your Nights & Outages.
               </span>
-            </motion.h1>
+            </m.h1>
 
             {/* Narrative Subtitle */}
-            <motion.p
+            <m.p
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4, delay: 0.15 }}
               className="text-xs xs:text-sm sm:text-base text-slate-600 leading-relaxed max-w-xl mx-auto lg:mx-0"
             >
               Retailers pay just 3¢ to 5¢ for daytime solar export, but charge up to 45¢/kWh the moment the sun sets. A home battery stores your solar surplus to eliminate peak evening power bills and protect your household when Nationwide storms knock out the grid.
-            </motion.p>
+            </m.p>
 
             {/* Primary Action Buttons */}
-            <motion.div
+            <m.div
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4, delay: 0.2 }}
@@ -95,13 +95,13 @@ export const BatteriesHeroSection: React.FC = () => {
               >
                 Calculate Battery Savings
               </Button>
-            </motion.div>
+            </m.div>
 
 
           </div>
 
           {/* Image Column (Top on mobile, Right on desktop) */}
-          <motion.div
+          <m.div
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5, delay: 0.2 }}
@@ -162,7 +162,7 @@ export const BatteriesHeroSection: React.FC = () => {
                 <div className="text-[11px] text-slate-500">Average household grid independence</div>
               </div>
             </div>
-          </motion.div>
+          </m.div>
 
         </div>
       </div>

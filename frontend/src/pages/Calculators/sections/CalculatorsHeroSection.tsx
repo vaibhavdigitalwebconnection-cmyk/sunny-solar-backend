@@ -1,5 +1,5 @@
 import React from 'react';
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import {
   ArrowRight,
   Calculator,
@@ -36,7 +36,7 @@ export const CalculatorsHeroSection: React.FC = () => {
             </div>
 
             {/* Headline */}
-            <motion.h1
+            <m.h1
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4, delay: 0.08 }}
@@ -47,20 +47,20 @@ export const CalculatorsHeroSection: React.FC = () => {
               <span className="bg-linear-to-r from-[#2B3CB8] via-[#4658D9] to-[#6F8EE7] bg-clip-text text-transparent">
                 Calculators & Sizing Tools.
               </span>
-            </motion.h1>
+            </m.h1>
 
             {/* Narrative Subtitle */}
-            <motion.p
+            <m.p
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4, delay: 0.14 }}
               className="text-xs xs:text-sm sm:text-base text-slate-600 leading-relaxed max-w-xl mx-auto lg:mx-0"
             >
               Calculate estimated quarterly bill savings, ideal system capacity, battery payback horizons, and quote comparisons with transparent formulas built on real Nationwide solar radiation data and network tariffs.
-            </motion.p>
+            </m.p>
 
             {/* Guarantees / Trust Micro-list */}
-            <motion.div
+            <m.div
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4, delay: 0.2 }}
@@ -79,10 +79,10 @@ export const CalculatorsHeroSection: React.FC = () => {
                 </div>
                 <span>100% Free • No Personal Info Needed</span>
               </div>
-            </motion.div>
+            </m.div>
 
             {/* Action Buttons */}
-            <motion.div
+            <m.div
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4, delay: 0.26 }}
@@ -107,12 +107,12 @@ export const CalculatorsHeroSection: React.FC = () => {
               >
                 Calculate Battery ROI
               </Button>
-            </motion.div>
+            </m.div>
 
           </div>
 
           {/* Image Column (Bottom on mobile, Right on desktop) */}
-          <motion.div
+          <m.div
             initial={{ opacity: 0, scale: 0.98 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5, delay: 0.15 }}
@@ -136,7 +136,7 @@ export const CalculatorsHeroSection: React.FC = () => {
               </div>
             </div>
 
-          </motion.div>
+          </m.div>
 
         </div>
       </div>

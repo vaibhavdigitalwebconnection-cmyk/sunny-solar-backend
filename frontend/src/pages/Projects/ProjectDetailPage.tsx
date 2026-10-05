@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { useParams, Navigate, Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
-import { motion, AnimatePresence } from 'framer-motion';
+import { m, AnimatePresence } from 'framer-motion';
 import { projectsData, Project } from '../../data/projectsData';
 import { Breadcrumbs } from '../../components/layout/Breadcrumbs';
 import { ProjectCard } from '../../components/cards/ProjectCard';
@@ -210,7 +210,7 @@ export const ProjectDetailPage: React.FC = () => {
           {/* Main Large Showcase Image Viewer */}
           <div className="relative rounded-3xl overflow-hidden shadow-xl bg-slate-950 aspect-video sm:aspect-21/9 lg:aspect-2/1 group border border-slate-200/80">
             <AnimatePresence mode="wait">
-              <motion.img
+              <m.img
                 key={gallery[activeImageIndex].url}
                 src={gallery[activeImageIndex].url}
                 alt={gallery[activeImageIndex].caption}
@@ -485,7 +485,7 @@ export const ProjectDetailPage: React.FC = () => {
       {/* ============================================================ */}
       <AnimatePresence>
         {lightboxOpen && gallery[activeImageIndex] && (
-          <motion.div
+          <m.div
             className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 lg:p-10 bg-slate-950/95 backdrop-blur-xl"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -537,7 +537,7 @@ export const ProjectDetailPage: React.FC = () => {
             </button>
 
             {/* Modal Inner Container */}
-            <motion.div
+            <m.div
               className="relative max-w-5xl w-full max-h-[90vh] flex flex-col items-center justify-center"
               initial={{ scale: 0.95, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
@@ -565,8 +565,8 @@ export const ProjectDetailPage: React.FC = () => {
                   {gallery[activeImageIndex].caption}
                 </p>
               </div>
-            </motion.div>
-          </motion.div>
+            </m.div>
+          </m.div>
         )}
       </AnimatePresence>
     </div>

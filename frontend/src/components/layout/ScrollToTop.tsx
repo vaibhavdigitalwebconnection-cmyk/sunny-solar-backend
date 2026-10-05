@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
-import { motion, AnimatePresence } from 'framer-motion';
+import { m, AnimatePresence } from 'framer-motion';
 import { useSmoothScroll } from '../common/SmoothScroll.tsx';
 
 export const ScrollToTop: React.FC = () => {
@@ -33,7 +33,7 @@ export const ScrollToTop: React.FC = () => {
   return (
     <AnimatePresence>
       {isNavigating && (
-        <motion.div
+        <m.div
           initial={{ scaleX: 0, opacity: 1 }}
           animate={{ scaleX: 1, opacity: [1, 1, 0] }}
           exit={{ opacity: 0 }}

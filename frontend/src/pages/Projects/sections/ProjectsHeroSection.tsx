@@ -1,5 +1,5 @@
 import React from 'react';
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import { Particles } from '../../../components/ui/Particles';
 import { NumberTicker } from '../../../components/ui/NumberTicker';
 import { ImagesSlider } from '../../../components/ui/images-slider';
@@ -37,7 +37,7 @@ export const ProjectsHeroSection: React.FC = () => {
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-20 text-center w-full">
           {/* Eyebrow badge */}
-          <motion.div
+          <m.div
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
@@ -45,10 +45,10 @@ export const ProjectsHeroSection: React.FC = () => {
           >
             <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
             <span className="font-bold text-white tracking-wide">Real South East Nationwide Rooftops</span>
-          </motion.div>
+          </m.div>
 
           {/* Main Title */}
-          <motion.h1
+          <m.h1
             initial={{ opacity: 0, y: 25 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
@@ -69,17 +69,17 @@ export const ProjectsHeroSection: React.FC = () => {
               duration={1.5}
               delay={0.35}
             />
-          </motion.h1>
+          </m.h1>
 
           {/* Narrative Subtitle */}
-          <motion.p
+          <m.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
             className="mt-5 text-base sm:text-lg text-white max-w-5xl mx-auto leading-relaxed font-normal drop-shadow-xs"
           >
             Inspect real rooftop and battery installations across australia, Gold Coast, and the Hinterland. Verified meter yields, unedited photos, and 100% in-house Master Electrician workmanship.
-          </motion.p>
+          </m.p>
 
           
         </div>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { motion, useScroll, type HTMLMotionProps } from 'framer-motion';
+import { m, useScroll, type HTMLMotionProps } from 'framer-motion';
 import { cn } from '../../lib/utils';
 
 export interface ScrollProgressProps extends Omit<HTMLMotionProps<'div'>, 'ref'> {
@@ -11,7 +11,7 @@ export const ScrollProgress = React.forwardRef<HTMLDivElement, ScrollProgressPro
     const { scrollYProgress } = useScroll();
 
     return (
-      <motion.div
+      <m.div
         ref={ref}
         aria-hidden="true"
         className={cn(

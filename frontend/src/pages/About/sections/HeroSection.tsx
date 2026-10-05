@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import { ArrowDown, ArrowRight, ShieldCheck, CheckCircle2, Sparkles } from 'lucide-react';
 import { Button } from '../../../components/ui/Button';
 import { FlipText } from '@/components/ui/FlipText';
@@ -52,7 +52,7 @@ export const HeroSection: React.FC = () => {
             </div>
 
             {/* Main heading — animated with FlipText */}
-            <motion.h1
+            <m.h1
               className="text-2xl xs:text-3xl sm:text-4xl lg:text-5xl text-slate-950 leading-[1.18] sm:leading-[1.08] font-serif font-bold text-center lg:text-left"
               initial={{ opacity: 0, y: 30 }}
               animate={isVisible ? { opacity: 1, y: 0 } : {}}
@@ -64,10 +64,10 @@ export const HeroSection: React.FC = () => {
               <FlipText className="text-[#2B3CB8]" delay={0.3}>
                 Experience You Can Rely On.
               </FlipText>
-            </motion.h1>
+            </m.h1>
 
             {/* Narrative copy */}
-            <motion.p
+            <m.p
               className="mt-4 sm:mt-6 text-sm sm:text-base lg:text-lg text-slate-700 leading-relaxed font-normal text-justify lg:text-left max-w-xl mx-auto lg:mx-0"
               initial={{ opacity: 0, y: 20 }}
               animate={isVisible ? { opacity: 1, y: 0 } : {}}
@@ -75,12 +75,12 @@ export const HeroSection: React.FC = () => {
             >
               Founded by Master Electrician Trent Packer, Sunny Solar was built around a simple belief: choosing solar should feel clear, not complicated.
               With 14+ years of industry experience, Trent and the Sunny Solar team help homeowners understand their energy needs, compare their options and choose a solar solution that makes sense for their home.
-            </motion.p>
+            </m.p>
 
             
 
             {/* Call to action buttons */}
-            <motion.div
+            <m.div
               className="mt-6 sm:mt-8 flex flex-col sm:flex-row items-stretch sm:items-center justify-center lg:justify-start gap-3 sm:gap-4 w-full sm:w-auto"
               initial={{ opacity: 0, y: 20 }}
               animate={isVisible ? { opacity: 1, y: 0 } : {}}
@@ -105,7 +105,7 @@ export const HeroSection: React.FC = () => {
               >
                 Meet Trent Packer →
               </Button>
-            </motion.div>
+            </m.div>
 
           </div>
         </div>

@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import {
   animate,
-  motion,
+  m,
   useInView,
   useMotionValue,
   useReducedMotion,
@@ -286,7 +286,7 @@ export function DiaTextReveal({
       : undefined;
 
   return (
-    <motion.span
+    <m.span
       ref={spanRef}
       className={cn("align-bottom leading-[100%] text-inherit inline-block", className)}
       style={{
@@ -309,7 +309,7 @@ export function DiaTextReveal({
       {...props}
     >
       {texts[activeIndex]}
-    </motion.span>
+    </m.span>
   );
 }
 

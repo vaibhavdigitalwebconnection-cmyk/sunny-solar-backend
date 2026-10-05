@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { createPortal } from 'react-dom';
-import { motion, useMotionValue, useSpring, AnimatePresence } from 'framer-motion';
+import { m, useMotionValue, useSpring, AnimatePresence } from 'framer-motion';
 import { cn } from '@/lib/utils';
 
 export interface CursorCardProps {
@@ -89,7 +89,7 @@ export function CursorCard({
         createPortal(
           <AnimatePresence>
             {isHovered && (
-              <motion.div
+              <m.div
                 initial={{ opacity: 0, scale: 0.85 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.85 }}
@@ -111,7 +111,7 @@ export function CursorCard({
                 <p className="text-xs text-neutral-600 dark:text-neutral-300 m-0 leading-relaxed font-medium">
                   {description}
                 </p>
-              </motion.div>
+              </m.div>
             )}
           </AnimatePresence>,
           document.body

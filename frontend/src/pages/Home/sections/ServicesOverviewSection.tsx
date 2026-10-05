@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { m, AnimatePresence } from 'framer-motion';
 import {
   ShieldCheck,
   ArrowRight,
@@ -227,7 +227,7 @@ export const ServicesOverviewSection: React.FC = () => {
               {/* ──────────────────────────────────────────────────────── */}
               <div className="absolute inset-0 z-0 overflow-hidden bg-white">
                 <AnimatePresence mode="wait">
-                  <motion.img
+                  <m.img
                     key={`slide-img-${activeSlide.id}`}
                     src={activeSlide.image}
                     alt={activeSlide.title}
@@ -254,7 +254,7 @@ export const ServicesOverviewSection: React.FC = () => {
               {/* ──────────────────────────────────────────────────────── */}
               <div className="absolute inset-0 z-20 pointer-events-none flex flex-col overflow-hidden">
                 {Array.from({ length: SLATS_COUNT }).map((_, i) => (
-                  <motion.div
+                  <m.div
                     key={`slat-${transitionKey}-${i}`}
                     initial={{ scaleY: 1 }}
                     animate={{ scaleY: 0 }}

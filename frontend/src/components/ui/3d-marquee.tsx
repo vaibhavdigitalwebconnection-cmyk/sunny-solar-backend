@@ -1,5 +1,5 @@
 import React from 'react';
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import { cn } from '../../lib/utils';
 
 export interface ThreeDMarqueeProps {
@@ -51,7 +51,7 @@ export const ThreeDMarquee: React.FC<ThreeDMarqueeProps> = ({
               const isEven = colIndex % 2 === 0;
 
               return (
-                <motion.div
+                <m.div
                   key={colIndex + '-marquee-col'}
                   animate={{
                     y: isEven ? ['0%', '-50%'] : ['-50%', '0%'],
@@ -70,7 +70,7 @@ export const ThreeDMarquee: React.FC<ThreeDMarqueeProps> = ({
                       key={`${colIndex}-${imageIndex}-${image}`}
                     >
                       <GridLineHorizontal className="-top-3" offset="20px" />
-                      <motion.img
+                      <m.img
                         whileHover={{
                           y: -6,
                           scale: 1.05,
@@ -93,7 +93,7 @@ export const ThreeDMarquee: React.FC<ThreeDMarqueeProps> = ({
                       />
                     </div>
                   ))}
-                </motion.div>
+                </m.div>
               );
             })}
           </div>

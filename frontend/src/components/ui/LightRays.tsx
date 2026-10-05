@@ -1,5 +1,5 @@
 import React, { useMemo, type CSSProperties } from 'react';
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import { cn } from '../../lib/utils';
 
 export interface LightRaysProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -56,7 +56,7 @@ const Ray: React.FC<LightRay> = ({
   intensity,
 }) => {
   return (
-    <motion.div
+    <m.div
       className="pointer-events-none absolute top-[-15%] origin-top -translate-x-1/2 rounded-full opacity-0 mix-blend-screen"
       style={
         {

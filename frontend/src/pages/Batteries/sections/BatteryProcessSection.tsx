@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { m, AnimatePresence } from 'framer-motion';
 import {
   ClipboardCheck,
   Thermometer,
@@ -279,7 +279,7 @@ export const BatteryProcessSection: React.FC = () => {
           <div className="relative hidden md:block">
             {/* Connecting conduit line */}
             <div className="absolute top-7 left-12 right-12 h-1 bg-slate-200 rounded-full z-0">
-              <motion.div
+              <m.div
                 className="h-full bg-linear-to-r from-emerald-500 to-teal-500 rounded-full"
                 initial={false}
                 animate={{
@@ -381,7 +381,7 @@ export const BatteryProcessSection: React.FC = () => {
           {/* 8-Second Auto-Rotation Progress Bar */}
           <div className="w-full bg-slate-100 h-1.5 relative overflow-hidden">
             {!isPaused ? (
-              <motion.div
+              <m.div
                 key={activeStep}
                 initial={{ width: '0%' }}
                 animate={{ width: '100%' }}
@@ -394,7 +394,7 @@ export const BatteryProcessSection: React.FC = () => {
           </div>
 
           <AnimatePresence mode="wait">
-            <motion.div
+            <m.div
               key={current.id}
               initial={{ opacity: 0, y: 14 }}
               animate={{ opacity: 1, y: 0 }}
@@ -532,7 +532,7 @@ export const BatteryProcessSection: React.FC = () => {
                   </span>
                 </div>
               </div>
-            </motion.div>
+            </m.div>
           </AnimatePresence>
         </div>
 

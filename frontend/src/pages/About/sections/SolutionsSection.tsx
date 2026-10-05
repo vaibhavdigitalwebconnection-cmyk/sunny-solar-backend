@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import { Shield, Building2, Award, TrendingUp, ChevronLeft, ChevronRight } from 'lucide-react';
 
 interface SolutionCard {
@@ -175,7 +175,7 @@ export const SolutionsSection: React.FC = () => {
         </div>
 
         {/* Section Heading */}
-        <motion.h2
+        <m.h2
           className="text-2xl xs:text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-slate-950 tracking-tight text-center leading-[1.18] sm:leading-[1.15]"
           initial={{ opacity: 0, y: 25 }}
           animate={isVisible ? { opacity: 1, y: 0 } : {}}
@@ -187,7 +187,7 @@ export const SolutionsSection: React.FC = () => {
           <span className="bg-linear-to-r from-amber-500 via-orange-500 to-amber-600 bg-clip-text text-transparent">
             Projects
           </span>
-        </motion.h2>
+        </m.h2>
 
         {/* Mobile View: Two-Card Grid Sliding Carousel */}
         <div className="block lg:hidden mt-8">
@@ -261,14 +261,14 @@ export const SolutionsSection: React.FC = () => {
         {/* Desktop View: 4 Cards Grid */}
         <div className="hidden lg:grid lg:grid-cols-4 gap-6 mt-12 sm:mt-16">
           {cards.map((card, index) => (
-            <motion.div
+            <m.div
               key={index}
               initial={{ opacity: 0, y: 30 }}
               animate={isVisible ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: 0.15 + index * 0.1 }}
             >
               {renderCard(card, false)}
-            </motion.div>
+            </m.div>
           ))}
         </div>
       </div>

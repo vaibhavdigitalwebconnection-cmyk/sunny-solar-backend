@@ -1,5 +1,5 @@
 import React from 'react';
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import {
   ClipboardCheck,
   Wrench,
@@ -109,7 +109,7 @@ export const EVInstallationProcessSection: React.FC = () => {
 
           {/* Desktop Connecting Energy Flow Line */}
           <div className="hidden lg:block absolute top-16 left-12 right-12 h-0.5 bg-slate-200 z-0">
-            <motion.div
+            <m.div
               className="h-full bg-linear-to-r from-[#2B3CB8] via-[#ED4F11] to-[#10B981]"
               animate={{ x: ['-100%', '100%'] }}
               transition={{ duration: 3.5, repeat: Infinity, ease: 'easeInOut' }}
@@ -120,7 +120,7 @@ export const EVInstallationProcessSection: React.FC = () => {
             {STEPS.map((step, index) => {
               const Icon = step.icon;
               return (
-                <motion.div
+                <m.div
                   key={step.stepNumber}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -158,12 +158,12 @@ export const EVInstallationProcessSection: React.FC = () => {
                           color: step.color,
                         }}
                       >
-                        <motion.div
+                        <m.div
                           whileHover={{ rotate: 12, scale: 1.1 }}
                           transition={{ type: 'spring', stiffness: 400, damping: 10 }}
                         >
                           <Icon className="w-5 h-5" />
-                        </motion.div>
+                        </m.div>
                       </div>
                     </div>
 
@@ -196,7 +196,7 @@ export const EVInstallationProcessSection: React.FC = () => {
                     ))}
                   </div>
 
-                </motion.div>
+                </m.div>
               );
             })}
           </div>

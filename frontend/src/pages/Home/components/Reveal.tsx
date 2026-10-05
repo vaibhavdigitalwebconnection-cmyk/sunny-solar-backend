@@ -1,5 +1,5 @@
 import React from 'react';
-import { motion, useReducedMotion } from 'framer-motion';
+import { m, useReducedMotion } from 'framer-motion';
 import { useIsMobile } from '../useIsMobile';
 import {
   ANIMATION_CONFIG,
@@ -63,7 +63,7 @@ export const Reveal: React.FC<RevealProps> = ({
     duration
   );
 
-  const MotionComponent = motion[as] as typeof motion.div;
+  const MotionComponent = m[as] as typeof m.div;
 
   return (
     <MotionComponent

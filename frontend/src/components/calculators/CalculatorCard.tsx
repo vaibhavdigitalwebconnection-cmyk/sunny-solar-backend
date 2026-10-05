@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import {
   DollarSign,
   Layers,
@@ -33,7 +33,7 @@ export interface CalculatorCardProps {
   compact?: boolean;
 }
 
-const MotionLink = motion.create(Link);
+const MotionLink = m.create(Link);
 
 export const CalculatorCard: React.FC<CalculatorCardProps> = ({ calculator, compact }) => {
   const IconComponent = iconMap[calculator.iconName] || DollarSign;

@@ -1,6 +1,6 @@
 import React, { useState, useMemo } from 'react';
 import { Link } from 'react-router-dom';
-import { motion, AnimatePresence } from 'framer-motion';
+import { m, AnimatePresence } from 'framer-motion';
 import { Plus, Minus, HelpCircle, ArrowRight } from 'lucide-react';
 import { CursorCard } from '@/components/ui/CursorCard';
 import { Reveal } from '../components/Reveal';
@@ -131,7 +131,7 @@ export const FAQSection: React.FC = () => {
 
                       <AnimatePresence initial={false}>
                         {isOpen && (
-                          <motion.div
+                          <m.div
                             key="content"
                             initial={{ height: 0, opacity: 0 }}
                             animate={{ height: 'auto', opacity: 1 }}
@@ -153,7 +153,7 @@ export const FAQSection: React.FC = () => {
                                 </p>
                               </div>
                             </div>
-                          </motion.div>
+                          </m.div>
                         )}
                       </AnimatePresence>
                     </div>
@@ -198,7 +198,7 @@ export const FAQSection: React.FC = () => {
               <div className="absolute -inset-4 bg-linear-to-tr from-amber-100/40 via-orange-50/25 to-slate-100/50 blur-2xl -z-10 pointer-events-none" />
 
               {/* Illustration container */}
-              <motion.div
+              <m.div
                 initial={{ opacity: 0, scale: 0.96 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
@@ -211,7 +211,7 @@ export const FAQSection: React.FC = () => {
                   className="w-full h-auto object-contain max-h-125 sm:max-h-147.5 transition-transform duration-500"
                   loading="lazy"
                 />
-              </motion.div>
+              </m.div>
             </div>
           </div>
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import { motion, type Transition } from 'framer-motion';
+import { m, type Transition } from 'framer-motion';
 import { cn } from '../../lib/utils';
 
 export interface BorderBeamProps {
@@ -48,7 +48,7 @@ export const BorderBeam: React.FC<BorderBeamProps> = ({
         } as React.CSSProperties
       }
     >
-      <motion.div
+      <m.div
         className={cn('absolute aspect-square', className)}
         style={{
           width: size,

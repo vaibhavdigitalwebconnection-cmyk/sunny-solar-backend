@@ -64,8 +64,6 @@ const TermsOfTradePage = lazy(() => import('../pages/Legal/TermsOfTradePage'));
 const AdminPage = lazy(() => import('../pages/Admin/AdminPage'));
 const NotFoundPage = lazy(() => import('../pages/NotFound/NotFoundPage'));
 
-import LatticeLoadingBlock from '../components/ui/LatticeLoadingBlock';
-
 // Sleek top progress loader & non-disruptive fallback while dynamic chunk loads
 // min-h-[80vh] reserves enough space so the footer doesn't paint at the wrong
 // position and then jump when real content loads (CLS fix: 0.596 from footer)
@@ -215,32 +213,6 @@ export const preloadRoute = (path: string) => {
 
 export const AppRoutes: React.FC = () => {
   const location = useLocation();
-
-  // Background-warm core pages during idle time so user clicks are instantaneous
-  React.useEffect(() => {
-    if (typeof window === 'undefined') return;
-
-    const warmCommonRoutes = () => {
-      import('../pages/Solar/SolarLandingPage');
-      import('../pages/Batteries/BatteriesLandingPage');
-      import('../pages/EVCharger/EVChargerPage');
-      import('../pages/ExistingSolar');
-      import('../pages/Calculators');
-      import('../pages/GetStarted/FreeAssessmentPage');
-      import('../pages/About/AboutPage');
-      import('../pages/Projects/ProjectsPage');
-      import('../pages/Reviews/ReviewsPage');
-      import('../pages/FAQ/FAQPage');
-    };
-
-    if ('requestIdleCallback' in window) {
-      const handle = (window as any).requestIdleCallback(warmCommonRoutes, { timeout: 2000 });
-      return () => (window as any).cancelIdleCallback(handle);
-    } else {
-      const timer = setTimeout(warmCommonRoutes, 1000);
-      return () => clearTimeout(timer);
-    }
-  }, []);
 
   return (
     <Suspense fallback={<RouteFallback />}>

@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react';
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import { TestimonialsCard } from '@/components/ui/testimonials-card';
 import { ArrowRight, Sparkles } from 'lucide-react';
 import { Button } from '@/components/ui/Button';
@@ -125,7 +125,7 @@ export const FeaturedProjectsSection: React.FC = () => {
 
       {/* ── 2. Subtle Volumetric Sunbeams / Solar Rays ── */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden mask-[radial-gradient(ellipse_75%_65%_at_65%_35%,#000_20%,transparent_85%)]">
-        <motion.div
+        <m.div
           animate={{ opacity: [0.25, 0.45, 0.25] }}
           transition={{ duration: 7, repeat: Infinity, ease: 'easeInOut' }}
           className="absolute -top-32 right-1/10 w-187.5 h-162.5 -rotate-35 origin-top-right flex justify-around opacity-30"
@@ -134,12 +134,12 @@ export const FeaturedProjectsSection: React.FC = () => {
           <div className="w-28 h-full bg-linear-to-b from-blue-400/20 via-sky-300/5 to-transparent blur-2xl" />
           <div className="w-12 h-full bg-linear-to-b from-amber-300/20 via-yellow-200/5 to-transparent blur-lg" />
           <div className="w-20 h-full bg-linear-to-b from-blue-500/15 via-indigo-300/5 to-transparent blur-xl" />
-        </motion.div>
+        </m.div>
       </div>
 
       {/* ── 3. Smooth Breathing Solar Atmospheric Blooms ── */}
       {/* Top right solar amber/orange sun bloom */}
-      <motion.div
+      <m.div
         animate={{
           scale: [1, 1.14, 1],
           x: [0, 18, 0],
@@ -150,7 +150,7 @@ export const FeaturedProjectsSection: React.FC = () => {
       />
 
       {/* Bottom left deep clean-energy blue bloom */}
-      <motion.div
+      <m.div
         animate={{
           scale: [1, 1.16, 1],
           x: [0, -20, 0],
@@ -161,7 +161,7 @@ export const FeaturedProjectsSection: React.FC = () => {
       />
 
       {/* Central Radiance Glow spotlighting the Interactive Carousel Stage */}
-      <motion.div
+      <m.div
         animate={{
           scale: [0.96, 1.06, 0.96],
           opacity: [0.4, 0.7, 0.4],

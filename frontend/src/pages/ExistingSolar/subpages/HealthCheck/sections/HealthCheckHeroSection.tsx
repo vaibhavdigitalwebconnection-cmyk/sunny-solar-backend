@@ -1,5 +1,5 @@
 import React from 'react';
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import { ArrowRight, Phone } from 'lucide-react';
 import { Button } from '@/components/ui/Button';
 
@@ -12,7 +12,7 @@ export const HealthCheckHeroSection: React.FC = () => {
       <div className=" relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-6 items-center">
           {/* Left Column: Rooftop Hero Image with Magic UI BorderBeam & Floating Badges */}
-          <motion.div
+          <m.div
             initial={{ opacity: 0, x: -30 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
@@ -33,10 +33,10 @@ export const HealthCheckHeroSection: React.FC = () => {
               {/* Bottom blue gradient overlay */}
               <div className="pointer-events-none absolute inset-x-0 bottom-0 h-16 bg-linear-to-t from-blue-950 to-transparent z-20" />
             </div>
-          </motion.div>
+          </m.div>
 
           {/* Right Column: Content with Magic UI animated text & dual statistic cards */}
-          <motion.div
+          <m.div
             initial={{ opacity: 0, x: 30 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.7, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
@@ -81,7 +81,7 @@ export const HealthCheckHeroSection: React.FC = () => {
                 Call 1300 030 479
               </Button>
             </div>
-          </motion.div>
+          </m.div>
         </div>
 
         

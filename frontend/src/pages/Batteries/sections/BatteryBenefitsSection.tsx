@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { m, AnimatePresence } from 'framer-motion';
 import { 
   ShieldCheck, 
   Moon, 
@@ -117,7 +117,7 @@ export const BatteryBenefitsSection: React.FC = () => {
 
             {/* Tab Content Display */}
             <AnimatePresence mode="wait">
-              <motion.div
+              <m.div
                 key={activeCycle}
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -176,7 +176,7 @@ export const BatteryBenefitsSection: React.FC = () => {
                     </Button>
                   </div>
                 </div>
-              </motion.div>
+              </m.div>
             </AnimatePresence>
           </div>
         </div>

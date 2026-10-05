@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { motion, AnimatePresence } from 'framer-motion';
+import { m, AnimatePresence } from 'framer-motion';
 import {
   ArrowRight,
   Sparkles,
@@ -161,7 +161,7 @@ export const SolarLandingPackagesSection: React.FC = () => {
                 >
                   {/* Fluid Spring Background Indicator */}
                   {isSelected && (
-                    <motion.div
+                    <m.div
                       layoutId="activeSystemTabPill"
                       transition={{ type: 'spring', stiffness: 450, damping: 32 }}
                       className={`absolute inset-0 rounded-lg ${
@@ -211,7 +211,7 @@ export const SolarLandingPackagesSection: React.FC = () => {
         <BlurFade delay={0.16} direction="up">
           <div className="relative overflow-hidden py-4 sm:py-6">
             <AnimatePresence mode="wait">
-              <motion.div
+              <m.div
                 key={activePkg.id}
                 initial={{ opacity: 0, y: 10, filter: 'blur(4px)' }}
                 animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
@@ -268,7 +268,7 @@ export const SolarLandingPackagesSection: React.FC = () => {
                     </span>
                   </div>
                   <div className="h-2 w-full bg-slate-200/70 rounded-full overflow-hidden">
-                    <motion.div
+                    <m.div
                       className="h-full bg-linear-to-r from-amber-400 via-amber-500 to-[#2B3CB8] rounded-full"
                       initial={{ width: 0 }}
                       animate={{ width: `${activePkg.dailyYieldPct}%` }}
@@ -281,29 +281,29 @@ export const SolarLandingPackagesSection: React.FC = () => {
                 <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 pt-1">
                   {/* Hardware & Guarantee Badges (No Heavy Borders) */}
                   <div className="flex flex-wrap items-center gap-2">
-                    <motion.div
+                    <m.div
                       whileHover={{ y: -1 }}
                       className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/80 shadow-2xs text-xs text-slate-700"
                     >
                       <Sun className="w-3.5 h-3.5 text-amber-500 shrink-0" />
                       <span>{activePkg.panels}</span>
-                    </motion.div>
+                    </m.div>
 
-                    <motion.div
+                    <m.div
                       whileHover={{ y: -1 }}
                       className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/80 shadow-2xs text-xs text-slate-700"
                     >
                       <Cpu className="w-3.5 h-3.5 text-blue-600 shrink-0" />
                       <span>{activePkg.inverter}</span>
-                    </motion.div>
+                    </m.div>
 
-                    <motion.div
+                    <m.div
                       whileHover={{ y: -1 }}
                       className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-emerald-50/90 text-xs text-emerald-800"
                     >
                       <ShieldCheck className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
                       <span className="font-medium">25-Yr Triple Guarantee</span>
-                    </motion.div>
+                    </m.div>
                   </div>
 
                   {/* Direct Action Button */}
@@ -344,7 +344,7 @@ export const SolarLandingPackagesSection: React.FC = () => {
                     </Button>
                   </div>
                 </div>
-              </motion.div>
+              </m.div>
             </AnimatePresence>
           </div>
         </BlurFade>

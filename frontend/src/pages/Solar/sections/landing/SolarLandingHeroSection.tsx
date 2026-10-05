@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import {
   ArrowRight,
   Sun,
@@ -37,7 +37,7 @@ export const SolarLandingHeroSection: React.FC = () => {
 
 
             {/* Headline */}
-            <motion.h1
+            <m.h1
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4, delay: 0.1 }}
@@ -47,20 +47,20 @@ export const SolarLandingHeroSection: React.FC = () => {
               <span className="bg-linear-to-r from-[#2B3CB8] via-[#4658D9] to-[#6F8EE7] bg-clip-text text-transparent">
                 Engineered for Peak Sun.
               </span>
-            </motion.h1>
+            </m.h1>
 
             {/* Concise Subtitle */}
-            <motion.p
+            <m.p
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4, delay: 0.15 }}
               className="text-xs xs:text-sm sm:text-base text-justify text-slate-600 leading-relaxed max-w-3xl mx-auto lg:mx-0"
             >
               Slash your electricity bills by up to 85% with Tier-1 N-Type solar panels and smart European hybrid inverters. Installed strictly by in-house Master Electricians with zero subcontractors.
-            </motion.p>
+            </m.p>
 
             {/* Compact CTA Row */}
-            <motion.div
+            <m.div
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4, delay: 0.2 }}
@@ -84,14 +84,14 @@ export const SolarLandingHeroSection: React.FC = () => {
               >
                 Calculate Savings
               </Button>
-            </motion.div>
+            </m.div>
 
 
 
           </div>
 
           {/* Image Column (Top on mobile, Right on desktop) */}
-          <motion.div
+          <m.div
             initial={{ opacity: 0, scale: 0.98 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5, delay: 0.15 }}
@@ -108,7 +108,7 @@ export const SolarLandingHeroSection: React.FC = () => {
 
 
             </div>
-          </motion.div>
+          </m.div>
 
         </div>
       </div>

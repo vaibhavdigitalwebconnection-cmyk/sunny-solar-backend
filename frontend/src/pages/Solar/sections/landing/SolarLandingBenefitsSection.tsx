@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { Link } from 'react-router-dom';
-import { motion, AnimatePresence } from 'framer-motion';
+import { m, AnimatePresence } from 'framer-motion';
 import {
   DollarSign,
   ThermometerSun,
@@ -268,7 +268,7 @@ export const SolarLandingBenefitsSection: React.FC = () => {
 
             {/* Top Auto-Slide Progress Bar */}
             <div className="absolute top-0 left-0 right-0 h-1 bg-slate-100">
-              <motion.div
+              <m.div
                 key={activeMobileIndex}
                 initial={{ width: '0%' }}
                 animate={{ width: isPaused ? '100%' : '100%' }}
@@ -278,7 +278,7 @@ export const SolarLandingBenefitsSection: React.FC = () => {
             </div>
 
             <AnimatePresence mode="wait" custom={direction}>
-              <motion.div
+              <m.div
                 key={activeMobileIndex}
                 custom={direction}
                 initial={{ opacity: 0, x: direction * 30 }}
@@ -373,7 +373,7 @@ export const SolarLandingBenefitsSection: React.FC = () => {
                     </div>
                   </div>
                 </div>
-              </motion.div>
+              </m.div>
             </AnimatePresence>
           </div>
 

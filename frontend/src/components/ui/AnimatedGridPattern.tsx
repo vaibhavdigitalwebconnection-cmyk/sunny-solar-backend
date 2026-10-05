@@ -6,7 +6,7 @@ import {
   useState,
   type ComponentPropsWithoutRef,
 } from 'react';
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import { cn } from '../../lib/utils';
 
 export interface AnimatedGridPatternProps extends ComponentPropsWithoutRef<'svg'> {
@@ -138,7 +138,7 @@ export function AnimatedGridPattern({
       <rect width="100%" height="100%" fill={`url(#${id})`} />
       <svg x={x} y={y} className="overflow-visible">
         {squares.map(({ pos: [squareX, squareY], id: sqId, iteration }, index) => (
-          <motion.rect
+          <m.rect
             initial={{ opacity: 0 }}
             animate={{ opacity: maxOpacity }}
             transition={{

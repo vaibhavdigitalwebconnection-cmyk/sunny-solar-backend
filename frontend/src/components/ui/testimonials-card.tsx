@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useMemo } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { m, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 
@@ -138,7 +138,7 @@ export function TestimonialsCard({
                             const offset = index - activeIndex;
 
                             return (
-                                <motion.div
+                                <m.div
                                     key={item.id}
                                     className="absolute inset-0 w-full h-full overflow-hidden bg-neutral-200 border border-slate-200 shadow-xl rounded-2xl  "
                                     initial={{
@@ -193,7 +193,7 @@ export function TestimonialsCard({
                                         width={width}
                                         height={Math.round(width * 0.7)}
                                     />
-                                </motion.div>
+                                </m.div>
                             );
                         })}
                     </AnimatePresence>
@@ -202,7 +202,7 @@ export function TestimonialsCard({
                 {/* 2. Text Area (On mobile: row-start-2 underneath image) */}
                 <div className="row-start-2 col-start-1 md:col-start-2 md:row-start-1 flex flex-col justify-center min-h-36 sm:min-h-48 px-1 md:pl-4 text-left">
                     <AnimatePresence mode="wait">
-                        <motion.div
+                        <m.div
                             key={activeItem.id}
                             initial={{ opacity: 0, y: 16 }}
                             animate={{ opacity: 1, y: 0 }}
@@ -238,7 +238,7 @@ export function TestimonialsCard({
                                     <span>{activeItem.highlight}</span>
                                 </div>
                             )}
-                        </motion.div>
+                        </m.div>
                     </AnimatePresence>
                 </div>
 

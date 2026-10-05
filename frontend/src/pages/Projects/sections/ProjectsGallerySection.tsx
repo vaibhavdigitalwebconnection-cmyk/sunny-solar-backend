@@ -1,5 +1,5 @@
 import React from 'react';
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import { Phone, ArrowRight, Sparkles, MoveHorizontal, ZoomIn } from 'lucide-react';
 import { Button } from '../../../components/ui/Button';
 import { FlexCarousel, FlexCarouselItem } from '../../../components/ui/FlexCarousel';
@@ -90,7 +90,7 @@ export const ProjectsGallerySection: React.FC = () => {
         <div className="text-center max-w-3xl mx-auto mb-8 sm:mb-12">
       
 
-          <motion.h2
+          <m.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -101,9 +101,9 @@ export const ProjectsGallerySection: React.FC = () => {
             <span className="bg-linear-to-r from-[#2B3CB8] via-[#4658D9] to-[#6F8EE7] bg-clip-text text-transparent">
               Liquid Motion
             </span>
-          </motion.h2>
+          </m.h2>
 
-          <motion.p
+          <m.p
             initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -112,7 +112,7 @@ export const ProjectsGallerySection: React.FC = () => {
           >
             Experience our Master Electrician solar and battery builds through an interactive liquid lens.
             Drag horizontally, scroll, or click any card to zoom into full resolution.
-          </motion.p>
+          </m.p>
 
         </div>
 
@@ -155,7 +155,7 @@ export const ProjectsGallerySection: React.FC = () => {
 
         {/* Call On Bottom / Action Banner */}
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <motion.div
+          <m.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -189,7 +189,7 @@ export const ProjectsGallerySection: React.FC = () => {
                 Get Free 3D Proposal
               </Button>
             </div>
-          </motion.div>
+          </m.div>
         </div>
     </section>
   );

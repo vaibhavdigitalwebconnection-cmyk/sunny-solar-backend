@@ -1,5 +1,5 @@
 import React from 'react';
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import {
   ArrowRight,
   Zap,
@@ -40,7 +40,7 @@ export const EVHeroSection: React.FC = () => {
           
 
             {/* Main Headline */}
-            <motion.h1
+            <m.h1
               initial={{ opacity: 0, y: 14 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.1 }}
@@ -50,22 +50,22 @@ export const EVHeroSection: React.FC = () => {
               <span className="bg-linear-to-r from-[#2B3CB8] via-[#3E52E8] to-[#ED4F11] bg-clip-text text-transparent">
                 100% Free Rooftop Sunshine
               </span>
-            </motion.h1>
+            </m.h1>
 
             {/* Subtitle */}
-            <motion.p
+            <m.p
               initial={{ opacity: 0, y: 14 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.18 }}
               className="text-sm sm:text-base lg:text-lg text-slate-600 leading-relaxed max-w-xl"
             >
               Stop paying surging petrol prices and peak-hour utility tariffs. Sunny Solar installs premium, unbranded Level 2 smart home EV chargers with intelligent solar tracking—giving you up to <strong className="text-slate-900 font-semibold">75 km of range per hour</strong> straight from your panels.
-            </motion.p>
+            </m.p>
 
            
 
             {/* CTAs */}
-            <motion.div
+            <m.div
               initial={{ opacity: 0, y: 14 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.25 }}
@@ -87,7 +87,7 @@ export const EVHeroSection: React.FC = () => {
                 <Sparkles className="w-4 h-4 text-[#2B3CB8]" />
                 <span>Live Solar Flow Simulator</span>
               </a>
-            </motion.div>
+            </m.div>
 
            
           </div>

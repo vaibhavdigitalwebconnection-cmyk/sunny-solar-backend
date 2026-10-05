@@ -1,6 +1,6 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import {
   Sun,
   BatteryCharging,
@@ -336,7 +336,7 @@ export const ServiceAreasTeaserSection: React.FC = () => {
                         : 5;
 
                   return (
-                    <motion.div
+                    <m.div
                       key={card.id}
                       animate={{
                         y: targetY,
@@ -423,7 +423,7 @@ export const ServiceAreasTeaserSection: React.FC = () => {
                           </div>
                         </div>
                       </Link>
-                    </motion.div>
+                    </m.div>
                   );
                 })}
               </div>

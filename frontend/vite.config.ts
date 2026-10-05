@@ -15,6 +15,8 @@ export default defineConfig({
     },
   },
   build: {
+    target: 'esnext',
+    minify: 'oxc',
     chunkSizeWarningLimit: 1000,
     rolldownOptions: {
       checks: {

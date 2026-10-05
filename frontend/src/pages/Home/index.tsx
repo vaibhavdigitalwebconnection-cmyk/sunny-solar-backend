@@ -1,21 +1,52 @@
-import React, { useState, useEffect } from 'react';
+import React, { lazy, Suspense, useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { HeroSection } from './sections/HeroSection';
 import { Reveal } from './components/Reveal';
-import { TrustMarqueeSection } from './sections/TrustMarqueeSection';
-import { ServicesOverviewSection } from './sections/ServicesOverviewSection';
-import { FeaturedProjectsSection } from './sections/FeaturedProjectsSection';
-import { ApprovedBrandsSection } from './sections/ApprovedBrandsSection';
-import { TrustBarSection } from './sections/TrustBarSection';
-import { PreferSunnySolarSection } from './sections/PreferSunnySolarSection';
-import { CalculatorsTeaserSection } from './sections/CalculatorsTeaserSection';
-import { ParallaxBannerSection } from './sections/ParallaxBannerSection';
-import { ServiceAreasTeaserSection } from './sections/ServiceAreasTeaserSection';
-import { SolarScatterSection } from './sections/SolarScatterSection';
-import { TestimonialsSliderSection } from './sections/TestimonialsSliderSection';
-import { FAQSection } from './sections/FAQSection';
-
 import { LazyMountSection } from './components/LazyMountSection';
+
+// Keep the LCP hero in the initial chunk. Every other section is fetched only
+// when its reserved slot approaches the viewport, so its visuals are unchanged
+// when seen while the initial route has far less JS to parse and execute.
+const TrustMarqueeSection = lazy(() =>
+  import('./sections/TrustMarqueeSection').then(({ TrustMarqueeSection }) => ({ default: TrustMarqueeSection }))
+);
+const ServicesOverviewSection = lazy(() =>
+  import('./sections/ServicesOverviewSection').then(({ ServicesOverviewSection }) => ({ default: ServicesOverviewSection }))
+);
+const CalculatorsTeaserSection = lazy(() =>
+  import('./sections/CalculatorsTeaserSection').then(({ CalculatorsTeaserSection }) => ({ default: CalculatorsTeaserSection }))
+);
+const FeaturedProjectsSection = lazy(() =>
+  import('./sections/FeaturedProjectsSection').then(({ FeaturedProjectsSection }) => ({ default: FeaturedProjectsSection }))
+);
+const ApprovedBrandsSection = lazy(() =>
+  import('./sections/ApprovedBrandsSection').then(({ ApprovedBrandsSection }) => ({ default: ApprovedBrandsSection }))
+);
+const TestimonialsSliderSection = lazy(() =>
+  import('./sections/TestimonialsSliderSection').then(({ TestimonialsSliderSection }) => ({ default: TestimonialsSliderSection }))
+);
+const PreferSunnySolarSection = lazy(() =>
+  import('./sections/PreferSunnySolarSection').then(({ PreferSunnySolarSection }) => ({ default: PreferSunnySolarSection }))
+);
+const TrustBarSection = lazy(() =>
+  import('./sections/TrustBarSection').then(({ TrustBarSection }) => ({ default: TrustBarSection }))
+);
+const SolarScatterSection = lazy(() =>
+  import('./sections/SolarScatterSection').then(({ SolarScatterSection }) => ({ default: SolarScatterSection }))
+);
+const ServiceAreasTeaserSection = lazy(() =>
+  import('./sections/ServiceAreasTeaserSection').then(({ ServiceAreasTeaserSection }) => ({ default: ServiceAreasTeaserSection }))
+);
+const ParallaxBannerSection = lazy(() =>
+  import('./sections/ParallaxBannerSection').then(({ ParallaxBannerSection }) => ({ default: ParallaxBannerSection }))
+);
+const FAQSection = lazy(() =>
+  import('./sections/FAQSection').then(({ FAQSection }) => ({ default: FAQSection }))
+);
+
+const DeferredSection: React.FC<{ children: React.ReactNode }> = ({ children }) => (
+  <Suspense fallback={null}>{children}</Suspense>
+);
 
 // Track if initial startup loader finished in current session so page transitions don't delay
 let hasWebsiteStartupFinished =
@@ -43,7 +74,7 @@ export const HomePage: React.FC = () => {
     // Fallback: If startup loader already passed or isn't active, activate animations promptly
     const fallbackTimer = setTimeout(() => {
       handleStartupFinish();
-    }, 450);
+    }, 2200);
 
     return () => {
       window.removeEventListener('website-startup-loader-finish', handleStartupFinish);
@@ -68,59 +99,93 @@ export const HomePage: React.FC = () => {
         <HeroSection isLoaded={isLoaded} />
 
         {/* 2. Trust Marquee Section */}
-        <Reveal direction="up">
-          <TrustMarqueeSection />
-        </Reveal>
+        <LazyMountSection minHeight={180} rootMargin="900px">
+          <DeferredSection>
+            <Reveal direction="up">
+              <TrustMarqueeSection />
+            </Reveal>
+          </DeferredSection>
+        </LazyMountSection>
 
         {/* 3. Services Overview Section (Heading from Left, Story from Right, Cards staggered) */}
-        <ServicesOverviewSection />
+        <LazyMountSection minHeight={950} rootMargin="900px">
+          <DeferredSection>
+            <ServicesOverviewSection />
+          </DeferredSection>
+        </LazyMountSection>
 
         {/* 4. Calculators Teaser Section (Heading from Right, Paragraph from Left, Master card from Bottom) */}
-        <CalculatorsTeaserSection />
+        <LazyMountSection minHeight={820} rootMargin="900px">
+          <DeferredSection>
+            <CalculatorsTeaserSection />
+          </DeferredSection>
+        </LazyMountSection>
 
         {/* 5. Featured Projects Section (Why Sunny Solar) */}
-        <FeaturedProjectsSection />
+        <LazyMountSection minHeight={980} rootMargin="900px">
+          <DeferredSection>
+            <FeaturedProjectsSection />
+          </DeferredSection>
+        </LazyMountSection>
 
         {/* 6. Approved Brands Section (Heading from Bottom) */}
-        <ApprovedBrandsSection />
+        <LazyMountSection minHeight={560} rootMargin="900px">
+          <DeferredSection>
+            <ApprovedBrandsSection />
+          </DeferredSection>
+        </LazyMountSection>
 
         {/* 7. Testimonials Slider Section */}
         <LazyMountSection minHeight={720}>
-          <Reveal direction="up">
-            <TestimonialsSliderSection />
-          </Reveal>
+          <DeferredSection>
+            <Reveal direction="up">
+              <TestimonialsSliderSection />
+            </Reveal>
+          </DeferredSection>
         </LazyMountSection>
 
         {/* 8. Authority Awards Badges */}
         <LazyMountSection minHeight={700}>
-          <PreferSunnySolarSection />
+          <DeferredSection>
+            <PreferSunnySolarSection />
+          </DeferredSection>
         </LazyMountSection>
 
         {/* 9. Real Numbers / Trust Bar Section (Left from Left, Right card from Right) */}
         <LazyMountSection minHeight={520}>
-          <TrustBarSection />
+          <DeferredSection>
+            <TrustBarSection />
+          </DeferredSection>
         </LazyMountSection>
 
         {/* 10. Solar Scatter Animation Section */}
         <LazyMountSection minHeight={660}>
-          <Reveal direction="up">
-            <SolarScatterSection />
-          </Reveal>
+          <DeferredSection>
+            <Reveal direction="up">
+              <SolarScatterSection />
+            </Reveal>
+          </DeferredSection>
         </LazyMountSection>
 
         {/* 11. Service Areas Teaser Section */}
         <LazyMountSection minHeight={850}>
-          <ServiceAreasTeaserSection />
+          <DeferredSection>
+            <ServiceAreasTeaserSection />
+          </DeferredSection>
         </LazyMountSection>
 
         {/* 12. Parallax Banner Section */}
         <LazyMountSection minHeight={800}>
-          <ParallaxBannerSection />
+          <DeferredSection>
+            <ParallaxBannerSection />
+          </DeferredSection>
         </LazyMountSection>
 
         {/* 13. FAQ Section (Eyebrow from Top, Heading from Left) */}
         <LazyMountSection minHeight={820}>
-          <FAQSection />
+          <DeferredSection>
+            <FAQSection />
+          </DeferredSection>
         </LazyMountSection>
       </div>
     </>

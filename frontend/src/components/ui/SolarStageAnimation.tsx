@@ -1,5 +1,5 @@
 import React, { useId } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { m, AnimatePresence } from 'framer-motion';
 import { cn } from '@/lib/utils';
 
 export interface SolarStageAnimationProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -66,7 +66,7 @@ export const SolarStageAnimation: React.FC<SolarStageAnimationProps> = ({
     >
       {/* ── 1. Breathing Solar Core Energy Radiance (Centered behind headings) ── */}
       <AnimatePresence mode="wait">
-        <motion.div
+        <m.div
           key={`core-${activeCategoryIndex}`}
           initial={{ opacity: 0, scale: 0.85 }}
           animate={{
@@ -87,7 +87,7 @@ export const SolarStageAnimation: React.FC<SolarStageAnimationProps> = ({
 
       {/* Auxiliary Floating Ambient Solar Flare Blooms */}
       {/* Left Bloom (Array Feed Flare) */}
-      <motion.div
+      <m.div
         animate={{
           x: [-15, 15, -15],
           y: [-10, 10, -10],
@@ -97,7 +97,7 @@ export const SolarStageAnimation: React.FC<SolarStageAnimationProps> = ({
         className="absolute -top-12 left-1/12 w-80 h-80 rounded-full bg-linear-to-br from-[#2B3CB8]/14 to-transparent blur-[85px]"
       />
       {/* Right Bloom (Inverter/Battery Amber Flare) */}
-      <motion.div
+      <m.div
         animate={{
           x: [15, -15, 15],
           y: [10, -10, 10],
@@ -110,7 +110,7 @@ export const SolarStageAnimation: React.FC<SolarStageAnimationProps> = ({
       {/* ── 2. Rotating Celestial Solar Azimuth & Elevation Compass Geometry ── */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-130 sm:w-165 h-130 sm:h-165 opacity-40">
         {/* Outer Continuous Rotating Solar Compass Dial */}
-        <motion.svg
+        <m.svg
           animate={{ rotate: 360 }}
           transition={{ duration: 90, repeat: Infinity, ease: 'linear' }}
           viewBox="0 0 400 400"
@@ -146,10 +146,10 @@ export const SolarStageAnimation: React.FC<SolarStageAnimationProps> = ({
           <line x1="200" y1="375" x2="200" y2="395" strokeWidth="1.6" stroke="#2B3CB8" />
           <line x1="5" y1="200" x2="25" y2="200" strokeWidth="1.6" stroke="#2B3CB8" />
           <line x1="375" y1="200" x2="395" y2="200" strokeWidth="1.6" stroke="#2B3CB8" />
-        </motion.svg>
+        </m.svg>
 
         {/* Counter-rotating Inner Solar Angle Wafer Ring */}
-        <motion.svg
+        <m.svg
           animate={{ rotate: -360 }}
           transition={{ duration: 75, repeat: Infinity, ease: 'linear' }}
           viewBox="0 0 300 300"
@@ -169,7 +169,7 @@ export const SolarStageAnimation: React.FC<SolarStageAnimationProps> = ({
             stroke="#2B3CB8"
             strokeDasharray="4 3"
           />
-        </motion.svg>
+        </m.svg>
       </div>
 
       {/* ── 3. Smooth Harmonic Photovoltaic Pure Sine Energy Waveforms ── */}
@@ -195,7 +195,7 @@ export const SolarStageAnimation: React.FC<SolarStageAnimationProps> = ({
           </linearGradient>
 
           {/* Traveling Light Conduit Gradient */}
-          <motion.linearGradient
+          <m.linearGradient
             id={`stageBeamGrad1-${uniqueId}`}
             gradientUnits="userSpaceOnUse"
             initial={{ x1: '-25%', x2: '0%', y1: '0%', y2: '0%' }}
@@ -211,9 +211,9 @@ export const SolarStageAnimation: React.FC<SolarStageAnimationProps> = ({
             <stop offset="45%" stopColor="#2B3CB8" stopOpacity="0.9" />
             <stop offset="70%" stopColor="#6F8EE7" stopOpacity="1" />
             <stop offset="100%" stopColor="#A4B9F1" stopOpacity="0" />
-          </motion.linearGradient>
+          </m.linearGradient>
 
-          <motion.linearGradient
+          <m.linearGradient
             id={`stageBeamGrad2-${uniqueId}`}
             gradientUnits="userSpaceOnUse"
             initial={{ x1: '125%', x2: '150%', y1: '0%', y2: '0%' }}
@@ -230,11 +230,11 @@ export const SolarStageAnimation: React.FC<SolarStageAnimationProps> = ({
             <stop offset="45%" stopColor="#EF680C" stopOpacity="0.95" />
             <stop offset="70%" stopColor="#FFA000" stopOpacity="1" />
             <stop offset="100%" stopColor="#FFE082" stopOpacity="0" />
-          </motion.linearGradient>
+          </m.linearGradient>
         </defs>
 
         {/* Live Photovoltaic Sine Wave 1 (Upper Energy Stream) */}
-        <motion.path
+        <m.path
           d="M -100 240 Q 200 170 500 240 T 1100 240 T 1500 240"
           stroke={`url(#stageWaveGrad1-${uniqueId})`}
           strokeWidth="2"
@@ -250,7 +250,7 @@ export const SolarStageAnimation: React.FC<SolarStageAnimationProps> = ({
         />
 
         {/* Live Photovoltaic Sine Wave 2 (Lower Solar Frequency Wave) */}
-        <motion.path
+        <m.path
           d="M -100 360 Q 250 420 600 360 T 1200 360 T 1600 360"
           stroke={`url(#stageWaveGrad2-${uniqueId})`}
           strokeWidth="1.8"
@@ -298,7 +298,7 @@ export const SolarStageAnimation: React.FC<SolarStageAnimationProps> = ({
       </svg>
 
       {/* ── 5. Photovoltaic Anti-Reflective Optical Glass Light Shimmer ── */}
-      <motion.div
+      <m.div
         animate={{
           x: ['-120%', '220%'],
         }}

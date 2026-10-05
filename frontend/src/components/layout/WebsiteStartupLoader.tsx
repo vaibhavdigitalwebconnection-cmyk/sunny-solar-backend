@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { AnimatePresence, motion } from 'framer-motion';
+import { AnimatePresence, m } from 'framer-motion';
 import KineticTextLoader from '../ui/KineticTextLoader';
 
 export const WebsiteStartupLoader: React.FC = () => {
@@ -23,7 +23,7 @@ export const WebsiteStartupLoader: React.FC = () => {
       return;
     }
 
-    // Keep startup loader ultra-brief (350ms) on very first visit only
+    // Show full 1800ms kinetic text cycle on initial website startup only
     const timer = setTimeout(() => {
       setIsVisible(false);
       if (typeof window !== 'undefined') {
@@ -34,7 +34,7 @@ export const WebsiteStartupLoader: React.FC = () => {
         }
         window.dispatchEvent(new CustomEvent('website-startup-loader-finish'));
       }
-    }, 350);
+    }, 1900);
 
     return () => clearTimeout(timer);
   }, [isVisible]);
@@ -42,10 +42,10 @@ export const WebsiteStartupLoader: React.FC = () => {
   return (
     <AnimatePresence>
       {isVisible && (
-        <motion.div
+        <m.div
           key="website-startup-loader"
           initial={{ opacity: 1 }}
-          exit={{ opacity: 0, transition: { duration: 0.25, ease: 'easeOut' } }}
+          exit={{ opacity: 0, transition: { duration: 0.35, ease: 'easeOut' } }}
           onAnimationComplete={(definition) => {
             if (definition === 'exit' || !isVisible) {
               if (typeof window !== 'undefined') {
@@ -58,24 +58,24 @@ export const WebsiteStartupLoader: React.FC = () => {
           {/* Subtle clean ambient lighting */}
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(43,60,184,0.03)_0%,transparent_70%)] pointer-events-none" />
 
-          <div className="relative z-10 flex flex-col items-center space-y-7 px-4">
+          <div className="relative z-10 flex flex-col items-center space-y-6 px-4">
             {/* Sunny Solar Official Logo */}
-            <div className="flex items-center gap-2">
+            <div className="flex items-center justify-center">
               <img
                 src="/logo.webp"
                 alt="Sunny Solar"
-                className="h-40 w-auto object-contain"
-                width="160"
-                height="160"
+                className="h-20 sm:h-24 md:h-28 w-auto object-contain drop-shadow-xs"
+                width="220"
+                height="90"
               />
             </div>
 
             {/* Kinetic Text Loading Animation */}
-            <div className="pt-2 flex items-center  justify-center">
+            <div className="flex items-center justify-center">
               <KineticTextLoader text="Loading" />
             </div>
           </div>
-        </motion.div>
+        </m.div>
       )}
     </AnimatePresence>
   );

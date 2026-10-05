@@ -1,5 +1,5 @@
 import React from 'react';
-import { motion, useReducedMotion } from 'framer-motion';
+import { m, useReducedMotion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import SplitFlapText from '../../../components/ui/SplitFlapText';
 import { HeroForm } from '../components/HeroForm';
@@ -99,7 +99,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ isLoaded = true }) => 
         <img
           src={heroBgImage}
           alt="Sunny Solar Installation"
-          className="w-full h-full object-cover object-center transition-transform duration-[2500ms] ease-out"
+          className="w-full h-full object-cover object-center transition-transform duration-2500 ease-out"
           style={{
             transform: isLoaded ? 'scale(1)' : 'scale(1.05)',
             opacity: isLoaded ? 1 : 0.8,
@@ -115,12 +115,12 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ isLoaded = true }) => 
         <div className="absolute inset-0 bg-black/55 sm:bg-linear-to-t sm:from-black/65 sm:via-black/30 sm:to-black/10" />
 
         {/* Dynamic ambient lighting orbs */}
-        <motion.div
+        <m.div
           animate={{ scale: [1, 1.15, 1], opacity: [0.15, 0.28, 0.15] }}
           transition={{ repeat: Infinity, duration: 6, ease: 'easeInOut' }}
           className="absolute -top-24 right-1/4 w-125 h-125 bg-blue-600/20 rounded-full blur-[140px] pointer-events-none"
         />
-        <motion.div
+        <m.div
           animate={{ scale: [1, 1.1, 1], opacity: [0.08, 0.16, 0.08] }}
           transition={{ repeat: Infinity, duration: 8, ease: 'easeInOut', delay: 1 }}
           className="absolute bottom-0 left-10 w-96 h-96 bg-amber-500/15 rounded-full blur-[130px] pointer-events-none"
@@ -133,7 +133,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ isLoaded = true }) => 
           {/* Left Side: Headline + Subtext + CTA, each sliding in from different directions, staggered */}
           <div className="lg:col-span-6 text-left space-y-3.5 sm:space-y-4">
             {/* Top Micro Eyebrow Badge (from TOP) */}
-            <motion.div
+            <m.div
               initial="hidden"
               animate={isLoaded ? 'visible' : 'hidden'}
               variants={badgeVariants}
@@ -142,15 +142,15 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ isLoaded = true }) => 
               <span className="w-2 h-2 rounded-full bg-[#ED4F11] animate-pulse shrink-0" />
               <span className="text-[#D1DCF8] font-bold">SOLAR • BATTERY •  </span>
               <span className="text-white font-bold">SMART ENERGY</span>
-              <motion.span
+              <m.span
                 animate={{ x: ['-100%', '200%'] }}
                 transition={{ repeat: Infinity, duration: 4, ease: 'easeInOut', repeatDelay: 2 }}
                 className="absolute inset-0 w-1/3 h-full bg-linear-to-r from-transparent via-white/15 to-transparent skew-x-12 pointer-events-none"
               />
-            </motion.div>
+            </m.div>
 
             {/* Headline Block (from LEFT) */}
-            <motion.div
+            <m.div
               initial="hidden"
               animate={isLoaded ? 'visible' : 'hidden'}
               variants={headlineVariants}
@@ -185,26 +185,26 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ isLoaded = true }) => 
                   />
                 </div>
               </div>
-            </motion.div>
+            </m.div>
 
             {/* Subtext Block (from RIGHT, staggered) */}
-            <motion.p
+            <m.p
               initial="hidden"
               animate={isLoaded ? 'visible' : 'hidden'}
               variants={subtextVariants}
               className="text-xs sm:text-base text-justify text-slate-100 sm:text-white leading-relaxed max-w-lg drop-shadow-sm"
             >
               Your home, your energy use, your solar system. Understand what you need, compare your options, and get a solar solution designed around how you actually use electricity.
-            </motion.p>
+            </m.p>
 
             {/* CTA Buttons Block (from BOTTOM) */}
-            <motion.div
+            <m.div
               initial="hidden"
               animate={isLoaded ? 'visible' : 'hidden'}
               variants={ctaVariants}
               className="pt-1 flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4"
             >
-              <motion.a
+              <m.a
                 whileHover={{ scale: 1.025, boxShadow: '0 12px 25px -4px rgba(43, 60, 184, 0.45)' }}
                 whileTap={{ scale: 0.98 }}
                 href="#hero-quote-form"
@@ -213,9 +213,9 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ isLoaded = true }) => 
                 <span className="absolute inset-0 w-1/2 h-full bg-linear-to-r from-transparent via-white/20 to-transparent -skew-x-12 -translate-x-full group-hover:translate-x-[300%] transition-transform duration-1000 ease-out pointer-events-none" />
                 <span className="relative z-10">See Your Solar Options →</span>
                 <ArrowRight className="w-4 h-4 relative z-10 group-hover:translate-x-1 transition-transform duration-200" />
-              </motion.a>
+              </m.a>
 
-              <motion.a
+              <m.a
                 whileHover={{ scale: 1.025, boxShadow: '0 12px 25px -4px rgba(43, 60, 184, 0.45)' }}
                 whileTap={{ scale: 0.98 }}
                 href="#hero-quote-form"
@@ -224,8 +224,8 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ isLoaded = true }) => 
                 <span className="absolute inset-0 w-1/2 h-full bg-linear-to-r from-transparent via-white/20 to-transparent -skew-x-12 -translate-x-full group-hover:translate-x-[300%] transition-transform duration-1000 ease-out pointer-events-none" />
                 <span className="relative z-10">Explore Solar & Battery →</span>
                 <ArrowRight className="w-4 h-4 relative z-10 group-hover:translate-x-1 transition-transform duration-200" />
-              </motion.a>
-            </motion.div>
+              </m.a>
+            </m.div>
           </div>
 
           {/* Right Side: Enquiry FORM slides in from the far right (x: 200 -> 0) and settles */}

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { motion, useReducedMotion } from 'framer-motion';
+import { m, useReducedMotion } from 'framer-motion';
 import {
   CheckCircle2,
   Zap,
@@ -111,7 +111,7 @@ export const HeroForm: React.FC<HeroFormProps> = ({ isLoaded = true }) => {
   const formVariants = getHeroFormVariants(isMobile, Boolean(prefersReducedMotion));
 
   return (
-    <motion.div
+    <m.div
       initial="hidden"
       animate={isLoaded ? 'visible' : 'hidden'}
       variants={formVariants}
@@ -123,7 +123,7 @@ export const HeroForm: React.FC<HeroFormProps> = ({ isLoaded = true }) => {
         className="scroll-mt-24 sm:scroll-mt-32 relative w-full max-w-lg bg-white/95 backdrop-blur-md rounded-xl p-4 sm:p-6 shadow-2xl border border-white/60 text-slate-900 transition-shadow duration-300 hover:shadow-[0_20px_45px_-10px_rgba(43,60,184,0.22)]"
       >
         {/* Friendly Solar Specialist Avatar on Top-Right */}
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 16, scale: 0.95 }}
           animate={isLoaded ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 16 }}
           transition={{ duration: 0.7, delay: 0.45, ease: [0.16, 1, 0.3, 1] }}
@@ -131,7 +131,7 @@ export const HeroForm: React.FC<HeroFormProps> = ({ isLoaded = true }) => {
         >
           <div className="relative">
             {/* Subtle pulsing aura behind avatar */}
-            <motion.div
+            <m.div
               animate={{
                 scale: [0.95, 1.1, 0.95],
                 opacity: [0.2, 0.4, 0.2],
@@ -144,7 +144,7 @@ export const HeroForm: React.FC<HeroFormProps> = ({ isLoaded = true }) => {
               className="absolute inset-0 bg-[#2B3CB8]/20 rounded-full blur-lg scale-90 -z-10"
             />
             {/* Gentle idle float animation */}
-            <motion.div
+            <m.div
               animate={{
                 y: [0, -5, 0],
               }}
@@ -161,29 +161,29 @@ export const HeroForm: React.FC<HeroFormProps> = ({ isLoaded = true }) => {
                 width="180"
                 height="180"
               />
-            </motion.div>
+            </m.div>
           </div>
-        </motion.div>
+        </m.div>
 
         {/* Form fields appear one by one after the form lands (stagger 0.1s) */}
-        <motion.div
+        <m.div
           variants={formFieldsContainerVariants}
           initial="hidden"
           animate={isLoaded ? 'visible' : 'hidden'}
           className="space-y-3 sm:space-y-3.5"
         >
           {/* Field 1: Header */}
-          <motion.div variants={formFieldItemVariants} className="text-left pr-20 sm:pr-28">
+          <m.div variants={formFieldItemVariants} className="text-left pr-20 sm:pr-28">
             <h3 className="text-base sm:text-2xl font-bold font-serif text-slate-900 leading-snug">
               Find The Right Solar Option For Your Home
             </h3>
             <p className="text-xs text-slate-500 mt-0.5">
               Solar or battery - start with what your home actually needs.
             </p>
-          </motion.div>
+          </m.div>
 
           {/* Field 2: Interactive System Type Selector */}
-          <motion.div
+          <m.div
             variants={formFieldItemVariants}
             className="relative grid grid-cols-3 gap-1 sm:gap-2 p-1 bg-slate-100 rounded-lg text-xs font-semibold"
           >
@@ -206,7 +206,7 @@ export const HeroForm: React.FC<HeroFormProps> = ({ isLoaded = true }) => {
                   }`}
                 >
                   {isActive && (
-                    <motion.div
+                    <m.div
                       layoutId="activeHeroSystemType"
                       className="absolute inset-0 bg-[#2B3CB8] rounded-md shadow-xs -z-10"
                       transition={{ type: 'spring', stiffness: 500, damping: 35 }}
@@ -217,10 +217,10 @@ export const HeroForm: React.FC<HeroFormProps> = ({ isLoaded = true }) => {
                 </button>
               );
             })}
-          </motion.div>
+          </m.div>
 
           {isSubmitted ? (
-            <motion.div
+            <m.div
               variants={formFieldItemVariants}
               className="py-6 text-center space-y-2"
             >
@@ -241,11 +241,11 @@ export const HeroForm: React.FC<HeroFormProps> = ({ isLoaded = true }) => {
               >
                 Submit another
               </button>
-            </motion.div>
+            </m.div>
           ) : (
             <form onSubmit={handleSubmit} className="space-y-2.5 sm:space-y-3.5 text-left">
               {/* Field 3: Name & Phone */}
-              <motion.div variants={formFieldItemVariants} className="grid grid-cols-2 gap-2 sm:gap-3">
+              <m.div variants={formFieldItemVariants} className="grid grid-cols-2 gap-2 sm:gap-3">
                 <div>
                   <input
                     type="text"
@@ -268,10 +268,10 @@ export const HeroForm: React.FC<HeroFormProps> = ({ isLoaded = true }) => {
                     className="w-full px-2.5 sm:px-3 py-1.5 sm:py-2.5 bg-slate-50 border border-slate-300 rounded-lg text-xs sm:text-sm text-slate-900 placeholder-slate-400 focus:outline-none focus:border-[#2B3CB8] focus:ring-2 focus:ring-[#2B3CB8]/20 focus:bg-white hover:border-slate-400 transition-all duration-200"
                   />
                 </div>
-              </motion.div>
+              </m.div>
 
               {/* Field 4: Email & Postcode */}
-              <motion.div variants={formFieldItemVariants} className="grid grid-cols-2 gap-2 sm:gap-3">
+              <m.div variants={formFieldItemVariants} className="grid grid-cols-2 gap-2 sm:gap-3">
                 <div>
                   <input
                     type="email"
@@ -294,10 +294,10 @@ export const HeroForm: React.FC<HeroFormProps> = ({ isLoaded = true }) => {
                     className="w-full px-2.5 sm:px-3 py-1.5 sm:py-2.5 bg-slate-50 border border-slate-300 rounded-lg text-xs sm:text-sm text-slate-900 placeholder-slate-400 focus:outline-none focus:border-[#2B3CB8] focus:ring-2 focus:ring-[#2B3CB8]/20 focus:bg-white hover:border-slate-400 transition-all duration-200"
                   />
                 </div>
-              </motion.div>
+              </m.div>
 
               {/* Field 5: House Address */}
-              <motion.div variants={formFieldItemVariants}>
+              <m.div variants={formFieldItemVariants}>
                 <input
                   type="text"
                   name="address"
@@ -307,7 +307,7 @@ export const HeroForm: React.FC<HeroFormProps> = ({ isLoaded = true }) => {
                   placeholder="House Address *"
                   className="w-full px-2.5 sm:px-3 py-1.5 sm:py-2.5 bg-slate-50 border border-slate-300 rounded-lg text-xs sm:text-sm text-slate-900 placeholder-slate-400 focus:outline-none focus:border-[#2B3CB8] focus:ring-2 focus:ring-[#2B3CB8]/20 focus:bg-white hover:border-slate-400 transition-all duration-200"
                 />
-              </motion.div>
+              </m.div>
 
               {errorMessage && (
                 <div className="p-2 rounded bg-[#F5F7FD] border border-[#2B3CB8] text-[#0C123E] text-xs text-center">
@@ -316,8 +316,8 @@ export const HeroForm: React.FC<HeroFormProps> = ({ isLoaded = true }) => {
               )}
 
               {/* Field 6: Submit Button */}
-              <motion.div variants={formFieldItemVariants}>
-                <motion.button
+              <m.div variants={formFieldItemVariants}>
+                <m.button
                   whileHover={{ scale: 1.01 }}
                   whileTap={{ scale: 0.985 }}
                   type="submit"
@@ -333,21 +333,21 @@ export const HeroForm: React.FC<HeroFormProps> = ({ isLoaded = true }) => {
                       <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform duration-200" />
                     </>
                   )}
-                </motion.button>
-              </motion.div>
+                </m.button>
+              </m.div>
 
               {/* Field 7: Privacy & Trust Footnote */}
-              <motion.p
+              <m.p
                 variants={formFieldItemVariants}
                 className="text-[10px] sm:text-[11px] text-center text-slate-500 pt-0.5"
               >
                 🔒 No obligation • Personalised assessment • Privacy protected
-              </motion.p>
+              </m.p>
             </form>
           )}
-        </motion.div>
+        </m.div>
       </div>
-    </motion.div>
+    </m.div>
   );
 };
 

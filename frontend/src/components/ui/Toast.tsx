@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { m, AnimatePresence } from 'framer-motion';
 import { CheckCircle2, AlertTriangle, X, Sparkles } from 'lucide-react';
 
 export interface ToastProps {
@@ -35,7 +35,7 @@ export const Toast: React.FC<ToastProps> = ({
     <AnimatePresence>
       {show && (
         <div className="fixed top-5 right-5 sm:top-6 sm:right-6 z-100 max-w-[calc(100vw-32px)] sm:max-w-md pointer-events-none">
-          <motion.div
+          <m.div
             initial={{ opacity: 0, y: -20, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -20, scale: 0.95 }}
@@ -91,13 +91,13 @@ export const Toast: React.FC<ToastProps> = ({
             </div>
 
             {/* Timed progress bar */}
-            <motion.div
+            <m.div
               initial={{ width: '100%' }}
               animate={{ width: '0%' }}
               transition={{ duration: duration / 1000, ease: 'linear' }}
               className="absolute bottom-0 left-0 h-0.75 bg-emerald-500/70"
             />
-          </motion.div>
+          </m.div>
         </div>
       )}
     </AnimatePresence>

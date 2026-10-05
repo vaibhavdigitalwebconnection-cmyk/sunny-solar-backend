@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { motion, AnimatePresence } from 'framer-motion';
+import { m, AnimatePresence } from 'framer-motion';
 import { X, ChevronDown, Phone, ArrowRight } from 'lucide-react';
 import { navigationData, NavSection } from '../../../data/navigationData';
 
@@ -54,7 +54,7 @@ export const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose }) => {
       {isOpen && (
         <>
           {/* Backdrop with smooth fade */}
-          <motion.div
+          <m.div
             key="mobile-menu-backdrop"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -66,7 +66,7 @@ export const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose }) => {
           />
 
           {/* Drawer with smooth spring slide */}
-          <motion.aside
+          <m.aside
             key="mobile-menu-drawer"
             initial={{ x: '100%' }}
             animate={{ x: 0 }}
@@ -118,19 +118,19 @@ export const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose }) => {
                               </span>
                             )}
                           </span>
-                          <motion.div
+                          <m.div
                             animate={{ rotate: isExpanded ? 180 : 0 }}
                             transition={{ duration: 0.2 }}
                             className="text-slate-400"
                           >
                             <ChevronDown className="w-4 h-4" />
-                          </motion.div>
+                          </m.div>
                         </button>
 
                         {/* Smooth Expanding Submenu */}
                         <AnimatePresence initial={false}>
                           {isExpanded && section.children && (
-                            <motion.div
+                            <m.div
                               initial={{ height: 0, opacity: 0 }}
                               animate={{ height: 'auto', opacity: 1 }}
                               exit={{ height: 0, opacity: 0 }}
@@ -159,7 +159,7 @@ export const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose }) => {
                                   )}
                                 </Link>
                               ))}
-                            </motion.div>
+                            </m.div>
                           )}
                         </AnimatePresence>
                       </div>
@@ -200,7 +200,7 @@ export const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose }) => {
                 <span>1300 030 479</span>
               </a>
             </div>
-          </motion.aside>
+          </m.aside>
         </>
       )}
     </AnimatePresence>

@@ -1,7 +1,7 @@
 'use client';
 
 import * as React from 'react';
-import { motion, easeOut } from 'framer-motion';
+import { m, easeOut } from 'framer-motion';
 import { CheckCircle2, RotateCw, ExternalLink } from 'lucide-react';
 
 export interface FlipCardData {
@@ -96,7 +96,7 @@ export function FlipCard({
         onMouseLeave={handleMouseLeave}
       >
         {/* FRONT: 3D Full-Card Image Profile */}
-        <motion.div
+        <m.div
           className="absolute inset-0 rounded-xl border border-slate-200/90 overflow-hidden shadow-xl hover:shadow-2xl shadow-black transition-all duration-300"
           animate={isFlipped ? 'back' : 'front'}
           variants={cardVariants}
@@ -139,10 +139,10 @@ export function FlipCard({
               <span>Hover or tap to reveal</span>
             </div>
           </div>
-        </motion.div>
+        </m.div>
 
         {/* BACK: Bio + Details */}
-        <motion.div
+        <m.div
           className="absolute inset-0 rounded-2xl border border-blue-600/30 p-6 flex flex-col justify-between items-center text-center bg-linear-to-b from-slate-900 via-blue-950 to-slate-900 text-white shadow-xl"
           initial={{ rotateY: 180 }}
           animate={isFlipped ? 'front' : 'back'}
@@ -191,7 +191,7 @@ export function FlipCard({
             <RotateCw className="w-3 h-3" />
             <span>Click to flip back</span>
           </div>
-        </motion.div>
+        </m.div>
       </div>
     );
   }
@@ -208,7 +208,7 @@ export function FlipCard({
       onMouseLeave={handleMouseLeave}
     >
       {/* ================= FRONT: 3D Full-Card Image ================= */}
-      <motion.div
+      <m.div
         className="absolute inset-0 rounded-2xl border border-slate-200/90 overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-300"
         animate={isFlipped ? 'back' : 'front'}
         variants={cardVariants}
@@ -289,10 +289,10 @@ export function FlipCard({
             </div>
           </>
         ) : null}
-      </motion.div>
+      </m.div>
 
       {/* ================= BACK: Rich Deliverable Content ================= */}
-      <motion.div
+      <m.div
         className="absolute inset-0 rounded-2xl border border-blue-500/30 bg-linear-to-b from-slate-950 via-[#0C123E] to-slate-950 p-5 flex flex-col justify-between text-left text-white shadow-xl overflow-hidden"
         initial={{ rotateY: 180 }}
         animate={isFlipped ? 'front' : 'back'}
@@ -377,7 +377,7 @@ export function FlipCard({
             </div>
           </>
         ) : null}
-      </motion.div>
+      </m.div>
     </div>
   );
 }

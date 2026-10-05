@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { m, AnimatePresence } from 'framer-motion';
 import {
   HelpCircle,
   Phone,
@@ -175,7 +175,7 @@ export const EVFAQSection: React.FC = () => {
                   {/* Smooth Collapsible Answer */}
                   <AnimatePresence initial={false}>
                     {isOpen && (
-                      <motion.div
+                      <m.div
                         initial={{ height: 0, opacity: 0 }}
                         animate={{ height: 'auto', opacity: 1 }}
                         exit={{ height: 0, opacity: 0 }}
@@ -183,7 +183,7 @@ export const EVFAQSection: React.FC = () => {
                         className="overflow-hidden px-5 sm:px-6 pb-5 pt-1 text-xs sm:text-sm text-slate-600 leading-relaxed border-t border-slate-100"
                       >
                         {faq.answer}
-                      </motion.div>
+                      </m.div>
                     )}
                   </AnimatePresence>
                 </div>

@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import { Star, ShieldCheck, Zap, Award, ChevronLeft, ChevronRight, ArrowRight } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { m, AnimatePresence } from 'framer-motion';
 import { Reveal } from '../components/Reveal';
 import { AnimatedCard } from '../components/AnimatedCard';
 
@@ -170,7 +170,7 @@ export const TrustBarSection: React.FC = () => {
             <Reveal direction="left">
             <div className="flex flex-col justify-center min-h-65 sm:min-h-65 relative overflow-hidden">
               <AnimatePresence mode="wait" custom={direction}>
-                <motion.div
+                <m.div
                   key={activeIndex}
                   custom={direction}
                   variants={slideVariants}
@@ -230,14 +230,14 @@ export const TrustBarSection: React.FC = () => {
                   </div>
 
                   {/* Animated accent bar */}
-                  <motion.div
+                  <m.div
                     className="h-1 rounded-full mt-1 origin-left"
                     style={{ backgroundColor: active.accentColor }}
                     initial={{ scaleX: 0 }}
                     animate={{ scaleX: 1 }}
                     transition={{ duration: 3.8, ease: 'linear' }}
                   />
-                </motion.div>
+                </m.div>
               </AnimatePresence>
 
               {/* Mobile Navigation Controls with Dots & Arrow buttons */}

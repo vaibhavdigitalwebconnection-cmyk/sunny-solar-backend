@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { Home } from 'lucide-react';
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import { Particles } from '../../components/ui/Particles';
 
 export const NotFoundPage: React.FC = () => {
@@ -22,7 +22,7 @@ export const NotFoundPage: React.FC = () => {
           content="The page you are looking for does not exist or has been moved."
         />
       </Helmet>
-      <motion.div
+      <m.div
         initial={{ opacity: 0, y: 16 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
@@ -48,7 +48,7 @@ export const NotFoundPage: React.FC = () => {
             <span>Go to Home Page</span>
           </Link>
         </div>
-      </motion.div>
+      </m.div>
     </div>
   );
 };

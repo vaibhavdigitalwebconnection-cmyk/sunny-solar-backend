@@ -1,6 +1,6 @@
 import React from 'react';
 import { Search, Compass, Wrench, Smartphone, ArrowRight } from 'lucide-react';
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import { Badge } from '../../../../components/ui/Badge';
 import { Button } from '../../../../components/ui/Button';
 
@@ -40,7 +40,7 @@ export const SolarLandingProcessSection: React.FC = () => {
     <section className="py-10 xs:py-12 sm:py-16 lg:py-20 bg-white relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Header Block */}
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.3 }}
@@ -56,7 +56,7 @@ export const SolarLandingProcessSection: React.FC = () => {
           <p className="mt-2.5 sm:mt-4 text-slate-600 text-xs xs:text-sm sm:text-base lg:text-lg leading-relaxed font-normal">
             From your initial satellite roof consultation to your first zero-dollar power bill, our in-house team handles every engineering approval, grid connection, and rebate document.
           </p>
-        </motion.div>
+        </m.div>
 
         {/* ======================================================== */}
         {/* MOBILE VIEW (< md): Connected Vertical Step Timeline    */}
@@ -68,7 +68,7 @@ export const SolarLandingProcessSection: React.FC = () => {
           {steps.map((step, idx) => {
             const Icon = step.icon;
             return (
-              <motion.div
+              <m.div
                 key={idx}
                 initial={{ opacity: 0, x: -16 }}
                 whileInView={{ opacity: 1, x: 0 }}
@@ -97,7 +97,7 @@ export const SolarLandingProcessSection: React.FC = () => {
                     {step.desc}
                   </p>
                 </div>
-              </motion.div>
+              </m.div>
             );
           })}
         </div>
@@ -109,7 +109,7 @@ export const SolarLandingProcessSection: React.FC = () => {
           {steps.map((step, idx) => {
             const Icon = step.icon;
             return (
-              <motion.div
+              <m.div
                 key={idx}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -138,7 +138,7 @@ export const SolarLandingProcessSection: React.FC = () => {
                     {step.desc}
                   </p>
                 </div>
-              </motion.div>
+              </m.div>
             );
           })}
         </div>

@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { m, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import {
   Star,
@@ -371,7 +371,7 @@ export const TestimonialsSliderSection: React.FC = () => {
               <div className="relative z-10 bg-white/98 backdrop-blur-2xl rounded-xl p-5 sm:p-6 flex flex-col justify-between border border-slate-300/80 shadow-xs h-full">
 
                 <AnimatePresence mode="wait">
-                  <motion.div
+                  <m.div
                     key={currentIndex}
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -463,7 +463,7 @@ export const TestimonialsSliderSection: React.FC = () => {
 
 
                     </div>
-                  </motion.div>
+                  </m.div>
                 </AnimatePresence>
 
               </div>

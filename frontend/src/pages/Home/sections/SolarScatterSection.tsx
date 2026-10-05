@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import { Sun, BatteryCharging, Wrench, Zap, Sparkles, type LucideIcon } from 'lucide-react';
 import { ImageScatter, ScatterSet } from '@/components/ui/ImageScatter';
 import { SolarCircuitPattern } from '@/components/ui/SolarCircuitPattern';
@@ -104,7 +104,7 @@ export const SolarScatterSection: React.FC = () => {
 
       {/* ── 4. Smooth Floating Solar Atmospheric Light Blooms ── */}
       {/* Top Left: Golden Amber Solar Flare */}
-      <motion.div
+      <m.div
         animate={{
           scale: [1, 1.15, 1],
           x: [0, 20, 0],
@@ -115,7 +115,7 @@ export const SolarScatterSection: React.FC = () => {
       />
 
       {/* Bottom Right: Clean Energy Cobalt Blue Bloom */}
-      <motion.div
+      <m.div
         animate={{
           scale: [1, 1.18, 1],
           x: [0, -25, 0],
@@ -126,7 +126,7 @@ export const SolarScatterSection: React.FC = () => {
       />
 
       {/* Center Radiance Spotlight behind the Scatter Stage */}
-      <motion.div
+      <m.div
         animate={{
           scale: [0.95, 1.08, 0.95],
           opacity: [0.4, 0.75, 0.4],

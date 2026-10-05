@@ -1,5 +1,5 @@
 import React from 'react';
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import { 
   BatteryCharging, 
   Sun, 
@@ -17,7 +17,7 @@ export const CalculatorsAddBatterySolarSection: React.FC = () => {
   return (
     <section className="max-w-7xl mx-auto px-4 sm:px-6 mt-12 sm:mt-16 mb-4 sm:mb-6">
       {/* Outer ambient glow wrapper */}
-      <motion.div 
+      <m.div 
         initial={{ opacity: 0, y: 24 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: '-50px' }}
@@ -53,7 +53,7 @@ export const CalculatorsAddBatterySolarSection: React.FC = () => {
                     <span className="font-extrabold text-white text-xs sm:text-sm">94% Max</span>
                   </div>
                   <div className="w-full bg-white/20 h-1.5 rounded-full overflow-hidden">
-                    <motion.div 
+                    <m.div 
                       initial={{ width: 0 }}
                       whileInView={{ width: '94%' }}
                       viewport={{ once: true }}
@@ -65,7 +65,7 @@ export const CalculatorsAddBatterySolarSection: React.FC = () => {
               </div>
 
               {/* Floating Glassmorphic Pill Tag */}
-              <motion.div 
+              <m.div 
                 animate={{ y: [0, -4, 0] }}
                 transition={{ repeat: Infinity, duration: 3.5, ease: 'easeInOut' }}
                 className="mt-3 sm:mt-0 sm:absolute sm:-bottom-4 sm:-right-4 bg-white/95 backdrop-blur-md rounded-2xl border border-emerald-200/80 p-2.5 sm:p-3 shadow-lg shadow-emerald-500/10 flex items-center gap-2.5 sm:gap-3"
@@ -77,7 +77,7 @@ export const CalculatorsAddBatterySolarSection: React.FC = () => {
                   <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">Evening Peak Rate</span>
                   <span className="text-xs font-extrabold text-slate-900">Reduced from 38¢ to $0</span>
                 </div>
-              </motion.div>
+              </m.div>
             </div>
 
             {/* Right Column: Dynamic Non-Boxy Synergy Insights */}
@@ -93,7 +93,7 @@ export const CalculatorsAddBatterySolarSection: React.FC = () => {
 
               {/* Connected Flow Pills */}
               <div className="space-y-2">
-                <motion.div 
+                <m.div 
                   whileHover={{ x: 6 }}
                   transition={{ duration: 0.2 }}
                   className="flex items-start sm:items-center gap-2.5 sm:gap-3 p-2.5 sm:p-3 rounded-xl bg-slate-50/80 border border-slate-100 hover:bg-amber-50/50 hover:border-amber-200/60 transition-colors"
@@ -105,9 +105,9 @@ export const CalculatorsAddBatterySolarSection: React.FC = () => {
                     <span className="font-bold text-slate-900">Stop Selling Cheap Solar: </span>
                     <span className="text-slate-600">Avoid exporting peak kilowatt hours for 5¢ while buying nighttime power at 38¢.</span>
                   </div>
-                </motion.div>
+                </m.div>
 
-                <motion.div 
+                <m.div 
                   whileHover={{ x: 6 }}
                   transition={{ duration: 0.2 }}
                   className="flex items-start sm:items-center gap-2.5 sm:gap-3 p-2.5 sm:p-3 rounded-xl bg-slate-50/80 border border-slate-100 hover:bg-emerald-50/50 hover:border-emerald-200/60 transition-colors"
@@ -119,7 +119,7 @@ export const CalculatorsAddBatterySolarSection: React.FC = () => {
                     <span className="font-bold text-slate-900">Nighttime Blackout Immunity: </span>
                     <span className="text-slate-600">Keep refrigerators, lights, and WiFi running when storms knock out the local grid.</span>
                   </div>
-                </motion.div>
+                </m.div>
               </div>
 
               {/* Callout action */}
@@ -144,7 +144,7 @@ export const CalculatorsAddBatterySolarSection: React.FC = () => {
           </div>
 
         </div>
-      </motion.div>
+      </m.div>
     </section>
   );
 };

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { m, AnimatePresence } from 'framer-motion';
 import {
   Sun,
   Cpu,
@@ -200,7 +200,7 @@ export const SolarHardwareComparisonSection: React.FC = () => {
 
         {/* Feature Spotlight Spread (Media + Engineering Narrative) */}
         <AnimatePresence mode="wait">
-          <motion.div
+          <m.div
             key={activeTab}
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
@@ -290,7 +290,7 @@ export const SolarHardwareComparisonSection: React.FC = () => {
                 </span>
               </div>
             </div>
-          </motion.div>
+          </m.div>
         </AnimatePresence>
 
         {/* The Tier-1 Standard vs Cheap Generic Solar Comparison */}

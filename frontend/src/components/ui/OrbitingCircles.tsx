@@ -1,5 +1,5 @@
 import React from 'react';
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import { cn } from '../../lib/utils';
 
 export interface OrbitingCirclesProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -47,7 +47,7 @@ export const OrbitingCircles: React.FC<OrbitingCirclesProps> = ({
       {React.Children.map(children, (child, index) => {
         const initialOffset = (360 / childCount) * index;
         return (
-          <motion.div
+          <m.div
             key={index}
             style={{
               position: 'absolute',
@@ -76,7 +76,7 @@ export const OrbitingCircles: React.FC<OrbitingCirclesProps> = ({
               }}
             >
               {/* Counter-rotate the child element so icons stay upright */}
-              <motion.div
+              <m.div
                 initial={{ rotate: -initialOffset }}
                 animate={{
                   rotate: reverse ? [-initialOffset + 360, -initialOffset] : [-initialOffset, -initialOffset - 360],
@@ -89,9 +89,9 @@ export const OrbitingCircles: React.FC<OrbitingCirclesProps> = ({
                 className="pointer-events-auto flex items-center justify-center"
               >
                 {child}
-              </motion.div>
+              </m.div>
             </div>
-          </motion.div>
+          </m.div>
         );
       })}
     </div>
