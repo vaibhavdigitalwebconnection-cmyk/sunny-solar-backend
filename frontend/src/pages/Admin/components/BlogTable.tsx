@@ -17,7 +17,6 @@ export const BlogTable: React.FC<BlogTableProps> = ({
   handleTogglePublish,
   handleDeleteBlog,
   handleRestoreBlog,
-  getTimelineHealth
 }) => {
   return (
     <div data-lenis-prevent className="bg-white border border-neutral-200 rounded-xl shadow-2xs overflow-hidden w-full">
