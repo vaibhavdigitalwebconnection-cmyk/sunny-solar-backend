@@ -240,11 +240,8 @@ export const SolarStageAnimation: React.FC<SolarStageAnimationProps> = ({
           strokeWidth="2"
           fill="none"
           animate={{
-            d: [
-              'M -100 240 Q 200 170 500 240 T 1100 240 T 1500 240',
-              'M -100 240 Q 200 310 500 240 T 1100 240 T 1500 240',
-              'M -100 240 Q 200 170 500 240 T 1100 240 T 1500 240',
-            ],
+            y: [-24, 24, -24],
+            opacity: [0.75, 1, 0.75],
           }}
           transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
         />
@@ -256,11 +253,8 @@ export const SolarStageAnimation: React.FC<SolarStageAnimationProps> = ({
           strokeWidth="1.8"
           fill="none"
           animate={{
-            d: [
-              'M -100 360 Q 250 420 600 360 T 1200 360 T 1600 360',
-              'M -100 360 Q 250 300 600 360 T 1200 360 T 1600 360',
-              'M -100 360 Q 250 420 600 360 T 1200 360 T 1600 360',
-            ],
+            y: [24, -24, 24],
+            opacity: [0.65, 0.95, 0.65],
           }}
           transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut', delay: 0.5 }}
         />

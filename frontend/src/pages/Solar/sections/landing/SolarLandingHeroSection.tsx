@@ -29,11 +29,11 @@ export const SolarLandingHeroSection: React.FC = () => {
       <div className="absolute top-10 right-1/4 w-96 h-96 bg-blue-600/10 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute top-36 left-10 w-80 h-80 bg-orange-300/10 rounded-full blur-3xl pointer-events-none" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="max-w-7xl mx-auto px-0 sm:px-6 lg:px-8 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
 
           {/* Content Column (Bottom on mobile, Left on desktop) */}
-          <div className="order-2 lg:order-1 lg:col-span-7 space-y-4 xs:space-y-5 text-center lg:text-left flex flex-col items-center lg:items-start">
+          <div className="order-2 px-4 sm:px-0 lg:order-1 lg:col-span-7 space-y-4 xs:space-y-5 text-center lg:text-left flex flex-col items-center lg:items-start">
 
 
             {/* Headline */}
@@ -97,7 +97,7 @@ export const SolarLandingHeroSection: React.FC = () => {
             transition={{ duration: 0.5, delay: 0.15 }}
             className="order-1 lg:order-2 lg:col-span-5 w-full"
           >
-            <div className="relative rounded-xl overflow-hidden shadow-xl shadow-black/60 border border-slate-300 bg-slate-950 group aspect-16/10 h-60 sm:h-115 lg:h-70 xl:h-80 xs:aspect-5/5 max-w-2xl mx-auto w-full">
+            <div className="relative  overflow-hidden shadow-xl shadow-black/60 border border-slate-300 bg-slate-950 group aspect-16/10 h-60 sm:h-115 lg:h-70 xl:h-80 xs:aspect-5/5 max-w-2xl mx-auto w-full">
               <BorderBeam size={160} duration={8} colorFrom="#2B3CB8" colorTo="#6F8EE7" borderWidth={2} />
               <img
                 src="/images/about/solar-installation-aerial.webp"

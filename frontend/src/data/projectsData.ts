@@ -47,7 +47,7 @@ export const projectsData: Project[] = [
     co2Offset: '14.2 tonnes / yr',
     paybackPeriod: '3.6 Years',
     selfConsumption: '94%',
-    imageUrl: '/images/projects/aerial-view-solar.webp',
+    imageUrl: '/images/projects/3phase-gateway.webp',
     gallery: [
       {
         url: '/images/projects/project-rooftop-array.webp',
@@ -324,7 +324,7 @@ export const projectsData: Project[] = [
     co2Offset: '71.8 tonnes / yr',
     paybackPeriod: '2.4 Years',
     selfConsumption: '92%',
-    imageUrl: '/images/projects/aerial-view-solar.webp',
+    imageUrl: '/images/projects/pv-solar-thermal.webp',
     gallery: [
       {
         url: '/images/projects/aerial-view-solar.webp',

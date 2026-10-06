@@ -20,7 +20,7 @@ import { Particles } from '../../../components/ui/Particles';
 
 export const BatteriesHeroSection: React.FC = () => {
   return (
-    <section className="relative pt-28 sm:pt-36 pb-16 sm:pb-20 bg-linear-to-b from-[#2B3CB8]/10 via-[#2B3CB8]/5 to-white border-b border-slate-200/60 overflow-hidden">
+    <section className="relative pt-17 sm:pt-36 pb-16 sm:pb-20 bg-linear-to-b from-[#2B3CB8]/10 via-[#2B3CB8]/5 to-white border-b border-slate-200/60 overflow-hidden">
       {/* Magic UI Ambient Background Particles */}
       <Particles
         className="absolute inset-0 z-0 opacity-55"
@@ -33,12 +33,12 @@ export const BatteriesHeroSection: React.FC = () => {
       <div className="absolute top-20 left-1/3 w-80 h-80 bg-[#2B3CB8]/5 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute top-40 left-10 w-80 h-80 bg-[#2B3CB8]/5 rounded-full blur-3xl pointer-events-none" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-6 relative z-10">
+      <div className="max-w-7xl mx-auto px-0 sm:px-6 lg:px-6 relative z-10">
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center mt-6">
 
           {/* Content Column (Bottom on mobile, Left on desktop) */}
-          <div className="order-2 lg:order-1 lg:col-span-7 space-y-4 sm:space-y-6 text-center lg:text-left flex flex-col items-center lg:items-start">
+          <div className="order-2 px-4 sm:px-0 lg:order-1 lg:col-span-7 space-y-4 sm:space-y-6 text-center lg:text-left flex flex-col items-center lg:items-start">
 
             {/* Top Eyebrow Badge */}
             <div className="inline-flex items-center gap-2 px-3 sm:px-3.5 py-1 sm:py-1.5 rounded-full text-[11px] sm:text-xs font-bold uppercase tracking-wider text-[#2B3CB8] bg-[#F5F7FD] border border-[#D1DCF8] shadow-2xs max-w-full">
@@ -108,7 +108,7 @@ export const BatteriesHeroSection: React.FC = () => {
             className="order-1 lg:order-2 lg:col-span-5 relative w-full"
           >
             {/* Main Visual Image Card */}
-            <div className="relative rounded-2xl sm:rounded-3xl overflow-hidden shadow-xl sm:shadow-2xl border-2 sm:border-4 border-white aspect-16/10 xs:aspect-4/3 max-w-lg mx-auto lg:max-w-none bg-slate-950 group">
+            <div className="relative md:rounded-2xl sm:rounded-3xl overflow-hidden shadow-xl sm:shadow-2xl border-2 sm:border-4 border-white aspect-16/10 xs:aspect-4/3 max-w-lg mx-auto lg:max-w-none bg-slate-950 group">
               <BorderBeam size={160} duration={8} colorFrom="#2B3CB8" colorTo="#6F8EE7" borderWidth={2.5} />
               <img
                 src="/images/solutions/battery-hero.webp"
@@ -152,16 +152,7 @@ export const BatteriesHeroSection: React.FC = () => {
               </div>
             </div>
 
-            {/* Floating Glass Pill */}
-            <div className="absolute -bottom-5 -left-4 sm:-left-6 bg-white rounded-2xl p-3.5 shadow-xl border border-slate-200/80 flex items-center gap-3 z-20">
-              <div className="w-10 h-10 rounded-xl bg-[#E8EDFB] text-[#2B3CB8] flex items-center justify-center shrink-0">
-                <Activity className="w-5 h-5" />
-              </div>
-              <div>
-                <div className="text-xs font-bold text-slate-900">92%+ Self-Consumption</div>
-                <div className="text-[11px] text-slate-500">Average household grid independence</div>
-              </div>
-            </div>
+          
           </m.div>
 
         </div>

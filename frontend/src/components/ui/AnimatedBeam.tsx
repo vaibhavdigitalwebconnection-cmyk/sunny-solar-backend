@@ -115,6 +115,10 @@ export const AnimatedBeam: React.FC<AnimatedBeamProps> = ({
     endYOffset,
   ]);
 
+  if (!pathD || !svgDimensions.width || !svgDimensions.height) {
+    return null;
+  }
+
   return (
     <svg
       fill="none"

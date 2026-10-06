@@ -321,7 +321,7 @@ export const calculatorsPageData: Record<string, CalculatorPageData> = {
         bottomLeft: 'bg-amber-400/5'
       },
       image: {
-        src: '/images/solutions/battery-storage.jpg',
+        src: '/images/solutions/battery-bundle.webp',
         alt: 'Solar plus battery quote comparison equipment',
         bottomTag: {
           headline: 'Transparent Battery Quoting',
@@ -435,7 +435,7 @@ export const calculatorsPageData: Record<string, CalculatorPageData> = {
         bottomLeft: 'bg-emerald-500/10'
       },
       image: {
-        src: '/images/solutions/battery-storage.jpg',
+        src: '/images/solutions/battery-storm.webp',
         alt: 'Solar plus battery storage solution',
         bottomTag: {
           headline: 'The Nighttime Problem Solved',

@@ -9,12 +9,12 @@ export const SolarInstallationHeroSection: React.FC = () => {
       {/* Subtle ambient solar blue glow */}
       <div className="absolute top-12 right-1/4 w-64 sm:w-96 h-64 sm:h-96 bg-[#2B3CB8]/10 rounded-full blur-3xl pointer-events-none" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="max-w-7xl mx-auto  relative z-10">
         {/* <Breadcrumbs className="mb-4 sm:mb-6 px-0" /> */}
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-10 lg:gap-12 items-center">
           {/* Content Column (Bottom on mobile, Left on desktop) */}
-          <div className="order-2 lg:order-1 lg:col-span-7 space-y-4 sm:space-y-6 text-center lg:text-left flex flex-col items-center lg:items-start">
+          <div className="order-2 px-4 sm:px-0 lg:order-1 lg:col-span-7 space-y-4 sm:space-y-6 text-center lg:text-left flex flex-col items-center lg:items-start">
             {/* Eyebrow Badge */}
             <div className="inline-flex items-center gap-2 px-3 sm:px-3.5 py-1 sm:py-1.5 rounded-full text-[11px] sm:text-xs font-bold uppercase tracking-wider text-[#2B3CB8] bg-[#F5F7FD] border border-[#D1DCF8] shadow-2xs max-w-full">
               <span className="w-2 h-2 rounded-full bg-[#2B3CB8] animate-pulse shrink-0" />
@@ -73,7 +73,7 @@ export const SolarInstallationHeroSection: React.FC = () => {
 
           {/* Image Column (Top on mobile, Right on desktop) */}
           <div className="order-1 lg:order-2 lg:col-span-5 w-full">
-            <div className="relative rounded-xl sm:rounded-2xl overflow-hidden shadow-xl sm:shadow-2xl border-2 sm:border-4 border-white bg-slate-900 aspect-16/10 xs:aspect-4/3 max-w-lg mx-auto lg:max-w-none group">
+            <div className="relative  sm:rounded-2xl overflow-hidden shadow-xl sm:shadow-2xl border-2 sm:border-4 border-white bg-slate-900 aspect-16/10 xs:aspect-4/3 max-w-lg mx-auto lg:max-w-none group">
               <img
                 src="/images/solar/solar-installation-trade.webp"
                 alt="Electrician installing solar panels"

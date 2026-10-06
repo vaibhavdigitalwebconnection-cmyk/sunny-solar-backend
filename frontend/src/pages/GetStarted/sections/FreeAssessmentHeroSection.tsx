@@ -1,5 +1,5 @@
 import React from 'react';
-import { ShieldCheck,  ArrowRight } from 'lucide-react';
+import { ShieldCheck, ArrowRight } from 'lucide-react';
 import { m } from 'framer-motion';
 import { Particles } from '../../../components/ui/Particles';
 import { AnimatedShinyText } from '../../../components/ui/AnimatedShinyText';
@@ -39,7 +39,7 @@ const SOLAR_IMAGES = [
 
 export const FreeAssessmentHeroSection: React.FC = () => {
   return (
-    <section className="relative bg-linear-to-b from-white  to-white pt-8  sm:pt-10 overflow-hidden">
+    <section className="relative bg-linear-to-b from-white  to-white pt-28  sm:pt-10 overflow-hidden">
       {/* Magic UI Ambient Background Particles */}
       <Particles
         className="absolute inset-0 z-0 opacity-35 pointer-events-none"
@@ -49,16 +49,15 @@ export const FreeAssessmentHeroSection: React.FC = () => {
       />
 
 
-      <div className="max-w-full mx-auto pl-4 sm:pl-6 lg:pl-8 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-4 items-center">
-          {/* ── LEFT COLUMN: Reduced, Attractive, High-Impact Content ── */}
+      <div className="max-w-full mx-auto px-4 sm:px-6 lg:px-0 lg:pl-8 relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-4 items-center">
+          {/* ── LEFT COLUMN: Content (Mobile: Bottom / Desktop: Left) ── */}
           <m.div
             initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-            className="lg:col-span-5 xl:col-span-5 text-center pl-0 md:pl-10 lg:text-left"
+            className="order-2 lg:order-1 lg:col-span-5 xl:col-span-5 text-center lg:text-left pl-0 lg:pl-10 pb-10 lg:pb-0"
           >
-
 
             {/* Headline */}
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-slate-950 tracking-tight leading-[1.28]">
@@ -76,14 +75,12 @@ export const FreeAssessmentHeroSection: React.FC = () => {
             </h1>
 
             {/* Concise Supporting Description */}
-            <p className="mt-3 text-base text-slate-600 leading-relaxed font-normal max-w-xl">
+            <p className="mt-3 text-base text-slate-600 leading-relaxed font-normal max-w-xl mx-auto lg:mx-0">
               Honest energy advice, high-resolution 3D LiDAR roof modeling, and guaranteed fixed pricing directly from licensed CEC solar electricians.
             </p>
 
-           
-
             {/* Action CTA + Social Proof */}
-            <div className="mt-16 flex flex-col sm:flex-row items-center gap-3.5 justify-center lg:justify-start">
+            <div className="mt-8 sm:mt-12 lg:mt-16 flex flex-col sm:flex-row items-center gap-3.5 justify-center lg:justify-start">
               <a
                 href="#assessment-form"
                 className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-[#2B3CB8] hover:bg-[#2433A1] text-white font-semibold text-sm shadow-md shadow-blue-900/20 transition-all hover:scale-[1.02] active:scale-[0.98]"
@@ -91,19 +88,19 @@ export const FreeAssessmentHeroSection: React.FC = () => {
                 <span>Start Free Assessment Below</span>
                 <ArrowRight className="w-4 h-4 animate-bounce" />
               </a>
-            
+
             </div>
           </m.div>
 
-          {/* ── RIGHT COLUMN: Full Width, h-150 Continuous 3D Marquee ── */}
+          {/* ── RIGHT COLUMN: Full Width Continuous 3D Marquee (Mobile: Top / Desktop: Right) ── */}
           <m.div
             initial={{ opacity: 0, scale: 0.96 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.7, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-            className="lg:col-span-7 xl:col-span-7 w-full relative"
+            className="order-1 lg:order-2 lg:col-span-7 xl:col-span-7 w-full relative"
           >
-            {/* Full-width container using h-150 with zero outer/inner padding waste */}
-            <div className="relative h-150 w-full overflow-hidden">
+            {/* Full-width container using responsive height with zero outer/inner padding waste */}
+            <div className="relative h-110 sm:h-130 lg:h-150 w-full overflow-hidden">
               {/* Subtle edge fades for seamless blending */}
               <div className="pointer-events-none absolute inset-x-0 top-0 h-16 bg-linear-to-b from-white via-white/70 to-transparent z-20" />
               <div className="pointer-events-none absolute inset-x-0 bottom-0 h-16 bg-linear-to-t from-white via-white/70 to-transparent z-20" />
@@ -117,7 +114,7 @@ export const FreeAssessmentHeroSection: React.FC = () => {
                 scaleClassName="scale-[0.52] sm:scale-[0.68] lg:scale-[0.84] xl:scale-[0.94]"
               />
 
-             
+
             </div>
           </m.div>
         </div>

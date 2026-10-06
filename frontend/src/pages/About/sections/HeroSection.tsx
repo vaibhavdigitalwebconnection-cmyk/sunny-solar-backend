@@ -26,8 +26,8 @@ export const HeroSection: React.FC = () => {
       {/* Left side — typography and Right side image */}
       <div className="relative grid grid-cols-1 lg:grid-cols-2 min-h-0 lg:min-h-155">
         {/* Mobile image card (Top on mobile) */}
-        <div className="lg:hidden px-4 sm:px-8 pt-24 pb-2">
-          <div className="relative rounded-2xl overflow-hidden shadow-lg shadow-slate-900/10 border border-slate-200/80 aspect-16/10 xs:aspect-16/9 max-w-lg mx-auto">
+        <div className="lg:hidden  pb-2">
+          <div className="relative  overflow-hidden shadow-lg shadow-slate-900/10 border border-slate-200/80 aspect-16/10 xs:aspect-16/9 max-w-lg mx-auto">
             <img
               src="/images/about/gallery/hero-about.webp"
               alt="Sunny Solar installation crew on a rooftop"

@@ -407,12 +407,7 @@ export const ParallaxBannerSection: React.FC = () => {
 
       {/* TOP SECTION TITLE */}
       <div className="relative z-20 max-w-4xl mx-auto px-4 text-center mb-4 sm:mb-16">
-        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-bold tracking-wider uppercase text-[#ED4F11] bg-orange-500/10 border border-orange-500/25 backdrop-blur-md mb-3 shadow-[0_0_20px_rgba(239,104,12,0.15)]">
-          <span className="w-2 h-2 rounded-full bg-[#EF680C] animate-pulse" />
-          <span>4.9 <span className="text-[#FFB800] tracking-widest">★★★★★</span> GOOGLE & SOLARQUOTES RATED</span>
-          <span className="text-white/40">•</span>
-          <span className="text-white">4,200+ Nationwide HOMES</span>
-        </div>
+   
 
         <h2 className="text-3xl sm:text-5xl lg:text-5xl font-serif font-black tracking-tight text-white uppercase drop-shadow-[0_4px_25px_rgba(0,0,0,0.9)]">
           Real Stories. Proven Savings.

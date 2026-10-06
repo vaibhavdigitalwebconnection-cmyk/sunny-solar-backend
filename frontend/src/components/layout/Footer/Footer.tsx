@@ -129,7 +129,7 @@ export const Footer: React.FC = () => {
           <div className="flex flex-col lg:flex-row items-center justify-between gap-5 sm:gap-6">
 
             {/* Certification Badges */}
-            <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6 lg:gap-8">
+            <div className="flex  items-center justify-center gap-4 sm:gap-6 lg:gap-8">
               <a
                 href="https://www.masterelectricians.com.au"
                 target="_blank"
