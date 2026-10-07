@@ -98,11 +98,13 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ isLoaded = true }) => 
       <div className="absolute inset-0 z-0 overflow-hidden">
         <img
           src={heroBgImage}
+          srcSet="/hero-installer-960.webp 960w, /hero-installer.webp 1920w"
+          sizes="100vw"
           alt="Sunny Solar Installation"
           className="w-full h-full object-cover object-center transition-transform duration-2500 ease-out"
           style={{
             transform: isLoaded ? 'scale(1)' : 'scale(1.05)',
-            opacity: isLoaded ? 1 : 0.8,
+            opacity: isLoaded ? 1 : 0.85,
             transition: 'transform 2.5s ease-out, opacity 2.5s ease-out',
           }}
           width="1920"

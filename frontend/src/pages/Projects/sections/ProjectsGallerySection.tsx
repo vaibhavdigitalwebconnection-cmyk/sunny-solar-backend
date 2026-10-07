@@ -1,6 +1,6 @@
 import React from 'react';
 import { m } from 'framer-motion';
-import { Phone, ArrowRight, Sparkles, MoveHorizontal, ZoomIn } from 'lucide-react';
+import { Phone, ArrowRight } from 'lucide-react';
 import { Button } from '../../../components/ui/Button';
 import { FlexCarousel, FlexCarouselItem } from '../../../components/ui/FlexCarousel';
 
@@ -89,7 +89,6 @@ export const ProjectsGallerySection: React.FC = () => {
         {/* Section Header */}
         <div className="text-center max-w-6xl mx-auto mb-8 sm:mb-12">
 
-
           <m.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -110,15 +109,14 @@ export const ProjectsGallerySection: React.FC = () => {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="mt-4 text-base sm:text-lg text-slate-900 leading-relaxed font-normal"
           >
-            Explore our completed solar and battery projects across Australia, showcasing quality installations designed to deliver reliable energy, greater savings, and long-term performance for homes and businesses.  </m.p>
+            Explore our completed solar and battery projects across Australia, showcasing quality installations designed to deliver reliable energy, greater savings, and long-term performance for homes and businesses. 
+          </m.p>
 
         </div>
-
 
       </div>
       {/* Liquid FlexCarousel Animation Container */}
       <div className="relative w-full  overflow-hidden ">
-
 
         {/* Carousel exact specified dimensions and props */}
         <div style={{ width: '100%', height: '560px', position: 'relative' }}>

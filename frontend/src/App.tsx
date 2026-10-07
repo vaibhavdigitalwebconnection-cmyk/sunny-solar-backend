@@ -15,16 +15,19 @@ function AppLayout() {
   const location = useLocation();
   const isAdmin = location.pathname.startsWith('/admin');
 
-  // Automatic 14-minute health ping to keep Render server awake
+  // Automatic 14-minute health ping to keep Render server awake (deferred so it never blocks initial render)
   useEffect(() => {
     const pingHealth = () => {
       api.getHealth().catch(() => { });
     };
 
-    pingHealth();
+    const initialTimer = setTimeout(pingHealth, 6000);
     const intervalId = setInterval(pingHealth, 14 * 60 * 1000);
 
-    return () => clearInterval(intervalId);
+    return () => {
+      clearTimeout(initialTimer);
+      clearInterval(intervalId);
+    };
   }, []);
 
   // Completely separate layout for Admin Portal: no public header, footer, or sticky bar
@@ -39,8 +42,6 @@ function AppLayout() {
     );
   }
 
-  const isHome = location.pathname === '/';
-
   // Standard public website layout
   return (
     <>
@@ -51,7 +52,9 @@ function AppLayout() {
         <main className="grow min-h-screen">
           <AppRoutes />
         </main>
-        <Footer />
+        <div style={{ contentVisibility: 'auto', containIntrinsicSize: '1px 550px' }}>
+          <Footer />
+        </div>
         <MobileStickyActionBar />
       </div>
     </>

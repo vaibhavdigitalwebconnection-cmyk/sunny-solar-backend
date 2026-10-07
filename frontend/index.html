@@ -97,6 +97,10 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
 
+  <!-- Preload LCP Hero Images with High Fetch Priority -->
+  <link rel="preload" as="image" href="/hero-installer-960.webp" media="(max-width: 768px)" type="image/webp" fetchpriority="high">
+  <link rel="preload" as="image" href="/hero-installer.webp" media="(min-width: 769px)" type="image/webp" fetchpriority="high">
+
   <!-- Google Fonts: non-render-blocking via preload + async swap -->
   <link
     rel="preload"

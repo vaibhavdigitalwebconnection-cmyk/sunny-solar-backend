@@ -8,13 +8,7 @@ import React, {
   useMemo,
 } from 'react';
 import { useLocation } from 'react-router-dom';
-import Lenis from 'lenis';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-
-if (typeof window !== 'undefined') {
-  gsap.registerPlugin(ScrollTrigger);
-}
+import type Lenis from 'lenis';
 
 export interface ScrollToOptions {
   offset?: number;
@@ -55,59 +49,96 @@ export interface SmoothScrollProps {
 export const SmoothScroll: React.FC<SmoothScrollProps> = ({ children }) => {
   const [lenisInstance, setLenisInstance] = useState<Lenis | null>(null);
   const lenisRef = useRef<Lenis | null>(null);
+  const scrollTriggerRef = useRef<any>(null);
   const location = useLocation();
 
   useEffect(() => {
-    // Accessibility: Check user's motion preference
-    const reducedMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
-    const prefersReducedMotion = reducedMotionQuery.matches;
+    let isMounted = true;
+    let cleanupFn: (() => void) | null = null;
 
-    // Initialize Lenis instance with production-grade settings
-    const lenis = new Lenis({
-      duration: prefersReducedMotion ? 0 : 0.85,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      orientation: 'vertical',
-      gestureOrientation: 'vertical',
-      smoothWheel: !prefersReducedMotion,
-      wheelMultiplier: 1.1,
-      touchMultiplier: 1.2,
-      syncTouch: false, // Essential: maintains natural, hardware-accelerated touch physics on mobile
-      infinite: false,
-      autoRaf: true, // Clean internal RAF loop managed by Lenis lifecycle
-      anchors: false, // Disabled: custom handleGlobalClick below handles #anchor scrolling
-      autoToggle: true, // Automatically pauses Lenis during modal/drawer overflow locks
-      stopInertiaOnNavigate: false, // Disabled: ScrollToTop component handles scroll reset on route change
-      respectReducedMotion: true, // Live accessibility support
-    });
+    const init = async () => {
+      try {
+        const [{ default: LenisClass }, { default: gsap }, { ScrollTrigger }] = await Promise.all([
+          import('lenis'),
+          import('gsap'),
+          import('gsap/ScrollTrigger'),
+        ]);
 
-    lenisRef.current = lenis;
-    setLenisInstance(lenis);
-    (window as unknown as { __lenis?: Lenis }).__lenis = lenis;
+        if (!isMounted) return;
 
-    // Connect Lenis scroll events directly to GSAP ScrollTrigger
-    const handleScroll = () => {
-      ScrollTrigger.update();
-    };
-    lenis.on('scroll', handleScroll);
+        if (typeof window !== 'undefined') {
+          gsap.registerPlugin(ScrollTrigger);
+          scrollTriggerRef.current = ScrollTrigger;
+        }
 
-    // Refresh ScrollTrigger and sync Lenis dimensions upon window resize
-    const handleResize = () => {
-      lenis.resize();
-      ScrollTrigger.refresh();
-    };
-    window.addEventListener('resize', handleResize);
+        const reducedMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+        const prefersReducedMotion = reducedMotionQuery.matches;
 
-    // Listen for OS reduced-motion preference changes
-    const handleMotionChange = (e: MediaQueryListEvent) => {
-      if (e.matches) {
-        lenis.options.duration = 0;
-        lenis.options.smoothWheel = false;
-      } else {
-        lenis.options.duration = 0.85;
-        lenis.options.smoothWheel = true;
+        const lenis = new LenisClass({
+          duration: prefersReducedMotion ? 0 : 0.85,
+          easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+          orientation: 'vertical',
+          gestureOrientation: 'vertical',
+          smoothWheel: !prefersReducedMotion,
+          wheelMultiplier: 1.1,
+          touchMultiplier: 1.2,
+          syncTouch: false,
+          infinite: false,
+          autoRaf: true,
+          anchors: false,
+          autoToggle: true,
+          stopInertiaOnNavigate: false,
+          respectReducedMotion: true,
+        });
+
+        lenisRef.current = lenis;
+        setLenisInstance(lenis);
+        (window as unknown as { __lenis?: Lenis }).__lenis = lenis;
+
+        const handleScroll = () => {
+          ScrollTrigger.update();
+        };
+        lenis.on('scroll', handleScroll);
+
+        const handleResize = () => {
+          lenis.resize();
+          ScrollTrigger.refresh();
+        };
+        window.addEventListener('resize', handleResize);
+
+        const handleMotionChange = (e: MediaQueryListEvent) => {
+          if (e.matches) {
+            lenis.options.duration = 0;
+            lenis.options.smoothWheel = false;
+          } else {
+            lenis.options.duration = 0.85;
+            lenis.options.smoothWheel = true;
+          }
+        };
+        reducedMotionQuery.addEventListener('change', handleMotionChange);
+
+        cleanupFn = () => {
+          reducedMotionQuery.removeEventListener('change', handleMotionChange);
+          window.removeEventListener('resize', handleResize);
+          lenis.off('scroll', handleScroll);
+          lenis.destroy();
+          lenisRef.current = null;
+          setLenisInstance(null);
+          delete (window as unknown as { __lenis?: Lenis }).__lenis;
+        };
+      } catch (e) {
+        console.warn('Smooth scroll deferred init:', e);
       }
     };
-    reducedMotionQuery.addEventListener('change', handleMotionChange);
+
+    let idleId: number | null = null;
+    let timerId: ReturnType<typeof setTimeout> | null = null;
+
+    if ('requestIdleCallback' in window) {
+      idleId = (window as any).requestIdleCallback(init, { timeout: 2000 });
+    } else {
+      timerId = setTimeout(init, 300);
+    }
 
     // Global delegated click listener for buttons and custom elements with anchor targets
     const handleGlobalClick = (e: MouseEvent) => {
@@ -132,7 +163,11 @@ export const SmoothScroll: React.FC<SmoothScrollProps> = ({ children }) => {
 
       if (target === 'top' || target === '#top') {
         e.preventDefault();
-        lenis.scrollTo(0, { duration: 1.2 });
+        if (lenisRef.current) {
+          lenisRef.current.scrollTo(0, { duration: 1.2 });
+        } else {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
       } else if (target.startsWith('#')) {
         const id = target.slice(1);
         const destination = document.getElementById(id);
@@ -141,7 +176,11 @@ export const SmoothScroll: React.FC<SmoothScrollProps> = ({ children }) => {
           if (window.history.pushState) {
             window.history.pushState(null, '', target);
           }
-          lenis.scrollTo(destination, { duration: 1.2 });
+          if (lenisRef.current) {
+            lenisRef.current.scrollTo(destination, { duration: 1.2 });
+          } else {
+            destination.scrollIntoView({ behavior: 'smooth' });
+          }
         }
       }
     };
@@ -149,14 +188,15 @@ export const SmoothScroll: React.FC<SmoothScrollProps> = ({ children }) => {
     document.addEventListener('click', handleGlobalClick);
 
     return () => {
-      reducedMotionQuery.removeEventListener('change', handleMotionChange);
+      isMounted = false;
+      if (idleId !== null && 'cancelIdleCallback' in window) {
+        (window as any).cancelIdleCallback(idleId);
+      }
+      if (timerId !== null) {
+        clearTimeout(timerId);
+      }
       document.removeEventListener('click', handleGlobalClick);
-      window.removeEventListener('resize', handleResize);
-      lenis.off('scroll', handleScroll);
-      lenis.destroy();
-      lenisRef.current = null;
-      setLenisInstance(null);
-      delete (window as unknown as { __lenis?: Lenis }).__lenis;
+      if (cleanupFn) cleanupFn();
     };
   }, []);
 
@@ -166,7 +206,6 @@ export const SmoothScroll: React.FC<SmoothScrollProps> = ({ children }) => {
 
     if (location.hash) {
       const id = location.hash.slice(1);
-      // Brief delay to allow new route DOM and layout elements to render
       const timer = setTimeout(() => {
         const element = document.getElementById(id);
         if (element && lenisRef.current) {
@@ -181,7 +220,7 @@ export const SmoothScroll: React.FC<SmoothScrollProps> = ({ children }) => {
   // Refresh ScrollTrigger upon route changes
   useEffect(() => {
     const timer = setTimeout(() => {
-      ScrollTrigger.refresh();
+      scrollTriggerRef.current?.refresh();
     }, 150);
     return () => clearTimeout(timer);
   }, [location.pathname]);

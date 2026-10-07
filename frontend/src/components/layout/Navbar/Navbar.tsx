@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, lazy, Suspense } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 const logo = '/logo.webp';
 import {
@@ -10,9 +10,10 @@ import {
 } from 'lucide-react';
 import { navigationData } from '../../../data/navigationData';
 import { preloadRoute } from '../../../routes/AppRoutes';
-import { MegaMenu } from './MegaMenu';
-import { MobileMenu } from './MobileMenu';
 import { Button } from '../../ui/Button';
+
+const MegaMenu = lazy(() => import('./MegaMenu').then(m => ({ default: m.MegaMenu })));
+const MobileMenu = lazy(() => import('./MobileMenu').then(m => ({ default: m.MobileMenu })));
 
 export const Navbar: React.FC = () => {
   const [activeMenu, setActiveMenu] = useState<string | null>(null);
@@ -228,19 +229,23 @@ export const Navbar: React.FC = () => {
 
         {/* Desktop Mega Menu Dropdown */}
         {activeSection && activeSection.children && (
-          <MegaMenu
-            section={activeSection}
-            isOpen={Boolean(activeMenu)}
-            onClose={() => setActiveMenu(null)}
-          />
+          <Suspense fallback={null}>
+            <MegaMenu
+              section={activeSection}
+              isOpen={Boolean(activeMenu)}
+              onClose={() => setActiveMenu(null)}
+            />
+          </Suspense>
         )}
       </nav>
 
       {/* Mobile Drawer Navigation */}
-      <MobileMenu
-        isOpen={mobileMenuOpen}
-        onClose={() => setMobileMenuOpen(false)}
-      />
+      <Suspense fallback={null}>
+        <MobileMenu
+          isOpen={mobileMenuOpen}
+          onClose={() => setMobileMenuOpen(false)}
+        />
+      </Suspense>
     </header>
   );
 };

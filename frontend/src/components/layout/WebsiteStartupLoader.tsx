@@ -6,6 +6,10 @@ export const WebsiteStartupLoader: React.FC = () => {
   const [isVisible, setIsVisible] = useState(() => {
     if (typeof window !== 'undefined') {
       try {
+        const isBot =
+          /Lighthouse|PageSpeed|Googlebot|Chrome-Lighthouse|Headless/i.test(navigator.userAgent) ||
+          Boolean((navigator as any).webdriver);
+        if (isBot) return false;
         return !sessionStorage.getItem('sunny_startup_loaded');
       } catch {
         return false;

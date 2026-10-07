@@ -160,6 +160,7 @@ export const HeroForm: React.FC<HeroFormProps> = ({ isLoaded = true }) => {
                 className="w-36 md:w-45 h-auto object-contain drop-shadow-[0_14px_22px_rgba(0,0,0,0.32)] filter"
                 width="180"
                 height="180"
+                decoding="async"
               />
             </m.div>
           </div>
