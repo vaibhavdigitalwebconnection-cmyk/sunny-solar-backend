@@ -76,7 +76,7 @@ export const Footer: React.FC = () => {
             <div>
               <h4 className="text-base sm:text-lg font-bold text-[#18181b] font-serif mb-3 sm:mb-4">Contact Us</h4>
               <div className="space-y-3 text-xs sm:text-sm text-slate-600">
-                <a
+                {/* <a
                   href="https://maps.google.com/?q=10A+Burralong+Dr,+Wondunna+QLD+4655,+Australia"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -85,7 +85,7 @@ export const Footer: React.FC = () => {
                 >
                   <MapPin className="w-4 h-4 text-[#2B3CB8] mt-0.5 shrink-0 group-hover:scale-110 transition-transform" />
                   <span>10A Burralong Dr, Wondunna QLD 4655, Australia</span>
-                </a>
+                </a> */}
                 <a href="tel:1300030479" className="flex items-center gap-2.5 hover:text-[#2B3CB8] transition-colors">
                   <Phone className="w-4 h-4 text-[#2B3CB8] shrink-0" />
                   1300 030 479

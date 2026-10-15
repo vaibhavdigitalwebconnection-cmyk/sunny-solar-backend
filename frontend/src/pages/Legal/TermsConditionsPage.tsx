@@ -53,14 +53,15 @@ export const TermsConditionsPage: React.FC = () => {
             <h2 className="text-xl font-bold text-slate-900">5. Contact Information</h2>
             <p className="text-slate-700">
               For any notices or queries, please contact Sunny Solar at{' '}
-              <a
+              {/* <a
                 href="https://maps.google.com/?q=10A+Burralong+Dr,+Wondunna+QLD+4655,+Australia"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-amber-600 hover:underline inline-flex items-center gap-1 font-medium"
               >
                 10A Burralong Dr, Wondunna QLD 4655, Australia ↗
-              </a>{' '}
+              </a> */}
+              {' '}
               | Phone: <a href="tel:1300030479" className="text-amber-600 hover:underline">1300 030 479</a> | Email: <a href="mailto:info@sunnysolar.com.au" className="text-amber-600 hover:underline">info@sunnysolar.com.au</a>.
             </p>
           </section>

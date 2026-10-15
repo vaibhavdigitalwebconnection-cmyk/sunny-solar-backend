@@ -57,7 +57,7 @@ export const PrivacyPolicyPage: React.FC = () => {
             </p>
             <div className="text-sm text-slate-700 space-y-1">
               <p><strong>Sunny Solar</strong></p>
-              <p>
+              {/* <p>
                 <a
                   href="https://maps.google.com/?q=10A+Burralong+Dr,+Wondunna+QLD+4655,+Australia"
                   target="_blank"
@@ -66,7 +66,7 @@ export const PrivacyPolicyPage: React.FC = () => {
                 >
                   10A Burralong Dr, Wondunna QLD 4655, Australia ↗
                 </a>
-              </p>
+              </p> */}
               <p>Phone: <a href="tel:1300030479" className="text-amber-600 hover:underline">1300 030 479</a></p>
               <p>Email: <a href="mailto:info@sunnysolar.com.au" className="text-amber-600 underline">info@sunnysolar.com.au</a></p>
             </div>
