@@ -614,7 +614,7 @@ graph LR
    ```text
    https://sunnysolar.com.au,https://www.sunnysolar.com.au,https://your-app.vercel.app
    ```
-6. Click **Create Web Service**. Note your live API URL (e.g. `https://sunny-solar-backend.onrender.com`).
+6. Click **Create Web Service**. Note your live API URL (e.g. `https://sunny-solar-backend-6onf.onrender.com`).
 
 #### Step 2: Deploy Frontend to Vercel
 1. Create a **New Project** on [Vercel](https://vercel.com/).
@@ -625,7 +625,7 @@ graph LR
    - **Build Command**: `npm run build`
    - **Output Directory**: `dist`
 4. In **Environment Variables**, add:
-   - `VITE_API_URL` = `https://sunny-solar-backend.onrender.com/api` (your live Render backend URL)
+   - `VITE_API_URL` = `https://sunny-solar-backend-6onf.onrender.com/api` (your live Render backend URL)
 5. Click **Deploy**. Vercel will build the frontend with `vercel.json` handling SPA routing and asset caching.
 6. Connect your custom domain (`sunnysolar.com.au`) under **Project Settings > Domains**.
 

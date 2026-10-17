@@ -9,7 +9,7 @@ This guide contains all instructions and configurations to take the Sunny Solar 
 | Component | Technology | Recommended Host | Production URL Example |
 | :--- | :--- | :--- | :--- |
 | **Frontend** | React 19, Vite, Tailwind CSS v4, Framer Motion | **Vercel** / **Netlify** / **Render Static** | `https://sunnysolar.com.au` |
-| **Backend** | Node.js, Express, MongoDB Atlas, Cloudinary | **Render** / **Railway** / **VPS** | `https://sunny-solar-backend.onrender.com` |
+| **Backend** | Node.js, Express, MongoDB Atlas, Cloudinary | **Render** / **Railway** / **VPS** | `https://sunny-solar-backend-6onf.onrender.com` |
 | **Database** | MongoDB Atlas (M0 Free or Dedicated) | **MongoDB Cloud** | `mongodb+srv://...` |
 | **Media Storage** | Cloudinary | **Cloudinary Cloud** | `res.cloudinary.com` |
 
@@ -20,7 +20,7 @@ This guide contains all instructions and configurations to take the Sunny Solar 
 ### 1. Frontend (`frontend/.env.production`)
 | Variable | Description | Example |
 | :--- | :--- | :--- |
-| `VITE_API_URL` | Full URL to your live backend `/api` endpoint | `https://sunny-solar-backend.onrender.com/api` |
+| `VITE_API_URL` | Full URL to your live backend `/api` endpoint | `https://sunny-solar-backend-6onf.onrender.com/api` |
 
 ### 2. Backend (`backend/.env`)
 | Variable | Description | Example |
@@ -53,7 +53,7 @@ This guide contains all instructions and configurations to take the Sunny Solar 
    - **Start Command**: `npm start`
    - **Health Check Path**: `/api/health`
 4. Add the environment variables from the Backend table above.
-5. Click **Create Web Service**. Once deployed, copy your backend URL (e.g. `https://sunny-solar-backend.onrender.com`).
+5. Click **Create Web Service**. Once deployed, copy your backend URL (e.g. `https://sunny-solar-backend-6onf.onrender.com`).
 
 #### Step 2: Deploy Frontend on Vercel
 1. Go to [Vercel Dashboard](https://vercel.com/dashboard) and click **Add New > Project**.
@@ -64,7 +64,7 @@ This guide contains all instructions and configurations to take the Sunny Solar 
    - **Build Command**: `npm run build`
    - **Output Directory**: `dist`
 4. In **Environment Variables**, add:
-   - `VITE_API_URL` = `https://sunny-solar-backend.onrender.com/api` (replace with your Render backend URL)
+   - `VITE_API_URL` = `https://sunny-solar-backend-6onf.onrender.com/api` (replace with your Render backend URL)
 5. Click **Deploy**. Vercel will build the frontend with `vercel.json` already providing SPA routing and asset caching.
 6. Under **Project Settings > Domains**, connect your custom domain: `sunnysolar.com.au` and `www.sunnysolar.com.au`.
 
@@ -91,7 +91,7 @@ This repository includes a [`render.yaml`](./render.yaml) file that automaticall
    - **Build command**: `npm run build`
    - **Publish directory**: `frontend/dist`
 3. Environment variables:
-   - `VITE_API_URL` = `https://sunny-solar-backend.onrender.com/api`
+   - `VITE_API_URL` = `https://sunny-solar-backend-6onf.onrender.com/api`
 4. Netlify will automatically detect [`frontend/netlify.toml`](./frontend/netlify.toml) and [`frontend/public/_redirects`](./frontend/public/_redirects).
 
 ---

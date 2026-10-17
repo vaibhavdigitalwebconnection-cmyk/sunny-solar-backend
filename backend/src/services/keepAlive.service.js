@@ -15,7 +15,7 @@ export const initKeepAlive = () => {
   const targetBaseUrl =
     process.env.RENDER_EXTERNAL_URL ||
     process.env.BACKEND_PUBLIC_URL ||
-    (process.env.NODE_ENV === 'production' ? 'https://sunny-solar-backend.onrender.com' : null);
+    (process.env.NODE_ENV === 'production' ? 'https://sunny-solar-backend-6onf.onrender.com' : null);
 
   if (!targetBaseUrl) {
     console.log(`ℹ️ [Keep-Alive] Auto-health self-ping idle in local dev (RENDER_EXTERNAL_URL not set).`);
