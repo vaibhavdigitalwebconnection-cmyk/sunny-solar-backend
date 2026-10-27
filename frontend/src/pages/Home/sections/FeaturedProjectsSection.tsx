@@ -40,7 +40,7 @@ const claritySlides: ClaritySlide[] = [
     description:
       'Panels, inverters, batteries, warranties and system size all affect the value of a solar quote. Know what’s included before you compare the price.',
     highlight: 'Compare • Understand • Decide',
-    image: '/images/projects/clarity-clear-choices.webp',
+    image: '/images/projects/clarity-clear-choices-australian.webp',
   },
   {
     id: '03',
