@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { BrowserRouter, useLocation } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 import { ScrollToTop } from './components/layout/ScrollToTop';
@@ -9,26 +9,10 @@ import { MobileStickyActionBar } from './components/layout/MobileStickyActionBar
 import { WebsiteStartupLoader } from './components/layout/WebsiteStartupLoader';
 import { AppRoutes } from './routes/AppRoutes';
 import { LazyMotionProvider } from './components/common/LazyMotionProvider';
-import { api } from './services/api';
 
 function AppLayout() {
   const location = useLocation();
   const isAdmin = location.pathname.startsWith('/admin');
-
-  // Automatic 14-minute health ping to keep Render server awake (deferred so it never blocks initial render)
-  useEffect(() => {
-    const pingHealth = () => {
-      api.getHealth().catch(() => { });
-    };
-
-    const initialTimer = setTimeout(pingHealth, 6000);
-    const intervalId = setInterval(pingHealth, 14 * 60 * 1000);
-
-    return () => {
-      clearTimeout(initialTimer);
-      clearInterval(intervalId);
-    };
-  }, []);
 
   // Completely separate layout for Admin Portal: no public header, footer, or sticky bar
   if (isAdmin) {

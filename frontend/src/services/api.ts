@@ -141,9 +141,6 @@ export const api = {
 
   getStats: () => request('/admin/stats'),
 
-  // Health Check & Render Keep-Alive
-  getHealth: () => request('/health'),
-
   // Image Upload to Cloudinary
   uploadImage: (image: string, folder: string = 'sunny-solar'): Promise<{ success: boolean; url: string; public_id?: string; message?: string }> =>
     request('/upload', {

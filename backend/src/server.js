@@ -1,7 +1,6 @@
 import 'dotenv/config';
 import app, { getAllowedOrigins } from './app.js';
 import { connectDB } from './config/db.js';
-import { initKeepAlive } from './services/keepAlive.service.js';
 
 const PORT = process.env.PORT || 5000;
 
@@ -20,9 +19,6 @@ const startServer = async () => {
       console.log(`⚙️  Environment: ${process.env.NODE_ENV || 'development'}`);
       console.log(`🌐 Allowed CORS Origins: ${getAllowedOrigins().join(', ')}`);
       console.log(`=================================`);
-
-      // Initialize 14-minute auto-health keep-alive for Render
-      initKeepAlive();
     });
   } catch (error) {
     console.error(`Failed to start server:`, error.message);

@@ -662,18 +662,14 @@ docker-compose logs -f
 - **Backend Dynamic Sitemap (`/sitemap.xml`)**: Automatically queries all published blog articles and knowledge items from MongoDB, combining them with all static routes into an XML sitemap formatted with `<lastmod>`, `<changefreq>`, and `<priority>`.
 - **Search Console Submission**: Add `https://sunnysolar.com.au/sitemap.xml` directly to Google Search Console and Bing Webmaster Tools.
 
-### 2. Render Cold Start Keep-Alive Ping
-Render's free tier spins down instances after 15 minutes of inactivity. To keep the backend warm:
-- `frontend/src/App.tsx` triggers an automatic, silent health check ping to `/api/health` every **14 minutes**.
-
-### 3. SPA Route Fallbacks
+### 2. SPA Route Fallbacks
 To prevent `404 Not Found` errors when users reload deep pages (such as `/calculators/solar-savings` or `/learn/blog`):
 - **Vercel**: Handled by `vercel.json` rewrites (`{ "source": "/(.*)", "destination": "/index.html" }`).
 - **Netlify**: Handled by `netlify.toml` and `public/_redirects`.
 - **Apache/cPanel**: Handled by `frontend/.htaccess`.
 - **Nginx**: Handled by `frontend/nginx.conf` (`try_files $uri $uri/ /index.html;`).
 
-### 4. Advanced CORS Security
+### 3. Advanced CORS Security
 - The backend features an origin validation engine supporting exact domains, wildcards, localhost development, and Vercel preview environments (`*.vercel.app`), while rejecting untrusted origins and safeguarding credentials.
 
 ---
