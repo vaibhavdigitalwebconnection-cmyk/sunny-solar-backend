@@ -1,3 +1,5 @@
+import { trackPixel } from './metaPixel';
+
 export const WEB3FORMS_ACCESS_KEY = '931031ab-378b-41eb-9bc5-ca9d50b95e91';
 
 export interface Web3FormsPayload {
@@ -62,9 +64,18 @@ export async function submitToWeb3Forms(
     });
 
     const result = await response.json();
+    const isSuccess = result.success === true;
+
+    if (isSuccess) {
+      // Fire Meta Pixel standard 'Lead' event for conversion tracking
+      trackPixel('Lead', {
+        content_name: options?.from_name || options?.subject || 'Lead Form Submission'
+      });
+    }
+
     return {
-      success: result.success === true,
-      message: result.message || (result.success ? 'Form submitted successfully!' : 'Submission failed'),
+      success: isSuccess,
+      message: result.message || (isSuccess ? 'Form submitted successfully!' : 'Submission failed'),
       data: result,
     };
   } catch (error: any) {

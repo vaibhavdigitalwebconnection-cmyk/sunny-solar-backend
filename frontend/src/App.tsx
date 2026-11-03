@@ -9,6 +9,7 @@ import { MobileStickyActionBar } from './components/layout/MobileStickyActionBar
 import { WebsiteStartupLoader } from './components/layout/WebsiteStartupLoader';
 import { AppRoutes } from './routes/AppRoutes';
 import { LazyMotionProvider } from './components/common/LazyMotionProvider';
+import { MetaPixelTracker } from './components/common/MetaPixelTracker';
 
 function AppLayout() {
   const location = useLocation();
@@ -49,6 +50,7 @@ export function App() {
   return (
     <HelmetProvider>
       <BrowserRouter>
+        <MetaPixelTracker />
         <LazyMotionProvider>
           <SmoothScroll>
             <AppLayout />
