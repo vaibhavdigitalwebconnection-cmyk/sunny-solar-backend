@@ -39,7 +39,7 @@ const SOLAR_IMAGES = [
 
 export const FreeAssessmentHeroSection: React.FC = () => {
   return (
-    <section className="relative bg-linear-to-b from-white  to-white pt-28  sm:pt-10 overflow-hidden">
+    <section className="relative bg-linear-to-b from-white  to-white pt-8 sm:pt-10 overflow-hidden">
       {/* Magic UI Ambient Background Particles */}
       <Particles
         className="absolute inset-0 z-0 opacity-35 pointer-events-none"
@@ -85,7 +85,7 @@ export const FreeAssessmentHeroSection: React.FC = () => {
                 href="#assessment-form"
                 className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-[#2B3CB8] hover:bg-[#2433A1] text-white font-semibold text-sm shadow-md shadow-blue-900/20 transition-all hover:scale-[1.02] active:scale-[0.98]"
               >
-                <span>Start Free Assessment Below</span>
+                <span>Start Free Assessment</span>
                 <ArrowRight className="w-4 h-4 animate-bounce" />
               </a>
 
